@@ -1,0 +1,30 @@
+.dashboard-container {
+  padding: 16px;
+  background: #f0f2f5;
+  min-height: 100%;
+}
+
+.dashboard-card {
+  height: 100%;
+}
+
+.chart-card .ant-card-body {
+  padding: 16px;
+}
+
+.top-nodes-card .ant-card-body {
+  padding: 16px;
+}
+
+.top-nodes-card .ant-card-small {
+  margin-bottom: 0;
+}
+
+.dashboard-container .ant-statistic-title {
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.65);
+}
+
+.dashboard-container .ant-statistic-content {
+  font-size: 24px;
+}
