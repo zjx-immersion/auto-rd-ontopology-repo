@@ -27,9 +27,22 @@
 ## 🚀 核心成果
 
 ### 1. 仪表盘Bug修复 ✅
+
+#### 修复1: label表达式错误
 **问题**: `ERROR: Unexpected character: }`  
 **解决**: Pie图表label改用函数表达式  
-**影响**: 仪表盘完全稳定
+**影响**: 饼图正常渲染
+
+#### 修复2: shape.outer组件错误
+**问题**: `ERROR: Unknown Component: shape.outer`  
+**原因**: `label.type: 'outer'` 配置不被支持  
+**解决**: 移除type配置，简化label为扇区内百分比显示  
+**增强**: 
+- Label: 扇区内显示白色百分比
+- Legend: 右侧显示类型名称
+- Tooltip: 悬停显示详细信息
+
+**影响**: 仪表盘完全稳定，无任何JavaScript错误
 
 ---
 
