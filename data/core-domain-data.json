@@ -1,0 +1,1290 @@
+{
+  "version": "1.0.0",
+  "name": "核心领域模型知识图谱数据",
+  "description": "基于MX-2026车型项目的完整领域模型数据",
+  "lastUpdate": "2026-01-16",
+  "nodes": [
+    {
+      "id": "vp-mx-2026",
+      "type": "VehicleProject",
+      "data": {
+        "id": "vp-mx-2026",
+        "name": "MX-2026车型项目",
+        "model": "MX-2026",
+        "platform": "GOP平台",
+        "sopDate": "2026-12-01",
+        "status": "InProgress",
+        "owner": "张总"
+      }
+    },
+    {
+      "id": "model-mx-2026",
+      "type": "VehicleModel",
+      "data": {
+        "id": "model-mx-2026",
+        "name": "MX-2026",
+        "platform": "GOP平台",
+        "vehicleProjectId": "vp-mx-2026"
+      }
+    },
+    {
+      "id": "node-mx-et",
+      "type": "LifecycleNode",
+      "data": {
+        "id": "node-mx-et",
+        "name": "ET节点",
+        "type": "ET",
+        "vehicleProjectId": "vp-mx-2026",
+        "targetDate": "2026-03-31",
+        "status": "InProgress"
+      }
+    },
+    {
+      "id": "node-mx-ppc",
+      "type": "LifecycleNode",
+      "data": {
+        "id": "node-mx-ppc",
+        "name": "PPC节点",
+        "type": "PPC",
+        "vehicleProjectId": "vp-mx-2026",
+        "targetDate": "2026-09-30",
+        "status": "Planned"
+      }
+    },
+    {
+      "id": "node-mx-sop",
+      "type": "LifecycleNode",
+      "data": {
+        "id": "node-mx-sop",
+        "name": "SOP节点",
+        "type": "SOP",
+        "vehicleProjectId": "vp-mx-2026",
+        "targetDate": "2026-12-01",
+        "status": "Planned"
+      }
+    },
+    {
+      "id": "baseline-mx-et-001",
+      "type": "Baseline",
+      "data": {
+        "id": "baseline-mx-et-001",
+        "name": "ET基线",
+        "version": "V1.0",
+        "nodeId": "node-mx-et",
+        "vehicleProjectId": "vp-mx-2026",
+        "status": "Baselined"
+      }
+    },
+    {
+      "id": "baseline-mx-ppc-001",
+      "type": "Baseline",
+      "data": {
+        "id": "baseline-mx-ppc-001",
+        "name": "PPC基线",
+        "version": "V1.0",
+        "nodeId": "node-mx-ppc",
+        "vehicleProjectId": "vp-mx-2026",
+        "status": "Draft"
+      }
+    },
+    {
+      "id": "baseline-mx-sop-001",
+      "type": "Baseline",
+      "data": {
+        "id": "baseline-mx-sop-001",
+        "name": "SOP基线",
+        "version": "V1.0",
+        "nodeId": "node-mx-sop",
+        "vehicleProjectId": "vp-mx-2026",
+        "status": "Draft"
+      }
+    },
+    {
+      "id": "dp-mx-2026-adas",
+      "type": "DomainProject",
+      "data": {
+        "id": "dp-mx-2026-adas",
+        "name": "MX-2026 智能驾驶领域项目",
+        "code": "DP-MX-ADAS",
+        "vehicleProjectId": "vp-mx-2026",
+        "vehicleModel": "MX-2026",
+        "domain": "智能驾驶",
+        "platform": "ADAS平台 V2.0",
+        "status": "InProgress",
+        "progress": 45,
+        "domainPM": "李经理"
+      }
+    },
+    {
+      "id": "dp-mx-2026-cockpit",
+      "type": "DomainProject",
+      "data": {
+        "id": "dp-mx-2026-cockpit",
+        "name": "MX-2026 智能座舱领域项目",
+        "code": "DP-MX-COCKPIT",
+        "vehicleProjectId": "vp-mx-2026",
+        "vehicleModel": "MX-2026",
+        "domain": "智能座舱",
+        "platform": "座舱平台 V3.0",
+        "status": "InProgress",
+        "progress": 38,
+        "domainPM": "王经理"
+      }
+    },
+    {
+      "id": "dp-mx-2026-eea",
+      "type": "DomainProject",
+      "data": {
+        "id": "dp-mx-2026-eea",
+        "name": "MX-2026 电子电器领域项目",
+        "code": "DP-MX-EEA",
+        "vehicleProjectId": "vp-mx-2026",
+        "vehicleModel": "MX-2026",
+        "domain": "电子电器",
+        "platform": "域控平台 V1.5",
+        "status": "InProgress",
+        "progress": 52,
+        "domainPM": "赵经理"
+      }
+    },
+    {
+      "id": "pi-adas-2026-q1",
+      "type": "PIPlanning",
+      "data": {
+        "id": "pi-adas-2026-q1",
+        "name": "智驾领域 2026-Q1 PI规划",
+        "domainProjectId": "dp-mx-2026-adas",
+        "startDate": "2026-01-01",
+        "endDate": "2026-03-31",
+        "sprintCount": 3,
+        "status": "Executing",
+        "progress": 68
+      }
+    },
+    {
+      "id": "pi-adas-2026-q2",
+      "type": "PIPlanning",
+      "data": {
+        "id": "pi-adas-2026-q2",
+        "name": "智驾领域 2026-Q2 PI规划",
+        "domainProjectId": "dp-mx-2026-adas",
+        "startDate": "2026-04-01",
+        "endDate": "2026-06-30",
+        "sprintCount": 3,
+        "status": "Planning",
+        "progress": 0
+      }
+    },
+    {
+      "id": "pi-cockpit-2026-q1",
+      "type": "PIPlanning",
+      "data": {
+        "id": "pi-cockpit-2026-q1",
+        "name": "座舱领域 2026-Q1 PI规划",
+        "domainProjectId": "dp-mx-2026-cockpit",
+        "startDate": "2026-01-01",
+        "endDate": "2026-03-31",
+        "sprintCount": 3,
+        "status": "Executing",
+        "progress": 55
+      }
+    },
+    {
+      "id": "spt-2026-q1-1",
+      "type": "Sprint",
+      "data": {
+        "id": "spt-2026-q1-1",
+        "name": "Sprint 2026-Q1-1",
+        "code": "SPT-Q1-1",
+        "piPlanningId": "pi-adas-2026-q1",
+        "startDate": "2026-01-01",
+        "endDate": "2026-01-21",
+        "duration": 21,
+        "status": "completed",
+        "velocity": 32,
+        "teamId": "team-adas-001"
+      }
+    },
+    {
+      "id": "spt-2026-q1-2",
+      "type": "Sprint",
+      "data": {
+        "id": "spt-2026-q1-2",
+        "name": "Sprint 2026-Q1-2",
+        "code": "SPT-Q1-2",
+        "piPlanningId": "pi-adas-2026-q1",
+        "startDate": "2026-01-22",
+        "endDate": "2026-02-11",
+        "duration": 21,
+        "status": "active",
+        "velocity": 28,
+        "teamId": "team-adas-001"
+      }
+    },
+    {
+      "id": "spt-2026-q1-3",
+      "type": "Sprint",
+      "data": {
+        "id": "spt-2026-q1-3",
+        "name": "Sprint 2026-Q1-3",
+        "code": "SPT-Q1-3",
+        "piPlanningId": "pi-adas-2026-q1",
+        "startDate": "2026-02-12",
+        "endDate": "2026-03-31",
+        "duration": 47,
+        "status": "planned",
+        "velocity": 30,
+        "teamId": "team-adas-001"
+      }
+    },
+    {
+      "id": "epic-highway-driving",
+      "type": "Epic",
+      "data": {
+        "id": "epic-highway-driving",
+        "title": "高速公路智能驾驶",
+        "type": "user",
+        "source": "用户调研: 85%用户希望高速自动驾驶; 车型规划: MX-2026必须具备L2+",
+        "description": "在高速公路场景下，车辆能够自动保持车道、自动变道、自动跟车、自动上下匝道，减少驾驶疲劳",
+        "businessValue": "提升产品竞争力、提升用户满意度、提升安全性",
+        "priority": "P0",
+        "status": "implementing"
+      }
+    },
+    {
+      "id": "epic-parking-assist",
+      "type": "Epic",
+      "data": {
+        "id": "epic-parking-assist",
+        "title": "智能泊车辅助",
+        "type": "vehicle",
+        "source": "车型定义：MX-2026标配自动泊车功能",
+        "description": "支持垂直泊车、侧方泊车、斜向泊车等多种场景的自动泊车",
+        "businessValue": "提升用户体验，增加卖点",
+        "priority": "P0",
+        "status": "implementing"
+      }
+    },
+    {
+      "id": "epic-voice-interaction",
+      "type": "Epic",
+      "data": {
+        "id": "epic-voice-interaction",
+        "title": "智能语音交互",
+        "type": "user",
+        "source": "用户痛点：传统语音识别率低，响应慢",
+        "description": "实现自然语言理解，支持多轮对话，离在线混合",
+        "businessValue": "提升用户满意度",
+        "priority": "P1",
+        "status": "planning"
+      }
+    },
+    {
+      "id": "fr-001-lane-keeping",
+      "type": "FeatureRequirement",
+      "data": {
+        "id": "fr-001-lane-keeping",
+        "title": "高速车道保持功能",
+        "epicId": "epic-highway-driving",
+        "domain": "智能驾驶",
+        "domainProjectId": "dp-mx-2026-adas",
+        "descriptionType": "prd",
+        "priority": "P0",
+        "status": "implementing",
+        "owner": "FO-李四"
+      }
+    },
+    {
+      "id": "fr-002-auto-lane-change",
+      "type": "FeatureRequirement",
+      "data": {
+        "id": "fr-002-auto-lane-change",
+        "title": "自动变道功能",
+        "epicId": "epic-highway-driving",
+        "domain": "智能驾驶",
+        "domainProjectId": "dp-mx-2026-adas",
+        "descriptionType": "prd",
+        "priority": "P0",
+        "status": "implementing",
+        "owner": "FO-李四"
+      }
+    },
+    {
+      "id": "fr-003-adaptive-cruise",
+      "type": "FeatureRequirement",
+      "data": {
+        "id": "fr-003-adaptive-cruise",
+        "title": "自适应巡航功能",
+        "epicId": "epic-highway-driving",
+        "domain": "智能驾驶",
+        "domainProjectId": "dp-mx-2026-adas",
+        "descriptionType": "simplified",
+        "priority": "P0",
+        "status": "implementing",
+        "owner": "FO-李四"
+      }
+    },
+    {
+      "id": "fr-004-parking-vertical",
+      "type": "FeatureRequirement",
+      "data": {
+        "id": "fr-004-parking-vertical",
+        "title": "垂直泊车功能",
+        "epicId": "epic-parking-assist",
+        "domain": "智能驾驶",
+        "domainProjectId": "dp-mx-2026-adas",
+        "descriptionType": "prd",
+        "priority": "P0",
+        "status": "implementing",
+        "owner": "FO-王五"
+      }
+    },
+    {
+      "id": "fr-005-noa-hmi",
+      "type": "FeatureRequirement",
+      "data": {
+        "id": "fr-005-noa-hmi",
+        "title": "NOA HMI交互界面",
+        "epicId": "epic-highway-driving",
+        "domain": "智能座舱",
+        "domainProjectId": "dp-mx-2026-cockpit",
+        "descriptionType": "simplified",
+        "priority": "P0",
+        "status": "implementing",
+        "owner": "FO-赵六"
+      }
+    },
+    {
+      "id": "fr-006-voice-control",
+      "type": "FeatureRequirement",
+      "data": {
+        "id": "fr-006-voice-control",
+        "title": "自然语音控制",
+        "epicId": "epic-voice-interaction",
+        "domain": "智能座舱",
+        "domainProjectId": "dp-mx-2026-cockpit",
+        "descriptionType": "prd",
+        "priority": "P1",
+        "status": "reviewing",
+        "owner": "FO-赵六"
+      }
+    },
+    {
+      "id": "prd-lane-keeping-001",
+      "type": "PRDDocument",
+      "data": {
+        "id": "prd-lane-keeping-001",
+        "title": "高速车道保持功能PRD",
+        "featureRequirementId": "fr-001-lane-keeping",
+        "version": "V1.2",
+        "status": "Approved"
+      }
+    },
+    {
+      "id": "prd-auto-lane-change-001",
+      "type": "PRDDocument",
+      "data": {
+        "id": "prd-auto-lane-change-001",
+        "title": "自动变道功能PRD",
+        "featureRequirementId": "fr-002-auto-lane-change",
+        "version": "V1.0",
+        "status": "Approved"
+      }
+    },
+    {
+      "id": "ssts-001-straight-lane",
+      "type": "SSTS",
+      "data": {
+        "id": "ssts-001-straight-lane",
+        "title": "直道车道保持场景",
+        "featureRequirementId": "fr-001-lane-keeping",
+        "epicId": "epic-highway-driving",
+        "safetyLevel": "ASIL-C",
+        "status": "implementing",
+        "fo": "FO-李四",
+        "architect": "Arch-赵六"
+      }
+    },
+    {
+      "id": "ssts-002-curve-lane",
+      "type": "SSTS",
+      "data": {
+        "id": "ssts-002-curve-lane",
+        "title": "弯道车道保持场景",
+        "featureRequirementId": "fr-001-lane-keeping",
+        "epicId": "epic-highway-driving",
+        "safetyLevel": "ASIL-C",
+        "status": "implementing",
+        "fo": "FO-李四",
+        "architect": "Arch-赵六"
+      }
+    },
+    {
+      "id": "ssts-003-lane-change-left",
+      "type": "SSTS",
+      "data": {
+        "id": "ssts-003-lane-change-left",
+        "title": "左变道场景",
+        "featureRequirementId": "fr-002-auto-lane-change",
+        "epicId": "epic-highway-driving",
+        "safetyLevel": "ASIL-C",
+        "status": "implementing",
+        "fo": "FO-李四",
+        "architect": "Arch-赵六"
+      }
+    },
+    {
+      "id": "ssts-004-lane-change-right",
+      "type": "SSTS",
+      "data": {
+        "id": "ssts-004-lane-change-right",
+        "title": "右变道场景",
+        "featureRequirementId": "fr-002-auto-lane-change",
+        "epicId": "epic-highway-driving",
+        "safetyLevel": "ASIL-C",
+        "status": "implementing",
+        "fo": "FO-李四",
+        "architect": "Arch-赵六"
+      }
+    },
+    {
+      "id": "mr-001-lane-detection",
+      "type": "ModuleRequirement",
+      "data": {
+        "id": "mr-001-lane-detection",
+        "title": "车道线识别模块需求",
+        "sstsId": "ssts-001-straight-lane",
+        "featureRequirementId": "fr-001-lane-keeping",
+        "epicId": "epic-highway-driving",
+        "module": "车道线识别",
+        "system": "感知系统",
+        "component": "视觉感知组件",
+        "owner": "MPO-钱七",
+        "status": "implementing"
+      }
+    },
+    {
+      "id": "mr-002-vehicle-positioning",
+      "type": "ModuleRequirement",
+      "data": {
+        "id": "mr-002-vehicle-positioning",
+        "title": "车辆定位模块需求",
+        "sstsId": "ssts-001-straight-lane",
+        "featureRequirementId": "fr-001-lane-keeping",
+        "epicId": "epic-highway-driving",
+        "module": "车辆定位",
+        "system": "感知系统",
+        "component": "定位组件",
+        "owner": "MPO-孙八",
+        "status": "implementing"
+      }
+    },
+    {
+      "id": "mr-003-lateral-control",
+      "type": "ModuleRequirement",
+      "data": {
+        "id": "mr-003-lateral-control",
+        "title": "横向控制模块需求",
+        "sstsId": "ssts-001-straight-lane",
+        "featureRequirementId": "fr-001-lane-keeping",
+        "epicId": "epic-highway-driving",
+        "module": "横向控制",
+        "system": "控制系统",
+        "component": "转向控制组件",
+        "owner": "MPO-周九",
+        "status": "implementing"
+      }
+    },
+    {
+      "id": "mr-004-lane-change-decision",
+      "type": "ModuleRequirement",
+      "data": {
+        "id": "mr-004-lane-change-decision",
+        "title": "变道决策模块需求",
+        "sstsId": "ssts-003-lane-change-left",
+        "featureRequirementId": "fr-002-auto-lane-change",
+        "epicId": "epic-highway-driving",
+        "module": "变道决策",
+        "system": "决策系统",
+        "component": "决策组件",
+        "owner": "MPO-吴十",
+        "status": "implementing"
+      }
+    },
+    {
+      "id": "task-001-lanenet-impl",
+      "type": "Task",
+      "data": {
+        "id": "task-001-lanenet-impl",
+        "title": "实现LaneNet算法",
+        "moduleRequirementId": "mr-001-lane-detection",
+        "sprintId": "spt-2026-q1-2",
+        "assignee": "张三",
+        "status": "in_progress",
+        "storyPoints": 8,
+        "estimatedHours": 40
+      }
+    },
+    {
+      "id": "task-002-image-preprocess",
+      "type": "Task",
+      "data": {
+        "id": "task-002-image-preprocess",
+        "title": "图像预处理模块",
+        "moduleRequirementId": "mr-001-lane-detection",
+        "sprintId": "spt-2026-q1-2",
+        "assignee": "李四",
+        "status": "done",
+        "storyPoints": 5,
+        "estimatedHours": 24
+      }
+    },
+    {
+      "id": "task-003-positioning-fusion",
+      "type": "Task",
+      "data": {
+        "id": "task-003-positioning-fusion",
+        "title": "多传感器定位融合",
+        "moduleRequirementId": "mr-002-vehicle-positioning",
+        "sprintId": "spt-2026-q1-2",
+        "assignee": "王五",
+        "status": "in_progress",
+        "storyPoints": 13,
+        "estimatedHours": 65
+      }
+    },
+    {
+      "id": "task-004-lateral-controller",
+      "type": "Task",
+      "data": {
+        "id": "task-004-lateral-controller",
+        "title": "横向PID控制器实现",
+        "moduleRequirementId": "mr-003-lateral-control",
+        "sprintId": "spt-2026-q1-2",
+        "assignee": "赵六",
+        "status": "in_review",
+        "storyPoints": 8,
+        "estimatedHours": 40
+      }
+    },
+    {
+      "id": "repo-adas-perception",
+      "type": "Repository",
+      "data": {
+        "id": "repo-adas-perception",
+        "name": "adas-perception",
+        "url": "git@gitlab.com:mx-2026/adas-perception.git",
+        "moduleId": "mod-perception"
+      }
+    },
+    {
+      "id": "repo-adas-decision",
+      "type": "Repository",
+      "data": {
+        "id": "repo-adas-decision",
+        "name": "adas-decision",
+        "url": "git@gitlab.com:mx-2026/adas-decision.git",
+        "moduleId": "mod-decision"
+      }
+    },
+    {
+      "id": "commit-abc123",
+      "type": "Commit",
+      "data": {
+        "id": "commit-abc123",
+        "sha": "abc123def456",
+        "message": "feat: 实现LaneNet车道线检测算法",
+        "author": "张三",
+        "timestamp": "2026-01-25T10:30:00Z",
+        "repositoryId": "repo-adas-perception"
+      }
+    },
+    {
+      "id": "commit-def456",
+      "type": "Commit",
+      "data": {
+        "id": "commit-def456",
+        "sha": "def456ghi789",
+        "message": "feat: 添加图像预处理模块",
+        "author": "李四",
+        "timestamp": "2026-01-23T15:20:00Z",
+        "repositoryId": "repo-adas-perception"
+      }
+    },
+    {
+      "id": "build-001",
+      "type": "Build",
+      "data": {
+        "id": "build-001",
+        "buildNumber": "202601251030",
+        "commitId": "commit-abc123",
+        "status": "success",
+        "duration": 420
+      }
+    },
+    {
+      "id": "build-002",
+      "type": "Build",
+      "data": {
+        "id": "build-002",
+        "buildNumber": "202601231520",
+        "commitId": "commit-def456",
+        "status": "success",
+        "duration": 380
+      }
+    },
+    {
+      "id": "artifact-001",
+      "type": "Artifact",
+      "data": {
+        "id": "artifact-001",
+        "name": "adas-perception-v1.2.3",
+        "version": "v1.2.3",
+        "buildId": "build-001",
+        "environment": "test"
+      }
+    },
+    {
+      "id": "artifact-002",
+      "type": "Artifact",
+      "data": {
+        "id": "artifact-002",
+        "name": "adas-perception-v1.2.2",
+        "version": "v1.2.2",
+        "buildId": "build-002",
+        "environment": "dev"
+      }
+    },
+    {
+      "id": "deploy-001",
+      "type": "Deployment",
+      "data": {
+        "id": "deploy-001",
+        "artifactId": "artifact-001",
+        "environment": "test",
+        "status": "success",
+        "deployedAt": "2026-01-25T11:00:00Z"
+      }
+    },
+    {
+      "id": "productline-adas",
+      "type": "ProductLine",
+      "data": {
+        "id": "productline-adas",
+        "name": "智驾平台"
+      }
+    },
+    {
+      "id": "product-l2plus",
+      "type": "Product",
+      "data": {
+        "id": "product-l2plus",
+        "name": "L2+智驾系统",
+        "productLineId": "productline-adas"
+      }
+    },
+    {
+      "id": "feature-asset-lka-001",
+      "type": "FeatureAsset",
+      "data": {
+        "id": "feature-asset-lka-001",
+        "name": "车道保持辅助特性",
+        "version": "V1.0",
+        "productId": "product-l2plus",
+        "reusable": true,
+        "maturity": "development"
+      }
+    },
+    {
+      "id": "module-asset-perception-001",
+      "type": "ModuleAsset",
+      "data": {
+        "id": "module-asset-perception-001",
+        "name": "车道线识别模块",
+        "version": "V1.2",
+        "featureAssetId": "feature-asset-lka-001",
+        "platform": "ADAS平台 V2.0",
+        "reusable": true
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "e-vp-model",
+      "source": "vp-mx-2026",
+      "target": "model-mx-2026",
+      "type": "has_model",
+      "data": {
+        "relationship": "车型项目包含车型定义"
+      }
+    },
+    {
+      "id": "e-vp-dp-adas",
+      "source": "vp-mx-2026",
+      "target": "dp-mx-2026-adas",
+      "type": "has_domain_project",
+      "data": {
+        "relationship": "车型项目包含智驾领域项目"
+      }
+    },
+    {
+      "id": "e-vp-dp-cockpit",
+      "source": "vp-mx-2026",
+      "target": "dp-mx-2026-cockpit",
+      "type": "has_domain_project",
+      "data": {
+        "relationship": "车型项目包含座舱领域项目"
+      }
+    },
+    {
+      "id": "e-vp-dp-eea",
+      "source": "vp-mx-2026",
+      "target": "dp-mx-2026-eea",
+      "type": "has_domain_project",
+      "data": {
+        "relationship": "车型项目包含电子电器领域项目"
+      }
+    },
+    {
+      "id": "e-vp-node-et",
+      "source": "vp-mx-2026",
+      "target": "node-mx-et",
+      "type": "has_lifecycle_node",
+      "data": {
+        "relationship": "车型项目包含ET节点"
+      }
+    },
+    {
+      "id": "e-vp-node-ppc",
+      "source": "vp-mx-2026",
+      "target": "node-mx-ppc",
+      "type": "has_lifecycle_node",
+      "data": {
+        "relationship": "车型项目包含PPC节点"
+      }
+    },
+    {
+      "id": "e-vp-node-sop",
+      "source": "vp-mx-2026",
+      "target": "node-mx-sop",
+      "type": "has_lifecycle_node",
+      "data": {
+        "relationship": "车型项目包含SOP节点"
+      }
+    },
+    {
+      "id": "e-node-baseline-et",
+      "source": "node-mx-et",
+      "target": "baseline-mx-et-001",
+      "type": "has_baseline",
+      "data": {
+        "relationship": "ET节点包含基线"
+      }
+    },
+    {
+      "id": "e-node-baseline-ppc",
+      "source": "node-mx-ppc",
+      "target": "baseline-mx-ppc-001",
+      "type": "has_baseline",
+      "data": {
+        "relationship": "PPC节点包含基线"
+      }
+    },
+    {
+      "id": "e-node-baseline-sop",
+      "source": "node-mx-sop",
+      "target": "baseline-mx-sop-001",
+      "type": "has_baseline",
+      "data": {
+        "relationship": "SOP节点包含基线"
+      }
+    },
+    {
+      "id": "e-dp-pi-q1",
+      "source": "dp-mx-2026-adas",
+      "target": "pi-adas-2026-q1",
+      "type": "has_pi_planning",
+      "data": {
+        "relationship": "领域项目包含Q1 PI规划"
+      }
+    },
+    {
+      "id": "e-dp-pi-q2",
+      "source": "dp-mx-2026-adas",
+      "target": "pi-adas-2026-q2",
+      "type": "has_pi_planning",
+      "data": {
+        "relationship": "领域项目包含Q2 PI规划"
+      }
+    },
+    {
+      "id": "e-dp-cockpit-pi-q1",
+      "source": "dp-mx-2026-cockpit",
+      "target": "pi-cockpit-2026-q1",
+      "type": "has_pi_planning",
+      "data": {
+        "relationship": "座舱领域项目包含Q1 PI规划"
+      }
+    },
+    {
+      "id": "e-pi-sprint-1",
+      "source": "pi-adas-2026-q1",
+      "target": "spt-2026-q1-1",
+      "type": "has_sprint",
+      "data": {
+        "relationship": "PI包含Sprint 1"
+      }
+    },
+    {
+      "id": "e-pi-sprint-2",
+      "source": "pi-adas-2026-q1",
+      "target": "spt-2026-q1-2",
+      "type": "has_sprint",
+      "data": {
+        "relationship": "PI包含Sprint 2"
+      }
+    },
+    {
+      "id": "e-pi-sprint-3",
+      "source": "pi-adas-2026-q1",
+      "target": "spt-2026-q1-3",
+      "type": "has_sprint",
+      "data": {
+        "relationship": "PI包含Sprint 3"
+      }
+    },
+    {
+      "id": "e-pi-target-et",
+      "source": "pi-adas-2026-q1",
+      "target": "node-mx-et",
+      "type": "targets_node",
+      "data": {
+        "relationship": "PI规划交付到ET节点"
+      }
+    },
+    {
+      "id": "e-epic-fr-lka",
+      "source": "epic-highway-driving",
+      "target": "fr-001-lane-keeping",
+      "type": "splits_to_fr",
+      "data": {
+        "relationship": "Epic拆分为车道保持FR"
+      }
+    },
+    {
+      "id": "e-epic-fr-alc",
+      "source": "epic-highway-driving",
+      "target": "fr-002-auto-lane-change",
+      "type": "splits_to_fr",
+      "data": {
+        "relationship": "Epic拆分为自动变道FR"
+      }
+    },
+    {
+      "id": "e-epic-fr-acc",
+      "source": "epic-highway-driving",
+      "target": "fr-003-adaptive-cruise",
+      "type": "splits_to_fr",
+      "data": {
+        "relationship": "Epic拆分为自适应巡航FR"
+      }
+    },
+    {
+      "id": "e-epic-fr-hmi",
+      "source": "epic-highway-driving",
+      "target": "fr-005-noa-hmi",
+      "type": "splits_to_fr",
+      "data": {
+        "relationship": "Epic拆分为HMI FR"
+      }
+    },
+    {
+      "id": "e-epic-parking-fr",
+      "source": "epic-parking-assist",
+      "target": "fr-004-parking-vertical",
+      "type": "splits_to_fr",
+      "data": {
+        "relationship": "Epic拆分为泊车FR"
+      }
+    },
+    {
+      "id": "e-epic-voice-fr",
+      "source": "epic-voice-interaction",
+      "target": "fr-006-voice-control",
+      "type": "splits_to_fr",
+      "data": {
+        "relationship": "Epic拆分为语音FR"
+      }
+    },
+    {
+      "id": "e-fr-dp-adas-1",
+      "source": "fr-001-lane-keeping",
+      "target": "dp-mx-2026-adas",
+      "type": "belongs_to_domain",
+      "data": {
+        "relationship": "FR归属智驾领域项目"
+      }
+    },
+    {
+      "id": "e-fr-dp-adas-2",
+      "source": "fr-002-auto-lane-change",
+      "target": "dp-mx-2026-adas",
+      "type": "belongs_to_domain",
+      "data": {
+        "relationship": "FR归属智驾领域项目"
+      }
+    },
+    {
+      "id": "e-fr-dp-adas-3",
+      "source": "fr-003-adaptive-cruise",
+      "target": "dp-mx-2026-adas",
+      "type": "belongs_to_domain",
+      "data": {
+        "relationship": "FR归属智驾领域项目"
+      }
+    },
+    {
+      "id": "e-fr-dp-cockpit-1",
+      "source": "fr-005-noa-hmi",
+      "target": "dp-mx-2026-cockpit",
+      "type": "belongs_to_domain",
+      "data": {
+        "relationship": "FR归属座舱领域项目"
+      }
+    },
+    {
+      "id": "e-fr-prd-lka",
+      "source": "fr-001-lane-keeping",
+      "target": "prd-lane-keeping-001",
+      "type": "has_prd",
+      "data": {
+        "relationship": "FR有PRD文档"
+      }
+    },
+    {
+      "id": "e-fr-prd-alc",
+      "source": "fr-002-auto-lane-change",
+      "target": "prd-auto-lane-change-001",
+      "type": "has_prd",
+      "data": {
+        "relationship": "FR有PRD文档"
+      }
+    },
+    {
+      "id": "e-fr-ssts-1",
+      "source": "fr-001-lane-keeping",
+      "target": "ssts-001-straight-lane",
+      "type": "splits_to_ssts",
+      "data": {
+        "relationship": "FR拆分为直道场景SSTS"
+      }
+    },
+    {
+      "id": "e-fr-ssts-2",
+      "source": "fr-001-lane-keeping",
+      "target": "ssts-002-curve-lane",
+      "type": "splits_to_ssts",
+      "data": {
+        "relationship": "FR拆分为弯道场景SSTS"
+      }
+    },
+    {
+      "id": "e-fr-ssts-3",
+      "source": "fr-002-auto-lane-change",
+      "target": "ssts-003-lane-change-left",
+      "type": "splits_to_ssts",
+      "data": {
+        "relationship": "FR拆分为左变道场景SSTS"
+      }
+    },
+    {
+      "id": "e-fr-ssts-4",
+      "source": "fr-002-auto-lane-change",
+      "target": "ssts-004-lane-change-right",
+      "type": "splits_to_ssts",
+      "data": {
+        "relationship": "FR拆分为右变道场景SSTS"
+      }
+    },
+    {
+      "id": "e-ssts-mr-1",
+      "source": "ssts-001-straight-lane",
+      "target": "mr-001-lane-detection",
+      "type": "splits_to_mr",
+      "data": {
+        "relationship": "SSTS拆分为车道线识别MR"
+      }
+    },
+    {
+      "id": "e-ssts-mr-2",
+      "source": "ssts-001-straight-lane",
+      "target": "mr-002-vehicle-positioning",
+      "type": "splits_to_mr",
+      "data": {
+        "relationship": "SSTS拆分为车辆定位MR"
+      }
+    },
+    {
+      "id": "e-ssts-mr-3",
+      "source": "ssts-001-straight-lane",
+      "target": "mr-003-lateral-control",
+      "type": "splits_to_mr",
+      "data": {
+        "relationship": "SSTS拆分为横向控制MR"
+      }
+    },
+    {
+      "id": "e-ssts-mr-4",
+      "source": "ssts-003-lane-change-left",
+      "target": "mr-004-lane-change-decision",
+      "type": "splits_to_mr",
+      "data": {
+        "relationship": "SSTS拆分为变道决策MR"
+      }
+    },
+    {
+      "id": "e-mr-task-1",
+      "source": "mr-001-lane-detection",
+      "target": "task-001-lanenet-impl",
+      "type": "converts_to_task",
+      "data": {
+        "relationship": "MR转换为LaneNet实现任务"
+      }
+    },
+    {
+      "id": "e-mr-task-2",
+      "source": "mr-001-lane-detection",
+      "target": "task-002-image-preprocess",
+      "type": "converts_to_task",
+      "data": {
+        "relationship": "MR转换为图像预处理任务"
+      }
+    },
+    {
+      "id": "e-mr-task-3",
+      "source": "mr-002-vehicle-positioning",
+      "target": "task-003-positioning-fusion",
+      "type": "converts_to_task",
+      "data": {
+        "relationship": "MR转换为定位融合任务"
+      }
+    },
+    {
+      "id": "e-mr-task-4",
+      "source": "mr-003-lateral-control",
+      "target": "task-004-lateral-controller",
+      "type": "converts_to_task",
+      "data": {
+        "relationship": "MR转换为横向控制器任务"
+      }
+    },
+    {
+      "id": "e-task-sprint-1",
+      "source": "task-001-lanenet-impl",
+      "target": "spt-2026-q1-2",
+      "type": "in_sprint",
+      "data": {
+        "relationship": "任务在Sprint中"
+      }
+    },
+    {
+      "id": "e-task-sprint-2",
+      "source": "task-002-image-preprocess",
+      "target": "spt-2026-q1-2",
+      "type": "in_sprint",
+      "data": {
+        "relationship": "任务在Sprint中"
+      }
+    },
+    {
+      "id": "e-task-sprint-3",
+      "source": "task-003-positioning-fusion",
+      "target": "spt-2026-q1-2",
+      "type": "in_sprint",
+      "data": {
+        "relationship": "任务在Sprint中"
+      }
+    },
+    {
+      "id": "e-task-sprint-4",
+      "source": "task-004-lateral-controller",
+      "target": "spt-2026-q1-2",
+      "type": "in_sprint",
+      "data": {
+        "relationship": "任务在Sprint中"
+      }
+    },
+    {
+      "id": "e-fr-baseline-1",
+      "source": "fr-001-lane-keeping",
+      "target": "baseline-mx-et-001",
+      "type": "in_baseline",
+      "data": {
+        "relationship": "FR在ET基线中"
+      }
+    },
+    {
+      "id": "e-fr-baseline-2",
+      "source": "fr-002-auto-lane-change",
+      "target": "baseline-mx-ppc-001",
+      "type": "in_baseline",
+      "data": {
+        "relationship": "FR在PPC基线中"
+      }
+    },
+    {
+      "id": "e-commit-task-1",
+      "source": "commit-abc123",
+      "target": "task-001-lanenet-impl",
+      "type": "implements",
+      "data": {
+        "relationship": "提交实现任务"
+      }
+    },
+    {
+      "id": "e-commit-task-2",
+      "source": "commit-def456",
+      "target": "task-002-image-preprocess",
+      "type": "implements",
+      "data": {
+        "relationship": "提交实现任务"
+      }
+    },
+    {
+      "id": "e-commit-repo-1",
+      "source": "commit-abc123",
+      "target": "repo-adas-perception",
+      "type": "in_repository",
+      "data": {
+        "relationship": "提交在仓库中"
+      }
+    },
+    {
+      "id": "e-commit-repo-2",
+      "source": "commit-def456",
+      "target": "repo-adas-perception",
+      "type": "in_repository",
+      "data": {
+        "relationship": "提交在仓库中"
+      }
+    },
+    {
+      "id": "e-commit-build-1",
+      "source": "commit-abc123",
+      "target": "build-001",
+      "type": "triggers_build",
+      "data": {
+        "relationship": "提交触发构建"
+      }
+    },
+    {
+      "id": "e-commit-build-2",
+      "source": "commit-def456",
+      "target": "build-002",
+      "type": "triggers_build",
+      "data": {
+        "relationship": "提交触发构建"
+      }
+    },
+    {
+      "id": "e-build-artifact-1",
+      "source": "build-001",
+      "target": "artifact-001",
+      "type": "produces_artifact",
+      "data": {
+        "relationship": "构建产出制品"
+      }
+    },
+    {
+      "id": "e-build-artifact-2",
+      "source": "build-002",
+      "target": "artifact-002",
+      "type": "produces_artifact",
+      "data": {
+        "relationship": "构建产出制品"
+      }
+    },
+    {
+      "id": "e-artifact-deploy-1",
+      "source": "artifact-001",
+      "target": "deploy-001",
+      "type": "deploys",
+      "data": {
+        "relationship": "制品部署"
+      }
+    },
+    {
+      "id": "e-fr-asset-1",
+      "source": "fr-001-lane-keeping",
+      "target": "feature-asset-lka-001",
+      "type": "binds_to_feature_asset",
+      "data": {
+        "relationship": "FR绑定到特性资产"
+      }
+    },
+    {
+      "id": "e-mr-asset-1",
+      "source": "mr-001-lane-detection",
+      "target": "module-asset-perception-001",
+      "type": "binds_to_module_asset",
+      "data": {
+        "relationship": "MR绑定到模块资产"
+      }
+    },
+    {
+      "id": "e-productline-product",
+      "source": "productline-adas",
+      "target": "product-l2plus",
+      "type": "has_product",
+      "data": {
+        "relationship": "产品线包含产品"
+      }
+    },
+    {
+      "id": "e-product-feature",
+      "source": "product-l2plus",
+      "target": "feature-asset-lka-001",
+      "type": "has_feature",
+      "data": {
+        "relationship": "产品包含特性资产"
+      }
+    },
+    {
+      "id": "e-feature-module",
+      "source": "feature-asset-lka-001",
+      "target": "module-asset-perception-001",
+      "type": "has_module",
+      "data": {
+        "relationship": "特性资产包含模块资产"
+      }
+    }
+  ],
+  "statistics": {
+    "total_nodes": 69,
+    "total_edges": 74,
+    "entity_counts": {
+      "VehicleProject": 1,
+      "VehicleModel": 1,
+      "LifecycleNode": 3,
+      "Baseline": 3,
+      "DomainProject": 3,
+      "PIPlanning": 3,
+      "Sprint": 3,
+      "Epic": 3,
+      "FeatureRequirement": 6,
+      "PRDDocument": 2,
+      "SSTS": 4,
+      "ModuleRequirement": 4,
+      "Task": 4,
+      "Repository": 2,
+      "Commit": 2,
+      "Build": 2,
+      "Artifact": 2,
+      "Deployment": 1,
+      "ProductLine": 1,
+      "Product": 1,
+      "FeatureAsset": 1,
+      "ModuleAsset": 1
+    }
+  }
+}

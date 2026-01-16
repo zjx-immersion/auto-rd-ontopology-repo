@@ -1,0 +1,167 @@
+{
+  "version": "1.0.0",
+  "name": "对象属性测试数据",
+  "description": "包含对象属性的知识图谱测试数据",
+  "lastUpdate": "2026-01-16",
+  "nodes": [
+    {
+      "id": "vp-test-001",
+      "type": "VehicleProject",
+      "data": {
+        "name": "测试车型项目",
+        "model": "TEST-2026",
+        "platform": "测试平台",
+        "sopDate": "2026-12-01",
+        "status": "InProgress",
+        "owner": "张三"
+      }
+    },
+    {
+      "id": "dp-test-adas",
+      "type": "DomainProject",
+      "data": {
+        "name": "智能驾驶领域项目",
+        "code": "ADAS-TEST",
+        "vehicleProjectId": "vp-test-001",
+        "domain": "智能驾驶",
+        "status": "InProgress",
+        "progress": 65,
+        "domainPM": "李四"
+      }
+    },
+    {
+      "id": "epic-test-001",
+      "type": "Epic",
+      "data": {
+        "title": "自动泊车功能需求",
+        "type": "user",
+        "source": "用户调研",
+        "description": "实现自动泊车功能，包括垂直泊车和平行泊车",
+        "businessValue": "提升用户体验，增加产品竞争力",
+        "priority": "P0",
+        "status": "implementing"
+      }
+    },
+    {
+      "id": "fr-test-001",
+      "type": "FeatureRequirement",
+      "data": {
+        "title": "ADAS自动泊车特性需求",
+        "epicId": "epic-test-001",
+        "domain": "智能驾驶",
+        "domainProjectId": "dp-test-adas",
+        "descriptionType": "prd",
+        "priority": "P0",
+        "status": "implementing",
+        "owner": "王五"
+      }
+    },
+    {
+      "id": "mr-test-001",
+      "type": "ModuleRequirement",
+      "data": {
+        "title": "泊车路径规划模块需求",
+        "featureRequirementId": "fr-test-001",
+        "epicId": "epic-test-001",
+        "module": "PathPlanning",
+        "system": "ADAS",
+        "component": "ParkingPlanner",
+        "owner": "赵六",
+        "status": "implementing"
+      }
+    },
+    {
+      "id": "task-test-001",
+      "type": "Task",
+      "data": {
+        "title": "实现泊车路径规划算法",
+        "moduleRequirementId": "mr-test-001",
+        "assignee": "赵六",
+        "status": "in_progress",
+        "storyPoints": 8,
+        "estimatedHours": 40
+      }
+    },
+    {
+      "id": "lc-test-pt",
+      "type": "LifecycleNode",
+      "data": {
+        "name": "PT节点",
+        "type": "PT",
+        "vehicleProjectId": "vp-test-001",
+        "targetDate": "2026-08-01",
+        "status": "InProgress"
+      }
+    },
+    {
+      "id": "baseline-test-pt",
+      "type": "Baseline",
+      "data": {
+        "name": "PT基线",
+        "version": "v1.0",
+        "nodeId": "lc-test-pt",
+        "vehicleProjectId": "vp-test-001",
+        "status": "Baselined"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "e-vp-dp-001",
+      "source": "vp-test-001",
+      "target": "dp-test-adas",
+      "type": "has_domain_project",
+      "data": {
+        "priority": "高",
+        "allocation_date": "2026-01-01"
+      }
+    },
+    {
+      "id": "e-epic-fr-001",
+      "source": "epic-test-001",
+      "target": "fr-test-001",
+      "type": "splits_to_fr",
+      "data": {
+        "split_ratio": 100,
+        "priority_inherit": true,
+        "split_date": "2026-02-01"
+      }
+    },
+    {
+      "id": "e-mr-task-001",
+      "source": "mr-test-001",
+      "target": "task-test-001",
+      "type": "converts_to_task",
+      "data": {
+        "conversion_date": "2026-03-01",
+        "estimated_effort": 8,
+        "complexity": "复杂"
+      }
+    },
+    {
+      "id": "e-fr-baseline-001",
+      "source": "fr-test-001",
+      "target": "baseline-test-pt",
+      "type": "in_baseline",
+      "data": {
+        "baseline_version": "PT-v1.0",
+        "freeze_date": "2026-07-15",
+        "change_allowed": false
+      }
+    },
+    {
+      "id": "e-vp-lc-001",
+      "source": "vp-test-001",
+      "target": "lc-test-pt",
+      "type": "has_lifecycle_node",
+      "data": {}
+    },
+    {
+      "id": "e-lc-baseline-001",
+      "source": "lc-test-pt",
+      "target": "baseline-test-pt",
+      "type": "has_baseline",
+      "data": {}
+    }
+  ]
+}

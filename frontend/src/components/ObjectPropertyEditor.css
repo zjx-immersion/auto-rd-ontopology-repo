@@ -1,0 +1,12 @@
+.object-property-editor {
+  /* 样式占位符，如需要可以添加自定义样式 */
+}
+
+.property-form-item {
+  margin-bottom: 16px;
+}
+
+.property-form-label {
+  font-weight: 500;
+  margin-bottom: 8px;
+}

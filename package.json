@@ -1,0 +1,30 @@
+{
+  "name": "auto-rd-ontopology-repo",
+  "version": "0.1.0",
+  "description": "岚图智能驾驶研发知识图谱系统",
+  "private": true,
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
+  "scripts": {
+    "install:all": "npm install && cd frontend && npm install && cd ../backend && npm install",
+    "start:backend": "cd backend && npm start",
+    "start:frontend": "cd frontend && npm start",
+    "start": "concurrently \"npm run start:backend\" \"npm run start:frontend\"",
+    "build:frontend": "cd frontend && npm run build",
+    "build:backend": "cd backend && npm run build"
+  },
+  "keywords": [
+    "ontology",
+    "knowledge-graph",
+    "visualization",
+    "automotive",
+    "autonomous-driving"
+  ],
+  "author": "岚图汽车智能驾驶团队",
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

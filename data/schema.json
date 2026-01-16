@@ -1,0 +1,344 @@
+{
+  "version": "0.1.0",
+  "name": "岚图智能驾驶研发本体模型",
+  "description": "基于岚图智能驾驶研发场景的本体Schema定义",
+  "entityTypes": {
+    "VehicleProject": {
+      "code": "CLS_01",
+      "label": "车型项目",
+      "properties": {
+        "project_id": {
+          "type": "String",
+          "required": true,
+          "constraint": "ID唯一，格式：PROJ_XXXX"
+        },
+        "project_name": {
+          "type": "String",
+          "required": true,
+          "constraint": "长度≤100字符"
+        },
+        "platform": {
+          "type": "Enum",
+          "values": ["GOP", "GOOE"],
+          "required": true
+        },
+        "PM": {
+          "type": "User",
+          "required": true
+        },
+        "status": {
+          "type": "Enum",
+          "values": ["规划中", "开发中", "测试中", "已发布", "已关闭"]
+        }
+      },
+      "color": "#1890ff"
+    },
+    "SSTS": {
+      "code": "CLS_02",
+      "label": "系统需求",
+      "properties": {
+        "ssts_id": {
+          "type": "String",
+          "required": true,
+          "constraint": "ID唯一，格式：SSTS_XXXX"
+        },
+        "title": {
+          "type": "String",
+          "required": true,
+          "constraint": "长度≤200字符"
+        },
+        "req_type": {
+          "type": "Enum",
+          "values": ["功能", "非功能"],
+          "required": true
+        },
+        "platform": {
+          "type": "Enum",
+          "values": ["GOP", "GOOE", "通用"],
+          "required": true
+        },
+        "priority": {
+          "type": "Enum",
+          "values": ["P0", "P1", "P2", "P3"],
+          "constraint": "P0需TPL审批"
+        },
+        "milestone": {
+          "type": "Enum",
+          "values": ["ET", "PVC", "PT", "SOP"],
+          "required": true
+        },
+        "completion_rate": {
+          "type": "Percentage"
+        }
+      },
+      "color": "#52c41a"
+    },
+    "SYS_2_5": {
+      "code": "CLS_03",
+      "label": "系统架构",
+      "properties": {
+        "sys_id": {
+          "type": "String",
+          "required": true,
+          "constraint": "ID唯一，格式：SYS_XXXX"
+        },
+        "title": {
+          "type": "String",
+          "required": true
+        },
+        "upstream_ssts": {
+          "type": "String",
+          "required": true,
+          "constraint": "关联SSTS_ID"
+        },
+        "status": {
+          "type": "Enum",
+          "values": ["草稿", "评审中", "已基线", "变更中"],
+          "constraint": "基线后变更需审批"
+        }
+      },
+      "color": "#faad14"
+    },
+    "SWR": {
+      "code": "CLS_04",
+      "label": "软件需求",
+      "properties": {
+        "swr_id": {
+          "type": "String",
+          "required": true,
+          "constraint": "ID唯一，格式：SWR_XXXX"
+        },
+        "title": {
+          "type": "String",
+          "required": true
+        },
+        "upstream_sys": {
+          "type": "String",
+          "required": true,
+          "constraint": "关联SYS_ID"
+        },
+        "module": {
+          "type": "Enum",
+          "values": ["中间件", "底软", "BSP"],
+          "required": true
+        },
+        "owner": {
+          "type": "User",
+          "required": true
+        },
+        "estimated_hours": {
+          "type": "Float",
+          "constraint": "范围0.5-40"
+        },
+        "acceptance_criteria": {
+          "type": "Text",
+          "required": true
+        },
+        "status": {
+          "type": "Enum",
+          "values": ["待下发", "开发中", "待测试", "已完成", "已取消"]
+        }
+      },
+      "color": "#eb2f96"
+    },
+    "PerceptionFusion": {
+      "code": "CLS_05",
+      "label": "感知融合模块",
+      "properties": {
+        "module_id": {
+          "type": "String",
+          "required": true
+        },
+        "module_name": {
+          "type": "String",
+          "required": true,
+          "constraint": "如OD/PD/Lane"
+        },
+        "related_swr_ids": {
+          "type": "List",
+          "constraint": "至少关联1个SWR"
+        },
+        "status": {
+          "type": "Enum",
+          "values": ["开发中", "集成中", "已发布"]
+        }
+      },
+      "color": "#722ed1"
+    },
+    "ModelVersion": {
+      "code": "CLS_07",
+      "label": "模型版本",
+      "properties": {
+        "version_id": {
+          "type": "String",
+          "required": true,
+          "constraint": "格式：vYYYYMMDD"
+        },
+        "version_number": {
+          "type": "String",
+          "required": true
+        },
+        "model_type": {
+          "type": "Enum",
+          "values": ["OD", "PD", "Lane", "TrafficSign"],
+          "required": true
+        },
+        "accuracy": {
+          "type": "Float"
+        },
+        "training_days": {
+          "type": "Integer",
+          "constraint": "约14天"
+        },
+        "release_date": {
+          "type": "DateTime"
+        },
+        "status": {
+          "type": "Enum",
+          "values": ["训练中", "量化中", "已发版", "废弃"]
+        }
+      },
+      "color": "#13c2c2"
+    },
+    "ReleasePackage": {
+      "code": "CLS_09",
+      "label": "发布包",
+      "properties": {
+        "package_id": {
+          "type": "String",
+          "required": true
+        },
+        "version": {
+          "type": "String",
+          "constraint": "格式：vYYYYMMDD"
+        },
+        "release_type": {
+          "type": "Enum",
+          "values": ["Daily", "MRD"],
+          "required": true
+        },
+        "included_modules": {
+          "type": "List"
+        },
+        "build_status": {
+          "type": "Enum",
+          "values": ["构建中", "成功", "失败"]
+        },
+        "test_status": {
+          "type": "Enum",
+          "values": ["待测试", "测试中", "通过", "失败"]
+        }
+      },
+      "color": "#fa8c16"
+    },
+    "TestCase": {
+      "code": "CLS_08",
+      "label": "测试用例",
+      "properties": {
+        "tc_id": {
+          "type": "String",
+          "required": true
+        },
+        "title": {
+          "type": "String",
+          "required": true
+        },
+        "test_type": {
+          "type": "Enum",
+          "values": ["单元测试", "集成测试", "仿真测试", "实车测试"]
+        },
+        "status": {
+          "type": "Enum",
+          "values": ["待执行", "通过", "失败", "阻塞"]
+        }
+      },
+      "color": "#a0d911"
+    },
+    "TestIssue": {
+      "code": "CLS_10",
+      "label": "测试问题",
+      "properties": {
+        "issue_id": {
+          "type": "String",
+          "required": true
+        },
+        "description": {
+          "type": "Text",
+          "required": true
+        },
+        "severity": {
+          "type": "Enum",
+          "values": ["P0", "P1", "P2", "P3"],
+          "constraint": "P1级别问题需24h修复"
+        },
+        "status": {
+          "type": "Enum",
+          "values": ["新建", "修复中", "待验证", "已关闭"]
+        }
+      },
+      "color": "#ff4d4f"
+    }
+  },
+  "relationTypes": {
+    "manages": {
+      "label": "管理",
+      "from": ["VehicleProject"],
+      "to": ["SSTS"],
+      "description": "车型项目管理系统需求"
+    },
+    "decomposes_to": {
+      "label": "拆解为",
+      "from": ["SSTS", "SYS_2_5"],
+      "to": ["SYS_2_5", "SWR"],
+      "description": "需求或架构拆解为更细粒度的子项"
+    },
+    "guides": {
+      "label": "指导",
+      "from": ["SWR"],
+      "to": ["PerceptionFusion"],
+      "description": "软件需求指导开发模块"
+    },
+    "produces": {
+      "label": "产出",
+      "from": ["PerceptionFusion"],
+      "to": ["ModelVersion"],
+      "description": "开发模块产出模型版本或代码"
+    },
+    "integrates_to": {
+      "label": "集成于",
+      "from": ["ModelVersion"],
+      "to": ["ReleasePackage"],
+      "description": "模型版本集成到发布包"
+    },
+    "verified_by": {
+      "label": "验证于",
+      "from": ["SWR"],
+      "to": ["TestCase"],
+      "description": "软件需求被测试用例验证"
+    },
+    "tests_on": {
+      "label": "测试于",
+      "from": ["ReleasePackage"],
+      "to": ["TestCase"],
+      "description": "发布包在测试用例上测试"
+    },
+    "finds": {
+      "label": "发现",
+      "from": ["TestCase"],
+      "to": ["TestIssue"],
+      "description": "测试用例发现问题"
+    },
+    "relates_to": {
+      "label": "关联至",
+      "from": ["TestIssue"],
+      "to": ["SWR"],
+      "description": "问题追溯到软件需求"
+    },
+    "traces_to": {
+      "label": "追溯至",
+      "from": ["SWR"],
+      "to": ["SYS_2_5"],
+      "description": "软件需求追溯到系统架构"
+    }
+  }
+}

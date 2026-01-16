@@ -1,0 +1,34 @@
+.app-layout {
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+.app-header {
+  background: #001529;
+  padding: 0 !important;
+  height: 64px !important;
+  line-height: 64px !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  z-index: 10;
+}
+
+.content-layout {
+  height: calc(100vh - 64px) !important;
+  overflow: hidden;
+}
+
+.main-content {
+  position: relative;
+  background: #f0f2f5;
+  overflow: hidden;
+  height: 100%;
+  padding: 0 !important;
+}
+
+.ant-layout-sider {
+  background: #fff;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+  z-index: 5;
+  height: 100% !important;
+}

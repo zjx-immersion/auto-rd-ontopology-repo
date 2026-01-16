@@ -1,0 +1,120 @@
+.table-view-container {
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.table-view-header {
+  padding: 16px;
+  background: #fafafa;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.table-view-tabs {
+  flex: 1;
+  padding: 16px;
+  overflow: hidden;
+}
+
+.table-view-tabs .ant-tabs-content {
+  height: 100%;
+}
+
+.table-view-tabs .ant-table-wrapper {
+  height: 100%;
+}
+
+.table-view-container a {
+  color: #1890ff;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.table-view-container a:hover {
+  text-decoration: underline;
+  color: #40a9ff;
+}
+
+/* 展开行样式 */
+.table-view-container .ant-table-expanded-row > td {
+  background: #fafafa;
+  padding: 16px !important;
+}
+
+.table-view-container .ant-descriptions-item-label {
+  font-weight: 500;
+  background: #f5f5f5;
+}
+
+.table-view-container .ant-descriptions-item-content {
+  background: #fff;
+}
+
+/* 表格行悬停效果 */
+.table-view-container .ant-table-tbody > tr:hover > td {
+  background: #e6f7ff !important;
+}
+
+/* 展开图标样式 */
+.table-view-container .ant-table-row-expand-icon {
+  color: #1890ff;
+  font-size: 12px;
+}
+
+.table-view-container .ant-table-row-expand-icon:hover {
+  color: #40a9ff;
+}
+
+/* 卡片样式增强 */
+.table-view-container .ant-card {
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+.table-view-container .ant-card-head {
+  background: linear-gradient(to right, #f0f5ff, #ffffff);
+  border-bottom: 2px solid #1890ff;
+}
+
+/* 标签样式增强 */
+.table-view-container .ant-tag {
+  font-weight: 500;
+  border-radius: 4px;
+}
+
+/* 表头样式 */
+.table-view-container .ant-table-thead > tr > th {
+  background: #fafafa;
+  font-weight: 600;
+  color: #262626;
+}
+
+/* 固定列样式 */
+.table-view-container .ant-table-cell-fix-left,
+.table-view-container .ant-table-cell-fix-right {
+  background: #ffffff;
+}
+
+/* 搜索框样式 */
+.table-view-header .ant-input-search {
+  border-radius: 8px;
+}
+
+/* 分页样式 */
+.table-view-container .ant-pagination {
+  margin-top: 16px;
+}
+
+/* 折叠面板样式 */
+.table-view-container .ant-collapse {
+  background: #ffffff;
+  border: 1px solid #d9d9d9;
+}
+
+.table-view-container .ant-collapse-header {
+  font-weight: 500;
+  color: #595959;
+}
+
