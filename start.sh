@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # 知识图谱系统一键启动脚本
-# 后端端口: 8088
-# 前端端口: 3000 (开发服务器)
+# 后端端口: 8090
+# 前端端口: 8080 (开发服务器)
 
 set -e
 
@@ -35,15 +35,15 @@ echo -e "${GREEN}✅ npm 版本: $(npm -v)${NC}"
 
 # 检查端口占用
 echo -e "\n${YELLOW}[2/6] 检查端口占用...${NC}"
-if lsof -Pi :8088 -sTCP:LISTEN -t >/dev/null 2>&1 ; then
-    echo -e "${YELLOW}⚠️  端口 8088 已被占用，尝试停止...${NC}"
-    lsof -ti:8088 | xargs kill -9 2>/dev/null || true
+if lsof -Pi :8090 -sTCP:LISTEN -t >/dev/null 2>&1 ; then
+    echo -e "${YELLOW}⚠️  端口 8090 已被占用，尝试停止...${NC}"
+    lsof -ti:8090 | xargs kill -9 2>/dev/null || true
     sleep 2
 fi
 
-if lsof -Pi :3000 -sTCP:LISTEN -t >/dev/null 2>&1 ; then
-    echo -e "${YELLOW}⚠️  端口 3000 已被占用，尝试停止...${NC}"
-    lsof -ti:3000 | xargs kill -9 2>/dev/null || true
+if lsof -Pi :8080 -sTCP:LISTEN -t >/dev/null 2>&1 ; then
+    echo -e "${YELLOW}⚠️  端口 8080 已被占用，尝试停止...${NC}"
+    lsof -ti:8080 | xargs kill -9 2>/dev/null || true
     sleep 2
 fi
 echo -e "${GREEN}✅ 端口检查完成${NC}"
@@ -73,9 +73,9 @@ LOG_DIR="$PROJECT_ROOT/logs"
 mkdir -p "$LOG_DIR"
 
 # 启动后端服务
-echo -e "\n${YELLOW}[5/6] 启动后端服务 (端口: 8088)...${NC}"
+echo -e "\n${YELLOW}[5/6] 启动后端服务 (端口: 8090)...${NC}"
 cd "$PROJECT_ROOT/backend"
-PORT=8088 nohup npm start > "$LOG_DIR/backend.log" 2>&1 &
+PORT=8090 nohup npm start > "$LOG_DIR/backend.log" 2>&1 &
 BACKEND_PID=$!
 echo $BACKEND_PID > "$LOG_DIR/backend.pid"
 echo -e "${GREEN}✅ 后端服务已启动 (PID: $BACKEND_PID)${NC}"
@@ -91,9 +91,9 @@ if ! ps -p $BACKEND_PID > /dev/null 2>&1; then
 fi
 
 # 启动前端服务
-echo -e "\n${YELLOW}[6/6] 启动前端服务 (端口: 3000)...${NC}"
+echo -e "\n${YELLOW}[6/6] 启动前端服务 (端口: 8080)...${NC}"
 cd "$PROJECT_ROOT/frontend"
-nohup npm start > "$LOG_DIR/frontend.log" 2>&1 &
+PORT=8080 nohup npm start > "$LOG_DIR/frontend.log" 2>&1 &
 FRONTEND_PID=$!
 echo $FRONTEND_PID > "$LOG_DIR/frontend.pid"
 echo -e "${GREEN}✅ 前端服务已启动 (PID: $FRONTEND_PID)${NC}"
@@ -110,10 +110,10 @@ echo "╚═══════════════════════�
 echo -e "${NC}"
 
 echo -e "${BLUE}📊 服务信息:${NC}"
-echo "  后端服务: http://localhost:8088"
-echo "  前端应用: http://localhost:3000"
-echo "  API文档:  http://localhost:8088/api/v1"
-echo "  健康检查: http://localhost:8088/health"
+echo "  后端服务: http://localhost:8090"
+echo "  前端应用: http://localhost:8080"
+echo "  API文档:  http://localhost:8090/api/v1"
+echo "  健康检查: http://localhost:8090/health"
 echo ""
 
 echo -e "${BLUE}📝 进程信息:${NC}"
@@ -138,11 +138,11 @@ sleep 5
 
 # 打开浏览器
 if command -v open &> /dev/null; then
-    open http://localhost:3000
+    open http://localhost:8080
 elif command -v xdg-open &> /dev/null; then
-    xdg-open http://localhost:3000
+    xdg-open http://localhost:8080
 else
-    echo "请手动打开浏览器访问: http://localhost:3000"
+    echo "请手动打开浏览器访问: http://localhost:8080"
 fi
 
 echo -e "${GREEN}🚀 系统启动完成！${NC}"

@@ -39,9 +39,9 @@ if [ -f "$LOG_DIR/backend.pid" ]; then
     rm -f "$LOG_DIR/backend.pid"
 else
     # 尝试通过端口查找并停止
-    if lsof -Pi :8088 -sTCP:LISTEN -t >/dev/null 2>&1 ; then
+    if lsof -Pi :8090 -sTCP:LISTEN -t >/dev/null 2>&1 ; then
         echo -e "${YELLOW}通过端口停止后端服务...${NC}"
-        lsof -ti:8088 | xargs kill -9 2>/dev/null || true
+        lsof -ti:8090 | xargs kill -9 2>/dev/null || true
         echo -e "${GREEN}✅ 后端服务已停止${NC}"
     else
         echo -e "${YELLOW}后端服务未运行${NC}"
@@ -66,9 +66,9 @@ if [ -f "$LOG_DIR/frontend.pid" ]; then
     rm -f "$LOG_DIR/frontend.pid"
 else
     # 尝试通过端口查找并停止
-    if lsof -Pi :3000 -sTCP:LISTEN -t >/dev/null 2>&1 ; then
+    if lsof -Pi :8080 -sTCP:LISTEN -t >/dev/null 2>&1 ; then
         echo -e "${YELLOW}通过端口停止前端服务...${NC}"
-        lsof -ti:3000 | xargs kill -9 2>/dev/null || true
+        lsof -ti:8080 | xargs kill -9 2>/dev/null || true
         echo -e "${GREEN}✅ 前端服务已停止${NC}"
     else
         echo -e "${YELLOW}前端服务未运行${NC}"

@@ -20,16 +20,16 @@ echo -e "${NC}\n"
 
 # 检查后端服务
 echo -e "${BLUE}【后端服务】${NC}"
-if lsof -Pi :8088 -sTCP:LISTEN -t >/dev/null 2>&1 ; then
-    BACKEND_PID=$(lsof -ti:8088)
+if lsof -Pi :8090 -sTCP:LISTEN -t >/dev/null 2>&1 ; then
+    BACKEND_PID=$(lsof -ti:8090)
     echo -e "  状态: ${GREEN}✅ 运行中${NC}"
     echo -e "  PID:  $BACKEND_PID"
-    echo -e "  端口: 8088"
-    echo -e "  地址: http://localhost:8088"
+    echo -e "  端口: 8090"
+    echo -e "  地址: http://localhost:8090"
     
     # 健康检查
     if command -v curl &> /dev/null; then
-        HEALTH=$(curl -s http://localhost:8088/health 2>/dev/null)
+        HEALTH=$(curl -s http://localhost:8090/health 2>/dev/null)
         if [ $? -eq 0 ]; then
             echo -e "  健康: ${GREEN}✅ 正常${NC}"
         else
@@ -47,12 +47,12 @@ echo ""
 
 # 检查前端服务
 echo -e "${BLUE}【前端服务】${NC}"
-if lsof -Pi :3000 -sTCP:LISTEN -t >/dev/null 2>&1 ; then
-    FRONTEND_PID=$(lsof -ti:3000)
+if lsof -Pi :8080 -sTCP:LISTEN -t >/dev/null 2>&1 ; then
+    FRONTEND_PID=$(lsof -ti:8080)
     echo -e "  状态: ${GREEN}✅ 运行中${NC}"
     echo -e "  PID:  $FRONTEND_PID"
-    echo -e "  端口: 3000"
-    echo -e "  地址: http://localhost:3000"
+    echo -e "  端口: 8080"
+    echo -e "  地址: http://localhost:8080"
 else
     echo -e "  状态: ${RED}❌ 未运行${NC}"
     if [ -f "$LOG_DIR/frontend.pid" ]; then
