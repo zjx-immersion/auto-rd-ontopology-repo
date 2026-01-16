@@ -148,31 +148,19 @@ const Dashboard = ({ data, schema }) => {
     data: edgeTypeChartData,
     angleField: 'value',
     colorField: 'type',
-    radius: 0.8,
-    innerRadius: 0.6,
+    radius: 0.9,
     label: {
-      type: 'inner',
-      offset: '-30%',
-      content: ({ percent }) => `${(percent * 100).toFixed(0)}%`,
-      style: {
-        fontSize: 14,
-        textAlign: 'center',
-      },
+      type: 'outer',
+      content: '{name} {percentage}',
     },
     legend: {
       position: 'right',
-      offsetX: -20,
     },
-    statistic: {
-      title: false,
-      content: {
-        style: {
-          fontSize: '20px',
-          fontWeight: 'bold',
-        },
-        content: statistics?.totalEdges || 0,
+    interactions: [
+      {
+        type: 'element-active',
       },
-    },
+    ],
   };
 
   if (!statistics) {

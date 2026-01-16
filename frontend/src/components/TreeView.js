@@ -1,11 +1,13 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { Tree, Card, Tabs, Input, Space, Button, Empty, Spin } from 'antd';
+import { Tree, Card, Tabs, Input, Space, Button, Empty, Drawer, Descriptions, Tag, Divider } from 'antd';
 import { 
   SearchOutlined, 
   ReloadOutlined, 
   FolderOutlined, 
   FileOutlined,
-  NodeIndexOutlined 
+  NodeIndexOutlined,
+  InfoCircleOutlined,
+  CloseOutlined
 } from '@ant-design/icons';
 import './TreeView.css';
 
@@ -18,6 +20,8 @@ const TreeView = ({ data, schema, onNodeSelect }) => {
   const [selectedKeys, setSelectedKeys] = useState([]);
   const [autoExpandParent, setAutoExpandParent] = useState(true);
   const [activeTab, setActiveTab] = useState('class');
+  const [detailDrawerVisible, setDetailDrawerVisible] = useState(false);
+  const [selectedNodeDetail, setSelectedNodeDetail] = useState(null);
 
   // 构建类层次树
   const classHierarchyTree = useMemo(() => {
@@ -160,10 +164,41 @@ const TreeView = ({ data, schema, onNodeSelect }) => {
   const onSelect = (selectedKeys, info) => {
     setSelectedKeys(selectedKeys);
     
-    // 如果是实例节点，触发节点选择回调
-    if (info.node.nodeId && onNodeSelect) {
-      onNodeSelect(info.node.nodeData);
+    // 如果是实例节点，显示详情抽屉
+    if (info.node.nodeId) {
+      const nodeData = info.node.nodeData;
+      const relatedEdges = data?.edges?.filter(e => 
+        e.source === nodeData.id || e.target === nodeData.id
+      ) || [];
+      
+      setSelectedNodeDetail({
+        node: nodeData,
+        relatedEdges: relatedEdges,
+        relatedNodes: relatedEdges.map(e => {
+          const relatedId = e.source === nodeData.id ? e.target : e.source;
+          return data?.nodes?.find(n => n.id === relatedId);
+        }).filter(Boolean)
+      });
+      setDetailDrawerVisible(true);
+      
+      // 也触发原有的回调
+      if (onNodeSelect) {
+        onNodeSelect(nodeData);
+      }
     }
+  };
+  
+  // 格式化属性标签
+  const formatLabel = (key) => {
+    return key.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+  };
+  
+  // 格式化属性值
+  const formatPropertyValue = (value, type) => {
+    if (value === null || value === undefined) return '-';
+    if (typeof value === 'boolean') return value ? '是' : '否';
+    if (typeof value === 'object') return JSON.stringify(value);
+    return String(value);
   };
 
   // 树节点展开/折叠
@@ -277,6 +312,119 @@ const TreeView = ({ data, schema, onNodeSelect }) => {
           </div>
         </TabPane>
       </Tabs>
+      
+      {/* 节点详情抽屉 */}
+      <Drawer
+        title={
+          <Space>
+            <InfoCircleOutlined />
+            <span>节点详情</span>
+          </Space>
+        }
+        placement="right"
+        width={480}
+        open={detailDrawerVisible}
+        onClose={() => setDetailDrawerVisible(false)}
+        closeIcon={<CloseOutlined />}
+      >
+        {selectedNodeDetail && (
+          <div>
+            {/* 基本信息 */}
+            <Card title="基本信息" size="small" style={{ marginBottom: 16 }}>
+              <Descriptions column={1} size="small">
+                <Descriptions.Item label="节点ID">
+                  <Tag color="blue">{selectedNodeDetail.node.id}</Tag>
+                </Descriptions.Item>
+                <Descriptions.Item label="节点类型">
+                  <Tag color="green">
+                    {schema?.entityTypes?.[selectedNodeDetail.node.type]?.label || selectedNodeDetail.node.type}
+                  </Tag>
+                </Descriptions.Item>
+                <Descriptions.Item label="节点标签">
+                  {selectedNodeDetail.node.label || selectedNodeDetail.node.id}
+                </Descriptions.Item>
+              </Descriptions>
+            </Card>
+            
+            {/* 节点属性 */}
+            {selectedNodeDetail.node.data && Object.keys(selectedNodeDetail.node.data).length > 0 && (
+              <Card title="节点属性" size="small" style={{ marginBottom: 16 }}>
+                <Descriptions column={1} size="small" bordered>
+                  {Object.entries(selectedNodeDetail.node.data).map(([key, value]) => (
+                    <Descriptions.Item label={formatLabel(key)} key={key}>
+                      {formatPropertyValue(value)}
+                    </Descriptions.Item>
+                  ))}
+                </Descriptions>
+              </Card>
+            )}
+            
+            {/* 关联关系 */}
+            {selectedNodeDetail.relatedEdges.length > 0 && (
+              <Card title={`关联关系 (${selectedNodeDetail.relatedEdges.length})`} size="small" style={{ marginBottom: 16 }}>
+                <Space direction="vertical" style={{ width: '100%' }} size="small">
+                  {selectedNodeDetail.relatedEdges.map((edge, index) => {
+                    const relationType = schema?.relationTypes?.[edge.type];
+                    const isOutgoing = edge.source === selectedNodeDetail.node.id;
+                    const relatedNodeId = isOutgoing ? edge.target : edge.source;
+                    const relatedNode = data?.nodes?.find(n => n.id === relatedNodeId);
+                    
+                    return (
+                      <Card key={index} size="small" type="inner" style={{ backgroundColor: '#fafafa' }}>
+                        <Space direction="vertical" size="small" style={{ width: '100%' }}>
+                          <div>
+                            <Tag color={isOutgoing ? 'blue' : 'orange'}>
+                              {isOutgoing ? '出边' : '入边'}
+                            </Tag>
+                            <Tag color="purple">
+                              {relationType?.label || edge.type}
+                            </Tag>
+                          </div>
+                          <div>
+                            <span style={{ color: '#666' }}>
+                              {isOutgoing ? '目标节点: ' : '源节点: '}
+                            </span>
+                            <Tag color="green">
+                              {relatedNode?.label || relatedNodeId}
+                            </Tag>
+                          </div>
+                        </Space>
+                      </Card>
+                    );
+                  })}
+                </Space>
+              </Card>
+            )}
+            
+            {/* 关联节点 */}
+            {selectedNodeDetail.relatedNodes.length > 0 && (
+              <Card title={`关联节点 (${selectedNodeDetail.relatedNodes.length})`} size="small">
+                <Space wrap>
+                  {selectedNodeDetail.relatedNodes.map((node, index) => (
+                    <Tag 
+                      key={index} 
+                      color="cyan"
+                      style={{ cursor: 'pointer', marginBottom: 8 }}
+                      onClick={() => {
+                        // 可以在这里添加跳转到该节点的逻辑
+                        if (onNodeSelect) {
+                          onNodeSelect(node);
+                        }
+                      }}
+                    >
+                      {node.label || node.id}
+                    </Tag>
+                  ))}
+                </Space>
+              </Card>
+            )}
+            
+            {selectedNodeDetail.relatedEdges.length === 0 && (
+              <Empty description="该节点暂无关联关系" image={Empty.PRESENTED_IMAGE_SIMPLE} />
+            )}
+          </div>
+        )}
+      </Drawer>
     </Card>
   );
 };
