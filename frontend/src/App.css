@@ -21,7 +21,8 @@
 .main-content {
   position: relative;
   background: #f0f2f5;
-  overflow: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
   height: 100%;
   padding: 0 !important;
 }

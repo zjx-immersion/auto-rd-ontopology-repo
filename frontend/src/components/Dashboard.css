@@ -1,19 +1,25 @@
 .dashboard-container {
-  padding: 16px;
+  padding: 20px;
   background: #f0f2f5;
   min-height: 100%;
+  height: auto;
 }
 
 .dashboard-card {
   height: 100%;
 }
 
+.chart-card {
+  height: 100%;
+}
+
 .chart-card .ant-card-body {
-  padding: 16px;
+  padding: 20px;
+  height: 100%;
 }
 
 .top-nodes-card .ant-card-body {
-  padding: 16px;
+  padding: 20px;
 }
 
 .top-nodes-card .ant-card-small {
@@ -27,4 +33,25 @@
 
 .dashboard-container .ant-statistic-content {
   font-size: 24px;
+}
+
+/* 确保图表容器有足够空间 */
+.dashboard-container .ant-row {
+  margin-bottom: 16px;
+}
+
+/* Pie图表容器优化 */
+.chart-card .g2-html-annotation {
+  pointer-events: none;
+}
+
+/* Tooltip样式优化 */
+.g2-tooltip {
+  background: rgba(0, 0, 0, 0.85) !important;
+  border-radius: 4px !important;
+  padding: 8px 12px !important;
+  color: #fff !important;
+  font-size: 14px !important;
+  line-height: 1.5 !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
 }

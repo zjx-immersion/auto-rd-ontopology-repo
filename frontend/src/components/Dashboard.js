@@ -120,12 +120,23 @@ const Dashboard = ({ data, schema }) => {
       style: {
         fill: '#000000',
         opacity: 0.6,
+        fontSize: 12,
       },
     },
     xAxis: {
       label: {
         autoRotate: true,
         autoHide: false,
+        style: {
+          fontSize: 11,
+        },
+      },
+    },
+    yAxis: {
+      label: {
+        style: {
+          fontSize: 12,
+        },
       },
     },
     meta: {
@@ -134,6 +145,17 @@ const Dashboard = ({ data, schema }) => {
       },
       count: {
         alias: '数量',
+      },
+    },
+    tooltip: {
+      formatter: (datum) => {
+        return { name: '数量', value: `${datum.count}个节点` };
+      },
+      domStyles: {
+        'g2-tooltip': {
+          fontSize: '14px',
+          padding: '8px 12px',
+        },
       },
     },
     color: ({ type }) => {
@@ -148,30 +170,70 @@ const Dashboard = ({ data, schema }) => {
     data: edgeTypeChartData,
     angleField: 'value',
     colorField: 'type',
-    radius: 0.9,
+    radius: 0.85,
+    innerRadius: 0.6,  // 环形图，更容易看清
     label: {
       content: (item) => {
         return `${(item.percent * 100).toFixed(0)}%`;
       },
       style: {
-        fontSize: 14,
+        fontSize: 12,
         fontWeight: 'bold',
-        fill: '#fff',
+        fill: '#000',
         textAlign: 'center',
+      },
+      offset: '-50%',  // 标签位置调整
+    },
+    statistic: {
+      title: {
+        offsetY: -4,
+        style: {
+          fontSize: '14px',
+          color: '#999',
+        },
+        content: '关系类型',
+      },
+      content: {
+        offsetY: 4,
+        style: {
+          fontSize: '20px',
+          color: '#000',
+          fontWeight: 'bold',
+        },
+        content: `${edgeTypeChartData.length}种`,
       },
     },
     legend: {
-      position: 'right',
-      offsetX: -20,
+      position: 'bottom',
+      flipPage: true,
+      maxRow: 3,
+      itemName: {
+        style: {
+          fontSize: 12,
+        },
+      },
     },
     tooltip: {
       formatter: (datum) => {
-        return { name: datum.type, value: `${datum.value} (${(datum.percent * 100).toFixed(1)}%)` };
+        return { 
+          name: datum.type, 
+          value: `${datum.value}条 (${(datum.percent * 100).toFixed(1)}%)` 
+        };
+      },
+      domStyles: {
+        'g2-tooltip': {
+          fontSize: '14px',
+          padding: '8px 12px',
+          minWidth: '120px',
+        },
       },
     },
     interactions: [
       {
         type: 'element-active',
+      },
+      {
+        type: 'element-selected',
       },
     ],
   };
@@ -236,12 +298,14 @@ const Dashboard = ({ data, schema }) => {
       <Row gutter={[16, 16]} style={{ marginTop: 16 }}>
         <Col xs={24} lg={12}>
           <Card title="节点类型分布" className="chart-card">
-            <Column {...nodeTypeColumnConfig} height={300} />
+            <Column {...nodeTypeColumnConfig} height={400} />
           </Card>
         </Col>
         <Col xs={24} lg={12}>
-          <Card title="关系类型分布" className="chart-card">
-            <Pie {...edgeTypePieConfig} height={300} />
+          <Card title="关系类型分布" className="chart-card" style={{ minHeight: 500 }}>
+            <div style={{ height: 450 }}>
+              <Pie {...edgeTypePieConfig} />
+            </div>
           </Card>
         </Col>
       </Row>
