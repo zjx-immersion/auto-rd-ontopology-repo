@@ -150,13 +150,24 @@ const Dashboard = ({ data, schema }) => {
     colorField: 'type',
     radius: 0.9,
     label: {
-      type: 'outer',
       content: (item) => {
-        return `${item.type}: ${(item.percent * 100).toFixed(1)}%`;
+        return `${(item.percent * 100).toFixed(0)}%`;
+      },
+      style: {
+        fontSize: 14,
+        fontWeight: 'bold',
+        fill: '#fff',
+        textAlign: 'center',
       },
     },
     legend: {
       position: 'right',
+      offsetX: -20,
+    },
+    tooltip: {
+      formatter: (datum) => {
+        return { name: datum.type, value: `${datum.value} (${(datum.percent * 100).toFixed(1)}%)` };
+      },
     },
     interactions: [
       {
