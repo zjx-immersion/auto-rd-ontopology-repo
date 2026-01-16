@@ -5,7 +5,7 @@ import Sidebar from './components/Sidebar';
 import GraphView from './components/GraphView';
 import TableView from './components/TableView';
 import TreeView from './components/TreeView';
-import MatrixView from './components/MatrixView';
+import MatrixViewOptimized from './components/MatrixViewOptimized';
 import Dashboard from './components/Dashboard';
 import NodeDetailPanel from './components/NodeDetailPanel';
 import TraceResultPanel from './components/TraceResultPanel';
@@ -140,7 +140,7 @@ function App() {
 
           {/* 矩阵视图 */}
           {viewMode === 'matrix' && (
-            <MatrixView
+            <MatrixViewOptimized
               data={graphData}
               schema={schema}
             />

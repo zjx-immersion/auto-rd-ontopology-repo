@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { Tree, Card, Tabs, Input, Space, Button, Empty, Drawer, Descriptions, Tag, Divider } from 'antd';
+import { Tree, Card, Tabs, Input, Space, Button, Empty, Drawer, Descriptions, Tag, Divider, Dropdown, message } from 'antd';
 import { 
   SearchOutlined, 
   ReloadOutlined, 
@@ -7,7 +7,13 @@ import {
   FileOutlined,
   NodeIndexOutlined,
   InfoCircleOutlined,
-  CloseOutlined
+  CloseOutlined,
+  CopyOutlined,
+  EyeOutlined,
+  ExportOutlined,
+  EditOutlined,
+  DeleteOutlined,
+  PlusOutlined
 } from '@ant-design/icons';
 import './TreeView.css';
 
@@ -22,6 +28,7 @@ const TreeView = ({ data, schema, onNodeSelect }) => {
   const [activeTab, setActiveTab] = useState('class');
   const [detailDrawerVisible, setDetailDrawerVisible] = useState(false);
   const [selectedNodeDetail, setSelectedNodeDetail] = useState(null);
+  const [contextMenuNode, setContextMenuNode] = useState(null);
 
   // 构建类层次树
   const classHierarchyTree = useMemo(() => {
@@ -238,6 +245,128 @@ const TreeView = ({ data, schema, onNodeSelect }) => {
     setExpandedKeys([]);
   };
 
+  // 右键菜单处理
+  const handleRightClick = ({ event, node }) => {
+    event.preventDefault();
+    setContextMenuNode(node);
+  };
+
+  // 复制节点ID
+  const handleCopyId = () => {
+    if (contextMenuNode?.nodeId) {
+      navigator.clipboard.writeText(contextMenuNode.nodeId);
+      message.success('节点ID已复制到剪贴板');
+    }
+  };
+
+  // 复制路径
+  const handleCopyPath = () => {
+    if (contextMenuNode?.key) {
+      navigator.clipboard.writeText(contextMenuNode.key);
+      message.success('节点路径已复制到剪贴板');
+    }
+  };
+
+  // 在图谱中查看
+  const handleViewInGraph = () => {
+    if (contextMenuNode?.nodeData && onNodeSelect) {
+      onNodeSelect(contextMenuNode.nodeData);
+      message.info('已触发节点选择，请切换到图谱视图查看');
+    }
+  };
+
+  // 导出子树
+  const handleExportSubtree = () => {
+    if (contextMenuNode) {
+      const exportData = {
+        node: contextMenuNode,
+        timestamp: new Date().toISOString()
+      };
+      const dataStr = JSON.stringify(exportData, null, 2);
+      const dataUri = 'data:application/json;charset=utf-8,' + encodeURIComponent(dataStr);
+      const exportFileDefaultName = `subtree-${contextMenuNode.key}.json`;
+      
+      const linkElement = document.createElement('a');
+      linkElement.setAttribute('href', dataUri);
+      linkElement.setAttribute('download', exportFileDefaultName);
+      linkElement.click();
+      message.success('子树已导出');
+    }
+  };
+
+  // 删除节点（示例，实际需要API支持）
+  const handleDelete = () => {
+    message.warning('删除功能需要后端API支持，当前为演示模式');
+  };
+
+  // 编辑节点（示例）
+  const handleEdit = () => {
+    message.info('编辑功能将在后续版本中实现');
+  };
+
+  // 添加子节点（示例）
+  const handleAddChild = () => {
+    message.info('添加子节点功能将在后续版本中实现');
+  };
+
+  // 右键菜单项
+  const contextMenuItems = [
+    {
+      key: 'copy-id',
+      icon: <CopyOutlined />,
+      label: '复制节点ID',
+      onClick: handleCopyId,
+      disabled: !contextMenuNode?.nodeId
+    },
+    {
+      key: 'copy-path',
+      icon: <CopyOutlined />,
+      label: '复制路径',
+      onClick: handleCopyPath
+    },
+    {
+      key: 'view',
+      icon: <EyeOutlined />,
+      label: '在图谱中查看',
+      onClick: handleViewInGraph,
+      disabled: !contextMenuNode?.nodeData
+    },
+    {
+      type: 'divider'
+    },
+    {
+      key: 'export',
+      icon: <ExportOutlined />,
+      label: '导出子树',
+      onClick: handleExportSubtree
+    },
+    {
+      key: 'edit',
+      icon: <EditOutlined />,
+      label: '编辑节点',
+      onClick: handleEdit,
+      disabled: !contextMenuNode?.nodeId
+    },
+    {
+      key: 'add-child',
+      icon: <PlusOutlined />,
+      label: '添加子节点',
+      onClick: handleAddChild,
+      disabled: !contextMenuNode?.nodeId
+    },
+    {
+      type: 'divider'
+    },
+    {
+      key: 'delete',
+      icon: <DeleteOutlined />,
+      label: '删除节点',
+      onClick: handleDelete,
+      disabled: !contextMenuNode?.nodeId,
+      danger: true
+    }
+  ];
+
   return (
     <Card 
       className="tree-view-card"
@@ -269,16 +398,24 @@ const TreeView = ({ data, schema, onNodeSelect }) => {
               style={{ marginBottom: 16 }}
             />
             {filteredTreeData.length > 0 ? (
-              <Tree
-                showIcon
-                showLine={{ showLeafIcon: false }}
-                expandedKeys={expandedKeys}
-                selectedKeys={selectedKeys}
-                autoExpandParent={autoExpandParent}
-                onExpand={onExpand}
-                onSelect={onSelect}
-                treeData={filteredTreeData}
-              />
+              <Dropdown
+                menu={{ items: contextMenuItems }}
+                trigger={['contextMenu']}
+              >
+                <div>
+                  <Tree
+                    showIcon
+                    showLine={{ showLeafIcon: false }}
+                    expandedKeys={expandedKeys}
+                    selectedKeys={selectedKeys}
+                    autoExpandParent={autoExpandParent}
+                    onExpand={onExpand}
+                    onSelect={onSelect}
+                    onRightClick={handleRightClick}
+                    treeData={filteredTreeData}
+                  />
+                </div>
+              </Dropdown>
             ) : (
               <Empty description="暂无数据" image={Empty.PRESENTED_IMAGE_SIMPLE} />
             )}
@@ -296,16 +433,24 @@ const TreeView = ({ data, schema, onNodeSelect }) => {
               style={{ marginBottom: 16 }}
             />
             {filteredTreeData.length > 0 ? (
-              <Tree
-                showIcon
-                showLine={{ showLeafIcon: false }}
-                expandedKeys={expandedKeys}
-                selectedKeys={selectedKeys}
-                autoExpandParent={autoExpandParent}
-                onExpand={onExpand}
-                onSelect={onSelect}
-                treeData={filteredTreeData}
-              />
+              <Dropdown
+                menu={{ items: contextMenuItems }}
+                trigger={['contextMenu']}
+              >
+                <div>
+                  <Tree
+                    showIcon
+                    showLine={{ showLeafIcon: false }}
+                    expandedKeys={expandedKeys}
+                    selectedKeys={selectedKeys}
+                    autoExpandParent={autoExpandParent}
+                    onExpand={onExpand}
+                    onSelect={onSelect}
+                    onRightClick={handleRightClick}
+                    treeData={filteredTreeData}
+                  />
+                </div>
+              </Dropdown>
             ) : (
               <Empty description="暂无数据" image={Empty.PRESENTED_IMAGE_SIMPLE} />
             )}

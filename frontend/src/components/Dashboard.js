@@ -151,7 +151,9 @@ const Dashboard = ({ data, schema }) => {
     radius: 0.9,
     label: {
       type: 'outer',
-      content: '{name} {percentage}',
+      content: (item) => {
+        return `${item.type}: ${(item.percent * 100).toFixed(1)}%`;
+      },
     },
     legend: {
       position: 'right',
