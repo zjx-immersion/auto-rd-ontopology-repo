@@ -76,6 +76,11 @@ const GraphViewPage = () => {
 
         // 加载Schema
         const schemaData = await fetchSchema();
+        console.log('Schema loaded:', schemaData ? 'YES' : 'NO');
+        if (schemaData) {
+          console.log('EntityTypes count:', Object.keys(schemaData.entityTypes || {}).length);
+          console.log('Sample types:', Object.keys(schemaData.entityTypes || {}).slice(0, 5).join(', '));
+        }
         setSchema(schemaData);
       } catch (err) {
         console.error('Failed to load graph:', err);

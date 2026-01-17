@@ -100,13 +100,20 @@ const formatGraphData = (data, schema) => {
     data.nodes.forEach(node => {
       const entityType = schema?.entityTypes?.[node.type];
       const label = formatNodeLabel(node, schema);
+      const color = entityType?.color || '#1890ff';
+      
+      // 调试日志（仅前5个节点）
+      if (data.nodes.indexOf(node) < 5) {
+        console.log(`Node ${node.id} (${node.type}): color=${color}, entityType=${entityType ? 'found' : 'not found'}`);
+      }
+      
       elements.push({
         data: {
           id: node.id,
           label: label,
           type: node.type,
           properties: node.data,
-          color: entityType?.color || '#1890ff'
+          color: color
         }
       });
     });
