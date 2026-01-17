@@ -339,6 +339,138 @@
       "from": ["SWR"],
       "to": ["SYS_2_5"],
       "description": "软件需求追溯到系统架构"
+    },
+    "splits_to_fr": {
+      "label": "拆分为",
+      "from": ["SSTS"],
+      "to": ["FR"],
+      "description": "系统需求拆分为功能需求"
+    },
+    "splits_to_ssts": {
+      "label": "拆分为系统需求",
+      "from": ["VehicleProject"],
+      "to": ["SSTS"],
+      "description": "项目拆分为系统需求"
+    },
+    "splits_to_mr": {
+      "label": "拆分为",
+      "from": ["SSTS"],
+      "to": ["MR"],
+      "description": "系统需求拆分为管理需求"
+    },
+    "in_sprint": {
+      "label": "在Sprint中",
+      "from": ["Task"],
+      "to": ["Sprint"],
+      "description": "任务在Sprint中执行"
+    },
+    "converts_to_task": {
+      "label": "转化为任务",
+      "from": ["SWR"],
+      "to": ["Task"],
+      "description": "软件需求转化为开发任务"
+    },
+    "belongs_to_domain": {
+      "label": "属于领域",
+      "from": ["SSTS"],
+      "to": ["Domain"],
+      "description": "需求属于某个领域"
+    },
+    "has_sprint": {
+      "label": "包含Sprint",
+      "from": ["Project"],
+      "to": ["Sprint"],
+      "description": "项目包含Sprint"
+    },
+    "has_pi_planning": {
+      "label": "有PI计划",
+      "from": ["Project"],
+      "to": ["PIPlanning"],
+      "description": "项目有PI计划"
+    },
+    "has_lifecycle_node": {
+      "label": "有生命周期节点",
+      "from": ["Project"],
+      "to": ["LifecycleNode"],
+      "description": "项目有生命周期节点"
+    },
+    "has_domain_project": {
+      "label": "有领域项目",
+      "from": ["Domain"],
+      "to": ["Project"],
+      "description": "领域包含项目"
+    },
+    "has_baseline": {
+      "label": "有基线",
+      "from": ["Project"],
+      "to": ["Baseline"],
+      "description": "项目有基线"
+    },
+    "triggers_build": {
+      "label": "触发构建",
+      "from": ["Code"],
+      "to": ["Build"],
+      "description": "代码提交触发构建"
+    },
+    "produces_artifact": {
+      "label": "产出制品",
+      "from": ["Build"],
+      "to": ["Artifact"],
+      "description": "构建产出制品"
+    },
+    "in_repository": {
+      "label": "在代码仓库中",
+      "from": ["Code"],
+      "to": ["Repository"],
+      "description": "代码在仓库中"
+    },
+    "in_baseline": {
+      "label": "在基线中",
+      "from": ["SWR"],
+      "to": ["Baseline"],
+      "description": "需求在基线中"
+    },
+    "implements": {
+      "label": "实现",
+      "from": ["Code"],
+      "to": ["SWR"],
+      "description": "代码实现需求"
+    },
+    "has_prd": {
+      "label": "有产品需求",
+      "from": ["Product"],
+      "to": ["PRD"],
+      "description": "产品有产品需求文档"
+    },
+    "targets_node": {
+      "label": "目标节点",
+      "from": ["Task"],
+      "to": ["LifecycleNode"],
+      "description": "任务目标交付节点"
+    },
+    "has_product": {
+      "label": "有产品",
+      "from": ["VehicleProject"],
+      "to": ["Product"],
+      "description": "项目有产品"
+    },
+    "has_module": {
+      "label": "有模块",
+      "from": ["Product"],
+      "to": ["Module"],
+      "description": "产品有模块"
+    },
+    "has_model": {
+      "label": "有模型",
+      "from": ["Module"],
+      "to": ["ModelVersion"],
+      "description": "模块有模型版本"
+    },
+    "has_feature": {
+      "label": "有功能",
+      "from": ["Product"],
+      "to": ["Feature"],
+      "description": "产品有功能特性"
     }
   }
 }

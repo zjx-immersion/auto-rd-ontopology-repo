@@ -33,3 +33,7 @@ Thumbs.db
 # Coverage
 coverage/
 .nyc_output/
+
+# Docker
+.dockerignore
+docker-compose.override.yml

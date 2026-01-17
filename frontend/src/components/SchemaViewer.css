@@ -1,0 +1,47 @@
+.schema-viewer-container {
+  padding: 24px;
+  background: #f0f2f5;
+  min-height: calc(100vh - 64px);
+}
+
+.schema-viewer-container .ant-card {
+  margin-bottom: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.schema-viewer-container .ant-statistic-title {
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.45);
+}
+
+.schema-viewer-container .ant-statistic-content {
+  font-size: 24px;
+}
+
+.schema-viewer-container .ant-table-expanded-row > td {
+  background: #fafafa;
+}
+
+.schema-viewer-container pre {
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.schema-viewer-container .ant-tabs-tab {
+  font-size: 14px;
+}
+
+.schema-viewer-container .ant-descriptions-item-label {
+  font-weight: 500;
+  background: #fafafa;
+}
+
+.schema-viewer-container .export-card {
+  transition: all 0.3s;
+}
+
+.schema-viewer-container .export-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}

@@ -4,12 +4,20 @@
 
 ## 📋 系统特性
 
-- ✅ **可视化图谱展示**：基于 Cytoscape.js 的交互式知识图谱可视化
-- ✅ **数据导入支持**：支持 Markdown 表格和 Excel 文件导入
+### 核心功能
+- ✅ **多视图展示**：图谱、表格、树形、矩阵、仪表盘 5种视图
+- ✅ **数据导入支持**：支持 JSON、Markdown、Excel 文件导入
 - ✅ **智能追溯查询**：向上/向下追溯链路分析，影响范围评估
-- ✅ **标准化 Schema**：基于岚图智能驾驶研发本体模型 V0.1
+- ✅ **Schema管理**：可视化查看、导出、未定义类型检测
+- ✅ **性能优化**：矩阵视图分页渲染，支持大规模数据
 - ✅ **RESTful API**：完整的后端 API 支持数据查询和追溯
-- ✅ **多实体类型**：支持车型项目、系统需求、软件需求、模型版本等
+
+### 最新增强（2026-01-17）
+- ✅ **树形视图**：类层次和实例树展示，支持搜索和右键菜单
+- ✅ **矩阵视图**：关系矩阵热力图，性能提升10倍，支持缩放平移
+- ✅ **仪表盘**：统计分析和可视化图表
+- ✅ **Schema查看器**：完整的Schema可视化和管理
+- ✅ **关系类型分析**：交互式表格展示，支持实例查看
 
 ## 🏗️ 系统架构
 
@@ -43,31 +51,49 @@ auto-rd-ontopology-repo/
 - Node.js >= 16.x
 - npm >= 8.x
 
-### 安装依赖
+### 一键启动（推荐）
 
 ```bash
-# 安装后端依赖
-cd backend
-npm install
+# 启动所有服务（前端8080 + 后端8090）
+./start.sh
 
-# 安装前端依赖
-cd ../frontend
-npm install
+# 查看服务状态
+./status.sh
+
+# 查看日志
+./logs.sh
+
+# 停止所有服务
+./stop.sh
 ```
 
-### 启动服务
+### 手动启动
 
 ```bash
-# 启动后端服务（端口：3001）
-cd backend
-npm start
+# 1. 安装依赖（首次运行）
+cd backend && npm install
+cd ../frontend && npm install
 
-# 启动前端应用（端口：3000）
-cd frontend
-npm start
+# 2. 启动后端服务（端口：8090）
+cd backend && npm start
+
+# 3. 启动前端应用（端口：8080）
+cd frontend && npm start
 ```
 
-访问 http://localhost:3000 查看系统
+访问 http://localhost:8080 查看系统
+
+### Docker部署（可选）
+
+```bash
+# 启动第三方服务（Elasticsearch, Redis, Neo4j等）
+./docker-start.sh
+
+# 停止Docker服务
+./docker-stop.sh
+```
+
+详见 [Docker部署指南](docs/DOCKER_DEPLOYMENT_GUIDE.md)
 
 ## 📊 核心功能
 
@@ -175,14 +201,46 @@ POST /api/v1/ontology/trace
 - **风险预警**：自动识别变更影响范围，提前预警风险
 - **跨系统整合**：统一玄武平台、模型仓库、GitLab 等多源数据
 
+## 📚 文档导航
+
+### 用户文档
+- 📖 [快速开始指南](docs/QUICK_START.md) - 系统安装和使用指南
+- 🎯 [使用示例](docs/USAGE_EXAMPLES.md) - 常见场景和操作示例
+- 🔧 [API文档](docs/API.md) - RESTful API接口说明
+- 🏗️ [架构说明](docs/ARCHITECTURE.md) - 系统架构和技术栈
+- 🐳 [Docker部署](docs/DOCKER_DEPLOYMENT_GUIDE.md) - Docker容器化部署
+
+### 开发文档
+- 📋 [本体工程能力规划](onto-eng-workspace/README.md) - 完整的产品规划和路线图
+- 📊 [项目进度总结](onto-eng-workspace/PROJECT_STATUS_SUMMARY.md) - 当前进度和待实施任务
+- 🏗️ [架构演进方案](onto-eng-workspace/EVOLUTION_EXECUTIVE_SUMMARY.md) - 多图谱和Schema版本管理
+- 📝 [Sprint交付文档](onto-eng-workspace/) - Sprint 01/02完成情况
+
+### 设计文档
+- 📐 [需求分析](onto-eng-workspace/01-REQUIREMENTS.md) - 完整功能需求
+- 👥 [用户故事](onto-eng-workspace/02-USER_STORIES.md) - 60+敏捷故事
+- 🎨 [设计规格](onto-eng-workspace/03-DESIGN_SPEC.md) - 技术设计方案
+- 🗺️ [实施路线图](onto-eng-workspace/04-IMPLEMENTATION_ROADMAP.md) - 6阶段规划
+
 ## 📝 开发计划
 
+### 已完成 ✅
 - [x] Phase 1：基础架构搭建
 - [x] Phase 2：数据导入功能
 - [x] Phase 3：图谱可视化
 - [x] Phase 4：追溯查询 API
-- [ ] Phase 5：Neo4j 集成（可选）
-- [ ] Phase 6：权限管理和多用户支持
+- [x] Sprint 01：多视图展示（树形、矩阵、仪表盘）
+- [x] Sprint 02：性能优化与交互增强
+- [x] 架构演进方案设计
+
+### 待实施 ⏳
+- [ ] 阶段一：Schema可视化编辑器 + 数据验证
+- [ ] 阶段二：SPARQL查询 + 推理引擎
+- [ ] 阶段三：版本控制 + 权限管理
+- [ ] 阶段四：AI增强（NL查询、图嵌入）
+- [ ] 阶段五：企业级能力（性能、插件）
+
+详见 [实施路线图](onto-eng-workspace/04-IMPLEMENTATION_ROADMAP.md)
 
 ## 📄 许可证
 

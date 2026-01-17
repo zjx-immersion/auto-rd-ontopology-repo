@@ -4,6 +4,10 @@ import Header from './components/Header';
 import Sidebar from './components/Sidebar';
 import GraphView from './components/GraphView';
 import TableView from './components/TableView';
+import TreeView from './components/TreeView';
+import MatrixViewOptimized from './components/MatrixViewOptimized';
+import Dashboard from './components/Dashboard';
+import SchemaViewer from './components/SchemaViewer';
 import NodeDetailPanel from './components/NodeDetailPanel';
 import TraceResultPanel from './components/TraceResultPanel';
 import ImportModal from './components/ImportModal';
@@ -19,7 +23,7 @@ function App() {
   const [selectedNode, setSelectedNode] = useState(null);
   const [traceResult, setTraceResult] = useState(null);
   const [importModalVisible, setImportModalVisible] = useState(false);
-  const [viewMode, setViewMode] = useState('graph'); // 'graph' or 'table'
+  const [viewMode, setViewMode] = useState('graph'); // 'graph', 'table', 'tree', 'matrix', 'dashboard', 'schema'
 
   // 加载数据
   useEffect(() => {
@@ -87,7 +91,8 @@ function App() {
         )}
 
         <Content className="main-content">
-          {viewMode === 'graph' ? (
+          {/* 图谱视图 */}
+          {viewMode === 'graph' && (
             <>
               <GraphView
                 data={graphData}
@@ -114,11 +119,47 @@ function App() {
                 />
               )}
             </>
-          ) : (
+          )}
+
+          {/* 表格视图 */}
+          {viewMode === 'table' && (
             <TableView
               data={graphData}
               schema={schema}
               onNodeClick={handleNodeClick}
+            />
+          )}
+
+          {/* 树形视图 */}
+          {viewMode === 'tree' && (
+            <TreeView
+              data={graphData}
+              schema={schema}
+              onNodeSelect={handleNodeClick}
+            />
+          )}
+
+          {/* 矩阵视图 */}
+          {viewMode === 'matrix' && (
+            <MatrixViewOptimized
+              data={graphData}
+              schema={schema}
+            />
+          )}
+
+          {/* 仪表盘视图 */}
+          {viewMode === 'dashboard' && (
+            <Dashboard
+              data={graphData}
+              schema={schema}
+            />
+          )}
+
+          {/* Schema管理视图 */}
+          {viewMode === 'schema' && (
+            <SchemaViewer
+              schema={schema}
+              data={graphData}
             />
           )}
         </Content>

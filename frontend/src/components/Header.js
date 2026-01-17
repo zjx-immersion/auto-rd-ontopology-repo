@@ -1,12 +1,16 @@
 import React from 'react';
-import { Space, Button, Typography, Switch } from 'antd';
+import { Space, Button, Typography, Segmented } from 'antd';
 import {
   ReloadOutlined,
   ImportOutlined,
   ApiOutlined,
   GithubOutlined,
   AppstoreOutlined,
-  TableOutlined
+  TableOutlined,
+  ApartmentOutlined,
+  HeatMapOutlined,
+  DashboardOutlined,
+  DatabaseOutlined
 } from '@ant-design/icons';
 import './Header.css';
 
@@ -23,16 +27,42 @@ const Header = ({ onRefresh, onImport, viewMode, onViewModeChange }) => {
       </div>
 
       <Space size="middle">
-        <Space>
-          <AppstoreOutlined style={{ color: viewMode === 'graph' ? '#1890ff' : '#8c8c8c', fontSize: '16px' }} />
-          <Switch
-            checked={viewMode === 'table'}
-            onChange={(checked) => onViewModeChange(checked ? 'table' : 'graph')}
-            checkedChildren="表格"
-            unCheckedChildren="图谱"
-          />
-          <TableOutlined style={{ color: viewMode === 'table' ? '#1890ff' : '#8c8c8c', fontSize: '16px' }} />
-        </Space>
+        <Segmented
+          value={viewMode}
+          onChange={onViewModeChange}
+          options={[
+            {
+              label: '图谱',
+              value: 'graph',
+              icon: <AppstoreOutlined />,
+            },
+            {
+              label: '表格',
+              value: 'table',
+              icon: <TableOutlined />,
+            },
+            {
+              label: '树形',
+              value: 'tree',
+              icon: <ApartmentOutlined />,
+            },
+            {
+              label: '矩阵',
+              value: 'matrix',
+              icon: <HeatMapOutlined />,
+            },
+            {
+              label: '仪表盘',
+              value: 'dashboard',
+              icon: <DashboardOutlined />,
+            },
+            {
+              label: 'Schema',
+              value: 'schema',
+              icon: <DatabaseOutlined />,
+            },
+          ]}
+        />
         <Button
           icon={<ReloadOutlined />}
           onClick={onRefresh}

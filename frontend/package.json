@@ -11,8 +11,10 @@
     "cytoscape-dagre": "^2.5.0",
     "antd": "^5.12.5",
     "@ant-design/icons": "^5.2.6",
+    "@ant-design/plots": "^2.0.3",
     "axios": "^1.6.5",
     "dayjs": "^1.11.10",
+    "echarts": "^5.4.3",
     "xlsx": "^0.18.5"
   },
   "scripts": {
@@ -38,5 +40,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:3001"
+  "proxy": "http://localhost:8090"
 }

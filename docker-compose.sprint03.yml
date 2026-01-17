@@ -1,0 +1,75 @@
+version: '3.8'
+
+# Sprint 03 - 智能搜索最小配置
+# 使用命令: docker-compose -f docker-compose.sprint03.yml up -d
+
+services:
+  # Elasticsearch - 智能搜索引擎
+  elasticsearch:
+    image: elasticsearch:8.11.0
+    container_name: onto-elasticsearch
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - bootstrap.memory_lock=true
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    volumes:
+      - es-data:/usr/share/elasticsearch/data
+    networks:
+      - onto-network
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:9200/_cluster/health || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    restart: unless-stopped
+
+  # Kibana - ES可视化管理（可选）
+  kibana:
+    image: kibana:8.11.0
+    container_name: onto-kibana
+    environment:
+      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+    ports:
+      - "5601:5601"
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
+    networks:
+      - onto-network
+    restart: unless-stopped
+
+  # Redis - 缓存和会话存储
+  redis:
+    image: redis:7-alpine
+    container_name: onto-redis
+    command: redis-server --appendonly yes
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    networks:
+      - onto-network
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+    restart: unless-stopped
+
+networks:
+  onto-network:
+    driver: bridge
+
+volumes:
+  es-data:
+    driver: local
+  redis-data:
+    driver: local
