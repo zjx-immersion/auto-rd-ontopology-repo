@@ -5,6 +5,7 @@ const path = require('path');
 
 // 导入路由
 const graphRoutes = require('./routes/graph');
+const graphsRoutes = require('./routes/graphs');  // 多图谱管理
 const traceRoutes = require('./routes/trace');
 const importRoutes = require('./routes/import');
 
@@ -24,6 +25,7 @@ app.use((req, res, next) => {
 
 // API路由
 app.use('/api/v1/graph', graphRoutes);
+app.use('/api/v1/graphs', graphsRoutes);  // 多图谱管理
 app.use('/api/v1/ontology', traceRoutes);
 app.use('/api/v1/import', importRoutes);
 
