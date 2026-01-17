@@ -170,37 +170,14 @@ const Dashboard = ({ data, schema }) => {
     data: edgeTypeChartData,
     angleField: 'value',
     colorField: 'type',
-    radius: 0.85,
-    innerRadius: 0.6,  // 环形图，更容易看清
+    radius: 0.9,
     label: {
       content: (item) => {
-        return `${(item.percent * 100).toFixed(0)}%`;
+        return `${item.type}\n${(item.percent * 100).toFixed(1)}%`;
       },
       style: {
-        fontSize: 12,
-        fontWeight: 'bold',
-        fill: '#000',
+        fontSize: 11,
         textAlign: 'center',
-      },
-      offset: '-50%',  // 标签位置调整
-    },
-    statistic: {
-      title: {
-        offsetY: -4,
-        style: {
-          fontSize: '14px',
-          color: '#999',
-        },
-        content: '关系类型',
-      },
-      content: {
-        offsetY: 4,
-        style: {
-          fontSize: '20px',
-          color: '#000',
-          fontWeight: 'bold',
-        },
-        content: `${edgeTypeChartData.length}种`,
       },
     },
     legend: {
@@ -210,21 +187,6 @@ const Dashboard = ({ data, schema }) => {
       itemName: {
         style: {
           fontSize: 12,
-        },
-      },
-    },
-    tooltip: {
-      formatter: (datum) => {
-        return { 
-          name: datum.type, 
-          value: `${datum.value}条 (${(datum.percent * 100).toFixed(1)}%)` 
-        };
-      },
-      domStyles: {
-        'g2-tooltip': {
-          fontSize: '14px',
-          padding: '8px 12px',
-          minWidth: '120px',
         },
       },
     },
