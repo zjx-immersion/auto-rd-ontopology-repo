@@ -148,14 +148,20 @@ const Dashboard = ({ data, schema }) => {
       },
     },
     tooltip: {
-      formatter: (datum) => {
-        return { name: '数量', value: `${datum.count}个节点` };
-      },
-      domStyles: {
-        'g2-tooltip': {
-          fontSize: '14px',
-          padding: '8px 12px',
-        },
+      customContent: (title, items) => {
+        if (!items || items.length === 0) return '';
+        const item = items[0];
+        const data = item.data;
+        return `
+          <div style="padding: 8px 12px;">
+            <div style="margin-bottom: 8px; font-weight: bold; font-size: 14px;">
+              ${data.type}
+            </div>
+            <div style="color: rgba(0,0,0,0.65); font-size: 13px;">
+              节点数量: <span style="font-weight: 500;">${data.count}个</span>
+            </div>
+          </div>
+        `;
       },
     },
     color: ({ type }) => {
@@ -188,6 +194,24 @@ const Dashboard = ({ data, schema }) => {
         style: {
           fontSize: 12,
         },
+      },
+    },
+    tooltip: {
+      customContent: (title, items) => {
+        if (!items || items.length === 0) return '';
+        const item = items[0];
+        const data = item.data;
+        return `
+          <div style="padding: 8px 12px;">
+            <div style="margin-bottom: 8px; font-weight: bold; font-size: 14px;">
+              ${data.type}
+            </div>
+            <div style="color: rgba(0,0,0,0.65); font-size: 13px;">
+              <div>关系数量: <span style="font-weight: 500;">${data.value}条</span></div>
+              <div>占比: <span style="font-weight: 500;">${(data.percent * 100).toFixed(1)}%</span></div>
+            </div>
+          </div>
+        `;
       },
     },
     interactions: [
