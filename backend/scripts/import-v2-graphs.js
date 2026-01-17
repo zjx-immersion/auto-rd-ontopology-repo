@@ -16,20 +16,20 @@ const indexPath = path.join(graphsDir, 'index.json');
 // Schema路径
 const schemaPath = path.join(dataPath, 'core-domain-schema-v2.json');
 
-// 图谱数据路径
+// 图谱数据路径（使用新的目录结构）
 const graphFiles = [
   {
-    file: path.join(dataPath, 'adas-graph-v2-data.json'),
+    file: path.join(dataPath, 'adas', 'adas-graph-v2-data.json'),
     name: '智能驾驶研发体系',
     description: '岚图智能驾驶研发知识图谱，包含城市NOA和自动泊车产品的完整研发流程，基于Schema V2.0'
   },
   {
-    file: path.join(dataPath, 'cabin-graph-v2-data.json'),
+    file: path.join(dataPath, 'ic', 'cabin-graph-v2-data.json'),
     name: '智能座舱研发体系',
     description: '岚图智能座舱研发知识图谱，包含座舱OS和智能语音产品的完整研发流程，基于Schema V2.0'
   },
   {
-    file: path.join(dataPath, 'ee-graph-v2-data.json'),
+    file: path.join(dataPath, 'ee', 'ee-graph-v2-data.json'),
     name: '电子电器研发体系',
     description: '岚图电子电器研发知识图谱，包含中央计算平台和车身控制系统的完整研发流程，基于Schema V2.0'
   }

@@ -1,13 +1,14 @@
 {
+  "lastUpdate": "2026-01-17T13:55:06.000Z",
   "graphs": {
-    "graph_88f0fbd4a5": {
-      "id": "graph_88f0fbd4a5",
+    "graph_e41ae076ca": {
+      "id": "graph_e41ae076ca",
       "name": "智能驾驶研发体系",
       "description": "岚图智能驾驶研发知识图谱，包含城市NOA和自动泊车产品的完整研发流程，基于Schema V2.0",
       "schemaId": "core-domain-schema-v2",
       "schemaVersion": "2.0.0",
-      "created": "2026-01-17T09:18:44.340Z",
-      "updated": "2026-01-17T09:18:44.340Z",
+      "created": "2026-01-17T13:57:52.006Z",
+      "updated": "2026-01-17T13:57:52.006Z",
       "status": "active",
       "tags": [
         "v2",
@@ -15,14 +16,14 @@
         "ADAS"
       ]
     },
-    "graph_b923fd5743": {
-      "id": "graph_b923fd5743",
+    "graph_c4bc4181c4": {
+      "id": "graph_c4bc4181c4",
       "name": "智能座舱研发体系",
       "description": "岚图智能座舱研发知识图谱，包含座舱OS和智能语音产品的完整研发流程，基于Schema V2.0",
       "schemaId": "core-domain-schema-v2",
       "schemaVersion": "2.0.0",
-      "created": "2026-01-17T09:18:44.344Z",
-      "updated": "2026-01-17T09:18:44.344Z",
+      "created": "2026-01-17T13:57:52.010Z",
+      "updated": "2026-01-17T13:57:52.010Z",
       "status": "active",
       "tags": [
         "v2",
@@ -30,14 +31,14 @@
         "Cockpit"
       ]
     },
-    "graph_424bc4d4a4": {
-      "id": "graph_424bc4d4a4",
+    "graph_67f3055ddb": {
+      "id": "graph_67f3055ddb",
       "name": "电子电器研发体系",
       "description": "岚图电子电器研发知识图谱，包含中央计算平台和车身控制系统的完整研发流程，基于Schema V2.0",
       "schemaId": "core-domain-schema-v2",
       "schemaVersion": "2.0.0",
-      "created": "2026-01-17T09:18:44.346Z",
-      "updated": "2026-01-17T09:18:44.346Z",
+      "created": "2026-01-17T13:57:52.012Z",
+      "updated": "2026-01-17T13:57:52.012Z",
       "status": "active",
       "tags": [
         "v2",

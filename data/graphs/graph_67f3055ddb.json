@@ -1,10 +1,10 @@
 {
-  "id": "graph_424bc4d4a4",
+  "id": "graph_67f3055ddb",
   "metadata": {
     "name": "电子电器研发体系",
     "description": "岚图电子电器研发知识图谱，包含中央计算平台和车身控制系统的完整研发流程，基于Schema V2.0",
-    "createdAt": "2026-01-17T09:18:44.346Z",
-    "updatedAt": "2026-01-17T09:18:44.346Z",
+    "createdAt": "2026-01-17T13:57:52.012Z",
+    "updatedAt": "2026-01-17T13:57:52.012Z",
     "schemaId": "core-domain-schema-v2",
     "schemaVersion": "2.0.0",
     "tags": [
@@ -15,7 +15,7 @@
     "statistics": {
       "nodeCount": 153,
       "edgeCount": 153,
-      "lastAccessed": "2026-01-17T13:35:50.197Z"
+      "lastAccessed": "2026-01-17T13:57:52.012Z"
     }
   },
   "data": {

@@ -33,11 +33,15 @@ const GraphView = ({ data, schema, loading, onNodeClick, selectedNodeId }) => {
 
     cy.on('tap', 'node', (evt) => {
       const node = evt.target;
+      // 获取完整的节点数据，包括原始数据中的data字段
+      const properties = node.data('properties') || {};
       const nodeData = {
         id: node.id(),
         type: node.data('type'),
-        data: node.data('properties')
+        label: node.data('label') || node.id(),
+        data: properties // 确保传递属性数据
       };
+      console.log('点击节点:', nodeData); // 调试用
       onNodeClick(nodeData);
     });
 

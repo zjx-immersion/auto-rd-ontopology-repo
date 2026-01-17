@@ -1,10 +1,10 @@
 {
-  "id": "graph_88f0fbd4a5",
+  "id": "graph_e41ae076ca",
   "metadata": {
     "name": "智能驾驶研发体系",
     "description": "岚图智能驾驶研发知识图谱，包含城市NOA和自动泊车产品的完整研发流程，基于Schema V2.0",
-    "createdAt": "2026-01-17T09:18:44.340Z",
-    "updatedAt": "2026-01-17T09:18:44.340Z",
+    "createdAt": "2026-01-17T13:57:52.006Z",
+    "updatedAt": "2026-01-17T13:57:52.006Z",
     "schemaId": "core-domain-schema-v2",
     "schemaVersion": "2.0.0",
     "tags": [
@@ -15,7 +15,7 @@
     "statistics": {
       "nodeCount": 199,
       "edgeCount": 180,
-      "lastAccessed": "2026-01-17T13:37:47.948Z"
+      "lastAccessed": "2026-01-17T13:57:52.006Z"
     }
   },
   "data": {

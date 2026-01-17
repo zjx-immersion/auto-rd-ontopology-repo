@@ -11,15 +11,29 @@ const { Search } = Input;
 
 const Sidebar = ({ schema, statistics, onSearch }) => {
   const renderEntityTypes = () => {
-    if (!schema || !schema.entityTypes) return null;
+    if (!schema || !schema.entityTypes || !statistics?.entity_counts) return null;
 
-    return Object.entries(schema.entityTypes).map(([key, entity]) => (
+    // 只显示实际使用的类型（数量>0），并按数量排序
+    const entityTypesList = Object.entries(schema.entityTypes)
+      .map(([key, entity]) => ({
+        key,
+        entity,
+        count: statistics.entity_counts[key] || 0
+      }))
+      .filter(item => item.count > 0) // 只显示有数据的类型
+      .sort((a, b) => b.count - a.count); // 按数量降序排列
+
+    if (entityTypesList.length === 0) {
+      return <div style={{ color: '#999', fontSize: 12, padding: '8px 0' }}>暂无数据</div>;
+    }
+
+    return entityTypesList.map(({ key, entity, count }) => (
       <div key={key} className="entity-type-item">
         <Tag color={entity.color || '#1890ff'}>
           {entity.label || key}
         </Tag>
         <span className="entity-count">
-          {statistics?.entity_counts?.[key] || 0}
+          {count}
         </span>
       </div>
     ));
