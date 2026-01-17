@@ -193,11 +193,41 @@ class MultiGraphService {
     // 排序（按更新时间倒序）
     graphs.sort((a, b) => new Date(b.updated) - new Date(a.updated));
 
+    // 加载实际数据以获取真实统计信息
+    const graphsWithRealStats = await Promise.all(
+      graphs.map(async (graphMeta) => {
+        try {
+          const graphPath = path.join(this.graphsDir, `${graphMeta.id}.json`);
+          const graphData = await fs.readFile(graphPath, 'utf8');
+          const fullGraph = JSON.parse(graphData);
+          
+          // 计算实时统计
+          const nodeCount = fullGraph.data?.nodes?.length || 0;
+          const edgeCount = fullGraph.data?.edges?.length || 0;
+          
+          return {
+            ...graphMeta,
+            metadata: {
+              ...graphMeta,
+              statistics: {
+                nodeCount,
+                edgeCount,
+                lastAccessed: fullGraph.metadata?.statistics?.lastAccessed
+              }
+            }
+          };
+        } catch (error) {
+          console.error(`Failed to load graph ${graphMeta.id} for stats:`, error);
+          return graphMeta;
+        }
+      })
+    );
+
     // 分页
-    const total = graphs.length;
+    const total = graphsWithRealStats.length;
     const start = (page - 1) * pageSize;
     const end = start + pageSize;
-    const paginatedGraphs = graphs.slice(start, end);
+    const paginatedGraphs = graphsWithRealStats.slice(start, end);
 
     return {
       graphs: paginatedGraphs,

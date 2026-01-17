@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { Layout, Breadcrumb, Spin, Result, Button } from 'antd';
 import { HomeOutlined } from '@ant-design/icons';
@@ -33,6 +33,32 @@ const GraphViewPage = () => {
   const [viewMode, setViewMode] = useState('graph');
   const [selectedNode, setSelectedNode] = useState(null);
   const [traceResult, setTraceResult] = useState(null);
+
+  // 计算实时统计信息
+  const statistics = useMemo(() => {
+    if (!currentGraph || !currentGraph.data) {
+      return {
+        total_nodes: 0,
+        total_edges: 0,
+        entity_counts: {}
+      };
+    }
+
+    const { nodes, edges } = currentGraph.data;
+    
+    // 计算实体类型数量
+    const entity_counts = {};
+    nodes.forEach(node => {
+      const type = node.type || 'unknown';
+      entity_counts[type] = (entity_counts[type] || 0) + 1;
+    });
+
+    return {
+      total_nodes: nodes.length,
+      total_edges: edges.length,
+      entity_counts
+    };
+  }, [currentGraph]);
 
   // 加载图谱和Schema
   useEffect(() => {
@@ -140,7 +166,7 @@ const GraphViewPage = () => {
           >
             <Sidebar
               schema={schema}
-              statistics={currentGraph.metadata?.statistics}
+              statistics={statistics}
               onSearch={(keyword) => {
                 console.log('搜索:', keyword);
               }}
