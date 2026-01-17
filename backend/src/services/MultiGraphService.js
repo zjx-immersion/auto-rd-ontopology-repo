@@ -250,12 +250,32 @@ class MultiGraphService {
 
     // 检查索引
     if (!this.index.graphs[id]) {
+      // 检查是否是旧的图谱ID，提供友好的错误信息
+      const oldGraphIds = {
+        'graph_88f0fbd4a5': 'graph_e41ae076ca',
+        'graph_b923fd5743': 'graph_c4bc4181c4',
+        'graph_424bc4d4a4': 'graph_67f3055ddb'
+      };
+      
+      if (oldGraphIds[id]) {
+        throw new Error(`Graph ID has changed. The new ID is: ${oldGraphIds[id]}. Please update your bookmark or link.`);
+      }
+      
       throw new Error(`Graph not found: ${id}`);
     }
 
     // 读取图谱文件
     const graphPath = path.join(this.graphsDir, `${id}.json`);
-    const data = await fs.readFile(graphPath, 'utf8');
+    
+    let data;
+    try {
+      data = await fs.readFile(graphPath, 'utf8');
+    } catch (error) {
+      if (error.code === 'ENOENT') {
+        throw new Error(`Graph file not found: ${id}.json. The graph may have been deleted or moved.`);
+      }
+      throw error;
+    }
     const graph = JSON.parse(data);
 
     // 更新最后访问时间

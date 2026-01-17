@@ -9,11 +9,10 @@ const path = require('path');
 
 // 图谱路径
 const graphsDir = path.join(__dirname, '../../data/graphs');
-const graphFiles = [
-  'graph_88f0fbd4a5.json', // 智能驾驶
-  'graph_b923fd5743.json', // 智能座舱
-  'graph_424bc4d4a4.json'  // 电子电器
-];
+// 动态获取所有图谱文件
+const graphFiles = fs.readdirSync(graphsDir)
+  .filter(file => file.startsWith('graph_') && file.endsWith('.json'))
+  .sort();
 
 console.log('🔍 开始验证图谱统计数据...\n');
 

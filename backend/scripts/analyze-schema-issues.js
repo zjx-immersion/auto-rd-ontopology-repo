@@ -20,11 +20,10 @@ console.log(`📋 Schema中定义的实体类型: ${schemaEntityTypes.length}个
 console.log(`   类型列表: ${schemaEntityTypes.join(', ')}\n`);
 
 // 分析每个图谱
-const graphFiles = [
-  'graph_88f0fbd4a5.json', // 智能驾驶
-  'graph_b923fd5743.json', // 智能座舱
-  'graph_424bc4d4a4.json'  // 电子电器
-];
+// 动态获取所有图谱文件
+const graphFiles = fs.readdirSync(graphsDir)
+  .filter(file => file.startsWith('graph_') && file.endsWith('.json'))
+  .sort();
 
 const allUsedTypes = new Set();
 const typeCounts = {};
