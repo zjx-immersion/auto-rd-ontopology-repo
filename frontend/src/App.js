@@ -7,6 +7,7 @@ import TableView from './components/TableView';
 import TreeView from './components/TreeView';
 import MatrixViewOptimized from './components/MatrixViewOptimized';
 import Dashboard from './components/Dashboard';
+import SchemaViewer from './components/SchemaViewer';
 import NodeDetailPanel from './components/NodeDetailPanel';
 import TraceResultPanel from './components/TraceResultPanel';
 import ImportModal from './components/ImportModal';
@@ -22,7 +23,7 @@ function App() {
   const [selectedNode, setSelectedNode] = useState(null);
   const [traceResult, setTraceResult] = useState(null);
   const [importModalVisible, setImportModalVisible] = useState(false);
-  const [viewMode, setViewMode] = useState('graph'); // 'graph', 'table', 'tree', 'matrix', 'dashboard'
+  const [viewMode, setViewMode] = useState('graph'); // 'graph', 'table', 'tree', 'matrix', 'dashboard', 'schema'
 
   // 加载数据
   useEffect(() => {
@@ -151,6 +152,14 @@ function App() {
             <Dashboard
               data={graphData}
               schema={schema}
+            />
+          )}
+
+          {/* Schema管理视图 */}
+          {viewMode === 'schema' && (
+            <SchemaViewer
+              schema={schema}
+              data={graphData}
             />
           )}
         </Content>

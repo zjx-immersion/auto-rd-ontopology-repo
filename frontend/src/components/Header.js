@@ -9,7 +9,8 @@ import {
   TableOutlined,
   ApartmentOutlined,
   HeatMapOutlined,
-  DashboardOutlined
+  DashboardOutlined,
+  DatabaseOutlined
 } from '@ant-design/icons';
 import './Header.css';
 
@@ -54,6 +55,11 @@ const Header = ({ onRefresh, onImport, viewMode, onViewModeChange }) => {
               label: '仪表盘',
               value: 'dashboard',
               icon: <DashboardOutlined />,
+            },
+            {
+              label: 'Schema',
+              value: 'schema',
+              icon: <DatabaseOutlined />,
             },
           ]}
         />
