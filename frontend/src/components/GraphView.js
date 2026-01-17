@@ -13,9 +13,22 @@ const GraphView = ({ data, schema, loading, onNodeClick, selectedNodeId }) => {
   useEffect(() => {
     if (!containerRef.current || loading) return;
 
+    // 格式化图谱数据
+    const elements = formatGraphData(data, schema);
+    
+    // 调试：检查前5个节点的颜色
+    if (elements.length > 0) {
+      const nodeElements = elements.filter(e => !e.data.source);
+      console.log('GraphView: 格式化后的节点数量:', nodeElements.length);
+      console.log('GraphView: Schema状态:', schema ? `有Schema (${Object.keys(schema.entityTypes || {}).length}个类型)` : '无Schema');
+      nodeElements.slice(0, 5).forEach(e => {
+        console.log(`  Node ${e.data.id} (${e.data.type}): color=${e.data.color}`);
+      });
+    }
+
     const cy = cytoscape({
       container: containerRef.current,
-      elements: formatGraphData(data, schema),
+      elements: elements,
       style: getGraphStyle(schema),
       layout: {
         name: 'dagre',
@@ -29,6 +42,16 @@ const GraphView = ({ data, schema, loading, onNodeClick, selectedNodeId }) => {
       },
       minZoom: 0.1,
       maxZoom: 3
+    });
+    
+    // 验证节点颜色是否正确应用
+    cy.ready(() => {
+      const nodes = cy.nodes();
+      console.log('Cytoscape: 节点数量:', nodes.length);
+      nodes.slice(0, 5).forEach(node => {
+        const nodeData = node.data();
+        console.log(`  Cytoscape Node ${nodeData.id}: color=${nodeData.color}, style=${node.style('background-color')}`);
+      });
     });
 
     cy.on('tap', 'node', (evt) => {

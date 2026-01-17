@@ -68,9 +68,19 @@ const CreateGraphModal = ({ visible, onCancel, onSuccess }) => {
     setLoadingSchema(true);
     try {
       const schemaData = await fetchSchema();
+      console.log('CreateGraphModal: Schema loaded:', schemaData ? 'YES' : 'NO');
+      if (schemaData) {
+        console.log('CreateGraphModal: EntityTypes count:', Object.keys(schemaData.entityTypes || {}).length);
+        console.log('CreateGraphModal: Schema version:', schemaData.version);
+      }
+      if (!schemaData || !schemaData.entityTypes) {
+        message.error('加载Schema失败：Schema数据为空或格式不正确');
+        console.error('CreateGraphModal: Schema data:', schemaData);
+      }
       setSchema(schemaData);
     } catch (error) {
-      message.error('加载Schema失败');
+      console.error('CreateGraphModal: Schema加载错误:', error);
+      message.error('加载Schema失败: ' + (error.message || '未知错误'));
     } finally {
       setLoadingSchema(false);
     }
