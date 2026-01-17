@@ -1,0 +1,56 @@
+.graph-view-page {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 加载和错误状态 */
+.graph-view-page.loading-container,
+.graph-view-page.error-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background: #f0f2f5;
+}
+
+/* 面包屑 */
+.breadcrumb-wrapper {
+  background: #fff;
+  padding: 12px 24px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.breadcrumb-wrapper .ant-breadcrumb {
+  font-size: 14px;
+}
+
+/* 内容布局 */
+.content-layout {
+  flex: 1;
+  overflow: hidden;
+}
+
+.graph-sidebar {
+  height: 100%;
+  overflow-y: auto;
+  border-right: 1px solid #f0f0f0;
+}
+
+.main-content {
+  height: 100%;
+  overflow-y: auto;
+  background: #fff;
+  position: relative;
+}
+
+/* 响应式 */
+@media (max-width: 768px) {
+  .breadcrumb-wrapper {
+    padding: 8px 16px;
+  }
+
+  .graph-sidebar {
+    width: 200px !important;
+  }
+}

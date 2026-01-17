@@ -137,4 +137,89 @@ export const clearAllData = async () => {
   return response.data;
 };
 
+// ==================== 多图谱管理API ====================
+
+/**
+ * 获取图谱列表
+ * @param {Object} filter - 过滤条件 {page, pageSize, search, status, tags}
+ */
+export const getGraphs = async (filter = {}) => {
+  const response = await api.get('/graphs', { params: filter });
+  return response;
+};
+
+/**
+ * 获取单个图谱详情
+ * @param {string} id - 图谱ID
+ */
+export const getGraph = async (id) => {
+  const response = await api.get(`/graphs/${id}`);
+  return response;
+};
+
+/**
+ * 创建新图谱
+ * @param {Object} graphData - 图谱数据
+ */
+export const createGraph = async (graphData) => {
+  const response = await api.post('/graphs', graphData);
+  return response;
+};
+
+/**
+ * 更新图谱
+ * @param {string} id - 图谱ID
+ * @param {Object} updates - 更新内容
+ */
+export const updateGraph = async (id, updates) => {
+  const response = await api.put(`/graphs/${id}`, updates);
+  return response;
+};
+
+/**
+ * 删除图谱
+ * @param {string} id - 图谱ID
+ */
+export const deleteGraph = async (id) => {
+  const response = await api.delete(`/graphs/${id}`);
+  return response;
+};
+
+/**
+ * 复制图谱
+ * @param {string} id - 源图谱ID
+ * @param {string} newName - 新图谱名称
+ */
+export const duplicateGraph = async (id, newName) => {
+  const response = await api.post(`/graphs/${id}/duplicate`, { newName });
+  return response;
+};
+
+/**
+ * 导出图谱
+ * @param {string} id - 图谱ID
+ */
+export const exportGraph = async (id) => {
+  const response = await api.get(`/graphs/${id}/export`);
+  return response;
+};
+
+/**
+ * 验证图谱数据
+ * @param {string} id - 图谱ID
+ */
+export const validateGraph = async (id) => {
+  const response = await api.post(`/graphs/${id}/validate`);
+  return response;
+};
+
+/**
+ * 获取图谱统计信息
+ * @param {string} id - 图谱ID
+ */
+export const getGraphStatistics = async (id) => {
+  const response = await api.get(`/graphs/${id}/statistics`);
+  return response;
+};
+
 export default api;
