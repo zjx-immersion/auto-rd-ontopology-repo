@@ -1,0 +1,26 @@
+.schema-visualization-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.schema-visualization-info {
+  margin-bottom: 16px;
+  padding: 12px;
+  background: #f5f5f5;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.schema-visualization-graph {
+  position: relative;
+  flex: 1;
+  min-height: 800px;
+}
+
+/* Cytoscape图谱样式覆盖 */
+.schema-visualization-graph .cy-container {
+  width: 100%;
+  height: 100%;
+}

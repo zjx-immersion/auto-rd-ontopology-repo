@@ -16,6 +16,7 @@ const MatrixViewOptimized = ({ data, schema }) => {
   
   const chartRef = useRef(null);
   const chartInstance = useRef(null);
+  const resizeObserverRef = useRef(null);
 
   // 计算节点度数
   const calculateNodeDegrees = (nodes, edges) => {
@@ -267,14 +268,36 @@ const MatrixViewOptimized = ({ data, schema }) => {
       }
     });
 
-    // 响应式调整
-    const resizeObserver = new ResizeObserver(() => {
-      chartInstance.current?.resize();
+    // 响应式调整 - 使用ref保存observer以便清理
+    if (resizeObserverRef.current) {
+      resizeObserverRef.current.disconnect();
+    }
+    
+    resizeObserverRef.current = new ResizeObserver((entries) => {
+      // 使用requestAnimationFrame来避免ResizeObserver loop警告
+      requestAnimationFrame(() => {
+        if (chartInstance.current && !chartInstance.current.isDisposed()) {
+          try {
+            chartInstance.current.resize();
+          } catch (error) {
+            // 忽略ResizeObserver相关的已知警告
+            if (!error.message.includes('ResizeObserver')) {
+              console.error('图表调整大小失败:', error);
+            }
+          }
+        }
+      });
     });
-    resizeObserver.observe(chartRef.current);
+    
+    if (chartRef.current) {
+      resizeObserverRef.current.observe(chartRef.current);
+    }
 
     return () => {
-      resizeObserver.disconnect();
+      if (resizeObserverRef.current) {
+        resizeObserverRef.current.disconnect();
+        resizeObserverRef.current = null;
+      }
     };
   };
 
@@ -297,11 +320,16 @@ const MatrixViewOptimized = ({ data, schema }) => {
     }
   }, [paginatedNodes, relationType, showValues]);
 
-  // 组件卸载时销毁图表
+  // 组件卸载时销毁图表和ResizeObserver
   useEffect(() => {
     return () => {
+      if (resizeObserverRef.current) {
+        resizeObserverRef.current.disconnect();
+        resizeObserverRef.current = null;
+      }
       if (chartInstance.current) {
         chartInstance.current.dispose();
+        chartInstance.current = null;
       }
     };
   }, []);

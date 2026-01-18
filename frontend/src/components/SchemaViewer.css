@@ -32,6 +32,14 @@
   font-size: 14px;
 }
 
+/* 只为可视化tab应用flex布局 */
+.schema-viewer-container .ant-tabs-tabpane[data-node-key="visualization"] {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 800px;
+}
+
 .schema-viewer-container .ant-descriptions-item-label {
   font-weight: 500;
   background: #fafafa;

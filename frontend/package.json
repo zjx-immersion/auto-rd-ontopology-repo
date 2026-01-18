@@ -1,7 +1,7 @@
 {
   "name": "ontology-frontend",
   "version": "0.1.0",
-  "description": "岚图智能驾驶知识图谱前端应用",
+  "description": "本体图谱工程平台前端应用",
   "private": true,
   "dependencies": {
     "@ant-design/icons": "^5.2.6",

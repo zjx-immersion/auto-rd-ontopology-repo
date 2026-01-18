@@ -70,7 +70,7 @@ class GraphService {
       const data = {
         version: '0.1.0',
         lastUpdate: new Date().toISOString().split('T')[0],
-        description: '岚图智能驾驶研发知识图谱样本数据',
+        description: '知识图谱样本数据',
         nodes: this.nodes,
         edges: this.edges,
         statistics: this.getStatistics()

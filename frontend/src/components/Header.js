@@ -23,7 +23,7 @@ const Header = ({ onRefresh, onImport, viewMode, onViewModeChange, graphName }) 
         <ApiOutlined style={{ fontSize: 28, color: '#1890ff' }} />
         <div style={{ display: 'flex', flexDirection: 'column' }}>
           <Title level={3} style={{ margin: 0, color: '#ffffff', fontSize: '20px', fontWeight: 600 }}>
-            岚图智能驾驶知识图谱系统
+            本体图谱工程平台
           </Title>
           {graphName && (
             <span style={{ color: '#91d5ff', fontSize: '12px', marginTop: '2px' }}>

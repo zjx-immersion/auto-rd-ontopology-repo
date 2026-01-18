@@ -1,6 +1,6 @@
 # API 文档
 
-岚图智能驾驶知识图谱系统 - RESTful API 接口文档
+本体图谱工程平台 - RESTful API 接口文档
 
 **基础URL**: `http://localhost:3001/api/v1`
 

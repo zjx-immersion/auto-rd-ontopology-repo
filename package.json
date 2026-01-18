@@ -1,7 +1,7 @@
 {
   "name": "auto-rd-ontopology-repo",
   "version": "0.1.0",
-  "description": "岚图智能驾驶研发知识图谱系统",
+  "description": "本体图谱工程平台 - 快速进行本体建模、可视化展现和OAG图谱构建，为Agent提供API服务",
   "private": true,
   "workspaces": [
     "frontend",

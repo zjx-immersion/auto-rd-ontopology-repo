@@ -122,7 +122,7 @@ const CreateGraphModal = ({ visible, onCancel, onSuccess }) => {
         ]}
       >
         <Input
-          placeholder="例如：岚图GOP项目知识图谱"
+          placeholder="例如：GOP项目知识图谱"
           size="large"
         />
       </Form.Item>

@@ -27,8 +27,10 @@ import {
   CheckCircleOutlined,
   WarningOutlined,
   FileTextOutlined,
-  CodeOutlined
+  CodeOutlined,
+  ApartmentOutlined
 } from '@ant-design/icons';
+import SchemaVisualization from './SchemaVisualization';
 import './SchemaViewer.css';
 
 const { TabPane } = Tabs;
@@ -600,6 +602,14 @@ const SchemaViewer = ({ schema, data }) => {
                 }
               ]}
             />
+          </TabPane>
+
+          {/* Schema可视化 */}
+          <TabPane 
+            tab={<span><ApartmentOutlined />可视化</span>} 
+            key="visualization"
+          >
+            <SchemaVisualization schema={schema} />
           </TabPane>
 
           {/* JSON视图 */}
