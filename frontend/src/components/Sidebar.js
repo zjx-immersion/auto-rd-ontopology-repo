@@ -9,7 +9,7 @@ import './Sidebar.css';
 
 const { Search } = Input;
 
-const Sidebar = ({ schema, statistics, onSearch }) => {
+const Sidebar = ({ schema, statistics, onSearch, onEntityTypeClick, highlightedEntityType }) => {
   const renderEntityTypes = () => {
     if (!schema || !schema.entityTypes || !statistics?.entity_counts) return null;
 
@@ -28,7 +28,28 @@ const Sidebar = ({ schema, statistics, onSearch }) => {
     }
 
     return entityTypesList.map(({ key, entity, count }) => (
-      <div key={key} className="entity-type-item">
+      <div 
+        key={key} 
+        className={`entity-type-item ${highlightedEntityType === key ? 'entity-type-selected' : ''}`}
+        onClick={() => onEntityTypeClick && onEntityTypeClick(key)}
+        style={{ 
+          cursor: 'pointer',
+          padding: '4px 8px',
+          borderRadius: '4px',
+          transition: 'background-color 0.2s',
+          backgroundColor: highlightedEntityType === key ? '#f0f0ff' : 'transparent'
+        }}
+        onMouseEnter={(e) => {
+          if (highlightedEntityType !== key) {
+            e.currentTarget.style.backgroundColor = '#f5f5f5';
+          }
+        }}
+        onMouseLeave={(e) => {
+          if (highlightedEntityType !== key) {
+            e.currentTarget.style.backgroundColor = 'transparent';
+          }
+        }}
+      >
         <Tag color={entity.color || '#1890ff'}>
           {entity.label || key}
         </Tag>

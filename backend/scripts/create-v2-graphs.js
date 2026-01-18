@@ -15,7 +15,7 @@ const graphsDir = path.join(dataPath, 'graphs');
 const sourceDir = path.join(dataPath, 'sources-draft');
 
 // Schema路径
-const schemaPath = path.join(dataPath, 'core-domain-schema-v2.json');
+const schemaPath = path.join(dataPath, 'schemaVersions', 'core-domain-schema-v2.json');
 
 // 源文件路径
 const adasSourcePath = path.join(sourceDir, '18-实例化数据-智能驾驶领域.md');
@@ -150,10 +150,91 @@ function createNode(obj, defaultType = null) {
 
 /**
  * 创建关系边
+ * @param {Array} nodes - 节点数组
+ * @param {Array} sourceEdges - 可选的原始边数据，用于保留边的属性
  */
-function createEdges(nodes) {
+function createEdges(nodes, sourceEdges = []) {
   const edges = [];
   const edgeId = () => `edge_${uuidv4().replace(/-/g, '').substring(0, 10)}`;
+  
+  // 创建原始边数据索引，用于查找匹配的边并保留属性
+  // 使用 source-type-target 作为键
+  const sourceEdgeMap = new Map();
+  sourceEdges.forEach(edge => {
+    const key = `${edge.source}-${edge.type}-${edge.target}`;
+    sourceEdgeMap.set(key, edge);
+  });
+  
+  // 基于业务规则生成边的属性数据
+  const generateEdgeData = (sourceNode, type, targetNode) => {
+    const relationType = schemaV2?.relationTypes?.[type];
+    const properties = relationType?.properties || {};
+    const edgeData = {};
+    
+    // 从Schema中获取属性定义，生成默认值
+    Object.keys(properties).forEach(propKey => {
+      const propDef = properties[propKey];
+      
+      // 基于关系类型和节点数据生成属性值
+      if (propKey === 'relationship') {
+        // 关系描述：使用Schema中的description或label
+        edgeData[propKey] = relationType?.description || relationType?.label || `${sourceNode?.label || sourceNode?.id} ${relationType?.label || type} ${targetNode?.label || targetNode?.id}`;
+      } else if (propKey === 'createdAt' || propKey === 'lastUpdated' || propKey === 'foundDate' || propKey === 'recordedAt' || propKey === 'loggedAt' || propKey === 'executedAt' || propKey === 'deployedAt' || propKey === 'joinedDate' || propKey === 'assignedDate' || propKey === 'releaseDate' || propKey === 'startDate' || propKey === 'endDate') {
+        // 日期类型：使用当前时间或从节点数据中获取
+        edgeData[propKey] = new Date().toISOString().split('T')[0];
+      } else if (propKey === 'priority') {
+        // 优先级：从节点数据中获取或使用默认值
+        edgeData[propKey] = sourceNode?.data?.priority || targetNode?.data?.priority || 'MEDIUM';
+      } else if (propKey === 'status' || propKey === 'buildStatus' || propKey === 'testStatus' || propKey === 'executionStatus') {
+        // 状态：从节点数据中获取或使用默认值
+        edgeData[propKey] = sourceNode?.data?.status || targetNode?.data?.status || 'IN_PROGRESS';
+      } else if (propKey === 'version' || propKey === 'releaseVersion' || propKey === 'documentVersion') {
+        // 版本：从节点数据中获取
+        edgeData[propKey] = targetNode?.data?.version || sourceNode?.data?.version || 'V1.0';
+      } else if (propKey === 'sequence' || propKey === 'sprintNumber' || propKey === 'piNumber' || propKey === 'level' || propKey === 'refinementLevel') {
+        // 整数类型：从节点数据中获取或使用默认值
+        edgeData[propKey] = sourceNode?.data?.[propKey] || targetNode?.data?.[propKey] || 1;
+      } else if (propKey === 'estimatedHours' || propKey === 'actualHours' || propKey === 'capacity' || propKey === 'progress' || propKey === 'coverage' || propKey === 'value' || propKey === 'targetValue' || propKey === 'buildDuration' || propKey === 'executionTime' || propKey === 'size') {
+        // 浮点数类型：使用默认值0
+        edgeData[propKey] = sourceNode?.data?.[propKey] || targetNode?.data?.[propKey] || 0;
+      } else if (propKey === 'ownerTeamId' || propKey === 'teamId') {
+        // 团队ID：从节点数据中获取
+        edgeData[propKey] = sourceNode?.data?.ownerTeamId || targetNode?.data?.teamId || sourceNode?.data?.teamId || targetNode?.data?.ownerTeamId;
+      } else if (propKey === 'scope' || propKey === 'changeLog' || propKey === 'description') {
+        // 文本类型：从节点数据中获取或使用空字符串
+        edgeData[propKey] = sourceNode?.data?.[propKey] || targetNode?.data?.[propKey] || '';
+      } else if (propDef.type === 'Enum' && propDef.values) {
+        // 枚举类型：使用第一个值作为默认值
+        edgeData[propKey] = sourceNode?.data?.[propKey] || targetNode?.data?.[propKey] || propDef.values[0];
+      } else {
+        // 其他类型：尝试从节点数据中获取
+        edgeData[propKey] = sourceNode?.data?.[propKey] || targetNode?.data?.[propKey] || null;
+      }
+    });
+    
+    return edgeData;
+  };
+  
+  // 查找匹配的原始边并获取其属性数据，如果没有则基于业务规则生成
+  const getEdgeData = (source, type, target) => {
+    const key = `${source}-${type}-${target}`;
+    const sourceEdge = sourceEdgeMap.get(key);
+    
+    if (sourceEdge?.data && Object.keys(sourceEdge.data).length > 0) {
+      // 如果有原始边数据，使用它
+      return sourceEdge.data;
+    }
+    
+    // 否则，基于业务规则生成属性数据
+    const sourceNode = nodes.find(n => n.id === source);
+    const targetNode = nodes.find(n => n.id === target);
+    
+    if (sourceNode && targetNode) {
+      return generateEdgeData(sourceNode, type, targetNode);
+    }
+    
+    return {};
+  };
   
   nodes.forEach(node => {
     const data = node.data;
@@ -165,7 +246,7 @@ function createEdges(nodes) {
         source: data.vehicleId,
         target: node.id,
         type: 'has_domain_project',
-        data: {}
+        data: getEdgeData(data.vehicleId, 'has_domain_project', node.id)
       });
     }
     
@@ -176,7 +257,7 @@ function createEdges(nodes) {
         source: data.domainProjectId,
         target: node.id,
         type: 'has_milestone',
-        data: {}
+        data: getEdgeData(data.domainProjectId, 'has_milestone', node.id)
       });
     }
     
@@ -187,7 +268,7 @@ function createEdges(nodes) {
         source: data.milestoneId,
         target: node.id,
         type: 'has_baseline',
-        data: {}
+        data: getEdgeData(data.milestoneId, 'has_baseline', node.id)
       });
     }
     
@@ -198,7 +279,7 @@ function createEdges(nodes) {
         source: data.productLineId,
         target: node.id,
         type: 'has_product',
-        data: {}
+        data: getEdgeData(data.productLineId, 'has_product', node.id)
       });
     }
     
@@ -209,7 +290,7 @@ function createEdges(nodes) {
         source: data.productId,
         target: node.id,
         type: 'has_product_version',
-        data: {}
+        data: getEdgeData(data.productId, 'has_product_version', node.id)
       });
       
       // ProductVersion -> Baseline
@@ -219,7 +300,7 @@ function createEdges(nodes) {
           source: node.id,
           target: data.baselineId,
           type: 'version_relates_baseline',
-          data: {}
+          data: getEdgeData(node.id, 'version_relates_baseline', data.baselineId)
         });
       }
     }
@@ -231,7 +312,7 @@ function createEdges(nodes) {
         source: data.productId,
         target: node.id,
         type: 'has_feature',
-        data: {}
+        data: getEdgeData(data.productId, 'has_feature', node.id)
       });
       
       // Feature hierarchy
@@ -241,7 +322,7 @@ function createEdges(nodes) {
           source: data.parentFeatureId,
           target: node.id,
           type: 'feature_hierarchy',
-          data: {}
+          data: getEdgeData(data.parentFeatureId, 'feature_hierarchy', node.id)
         });
       }
     }
@@ -253,7 +334,7 @@ function createEdges(nodes) {
         source: data.featureId,
         target: node.id,
         type: 'has_module',
-        data: {}
+        data: getEdgeData(data.featureId, 'has_module', node.id)
       });
     }
     
@@ -264,7 +345,7 @@ function createEdges(nodes) {
         source: data.productId,
         target: node.id,
         type: 'has_feature_package',
-        data: {}
+        data: getEdgeData(data.productId, 'has_feature_package', node.id)
       });
     }
     
@@ -275,7 +356,7 @@ function createEdges(nodes) {
         source: data.featurePackageId,
         target: node.id,
         type: 'package_has_version',
-        data: {}
+        data: getEdgeData(data.featurePackageId, 'package_has_version', node.id)
       });
     }
     
@@ -286,7 +367,7 @@ function createEdges(nodes) {
         source: data.productId,
         target: node.id,
         type: 'epic_in_product',
-        data: {}
+        data: getEdgeData(data.productId, 'epic_in_product', node.id)
       });
     }
     
@@ -297,7 +378,7 @@ function createEdges(nodes) {
         source: data.epicId,
         target: node.id,
         type: 'epic_to_fr',
-        data: {}
+        data: getEdgeData(data.epicId, 'epic_to_fr', node.id)
       });
       
       // Feature -> FeatureRequirement
@@ -307,7 +388,7 @@ function createEdges(nodes) {
           source: data.featureId,
           target: node.id,
           type: 'feature_carries_fr',
-          data: {}
+          data: getEdgeData(data.featureId, 'feature_carries_fr', node.id)
         });
       }
     }
@@ -319,7 +400,7 @@ function createEdges(nodes) {
         source: data.featureRequirementId,
         target: node.id,
         type: 'fr_to_mr',
-        data: {}
+        data: getEdgeData(data.featureRequirementId, 'fr_to_mr', node.id)
       });
       
       // Module -> ModuleRequirement
@@ -329,7 +410,7 @@ function createEdges(nodes) {
           source: data.moduleId,
           target: node.id,
           type: 'module_carries_mr',
-          data: {}
+          data: getEdgeData(data.moduleId, 'module_carries_mr', node.id)
         });
       }
     }
@@ -341,7 +422,7 @@ function createEdges(nodes) {
         source: data.moduleRequirementId,
         target: node.id,
         type: 'mr_to_ssts',
-        data: {}
+        data: getEdgeData(data.moduleRequirementId, 'mr_to_ssts', node.id)
       });
     }
     
@@ -352,7 +433,7 @@ function createEdges(nodes) {
         source: data.featureRequirementId,
         target: node.id,
         type: 'fr_has_prd',
-        data: {}
+        data: getEdgeData(data.featureRequirementId, 'fr_has_prd', node.id)
       });
     }
     
@@ -363,7 +444,7 @@ function createEdges(nodes) {
         source: data.featureRequirementId,
         target: node.id,
         type: 'fr_has_version',
-        data: {}
+        data: getEdgeData(data.featureRequirementId, 'fr_has_version', node.id)
       });
     }
     
@@ -374,7 +455,7 @@ function createEdges(nodes) {
         source: data.moduleRequirementId,
         target: node.id,
         type: 'mr_has_version',
-        data: {}
+        data: getEdgeData(data.moduleRequirementId, 'mr_has_version', node.id)
       });
     }
     
@@ -385,7 +466,7 @@ function createEdges(nodes) {
         source: data.assetId,
         target: node.id,
         type: 'asset_has_version',
-        data: {}
+        data: getEdgeData(data.assetId, 'asset_has_version', node.id)
       });
     }
     
@@ -396,7 +477,7 @@ function createEdges(nodes) {
         source: data.moduleRequirementId,
         target: node.id,
         type: 'mr_uses_asset',
-        data: {}
+        data: getEdgeData(data.moduleRequirementId, 'mr_uses_asset', node.id)
       });
       
       // AssetUsage -> AssetVersion
@@ -406,7 +487,7 @@ function createEdges(nodes) {
           source: node.id,
           target: data.assetVersionId,
           type: 'usage_refers_version',
-          data: {}
+          data: getEdgeData(node.id, 'usage_refers_version', data.assetVersionId)
         });
       }
     }
@@ -418,7 +499,7 @@ function createEdges(nodes) {
         source: data.domainProjectId,
         target: node.id,
         type: 'project_has_pi',
-        data: {}
+        data: getEdgeData(data.domainProjectId, 'project_has_pi', node.id)
       });
     }
     
@@ -429,7 +510,7 @@ function createEdges(nodes) {
         source: data.piId,
         target: node.id,
         type: 'pi_has_sprint',
-        data: {}
+        data: getEdgeData(data.piId, 'pi_has_sprint', node.id)
       });
     }
     
@@ -440,7 +521,7 @@ function createEdges(nodes) {
         source: data.sprintId,
         target: node.id,
         type: 'sprint_has_backlog',
-        data: {}
+        data: getEdgeData(data.sprintId, 'sprint_has_backlog', node.id)
       });
       
       // SprintBacklog -> ModuleRequirement
@@ -450,7 +531,7 @@ function createEdges(nodes) {
           source: node.id,
           target: data.moduleRequirementId,
           type: 'backlog_refers_mr',
-          data: {}
+          data: getEdgeData(node.id, 'backlog_refers_mr', data.moduleRequirementId)
         });
       }
     }
@@ -462,7 +543,7 @@ function createEdges(nodes) {
         source: data.sprintId,
         target: node.id,
         type: 'sprint_has_workitem',
-        data: {}
+        data: getEdgeData(data.sprintId, 'sprint_has_workitem', node.id)
       });
       
       // WorkItem -> ModuleRequirement (if type is REQUIREMENT)
@@ -472,7 +553,7 @@ function createEdges(nodes) {
           source: node.id,
           target: data.moduleRequirementId,
           type: 'workitem_implements_mr',
-          data: {}
+          data: getEdgeData(node.id, 'workitem_implements_mr', data.moduleRequirementId)
         });
       }
     }
@@ -484,7 +565,7 @@ function createEdges(nodes) {
         source: data.workItemId,
         target: node.id,
         type: 'workitem_has_log',
-        data: {}
+        data: getEdgeData(data.workItemId, 'workitem_has_log', node.id)
       });
     }
     
@@ -495,7 +576,7 @@ function createEdges(nodes) {
         source: data.workItemId,
         target: node.id,
         type: 'workitem_has_commit',
-        data: {}
+        data: getEdgeData(data.workItemId, 'workitem_has_commit', node.id)
       });
     }
     
@@ -506,7 +587,7 @@ function createEdges(nodes) {
         source: data.codeCommitId,
         target: node.id,
         type: 'commit_triggers_build',
-        data: {}
+        data: getEdgeData(data.codeCommitId, 'commit_triggers_build', node.id)
       });
     }
     
@@ -517,7 +598,7 @@ function createEdges(nodes) {
         source: data.moduleId,
         target: node.id,
         type: 'mr_has_testplan',
-        data: {}
+        data: getEdgeData(data.moduleId, 'mr_has_testplan', node.id)
       });
     }
     
@@ -528,7 +609,7 @@ function createEdges(nodes) {
         source: data.testPlanId,
         target: node.id,
         type: 'testplan_has_case',
-        data: {}
+        data: getEdgeData(data.testPlanId, 'testplan_has_case', node.id)
       });
     }
     
@@ -539,14 +620,14 @@ function createEdges(nodes) {
         source: data.buildId,
         target: node.id,
         type: 'build_triggers_test',
-        data: {}
+        data: getEdgeData(data.buildId, 'build_triggers_test', node.id)
       });
       edges.push({
         id: edgeId(),
         source: data.testCaseId,
         target: node.id,
         type: 'case_executes',
-        data: {}
+        data: getEdgeData(data.testCaseId, 'case_executes', node.id)
       });
     }
     
@@ -557,7 +638,7 @@ function createEdges(nodes) {
         source: data.testExecutionId,
         target: node.id,
         type: 'execution_finds_defect',
-        data: {}
+        data: getEdgeData(data.testExecutionId, 'execution_finds_defect', node.id)
       });
     }
     
@@ -568,7 +649,7 @@ function createEdges(nodes) {
         source: data.buildId,
         target: node.id,
         type: 'build_produces_artifact',
-        data: {}
+        data: getEdgeData(data.buildId, 'build_produces_artifact', node.id)
       });
     }
     
@@ -579,7 +660,7 @@ function createEdges(nodes) {
         source: data.artifactId,
         target: node.id,
         type: 'artifact_releases',
-        data: {}
+        data: getEdgeData(data.artifactId, 'artifact_releases', node.id)
       });
       
       // Release -> ProductVersion
@@ -589,7 +670,7 @@ function createEdges(nodes) {
           source: node.id,
           target: data.productVersionId,
           type: 'release_relates_version',
-          data: {}
+          data: getEdgeData(node.id, 'release_relates_version', data.productVersionId)
         });
       }
     }
@@ -601,7 +682,7 @@ function createEdges(nodes) {
         source: data.releaseId,
         target: node.id,
         type: 'release_deploys',
-        data: {}
+        data: getEdgeData(data.releaseId, 'release_deploys', node.id)
       });
     }
     
@@ -612,7 +693,7 @@ function createEdges(nodes) {
         source: data.domainProjectId,
         target: node.id,
         type: 'project_has_metricset',
-        data: {}
+        data: getEdgeData(data.domainProjectId, 'project_has_metricset', node.id)
       });
     }
     
@@ -623,7 +704,7 @@ function createEdges(nodes) {
         source: data.metricSetId,
         target: node.id,
         type: 'metricset_has_metric',
-        data: {}
+        data: getEdgeData(data.metricSetId, 'metricset_has_metric', node.id)
       });
     }
     
@@ -634,7 +715,7 @@ function createEdges(nodes) {
         source: data.metricId,
         target: node.id,
         type: 'metric_has_value',
-        data: {}
+        data: getEdgeData(data.metricId, 'metric_has_value', node.id)
       });
     }
     
@@ -645,14 +726,14 @@ function createEdges(nodes) {
         source: data.userId,
         target: node.id,
         type: 'user_in_team',
-        data: {}
+        data: getEdgeData(data.userId, 'user_in_team', node.id)
       });
       edges.push({
         id: edgeId(),
         source: data.teamId,
         target: node.id,
         type: 'team_has_member',
-        data: {}
+        data: getEdgeData(data.teamId, 'team_has_member', node.id)
       });
     }
     
@@ -663,7 +744,7 @@ function createEdges(nodes) {
         source: data.domainProjectId,
         target: node.id,
         type: 'project_has_team',
-        data: {}
+        data: getEdgeData(data.domainProjectId, 'project_has_team', node.id)
       });
     }
   });
@@ -786,9 +867,30 @@ function processGraph(graphName, sourceFile, outputFile) {
       console.log(`     - ${type}: ${count}`);
     });
   
-  // 创建边
-  const edges = createEdges(nodes);
+  // 尝试从 core-domain-data.json 读取边的属性数据
+  let sourceEdges = [];
+  const coreDomainDataPath = path.join(dataPath, 'sample', 'core-domain-data.json');
+  if (fs.existsSync(coreDomainDataPath)) {
+    try {
+      const coreDomainData = JSON.parse(fs.readFileSync(coreDomainDataPath, 'utf8'));
+      if (coreDomainData.edges && Array.isArray(coreDomainData.edges)) {
+        sourceEdges = coreDomainData.edges;
+        console.log(`   从 core-domain-data.json 加载了 ${sourceEdges.length} 条原始边数据`);
+      }
+    } catch (error) {
+      console.warn(`   无法读取 core-domain-data.json: ${error.message}`);
+    }
+  }
+  
+  // 创建边，传入原始边数据以保留属性
+  const edges = createEdges(nodes, sourceEdges);
   console.log(`   创建了 ${edges.length} 条边`);
+  
+  // 统计有属性的边数量
+  const edgesWithData = edges.filter(e => e.data && Object.keys(e.data).length > 0).length;
+  if (edgesWithData > 0) {
+    console.log(`   ✅ 其中 ${edgesWithData} 条边保留了属性数据`);
+  }
   
   // 统计边类型
   const edgeTypeStats = {};

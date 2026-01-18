@@ -1,6 +1,6 @@
 # 文档索引 - 岚图智能驾驶知识图谱系统
 
-**最后更新**: 2026-01-17  
+**最后更新**: 2026-01-18  
 **版本**: v2.0
 
 ---
@@ -155,11 +155,11 @@
 |------|------|------|------|
 | [SCHEMA_V2_ANALYSIS.md](./schema-v2/SCHEMA_V2_ANALYSIS.md) | Schema V2.0分析 | 15页 | ✅ 完成 |
 | [SCHEMA_V2_COMPATIBILITY_ANALYSIS.md](./schema-v2/SCHEMA_V2_COMPATIBILITY_ANALYSIS.md) | 兼容性分析 | 40页 | ✅ 完成 |
-| [SCHEMA_V2_COMPLETION_SUMMARY.md](./schema-v2/SCHEMA_V2_COMPLETION_SUMMARY.md) | 完成总结 | 25页 | ✅ 完成 |
 | [SCHEMA_V2_GRAPHS_COMPLETED.md](./schema-v2/SCHEMA_V2_GRAPHS_COMPLETED.md) | 图谱构造完成 | 50页 | ✅ 完成 |
-| [SCHEMA_V2_FINAL_SUMMARY.md](./schema-v2/SCHEMA_V2_FINAL_SUMMARY.md) | 最终总结 | 10页 | ✅ 完成 |
 | [SCHEMA_V2_TEST_REPORT.md](./schema-v2/SCHEMA_V2_TEST_REPORT.md) | 测试报告 | 30页 | ✅ 完成 |
 | [SCHEMA_V2_ALL_COMPLETED.md](./schema-v2/SCHEMA_V2_ALL_COMPLETED.md) | 全部完成报告 | 50页 | ✅ 完成 |
+
+**说明**: Schema V2.0相关文档已整理，保留核心文档，临时总结文档已归档。
 
 ---
 
@@ -173,6 +173,18 @@
 | [SCHEMA_FIX_VERIFICATION.md](./bugfixes/SCHEMA_FIX_VERIFICATION.md) | Schema修复验证 | 8页 | ✅ 完成 |
 | [STATS_DISPLAY_FIX.md](./bugfixes/STATS_DISPLAY_FIX.md) | 统计显示修复 | 8页 | ✅ 完成 |
 | [STATS_FIX_TEST_REPORT.md](./bugfixes/STATS_FIX_TEST_REPORT.md) | 统计修复测试报告 | 10页 | ✅ 完成 |
+| [EDGE_PROPERTIES_FIX_COMPLETE.md](./bugfixes/EDGE_PROPERTIES_FIX_COMPLETE.md) | 对象属性问题修复完成 | 10页 | ✅ 完成 |
+| [PLAYWRIGHT_VERIFICATION_REPORT_FINAL.md](./bugfixes/PLAYWRIGHT_VERIFICATION_REPORT_FINAL.md) | Playwright自动验证报告 | 7页 | ✅ 完成 |
+| [REGRESSION_TEST_REPORT.md](./bugfixes/REGRESSION_TEST_REPORT.md) | 图谱交互优化回归测试报告 | 8页 | ✅ 完成（2026-01-18） |
+| [GRAPH_INTERACTION_OPTIMIZATION.md](./bugfixes/GRAPH_INTERACTION_OPTIMIZATION.md) | 图谱交互优化修复报告 | 10页 | ✅ 完成（2026-01-18） |
+
+**说明**: bugfixes目录包含所有Bug修复相关的文档，包括问题分析、修复方案、验证报告等。根目录的临时修复文档已整理到此目录。
+
+**最新修复**（2026-01-18）:
+- ✅ 节点点击保持缩放比例
+- ✅ 节点关联高亮（边和相邻节点）
+- ✅ 实体类型点击高亮
+- ✅ 对象属性关系显示优化
 
 ---
 
@@ -216,10 +228,10 @@
 | **Phase 1文档** | 3份 | 65页 | 100% |
 | **Multi-Graph文档** | 2份 | 45页 | 100% |
 | **Schema V2.0文档** | 7份 | 220页 | 100% |
-| **Bug修复文档** | 4份 | 36页 | 100% |
+| **Bug修复文档** | 8份 | 76页 | 100% |
 | **技术文档** | 5份 | 50页 | 100% |
 | **数据文档** | 6份 | - | 100% |
-| **总计** | **69份** | **~950页** | **100%** |
+| **总计** | **73份** | **~988页** | **100%** |
 
 ### 分类统计
 
@@ -241,7 +253,7 @@
 ├── Phase 1 (3份)
 ├── Multi-Graph (2份)
 ├── Schema V2.0 (7份)
-├── Bug修复 (4份)
+├── Bug修复 (8份)
 ├── 技术文档 (5份)
 └── 数据文档 (6份)
 ```
@@ -330,8 +342,14 @@
 
 ---
 
-**最后更新**: 2026-01-17  
+**最后更新**: 2026-01-18  
 **维护者**: AI Assistant  
-**版本**: v2.0  
-**文档总数**: 69份  
-**预估总页数**: ~950页
+**版本**: v2.1  
+**文档总数**: 71份  
+**预估总页数**: ~970页
+
+**更新说明**:
+- ✅ 根目录临时文档已整理到 `bugfixes/` 目录
+- ✅ Schema V2.0重复文档已归档
+- ✅ 添加边属性数据修复文档
+- ✅ 添加Playwright自动验证报告

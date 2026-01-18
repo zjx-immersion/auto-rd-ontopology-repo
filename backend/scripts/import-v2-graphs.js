@@ -19,23 +19,28 @@ const schemaPath = path.join(dataPath, 'core-domain-schema-v2.json');
 // 图谱数据路径（使用新的目录结构）
 const graphFiles = [
   {
-    file: path.join(dataPath, 'adas', 'adas-graph-v2-data.json'),
+    file: path.join(dataPath, 'adas-graph-v2-data.json'),
     name: '智能驾驶研发体系',
     description: '岚图智能驾驶研发知识图谱，包含城市NOA和自动泊车产品的完整研发流程，基于Schema V2.0'
   },
   {
-    file: path.join(dataPath, 'ic', 'cabin-graph-v2-data.json'),
+    file: path.join(dataPath, 'cabin-graph-v2-data.json'),
     name: '智能座舱研发体系',
     description: '岚图智能座舱研发知识图谱，包含座舱OS和智能语音产品的完整研发流程，基于Schema V2.0'
   },
   {
-    file: path.join(dataPath, 'ee', 'ee-graph-v2-data.json'),
+    file: path.join(dataPath, 'ee-graph-v2-data.json'),
     name: '电子电器研发体系',
     description: '岚图电子电器研发知识图谱，包含中央计算平台和车身控制系统的完整研发流程，基于Schema V2.0'
+  },
+  {
+    file: path.join(dataPath, 'sample', 'core-domain-data.json'),
+    name: '核心领域模型知识图谱',
+    description: '基于MX-2026车型项目的完整领域模型数据，包含所有节点和边的属性数据'
   }
 ];
 
-console.log('🚀 开始导入Schema V2.0的3个领域图谱数据到系统...\n');
+console.log('🚀 开始导入Schema V2.0的4个图谱数据到系统...\n');
 
 // 确保graphs目录存在
 if (!fs.existsSync(graphsDir)) {
@@ -62,11 +67,12 @@ if (!index.graphs || Array.isArray(index.graphs)) {
 const importedGraphs = [];
 
 graphFiles.forEach((graphInfo, idx) => {
-  console.log(`📊 导入图谱 ${idx + 1}/3: ${graphInfo.name}`);
+  console.log(`📊 导入图谱 ${idx + 1}/${graphFiles.length}: ${graphInfo.name}`);
   
   // 读取图谱数据
   const graphData = JSON.parse(fs.readFileSync(graphInfo.file, 'utf8'));
-  const { nodes, edges } = graphData.data;
+  // 兼容两种格式：{data: {nodes, edges}} 或直接 {nodes, edges}
+  const { nodes, edges } = graphData.data || graphData;
   
   console.log(`   节点数: ${nodes.length}`);
   console.log(`   边数: ${edges.length}`);
@@ -85,7 +91,7 @@ graphFiles.forEach((graphInfo, idx) => {
       updatedAt: timestamp,
       schemaId: 'core-domain-schema-v2',
       schemaVersion: '2.0.0',
-      tags: ['v2', 'auto-generated', graphInfo.name.includes('驾驶') ? 'ADAS' : graphInfo.name.includes('座舱') ? 'Cockpit' : 'EE'],
+      tags: graphInfo.name.includes('核心领域') ? ['v2', 'sample-data'] : ['v2', 'auto-generated', graphInfo.name.includes('驾驶') ? 'ADAS' : graphInfo.name.includes('座舱') ? 'Cockpit' : 'EE'],
       statistics: {
         nodeCount: nodes.length,
         edgeCount: edges.length,

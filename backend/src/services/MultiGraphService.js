@@ -540,6 +540,84 @@ class MultiGraphService {
       metadata: graph.metadata
     };
   }
+
+  /**
+   * 获取节点的所有对象属性关系
+   * @param {string} graphId - 图谱ID
+   * @param {string} nodeId - 节点ID
+   * @param {Object} schema - Schema定义（可选，用于获取关系标签）
+   * @returns {Object} 对象属性关系
+   */
+  async getObjectProperties(graphId, nodeId, schema = null) {
+    await this.init();
+
+    // 获取图谱数据
+    const graph = await this.getGraph(graphId);
+    const { nodes, edges } = graph.data;
+
+    // 查找节点
+    const node = nodes.find(n => n.id === nodeId);
+    if (!node) {
+      throw new Error(`Node not found: ${nodeId}`);
+    }
+
+    // 获取出边关系
+    const outgoingEdges = edges.filter(e => e.source === nodeId);
+    const outgoing = outgoingEdges.map(edge => {
+      const targetNode = nodes.find(n => n.id === edge.target);
+      return {
+        edge: {
+          id: edge.id,
+          type: edge.type,
+          source: edge.source,
+          target: edge.target
+        },
+        relationId: edge.id,
+        relationType: edge.type,
+        relationLabel: this.getRelationLabel(edge.type, schema),
+        targetNode: targetNode || null,
+        properties: edge.data || {}
+      };
+    });
+
+    // 获取入边关系
+    const incomingEdges = edges.filter(e => e.target === nodeId);
+    const incoming = incomingEdges.map(edge => {
+      const sourceNode = nodes.find(n => n.id === edge.source);
+      return {
+        edge: {
+          id: edge.id,
+          type: edge.type,
+          source: edge.source,
+          target: edge.target
+        },
+        relationId: edge.id,
+        relationType: edge.type,
+        relationLabel: this.getRelationLabel(edge.type, schema),
+        sourceNode: sourceNode || null,
+        properties: edge.data || {}
+      };
+    });
+
+    return {
+      nodeId,
+      outgoing,
+      incoming
+    };
+  }
+
+  /**
+   * 获取关系标签
+   * @param {string} relationType - 关系类型
+   * @param {Object} schema - Schema定义
+   * @returns {string} 关系标签
+   */
+  getRelationLabel(relationType, schema) {
+    if (schema && schema.relationTypes && schema.relationTypes[relationType]) {
+      return schema.relationTypes[relationType].label || relationType;
+    }
+    return relationType;
+  }
 }
 
 // 单例模式

@@ -1,10 +1,10 @@
 {
-  "id": "graph_67f3055ddb",
+  "id": "graph_b4ee1d5474",
   "metadata": {
     "name": "电子电器研发体系",
     "description": "岚图电子电器研发知识图谱，包含中央计算平台和车身控制系统的完整研发流程，基于Schema V2.0",
-    "createdAt": "2026-01-17T13:57:52.012Z",
-    "updatedAt": "2026-01-17T13:57:52.012Z",
+    "createdAt": "2026-01-17T17:34:53.678Z",
+    "updatedAt": "2026-01-17T17:34:53.678Z",
     "schemaId": "core-domain-schema-v2",
     "schemaVersion": "2.0.0",
     "tags": [
@@ -15,7 +15,7 @@
     "statistics": {
       "nodeCount": 153,
       "edgeCount": 153,
-      "lastAccessed": "2026-01-17T15:59:31.569Z"
+      "lastAccessed": "2026-01-18T04:38:02.742Z"
     }
   },
   "data": {
@@ -2037,1075 +2037,1660 @@
     ],
     "edges": [
       {
-        "id": "edge_14f55fa960",
+        "id": "edge_21a604a887",
         "source": "VEH-001",
         "target": "DP-EE-001",
         "type": "has_domain_project",
-        "data": {}
+        "data": {
+          "relationship": "车型包含多个领域项目",
+          "priority": "MEDIUM",
+          "createdAt": "2026-01-17"
+        }
       },
       {
-        "id": "edge_87243c7ce2",
+        "id": "edge_a1f98c93a2",
         "source": "DP-EE-001",
         "target": "MS-EE-001",
         "type": "has_milestone",
-        "data": {}
+        "data": {
+          "relationship": "领域项目包含多个里程碑",
+          "sequence": 1,
+          "dependency": null
+        }
       },
       {
-        "id": "edge_bbcef4efff",
+        "id": "edge_9d76a2d8ae",
         "source": "DP-EE-001",
         "target": "MS-EE-002",
         "type": "has_milestone",
-        "data": {}
+        "data": {
+          "relationship": "领域项目包含多个里程碑",
+          "sequence": 1,
+          "dependency": null
+        }
       },
       {
-        "id": "edge_75cc791dba",
+        "id": "edge_e6cd718e76",
         "source": "DP-EE-001",
         "target": "MS-EE-003",
         "type": "has_milestone",
-        "data": {}
+        "data": {
+          "relationship": "领域项目包含多个里程碑",
+          "sequence": 1,
+          "dependency": null
+        }
       },
       {
-        "id": "edge_f3e9fea59b",
+        "id": "edge_e0b51ae711",
         "source": "DP-EE-001",
         "target": "MS-EE-004",
         "type": "has_milestone",
-        "data": {}
+        "data": {
+          "relationship": "领域项目包含多个里程碑",
+          "sequence": 1,
+          "dependency": null
+        }
       },
       {
-        "id": "edge_96a339f762",
+        "id": "edge_bde43dc71f",
         "source": "MS-EE-001",
         "target": "BL-EE-SOP-001",
         "type": "has_baseline",
-        "data": {}
+        "data": {
+          "relationship": "里程碑包含基线",
+          "freezeDate": "2023-05-01",
+          "scope": "中央计算平台V1.0 + 车身控制系统V1.0 + 完整电子电器架构"
+        }
       },
       {
-        "id": "edge_8b905bca8b",
+        "id": "edge_f204388c7c",
         "source": "MS-EE-002",
         "target": "BL-EE-PVS-001",
         "type": "has_baseline",
-        "data": {}
+        "data": {
+          "relationship": "里程碑包含基线",
+          "freezeDate": "2023-02-01",
+          "scope": "域控制器基础功能 + BCM基础功能"
+        }
       },
       {
-        "id": "edge_9ba5f871f5",
+        "id": "edge_d51e1c4eea",
         "source": "MS-EE-003",
         "target": "BL-EE-DVS-001",
         "type": "has_baseline",
-        "data": {}
+        "data": {
+          "relationship": "里程碑包含基线",
+          "freezeDate": "2022-11-01",
+          "scope": "核心架构验证 + 基础功能验证"
+        }
       },
       {
-        "id": "edge_990b241f7a",
+        "id": "edge_127a6c6ab3",
         "source": "PL-EE-001",
         "target": "PROD-CDC-001",
         "type": "has_product",
-        "data": {}
+        "data": {
+          "relationship": "产品线或车型包含产品",
+          "priority": "MEDIUM"
+        }
       },
       {
-        "id": "edge_8fd27216c7",
+        "id": "edge_5cb0e6653c",
         "source": "PL-EE-001",
         "target": "PROD-BCM-001",
         "type": "has_product",
-        "data": {}
+        "data": {
+          "relationship": "产品线或车型包含产品",
+          "priority": "MEDIUM"
+        }
       },
       {
-        "id": "edge_36af11e6af",
+        "id": "edge_880ab2557c",
         "source": "PROD-CDC-001",
         "target": "PV-CDC-V1.0",
         "type": "has_product_version",
-        "data": {}
+        "data": {
+          "relationship": "产品有多个版本",
+          "releaseDate": "2026-01-17",
+          "status": "RELEASED"
+        }
       },
       {
-        "id": "edge_22d982edca",
+        "id": "edge_53ce0bec8d",
         "source": "PV-CDC-V1.0",
         "target": "BL-EE-SOP-001",
         "type": "version_relates_baseline",
-        "data": {}
+        "data": {
+          "relationship": "产品版本关联基线",
+          "relationType": "BASED_ON"
+        }
       },
       {
-        "id": "edge_6d22328efa",
+        "id": "edge_ba07ed9e97",
         "source": "PROD-CDC-001",
         "target": "PV-CDC-V1.1",
         "type": "has_product_version",
-        "data": {}
+        "data": {
+          "relationship": "产品有多个版本",
+          "releaseDate": "2026-01-17",
+          "status": "DEVELOPING"
+        }
       },
       {
-        "id": "edge_24dcb86f6c",
+        "id": "edge_5947caceb3",
         "source": "PROD-BCM-001",
         "target": "PV-BCM-V1.0",
         "type": "has_product_version",
-        "data": {}
+        "data": {
+          "relationship": "产品有多个版本",
+          "releaseDate": "2026-01-17",
+          "status": "RELEASED"
+        }
       },
       {
-        "id": "edge_1dd32f0b12",
+        "id": "edge_4de5e56d28",
         "source": "PV-BCM-V1.0",
         "target": "BL-EE-SOP-001",
         "type": "version_relates_baseline",
-        "data": {}
+        "data": {
+          "relationship": "产品版本关联基线",
+          "relationType": "BASED_ON"
+        }
       },
       {
-        "id": "edge_f99e002ce6",
+        "id": "edge_0417052d81",
         "source": "PROD-CDC-001",
         "target": "FEAT-CDC-001",
         "type": "has_feature",
-        "data": {}
+        "data": {
+          "relationship": "产品包含多个特性",
+          "priority": "MEDIUM",
+          "businessValue": null
+        }
       },
       {
-        "id": "edge_48f26e0767",
+        "id": "edge_5092e2c893",
         "source": "PROD-CDC-001",
         "target": "FEAT-CDC-002",
         "type": "has_feature",
-        "data": {}
+        "data": {
+          "relationship": "产品包含多个特性",
+          "priority": "MEDIUM",
+          "businessValue": null
+        }
       },
       {
-        "id": "edge_5d54f702a7",
+        "id": "edge_5f57578a61",
         "source": "PROD-CDC-001",
         "target": "FEAT-CDC-003",
         "type": "has_feature",
-        "data": {}
+        "data": {
+          "relationship": "产品包含多个特性",
+          "priority": "MEDIUM",
+          "businessValue": null
+        }
       },
       {
-        "id": "edge_0841ca000d",
+        "id": "edge_6f5c7dc88a",
         "source": "PROD-CDC-001",
         "target": "FEAT-CDC-004",
         "type": "has_feature",
-        "data": {}
+        "data": {
+          "relationship": "产品包含多个特性",
+          "priority": "MEDIUM",
+          "businessValue": null
+        }
       },
       {
-        "id": "edge_981c9c184c",
+        "id": "edge_6c3d69d697",
         "source": "PROD-BCM-001",
         "target": "FEAT-BCM-001",
         "type": "has_feature",
-        "data": {}
+        "data": {
+          "relationship": "产品包含多个特性",
+          "priority": "MEDIUM",
+          "businessValue": null
+        }
       },
       {
-        "id": "edge_edacbd91bd",
+        "id": "edge_4168566d21",
         "source": "PROD-BCM-001",
         "target": "FEAT-BCM-002",
         "type": "has_feature",
-        "data": {}
+        "data": {
+          "relationship": "产品包含多个特性",
+          "priority": "MEDIUM",
+          "businessValue": null
+        }
       },
       {
-        "id": "edge_33af900507",
+        "id": "edge_e5cc5b1a0a",
         "source": "PROD-BCM-001",
         "target": "FEAT-BCM-003",
         "type": "has_feature",
-        "data": {}
+        "data": {
+          "relationship": "产品包含多个特性",
+          "priority": "MEDIUM",
+          "businessValue": null
+        }
       },
       {
-        "id": "edge_4c878310ff",
+        "id": "edge_5333774c78",
         "source": "PROD-BCM-001",
         "target": "FEAT-BCM-004",
         "type": "has_feature",
-        "data": {}
+        "data": {
+          "relationship": "产品包含多个特性",
+          "priority": "MEDIUM",
+          "businessValue": null
+        }
       },
       {
-        "id": "edge_9066975766",
+        "id": "edge_aa35eb8869",
         "source": "PROD-BCM-001",
         "target": "FEAT-BCM-005",
         "type": "has_feature",
-        "data": {}
+        "data": {
+          "relationship": "产品包含多个特性",
+          "priority": "MEDIUM",
+          "businessValue": null
+        }
       },
       {
-        "id": "edge_f4b5d833c3",
+        "id": "edge_d9281e0230",
         "source": "FEAT-CDC-001",
         "target": "MOD-CDC-001",
         "type": "has_module",
-        "data": {}
+        "data": {
+          "relationship": "特性包含多个模块",
+          "ownerTeamId": "TEAM-EE-PLATFORM",
+          "complexity": "SIMPLE"
+        }
       },
       {
-        "id": "edge_3fbc39b618",
+        "id": "edge_5f2f729a2e",
         "source": "FEAT-CDC-001",
         "target": "MOD-CDC-002",
         "type": "has_module",
-        "data": {}
+        "data": {
+          "relationship": "特性包含多个模块",
+          "ownerTeamId": "TEAM-EE-PLATFORM",
+          "complexity": "SIMPLE"
+        }
       },
       {
-        "id": "edge_f07e0219f8",
+        "id": "edge_352c12469b",
         "source": "FEAT-CDC-002",
         "target": "MOD-CDC-003",
         "type": "has_module",
-        "data": {}
+        "data": {
+          "relationship": "特性包含多个模块",
+          "ownerTeamId": "TEAM-EE-GATEWAY",
+          "complexity": "SIMPLE"
+        }
       },
       {
-        "id": "edge_c19a943354",
+        "id": "edge_6fcab6fb62",
         "source": "FEAT-CDC-002",
         "target": "MOD-CDC-004",
         "type": "has_module",
-        "data": {}
+        "data": {
+          "relationship": "特性包含多个模块",
+          "ownerTeamId": "TEAM-EE-GATEWAY",
+          "complexity": "SIMPLE"
+        }
       },
       {
-        "id": "edge_35b6596f58",
+        "id": "edge_d28b0ddf7c",
         "source": "FEAT-CDC-003",
         "target": "MOD-CDC-005",
         "type": "has_module",
-        "data": {}
+        "data": {
+          "relationship": "特性包含多个模块",
+          "ownerTeamId": "TEAM-EE-OTA",
+          "complexity": "SIMPLE"
+        }
       },
       {
-        "id": "edge_b52d4aeb30",
+        "id": "edge_a060f085e8",
         "source": "FEAT-CDC-003",
         "target": "MOD-CDC-006",
         "type": "has_module",
-        "data": {}
+        "data": {
+          "relationship": "特性包含多个模块",
+          "ownerTeamId": "TEAM-EE-OTA",
+          "complexity": "SIMPLE"
+        }
       },
       {
-        "id": "edge_1c551e39ae",
+        "id": "edge_1d1c7c0a0f",
         "source": "FEAT-CDC-004",
         "target": "MOD-CDC-007",
         "type": "has_module",
-        "data": {}
+        "data": {
+          "relationship": "特性包含多个模块",
+          "ownerTeamId": "TEAM-EE-DIAGNOSTIC",
+          "complexity": "SIMPLE"
+        }
       },
       {
-        "id": "edge_87c5cfc5d8",
+        "id": "edge_d574addd81",
         "source": "FEAT-BCM-001",
         "target": "MOD-BCM-001",
         "type": "has_module",
-        "data": {}
+        "data": {
+          "relationship": "特性包含多个模块",
+          "ownerTeamId": "TEAM-EE-BCM",
+          "complexity": "SIMPLE"
+        }
       },
       {
-        "id": "edge_c7d047a473",
+        "id": "edge_4b397acbf1",
         "source": "FEAT-BCM-001",
         "target": "MOD-BCM-002",
         "type": "has_module",
-        "data": {}
+        "data": {
+          "relationship": "特性包含多个模块",
+          "ownerTeamId": "TEAM-EE-BCM",
+          "complexity": "SIMPLE"
+        }
       },
       {
-        "id": "edge_2e51fc52ca",
+        "id": "edge_3d277cef89",
         "source": "FEAT-BCM-002",
         "target": "MOD-BCM-003",
         "type": "has_module",
-        "data": {}
+        "data": {
+          "relationship": "特性包含多个模块",
+          "ownerTeamId": "TEAM-EE-BCM",
+          "complexity": "SIMPLE"
+        }
       },
       {
-        "id": "edge_cf24175746",
+        "id": "edge_b587140601",
         "source": "FEAT-BCM-003",
         "target": "MOD-BCM-004",
         "type": "has_module",
-        "data": {}
+        "data": {
+          "relationship": "特性包含多个模块",
+          "ownerTeamId": "TEAM-EE-BCM",
+          "complexity": "SIMPLE"
+        }
       },
       {
-        "id": "edge_84f0efd44e",
+        "id": "edge_f73d13afd4",
         "source": "FEAT-BCM-003",
         "target": "MOD-BCM-005",
         "type": "has_module",
-        "data": {}
+        "data": {
+          "relationship": "特性包含多个模块",
+          "ownerTeamId": "TEAM-EE-BCM",
+          "complexity": "SIMPLE"
+        }
       },
       {
-        "id": "edge_32ac54afdc",
+        "id": "edge_ed51da9f75",
         "source": "FEAT-BCM-005",
         "target": "MOD-BCM-006",
         "type": "has_module",
-        "data": {}
+        "data": {
+          "relationship": "特性包含多个模块",
+          "ownerTeamId": "TEAM-EE-BCM",
+          "complexity": "SIMPLE"
+        }
       },
       {
-        "id": "edge_4874f27eb7",
+        "id": "edge_ea9de3e3c6",
         "source": "PROD-CDC-001",
         "target": "EPIC-CDC-001",
         "type": "epic_in_product",
-        "data": {}
+        "data": {
+          "relationship": "产品包含Epic",
+          "priority": "HIGH",
+          "businessValue": null
+        }
       },
       {
-        "id": "edge_159f527268",
+        "id": "edge_d7d7468a7b",
         "source": "PROD-CDC-001",
         "target": "EPIC-CDC-002",
         "type": "epic_in_product",
-        "data": {}
+        "data": {
+          "relationship": "产品包含Epic",
+          "priority": "HIGH",
+          "businessValue": null
+        }
       },
       {
-        "id": "edge_bf80706121",
+        "id": "edge_268af9ee5a",
         "source": "PROD-CDC-001",
         "target": "EPIC-CDC-003",
         "type": "epic_in_product",
-        "data": {}
+        "data": {
+          "relationship": "产品包含Epic",
+          "priority": "MEDIUM",
+          "businessValue": null
+        }
       },
       {
-        "id": "edge_ecf548a288",
+        "id": "edge_818b52ff32",
         "source": "PROD-BCM-001",
         "target": "EPIC-BCM-001",
         "type": "epic_in_product",
-        "data": {}
+        "data": {
+          "relationship": "产品包含Epic",
+          "priority": "HIGH",
+          "businessValue": null
+        }
       },
       {
-        "id": "edge_e09015cb9b",
+        "id": "edge_dc342c717c",
         "source": "PROD-BCM-001",
         "target": "EPIC-BCM-002",
         "type": "epic_in_product",
-        "data": {}
+        "data": {
+          "relationship": "产品包含Epic",
+          "priority": "MEDIUM",
+          "businessValue": null
+        }
       },
       {
-        "id": "edge_d3379498fa",
+        "id": "edge_0349d183f2",
         "source": "EPIC-CDC-001",
         "target": "FR-CDC-001",
         "type": "epic_to_fr",
-        "data": {}
+        "data": {
+          "relationship": "Epic拆分为特性需求",
+          "decompositionRule": null,
+          "priority": "HIGH"
+        }
       },
       {
-        "id": "edge_e04c627fd1",
+        "id": "edge_9af7b7e4de",
         "source": "FEAT-CDC-001",
         "target": "FR-CDC-001",
         "type": "feature_carries_fr",
-        "data": {}
+        "data": {
+          "relationship": "业务特性承载特性需求",
+          "alignment": "ALIGNED"
+        }
       },
       {
-        "id": "edge_1c4fb28ec2",
+        "id": "edge_0739ce2d67",
         "source": "EPIC-CDC-002",
         "target": "FR-CDC-002",
         "type": "epic_to_fr",
-        "data": {}
+        "data": {
+          "relationship": "Epic拆分为特性需求",
+          "decompositionRule": null,
+          "priority": "HIGH"
+        }
       },
       {
-        "id": "edge_c76391082b",
+        "id": "edge_b1eb9c40e5",
         "source": "FEAT-CDC-002",
         "target": "FR-CDC-002",
         "type": "feature_carries_fr",
-        "data": {}
+        "data": {
+          "relationship": "业务特性承载特性需求",
+          "alignment": "ALIGNED"
+        }
       },
       {
-        "id": "edge_c445b549b7",
+        "id": "edge_900a0d7c94",
         "source": "EPIC-CDC-003",
         "target": "FR-CDC-003",
         "type": "epic_to_fr",
-        "data": {}
+        "data": {
+          "relationship": "Epic拆分为特性需求",
+          "decompositionRule": null,
+          "priority": "MEDIUM"
+        }
       },
       {
-        "id": "edge_a114e0f2d8",
+        "id": "edge_14c32bbbe6",
         "source": "FEAT-CDC-003",
         "target": "FR-CDC-003",
         "type": "feature_carries_fr",
-        "data": {}
+        "data": {
+          "relationship": "业务特性承载特性需求",
+          "alignment": "ALIGNED"
+        }
       },
       {
-        "id": "edge_0571c3cfd8",
+        "id": "edge_aced495234",
         "source": "EPIC-CDC-001",
         "target": "FR-CDC-004",
         "type": "epic_to_fr",
-        "data": {}
+        "data": {
+          "relationship": "Epic拆分为特性需求",
+          "decompositionRule": null,
+          "priority": "HIGH"
+        }
       },
       {
-        "id": "edge_e033b62fdd",
+        "id": "edge_228d5e5928",
         "source": "FEAT-CDC-004",
         "target": "FR-CDC-004",
         "type": "feature_carries_fr",
-        "data": {}
+        "data": {
+          "relationship": "业务特性承载特性需求",
+          "alignment": "ALIGNED"
+        }
       },
       {
-        "id": "edge_5baa916037",
+        "id": "edge_b32733965c",
         "source": "EPIC-BCM-001",
         "target": "FR-BCM-001",
         "type": "epic_to_fr",
-        "data": {}
+        "data": {
+          "relationship": "Epic拆分为特性需求",
+          "decompositionRule": null,
+          "priority": "HIGH"
+        }
       },
       {
-        "id": "edge_6d16b2ff80",
+        "id": "edge_3b3b40ebb9",
         "source": "FEAT-BCM-001",
         "target": "FR-BCM-001",
         "type": "feature_carries_fr",
-        "data": {}
+        "data": {
+          "relationship": "业务特性承载特性需求",
+          "alignment": "ALIGNED"
+        }
       },
       {
-        "id": "edge_4a81ede901",
+        "id": "edge_f3e8cd5ba8",
         "source": "EPIC-BCM-001",
         "target": "FR-BCM-002",
         "type": "epic_to_fr",
-        "data": {}
+        "data": {
+          "relationship": "Epic拆分为特性需求",
+          "decompositionRule": null,
+          "priority": "HIGH"
+        }
       },
       {
-        "id": "edge_7e0de7d99d",
+        "id": "edge_e3ca1009b8",
         "source": "FEAT-BCM-002",
         "target": "FR-BCM-002",
         "type": "feature_carries_fr",
-        "data": {}
+        "data": {
+          "relationship": "业务特性承载特性需求",
+          "alignment": "ALIGNED"
+        }
       },
       {
-        "id": "edge_4b8873fefd",
+        "id": "edge_5bc0fa287e",
         "source": "EPIC-BCM-001",
         "target": "FR-BCM-003",
         "type": "epic_to_fr",
-        "data": {}
+        "data": {
+          "relationship": "Epic拆分为特性需求",
+          "decompositionRule": null,
+          "priority": "HIGH"
+        }
       },
       {
-        "id": "edge_3526d9b923",
+        "id": "edge_bf45e30232",
         "source": "FEAT-BCM-003",
         "target": "FR-BCM-003",
         "type": "feature_carries_fr",
-        "data": {}
+        "data": {
+          "relationship": "业务特性承载特性需求",
+          "alignment": "ALIGNED"
+        }
       },
       {
-        "id": "edge_c26bff8af2",
+        "id": "edge_6df2931574",
         "source": "EPIC-BCM-002",
         "target": "FR-BCM-004",
         "type": "epic_to_fr",
-        "data": {}
+        "data": {
+          "relationship": "Epic拆分为特性需求",
+          "decompositionRule": null,
+          "priority": "MEDIUM"
+        }
       },
       {
-        "id": "edge_7e497bf819",
+        "id": "edge_3233451e56",
         "source": "FEAT-BCM-005",
         "target": "FR-BCM-004",
         "type": "feature_carries_fr",
-        "data": {}
+        "data": {
+          "relationship": "业务特性承载特性需求",
+          "alignment": "ALIGNED"
+        }
       },
       {
-        "id": "edge_226403dcff",
+        "id": "edge_7d21b20ecc",
         "source": "FR-CDC-001",
         "target": "MR-CDC-001",
         "type": "fr_to_mr",
-        "data": {}
+        "data": {
+          "relationship": "特性需求拆分为模块需求",
+          "traceability": null,
+          "coverage": 0
+        }
       },
       {
-        "id": "edge_d8582489fe",
+        "id": "edge_baaf7e1325",
         "source": "MOD-CDC-001",
         "target": "MR-CDC-001",
         "type": "module_carries_mr",
-        "data": {}
+        "data": {
+          "relationship": "业务模块承载模块需求",
+          "implementationStatus": "NOT_STARTED"
+        }
       },
       {
-        "id": "edge_cfdda2a5bc",
+        "id": "edge_134b35e125",
         "source": "FR-CDC-001",
         "target": "MR-CDC-002",
         "type": "fr_to_mr",
-        "data": {}
+        "data": {
+          "relationship": "特性需求拆分为模块需求",
+          "traceability": null,
+          "coverage": 0
+        }
       },
       {
-        "id": "edge_934215a998",
+        "id": "edge_74ba41135c",
         "source": "MOD-CDC-002",
         "target": "MR-CDC-002",
         "type": "module_carries_mr",
-        "data": {}
+        "data": {
+          "relationship": "业务模块承载模块需求",
+          "implementationStatus": "NOT_STARTED"
+        }
       },
       {
-        "id": "edge_1737f8d7d4",
+        "id": "edge_e0a050dc13",
         "source": "FR-CDC-002",
         "target": "MR-CDC-003",
         "type": "fr_to_mr",
-        "data": {}
+        "data": {
+          "relationship": "特性需求拆分为模块需求",
+          "traceability": null,
+          "coverage": 0
+        }
       },
       {
-        "id": "edge_81155130dd",
+        "id": "edge_a034b3c396",
         "source": "MOD-CDC-003",
         "target": "MR-CDC-003",
         "type": "module_carries_mr",
-        "data": {}
+        "data": {
+          "relationship": "业务模块承载模块需求",
+          "implementationStatus": "NOT_STARTED"
+        }
       },
       {
-        "id": "edge_0cf296331e",
+        "id": "edge_c4091cbe4b",
         "source": "FR-CDC-002",
         "target": "MR-CDC-004",
         "type": "fr_to_mr",
-        "data": {}
+        "data": {
+          "relationship": "特性需求拆分为模块需求",
+          "traceability": null,
+          "coverage": 0
+        }
       },
       {
-        "id": "edge_b1fe3ddf14",
+        "id": "edge_bff92c3d2e",
         "source": "MOD-CDC-004",
         "target": "MR-CDC-004",
         "type": "module_carries_mr",
-        "data": {}
+        "data": {
+          "relationship": "业务模块承载模块需求",
+          "implementationStatus": "NOT_STARTED"
+        }
       },
       {
-        "id": "edge_4447d28012",
+        "id": "edge_c7cdca72a6",
         "source": "FR-CDC-003",
         "target": "MR-CDC-005",
         "type": "fr_to_mr",
-        "data": {}
+        "data": {
+          "relationship": "特性需求拆分为模块需求",
+          "traceability": null,
+          "coverage": 0
+        }
       },
       {
-        "id": "edge_5dc9402092",
+        "id": "edge_378ebf7fea",
         "source": "MOD-CDC-005",
         "target": "MR-CDC-005",
         "type": "module_carries_mr",
-        "data": {}
+        "data": {
+          "relationship": "业务模块承载模块需求",
+          "implementationStatus": "NOT_STARTED"
+        }
       },
       {
-        "id": "edge_807337229b",
+        "id": "edge_92e16604e3",
         "source": "FR-CDC-004",
         "target": "MR-CDC-006",
         "type": "fr_to_mr",
-        "data": {}
+        "data": {
+          "relationship": "特性需求拆分为模块需求",
+          "traceability": null,
+          "coverage": 0
+        }
       },
       {
-        "id": "edge_a9cdf840b8",
+        "id": "edge_a7564619c5",
         "source": "MOD-CDC-007",
         "target": "MR-CDC-006",
         "type": "module_carries_mr",
-        "data": {}
+        "data": {
+          "relationship": "业务模块承载模块需求",
+          "implementationStatus": "NOT_STARTED"
+        }
       },
       {
-        "id": "edge_a449fc5299",
+        "id": "edge_fc89455c21",
         "source": "FR-CDC-001",
         "target": "MR-CDC-007",
         "type": "fr_to_mr",
-        "data": {}
+        "data": {
+          "relationship": "特性需求拆分为模块需求",
+          "traceability": null,
+          "coverage": 0
+        }
       },
       {
-        "id": "edge_0e8e569ca2",
+        "id": "edge_4ef6672e4f",
         "source": "MOD-CDC-002",
         "target": "MR-CDC-007",
         "type": "module_carries_mr",
-        "data": {}
+        "data": {
+          "relationship": "业务模块承载模块需求",
+          "implementationStatus": "NOT_STARTED"
+        }
       },
       {
-        "id": "edge_9b608ef0f6",
+        "id": "edge_17756ec614",
         "source": "FR-BCM-001",
         "target": "MR-BCM-001",
         "type": "fr_to_mr",
-        "data": {}
+        "data": {
+          "relationship": "特性需求拆分为模块需求",
+          "traceability": null,
+          "coverage": 0
+        }
       },
       {
-        "id": "edge_66e0b2ed14",
+        "id": "edge_449e9668bb",
         "source": "MOD-BCM-001",
         "target": "MR-BCM-001",
         "type": "module_carries_mr",
-        "data": {}
+        "data": {
+          "relationship": "业务模块承载模块需求",
+          "implementationStatus": "NOT_STARTED"
+        }
       },
       {
-        "id": "edge_1087b458f7",
+        "id": "edge_e500f4d505",
         "source": "FR-BCM-001",
         "target": "MR-BCM-002",
         "type": "fr_to_mr",
-        "data": {}
+        "data": {
+          "relationship": "特性需求拆分为模块需求",
+          "traceability": null,
+          "coverage": 0
+        }
       },
       {
-        "id": "edge_f3a782f49e",
+        "id": "edge_e034daf8f8",
         "source": "MOD-BCM-002",
         "target": "MR-BCM-002",
         "type": "module_carries_mr",
-        "data": {}
+        "data": {
+          "relationship": "业务模块承载模块需求",
+          "implementationStatus": "NOT_STARTED"
+        }
       },
       {
-        "id": "edge_19b7a6571e",
+        "id": "edge_e0ddbf403a",
         "source": "FR-BCM-002",
         "target": "MR-BCM-003",
         "type": "fr_to_mr",
-        "data": {}
+        "data": {
+          "relationship": "特性需求拆分为模块需求",
+          "traceability": null,
+          "coverage": 0
+        }
       },
       {
-        "id": "edge_27312f9a13",
+        "id": "edge_6d05e899b1",
         "source": "MOD-BCM-003",
         "target": "MR-BCM-003",
         "type": "module_carries_mr",
-        "data": {}
+        "data": {
+          "relationship": "业务模块承载模块需求",
+          "implementationStatus": "NOT_STARTED"
+        }
       },
       {
-        "id": "edge_0a953b5249",
+        "id": "edge_ba10bee2a2",
         "source": "FR-BCM-003",
         "target": "MR-BCM-004",
         "type": "fr_to_mr",
-        "data": {}
+        "data": {
+          "relationship": "特性需求拆分为模块需求",
+          "traceability": null,
+          "coverage": 0
+        }
       },
       {
-        "id": "edge_647878039c",
+        "id": "edge_804e29e2f8",
         "source": "MOD-BCM-004",
         "target": "MR-BCM-004",
         "type": "module_carries_mr",
-        "data": {}
+        "data": {
+          "relationship": "业务模块承载模块需求",
+          "implementationStatus": "NOT_STARTED"
+        }
       },
       {
-        "id": "edge_6305af86fc",
+        "id": "edge_f35796ed23",
         "source": "FR-BCM-004",
         "target": "MR-BCM-005",
         "type": "fr_to_mr",
-        "data": {}
+        "data": {
+          "relationship": "特性需求拆分为模块需求",
+          "traceability": null,
+          "coverage": 0
+        }
       },
       {
-        "id": "edge_8c1d1d3b94",
+        "id": "edge_270d4272e5",
         "source": "MOD-BCM-006",
         "target": "MR-BCM-005",
         "type": "module_carries_mr",
-        "data": {}
+        "data": {
+          "relationship": "业务模块承载模块需求",
+          "implementationStatus": "NOT_STARTED"
+        }
       },
       {
-        "id": "edge_56afe701d3",
+        "id": "edge_c7952abb58",
         "source": "FR-BCM-002",
         "target": "MR-BCM-006",
         "type": "fr_to_mr",
-        "data": {}
+        "data": {
+          "relationship": "特性需求拆分为模块需求",
+          "traceability": null,
+          "coverage": 0
+        }
       },
       {
-        "id": "edge_7b60c029ab",
+        "id": "edge_6c21b7f628",
         "source": "MOD-BCM-003",
         "target": "MR-BCM-006",
         "type": "module_carries_mr",
-        "data": {}
+        "data": {
+          "relationship": "业务模块承载模块需求",
+          "implementationStatus": "NOT_STARTED"
+        }
       },
       {
-        "id": "edge_884c68b39d",
+        "id": "edge_7bb41701ee",
         "source": "ASSET-EE-001",
         "target": "AV-EE-001-R21-11",
         "type": "asset_has_version",
-        "data": {}
+        "data": {
+          "relationship": "资产有多个版本",
+          "version": "R21-11",
+          "releaseDate": "2026-01-17"
+        }
       },
       {
-        "id": "edge_7ca9190740",
+        "id": "edge_2dba2ba023",
         "source": "ASSET-EE-002",
         "target": "AV-EE-002-V1.3",
         "type": "asset_has_version",
-        "data": {}
+        "data": {
+          "relationship": "资产有多个版本",
+          "version": "V1.3",
+          "releaseDate": "2026-01-17"
+        }
       },
       {
-        "id": "edge_ad2cd25662",
+        "id": "edge_430945823e",
         "source": "ASSET-EE-003",
         "target": "AV-EE-003-V2.0",
         "type": "asset_has_version",
-        "data": {}
+        "data": {
+          "relationship": "资产有多个版本",
+          "version": "V2.0",
+          "releaseDate": "2026-01-17"
+        }
       },
       {
-        "id": "edge_a3b25b88a7",
+        "id": "edge_c10b6de259",
         "source": "ASSET-EE-004",
         "target": "AV-EE-004-V1.5",
         "type": "asset_has_version",
-        "data": {}
+        "data": {
+          "relationship": "资产有多个版本",
+          "version": "V1.5",
+          "releaseDate": "2026-01-17"
+        }
       },
       {
-        "id": "edge_d4b192f1bf",
+        "id": "edge_3c62cc6a9b",
         "source": "ASSET-EE-005",
         "target": "AV-EE-005-V1.0",
         "type": "asset_has_version",
-        "data": {}
+        "data": {
+          "relationship": "资产有多个版本",
+          "version": "V1.0",
+          "releaseDate": "2026-01-17"
+        }
       },
       {
-        "id": "edge_13f5bf5a77",
+        "id": "edge_71d1804d32",
         "source": "ASSET-EE-006",
         "target": "AV-EE-006-R4.3",
         "type": "asset_has_version",
-        "data": {}
+        "data": {
+          "relationship": "资产有多个版本",
+          "version": "R4.3",
+          "releaseDate": "2026-01-17"
+        }
       },
       {
-        "id": "edge_dd0545a220",
+        "id": "edge_d880c958be",
         "source": "MR-CDC-001",
         "target": "AU-EE-001",
         "type": "mr_uses_asset",
-        "data": {}
+        "data": {
+          "relationship": "模块需求使用资产",
+          "usageType": "REUSE",
+          "versionConstraint": null
+        }
       },
       {
-        "id": "edge_3e5977dc3d",
+        "id": "edge_f9995687be",
         "source": "AU-EE-001",
         "target": "AV-EE-001-R21-11",
         "type": "usage_refers_version",
-        "data": {}
+        "data": {
+          "relationship": "资产使用引用具体版本",
+          "version": "R21-11",
+          "compatibility": "COMPATIBLE"
+        }
       },
       {
-        "id": "edge_fda42a67cc",
+        "id": "edge_6d8b42dfb1",
         "source": "MR-CDC-002",
         "target": "AU-EE-002",
         "type": "mr_uses_asset",
-        "data": {}
+        "data": {
+          "relationship": "模块需求使用资产",
+          "usageType": "REUSE",
+          "versionConstraint": null
+        }
       },
       {
-        "id": "edge_b831dea5fa",
+        "id": "edge_5c3f3a1be4",
         "source": "AU-EE-002",
         "target": "AV-EE-002-V1.3",
         "type": "usage_refers_version",
-        "data": {}
+        "data": {
+          "relationship": "资产使用引用具体版本",
+          "version": "V1.3",
+          "compatibility": "COMPATIBLE"
+        }
       },
       {
-        "id": "edge_9741407b54",
+        "id": "edge_0bd8afd6de",
         "source": "MR-CDC-003",
         "target": "AU-EE-003",
         "type": "mr_uses_asset",
-        "data": {}
+        "data": {
+          "relationship": "模块需求使用资产",
+          "usageType": "REUSE",
+          "versionConstraint": null
+        }
       },
       {
-        "id": "edge_3211e29672",
+        "id": "edge_65eac0fef6",
         "source": "AU-EE-003",
         "target": "AV-EE-003-V2.0",
         "type": "usage_refers_version",
-        "data": {}
+        "data": {
+          "relationship": "资产使用引用具体版本",
+          "version": "V2.0",
+          "compatibility": "COMPATIBLE"
+        }
       },
       {
-        "id": "edge_e36c4aad77",
+        "id": "edge_872ba337f3",
         "source": "MR-CDC-006",
         "target": "AU-EE-004",
         "type": "mr_uses_asset",
-        "data": {}
+        "data": {
+          "relationship": "模块需求使用资产",
+          "usageType": "REUSE",
+          "versionConstraint": null
+        }
       },
       {
-        "id": "edge_ff0d6a2779",
+        "id": "edge_f4c9fc21c2",
         "source": "AU-EE-004",
         "target": "AV-EE-004-V1.5",
         "type": "usage_refers_version",
-        "data": {}
+        "data": {
+          "relationship": "资产使用引用具体版本",
+          "version": "V1.5",
+          "compatibility": "COMPATIBLE"
+        }
       },
       {
-        "id": "edge_b9986d475d",
+        "id": "edge_923da24f2e",
         "source": "MR-CDC-005",
         "target": "AU-EE-005",
         "type": "mr_uses_asset",
-        "data": {}
+        "data": {
+          "relationship": "模块需求使用资产",
+          "usageType": "REUSE",
+          "versionConstraint": null
+        }
       },
       {
-        "id": "edge_167e63b978",
+        "id": "edge_665ccf82d0",
         "source": "AU-EE-005",
         "target": "AV-EE-005-V1.0",
         "type": "usage_refers_version",
-        "data": {}
+        "data": {
+          "relationship": "资产使用引用具体版本",
+          "version": "V1.0",
+          "compatibility": "COMPATIBLE"
+        }
       },
       {
-        "id": "edge_795ebb61a1",
+        "id": "edge_3131b265c2",
         "source": "MR-BCM-001",
         "target": "AU-EE-006",
         "type": "mr_uses_asset",
-        "data": {}
+        "data": {
+          "relationship": "模块需求使用资产",
+          "usageType": "REUSE",
+          "versionConstraint": null
+        }
       },
       {
-        "id": "edge_b53716a4d7",
+        "id": "edge_ab60cc1066",
         "source": "AU-EE-006",
         "target": "AV-EE-006-R4.3",
         "type": "usage_refers_version",
-        "data": {}
+        "data": {
+          "relationship": "资产使用引用具体版本",
+          "version": "R4.3",
+          "compatibility": "COMPATIBLE"
+        }
       },
       {
-        "id": "edge_fbfa6e7e72",
+        "id": "edge_a91133b917",
         "source": "DP-EE-001",
         "target": "PI-EE-2022-Q3",
         "type": "project_has_pi",
-        "data": {}
+        "data": {
+          "relationship": "领域项目规划PI",
+          "piNumber": 1,
+          "startDate": "2026-01-17",
+          "endDate": "2026-01-17"
+        }
       },
       {
-        "id": "edge_1f18e13081",
+        "id": "edge_8e12df706b",
         "source": "DP-EE-001",
         "target": "PI-EE-2022-Q4",
         "type": "project_has_pi",
-        "data": {}
+        "data": {
+          "relationship": "领域项目规划PI",
+          "piNumber": 1,
+          "startDate": "2026-01-17",
+          "endDate": "2026-01-17"
+        }
       },
       {
-        "id": "edge_813eec987c",
+        "id": "edge_e4490f5598",
         "source": "DP-EE-001",
         "target": "PI-EE-2023-Q1",
         "type": "project_has_pi",
-        "data": {}
+        "data": {
+          "relationship": "领域项目规划PI",
+          "piNumber": 1,
+          "startDate": "2026-01-17",
+          "endDate": "2026-01-17"
+        }
       },
       {
-        "id": "edge_adabc18cb5",
+        "id": "edge_389fd21e89",
         "source": "DP-EE-001",
         "target": "PI-EE-2023-Q2",
         "type": "project_has_pi",
-        "data": {}
+        "data": {
+          "relationship": "领域项目规划PI",
+          "piNumber": 1,
+          "startDate": "2026-01-17",
+          "endDate": "2026-01-17"
+        }
       },
       {
-        "id": "edge_a81b80059f",
+        "id": "edge_8b4e2f5e0c",
         "source": "PI-EE-2022-Q3",
         "target": "SPRINT-EE-2022-Q3-S1",
         "type": "pi_has_sprint",
-        "data": {}
+        "data": {
+          "relationship": "PI包含多个Sprint",
+          "sprintNumber": 1,
+          "capacity": 0
+        }
       },
       {
-        "id": "edge_820fcfea5f",
+        "id": "edge_5724331a3e",
         "source": "PI-EE-2022-Q3",
         "target": "SPRINT-EE-2022-Q3-S2",
         "type": "pi_has_sprint",
-        "data": {}
+        "data": {
+          "relationship": "PI包含多个Sprint",
+          "sprintNumber": 1,
+          "capacity": 0
+        }
       },
       {
-        "id": "edge_fc520a4327",
+        "id": "edge_944ac0d32a",
         "source": "PI-EE-2022-Q3",
         "target": "SPRINT-EE-2022-Q3-S3",
         "type": "pi_has_sprint",
-        "data": {}
+        "data": {
+          "relationship": "PI包含多个Sprint",
+          "sprintNumber": 1,
+          "capacity": 0
+        }
       },
       {
-        "id": "edge_5869a7263a",
+        "id": "edge_6268defc64",
         "source": "PI-EE-2022-Q3",
         "target": "SPRINT-EE-2022-Q3-S4",
         "type": "pi_has_sprint",
-        "data": {}
+        "data": {
+          "relationship": "PI包含多个Sprint",
+          "sprintNumber": 1,
+          "capacity": 0
+        }
       },
       {
-        "id": "edge_a088faaaf8",
+        "id": "edge_c27d58afe1",
         "source": "PI-EE-2022-Q3",
         "target": "SPRINT-EE-2022-Q3-S5",
         "type": "pi_has_sprint",
-        "data": {}
+        "data": {
+          "relationship": "PI包含多个Sprint",
+          "sprintNumber": 1,
+          "capacity": 0
+        }
       },
       {
-        "id": "edge_27ff47a164",
+        "id": "edge_1554d56ce8",
         "source": "SPRINT-EE-2022-Q3-S1",
         "target": "SB-EE-001",
         "type": "sprint_has_backlog",
-        "data": {}
+        "data": {
+          "relationship": "Sprint有待办列表",
+          "backlogSize": null
+        }
       },
       {
-        "id": "edge_26d4b36ad0",
+        "id": "edge_ef193af65a",
         "source": "SB-EE-001",
         "target": "MR-CDC-001",
         "type": "backlog_refers_mr",
-        "data": {}
+        "data": {
+          "relationship": "待办关联模块需求",
+          "priority": "HIGH",
+          "estimatedStoryPoints": null
+        }
       },
       {
-        "id": "edge_2a4112defb",
+        "id": "edge_d298ce464c",
         "source": "SPRINT-EE-2022-Q3-S2",
         "target": "SB-EE-002",
         "type": "sprint_has_backlog",
-        "data": {}
+        "data": {
+          "relationship": "Sprint有待办列表",
+          "backlogSize": null
+        }
       },
       {
-        "id": "edge_e94dc21475",
+        "id": "edge_ec96a54476",
         "source": "SB-EE-002",
         "target": "MR-CDC-003",
         "type": "backlog_refers_mr",
-        "data": {}
+        "data": {
+          "relationship": "待办关联模块需求",
+          "priority": "HIGH",
+          "estimatedStoryPoints": null
+        }
       },
       {
-        "id": "edge_1d61a6cdb5",
+        "id": "edge_af359c19ec",
         "source": "SPRINT-EE-2022-Q3-S3",
         "target": "SB-EE-003",
         "type": "sprint_has_backlog",
-        "data": {}
+        "data": {
+          "relationship": "Sprint有待办列表",
+          "backlogSize": null
+        }
       },
       {
-        "id": "edge_f08e9d1130",
+        "id": "edge_cfca895a2c",
         "source": "SB-EE-003",
         "target": "MR-BCM-001",
         "type": "backlog_refers_mr",
-        "data": {}
+        "data": {
+          "relationship": "待办关联模块需求",
+          "priority": "HIGH",
+          "estimatedStoryPoints": null
+        }
       },
       {
-        "id": "edge_611d6cca96",
+        "id": "edge_6ff91b28d7",
         "source": "SPRINT-EE-2022-Q3-S4",
         "target": "SB-EE-004",
         "type": "sprint_has_backlog",
-        "data": {}
+        "data": {
+          "relationship": "Sprint有待办列表",
+          "backlogSize": null
+        }
       },
       {
-        "id": "edge_ac48981395",
+        "id": "edge_09054c7e83",
         "source": "SB-EE-004",
         "target": "MR-CDC-005",
         "type": "backlog_refers_mr",
-        "data": {}
+        "data": {
+          "relationship": "待办关联模块需求",
+          "priority": "MEDIUM",
+          "estimatedStoryPoints": null
+        }
       },
       {
-        "id": "edge_2e4d2f9292",
+        "id": "edge_d14ec66568",
         "source": "WI-EE-REQ-001",
         "target": "CC-EE-001",
         "type": "workitem_has_commit",
-        "data": {}
+        "data": {
+          "relationship": "工作项关联代码提交",
+          "commitCount": null,
+          "lastCommitDate": null
+        }
       },
       {
-        "id": "edge_f8799363eb",
+        "id": "edge_0087c7ea41",
         "source": "WI-EE-REQ-002",
         "target": "CC-EE-002",
         "type": "workitem_has_commit",
-        "data": {}
+        "data": {
+          "relationship": "工作项关联代码提交",
+          "commitCount": null,
+          "lastCommitDate": null
+        }
       },
       {
-        "id": "edge_d6316cb587",
+        "id": "edge_7d94563725",
         "source": "WI-EE-REQ-003",
         "target": "CC-EE-003",
         "type": "workitem_has_commit",
-        "data": {}
+        "data": {
+          "relationship": "工作项关联代码提交",
+          "commitCount": null,
+          "lastCommitDate": null
+        }
       },
       {
-        "id": "edge_062f1198fe",
+        "id": "edge_54d5eacf0e",
         "source": "WI-EE-REQ-004",
         "target": "CC-EE-004",
         "type": "workitem_has_commit",
-        "data": {}
+        "data": {
+          "relationship": "工作项关联代码提交",
+          "commitCount": null,
+          "lastCommitDate": null
+        }
       },
       {
-        "id": "edge_45a6734b0b",
+        "id": "edge_136ae5e8ec",
         "source": "CC-EE-001",
         "target": "BUILD-EE-001",
         "type": "commit_triggers_build",
-        "data": {}
+        "data": {
+          "relationship": "提交触发构建",
+          "buildStatus": "SUCCESS",
+          "buildDuration": 0
+        }
       },
       {
-        "id": "edge_0052ee3fa8",
+        "id": "edge_e3337b13ab",
         "source": "CC-EE-002",
         "target": "BUILD-EE-002",
         "type": "commit_triggers_build",
-        "data": {}
+        "data": {
+          "relationship": "提交触发构建",
+          "buildStatus": "SUCCESS",
+          "buildDuration": 0
+        }
       },
       {
-        "id": "edge_154c8a910d",
+        "id": "edge_f8442f9a16",
         "source": "CC-EE-003",
         "target": "BUILD-EE-003",
         "type": "commit_triggers_build",
-        "data": {}
+        "data": {
+          "relationship": "提交触发构建",
+          "buildStatus": "SUCCESS",
+          "buildDuration": 0
+        }
       },
       {
-        "id": "edge_99aad0f344",
+        "id": "edge_a2891f06fb",
         "source": "CC-EE-004",
         "target": "BUILD-EE-004",
         "type": "commit_triggers_build",
-        "data": {}
+        "data": {
+          "relationship": "提交触发构建",
+          "buildStatus": "SUCCESS",
+          "buildDuration": 0
+        }
       },
       {
-        "id": "edge_d3e1b6e22e",
+        "id": "edge_509060d315",
         "source": "MOD-CDC-001",
         "target": "TP-EE-001",
         "type": "mr_has_testplan",
-        "data": {}
+        "data": {
+          "relationship": "模块需求有测试计划",
+          "testPlanType": "UNIT"
+        }
       },
       {
-        "id": "edge_7023dbad33",
+        "id": "edge_a0d1e84835",
         "source": "MOD-CDC-003",
         "target": "TP-EE-002",
         "type": "mr_has_testplan",
-        "data": {}
+        "data": {
+          "relationship": "模块需求有测试计划",
+          "testPlanType": "UNIT"
+        }
       },
       {
-        "id": "edge_0ab36d67f2",
+        "id": "edge_433291e8ee",
         "source": "BUILD-EE-001",
         "target": "TE-EE-001",
         "type": "build_triggers_test",
-        "data": {}
+        "data": {
+          "relationship": "构建触发测试执行",
+          "testStatus": "SUCCESS",
+          "executionTime": 0
+        }
       },
       {
-        "id": "edge_355d3489ec",
+        "id": "edge_8d333d199f",
         "source": "TC-EE-001",
         "target": "TE-EE-001",
         "type": "case_executes",
-        "data": {}
+        "data": {
+          "relationship": "测试用例被执行",
+          "executionStatus": "PASSED",
+          "executedAt": "2026-01-17"
+        }
       },
       {
-        "id": "edge_3d22ab104a",
+        "id": "edge_6735504f3e",
         "source": "BUILD-EE-002",
         "target": "TE-EE-002",
         "type": "build_triggers_test",
-        "data": {}
+        "data": {
+          "relationship": "构建触发测试执行",
+          "testStatus": "SUCCESS",
+          "executionTime": 0
+        }
       },
       {
-        "id": "edge_84ed2e75bd",
+        "id": "edge_034aedac9a",
         "source": "TC-EE-002",
         "target": "TE-EE-002",
         "type": "case_executes",
-        "data": {}
+        "data": {
+          "relationship": "测试用例被执行",
+          "executionStatus": "PASSED",
+          "executedAt": "2026-01-17"
+        }
       },
       {
-        "id": "edge_b877bd76e0",
+        "id": "edge_673c480141",
         "source": "BUILD-EE-003",
         "target": "TE-EE-003",
         "type": "build_triggers_test",
-        "data": {}
+        "data": {
+          "relationship": "构建触发测试执行",
+          "testStatus": "SUCCESS",
+          "executionTime": 0
+        }
       },
       {
-        "id": "edge_f652f29178",
+        "id": "edge_0488cce6f1",
         "source": "TC-EE-003",
         "target": "TE-EE-003",
         "type": "case_executes",
-        "data": {}
+        "data": {
+          "relationship": "测试用例被执行",
+          "executionStatus": "PASSED",
+          "executedAt": "2026-01-17"
+        }
       },
       {
-        "id": "edge_bd4437b836",
+        "id": "edge_d109cec9b6",
         "source": "BUILD-EE-003",
         "target": "TE-EE-004",
         "type": "build_triggers_test",
-        "data": {}
+        "data": {
+          "relationship": "构建触发测试执行",
+          "testStatus": "SUCCESS",
+          "executionTime": 0
+        }
       },
       {
-        "id": "edge_713bea1c29",
+        "id": "edge_5bbffa54c0",
         "source": "TC-EE-004",
         "target": "TE-EE-004",
         "type": "case_executes",
-        "data": {}
+        "data": {
+          "relationship": "测试用例被执行",
+          "executionStatus": "PASSED",
+          "executedAt": "2026-01-17"
+        }
       },
       {
-        "id": "edge_8a3e5090d4",
+        "id": "edge_9d7e9746f9",
         "source": "TE-EE-001",
         "target": "DEFECT-EE-001",
         "type": "execution_finds_defect",
-        "data": {}
+        "data": {
+          "relationship": "测试执行发现缺陷",
+          "severity": "LOW",
+          "foundDate": "2026-01-17"
+        }
       },
       {
-        "id": "edge_1c3682ced1",
+        "id": "edge_da933aa3a1",
         "source": "TE-EE-002",
         "target": "DEFECT-EE-002",
         "type": "execution_finds_defect",
-        "data": {}
+        "data": {
+          "relationship": "测试执行发现缺陷",
+          "severity": "MEDIUM",
+          "foundDate": "2026-01-17"
+        }
       },
       {
-        "id": "edge_880aeaf770",
+        "id": "edge_08aed47eee",
         "source": "BUILD-EE-001",
         "target": "ARTIFACT-EE-001",
         "type": "build_produces_artifact",
-        "data": {}
+        "data": {
+          "relationship": "构建产出制品",
+          "artifactType": "LIBRARY",
+          "size": 0
+        }
       },
       {
-        "id": "edge_5817bf2184",
+        "id": "edge_d2143b97f0",
         "source": "BUILD-EE-002",
         "target": "ARTIFACT-EE-002",
         "type": "build_produces_artifact",
-        "data": {}
+        "data": {
+          "relationship": "构建产出制品",
+          "artifactType": "LIBRARY",
+          "size": 0
+        }
       },
       {
-        "id": "edge_cabb10eca4",
+        "id": "edge_3c692e0ef7",
         "source": "BUILD-EE-003",
         "target": "ARTIFACT-EE-003",
         "type": "build_produces_artifact",
-        "data": {}
+        "data": {
+          "relationship": "构建产出制品",
+          "artifactType": "LIBRARY",
+          "size": 0
+        }
       },
       {
-        "id": "edge_dd2ef255c0",
+        "id": "edge_4bacf99aa2",
         "source": "RELEASE-EE-001",
         "target": "DEPLOY-EE-001",
         "type": "release_deploys",
-        "data": {}
+        "data": {
+          "relationship": "发布进行部署",
+          "deploymentEnvironment": "DEV",
+          "deployedAt": "2026-01-17"
+        }
       },
       {
-        "id": "edge_b5092242f9",
+        "id": "edge_a89f15612a",
         "source": "RELEASE-EE-002",
         "target": "DEPLOY-EE-002",
         "type": "release_deploys",
-        "data": {}
+        "data": {
+          "relationship": "发布进行部署",
+          "deploymentEnvironment": "DEV",
+          "deployedAt": "2026-01-17"
+        }
       },
       {
-        "id": "edge_6fa5429ea6",
+        "id": "edge_e16708dc2d",
         "source": "METRIC-001",
         "target": "MV-EE-001",
         "type": "metric_has_value",
-        "data": {}
+        "data": {
+          "relationship": "指标有度量数据",
+          "value": 48,
+          "recordedAt": "2026-01-17"
+        }
       },
       {
-        "id": "edge_3d668a39da",
+        "id": "edge_6039ac385c",
         "source": "METRIC-002",
         "target": "MV-EE-002",
         "type": "metric_has_value",
-        "data": {}
+        "data": {
+          "relationship": "指标有度量数据",
+          "value": 88,
+          "recordedAt": "2026-01-17"
+        }
       },
       {
-        "id": "edge_8a7c15a00c",
+        "id": "edge_fe6a923440",
         "source": "METRIC-003",
         "target": "MV-EE-003",
         "type": "metric_has_value",
-        "data": {}
+        "data": {
+          "relationship": "指标有度量数据",
+          "value": 78,
+          "recordedAt": "2026-01-17"
+        }
       },
       {
-        "id": "edge_74656690d6",
+        "id": "edge_13792f3a88",
         "source": "METRIC-004",
         "target": "MV-EE-004",
         "type": "metric_has_value",
-        "data": {}
+        "data": {
+          "relationship": "指标有度量数据",
+          "value": 0.5,
+          "recordedAt": "2026-01-17"
+        }
       },
       {
-        "id": "edge_ee3d345662",
+        "id": "edge_01e8992f65",
         "source": "MS-001",
         "target": "METRIC-001",
         "type": "metricset_has_metric",
-        "data": {}
+        "data": {
+          "relationship": "度量集包含指标",
+          "unit": "DAY",
+          "targetValue": 0
+        }
       },
       {
-        "id": "edge_a70baeece5",
+        "id": "edge_856727e247",
         "source": "MS-001",
         "target": "METRIC-002",
         "type": "metricset_has_metric",
-        "data": {}
+        "data": {
+          "relationship": "度量集包含指标",
+          "unit": "SCORE",
+          "targetValue": 0
+        }
       },
       {
-        "id": "edge_7ffa7ba80d",
+        "id": "edge_6ac0402fda",
         "source": "MS-001",
         "target": "METRIC-003",
         "type": "metricset_has_metric",
-        "data": {}
+        "data": {
+          "relationship": "度量集包含指标",
+          "unit": "PERCENTAGE",
+          "targetValue": 0
+        }
       },
       {
-        "id": "edge_9ad9bd1e50",
+        "id": "edge_dae125dc0c",
         "source": "MS-001",
         "target": "METRIC-004",
         "type": "metricset_has_metric",
-        "data": {}
+        "data": {
+          "relationship": "度量集包含指标",
+          "unit": "COUNT_PER_KLOC",
+          "targetValue": 0
+        }
       },
       {
-        "id": "edge_a2541d2573",
+        "id": "edge_e42994a8fb",
         "source": "MS-001",
         "target": "METRIC-005",
         "type": "metricset_has_metric",
-        "data": {}
+        "data": {
+          "relationship": "度量集包含指标",
+          "unit": "PERCENTAGE",
+          "targetValue": 0
+        }
       }
     ]
   }

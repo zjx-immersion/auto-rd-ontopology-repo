@@ -1,14 +1,13 @@
 {
-  "lastUpdate": "2026-01-17T13:55:06.000Z",
   "graphs": {
-    "graph_e41ae076ca": {
-      "id": "graph_e41ae076ca",
+    "graph_64c8c76a12": {
+      "id": "graph_64c8c76a12",
       "name": "智能驾驶研发体系",
       "description": "岚图智能驾驶研发知识图谱，包含城市NOA和自动泊车产品的完整研发流程，基于Schema V2.0",
       "schemaId": "core-domain-schema-v2",
       "schemaVersion": "2.0.0",
-      "created": "2026-01-17T13:57:52.006Z",
-      "updated": "2026-01-17T13:57:52.006Z",
+      "created": "2026-01-17T17:34:53.674Z",
+      "updated": "2026-01-17T17:34:53.674Z",
       "status": "active",
       "tags": [
         "v2",
@@ -16,14 +15,14 @@
         "ADAS"
       ]
     },
-    "graph_c4bc4181c4": {
-      "id": "graph_c4bc4181c4",
+    "graph_b8eaaa22e5": {
+      "id": "graph_b8eaaa22e5",
       "name": "智能座舱研发体系",
       "description": "岚图智能座舱研发知识图谱，包含座舱OS和智能语音产品的完整研发流程，基于Schema V2.0",
       "schemaId": "core-domain-schema-v2",
       "schemaVersion": "2.0.0",
-      "created": "2026-01-17T13:57:52.010Z",
-      "updated": "2026-01-17T13:57:52.010Z",
+      "created": "2026-01-17T17:34:53.677Z",
+      "updated": "2026-01-17T17:34:53.677Z",
       "status": "active",
       "tags": [
         "v2",
@@ -31,14 +30,29 @@
         "Cockpit"
       ]
     },
-    "graph_67f3055ddb": {
-      "id": "graph_67f3055ddb",
+    "graph_b4ee1d5474": {
+      "id": "graph_b4ee1d5474",
       "name": "电子电器研发体系",
       "description": "岚图电子电器研发知识图谱，包含中央计算平台和车身控制系统的完整研发流程，基于Schema V2.0",
       "schemaId": "core-domain-schema-v2",
       "schemaVersion": "2.0.0",
-      "created": "2026-01-17T13:57:52.012Z",
-      "updated": "2026-01-17T13:57:52.012Z",
+      "created": "2026-01-17T17:34:53.678Z",
+      "updated": "2026-01-17T17:34:53.678Z",
+      "status": "active",
+      "tags": [
+        "v2",
+        "auto-generated",
+        "EE"
+      ]
+    },
+    "graph_6b6d3882e2": {
+      "id": "graph_6b6d3882e2",
+      "name": "核心领域模型知识图谱",
+      "description": "基于MX-2026车型项目的完整领域模型数据，包含所有节点和边的属性数据",
+      "schemaId": "core-domain-schema-v2",
+      "schemaVersion": "2.0.0",
+      "created": "2026-01-17T17:34:53.679Z",
+      "updated": "2026-01-17T17:34:53.679Z",
       "status": "active",
       "tags": [
         "v2",

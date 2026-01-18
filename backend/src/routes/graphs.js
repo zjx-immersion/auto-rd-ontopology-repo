@@ -322,4 +322,41 @@ router.get('/:id/statistics', async (req, res) => {
   }
 });
 
+/**
+ * 获取节点的对象属性关系
+ * GET /api/v1/graphs/:graphId/nodes/:nodeId/object-properties
+ */
+router.get('/:graphId/nodes/:nodeId/object-properties', async (req, res) => {
+  try {
+    const { graphId, nodeId } = req.params;
+    
+    // 获取Schema（用于关系标签）
+    let schema = null;
+    try {
+      const { getInstance: getGraphService } = require('../services/GraphService');
+      const graphService = getGraphService();
+      schema = graphService.getSchema();
+    } catch (error) {
+      console.warn('Failed to load schema for relation labels:', error.message);
+    }
+
+    const objectProperties = await multiGraphService.getObjectProperties(graphId, nodeId, schema);
+
+    res.json({
+      success: true,
+      data: objectProperties
+    });
+  } catch (error) {
+    console.error(`Error getting object properties for node ${req.params.nodeId} in graph ${req.params.graphId}:`, error);
+    
+    const statusCode = error.message.includes('not found') ? 404 : 500;
+    res.status(statusCode).json({
+      success: false,
+      error: {
+        message: error.message || 'Failed to get object properties'
+      }
+    });
+  }
+});
+
 module.exports = router;

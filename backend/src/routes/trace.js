@@ -1,15 +1,16 @@
 const express = require('express');
 const router = express.Router();
 const TraceService = require('../services/TraceService');
+const multiGraphService = require('../services/MultiGraphService');
 
 const traceService = new TraceService();
 
 /**
  * 需求追溯与影响分析API
  */
-router.post('/trace', (req, res) => {
+router.post('/trace', async (req, res) => {
   try {
-    const { entity_id, query_type = 'full_trace', depth = 3 } = req.body;
+    const { entity_id, query_type = 'full_trace', depth = 3, graph_id } = req.body;
 
     // 参数验证
     if (!entity_id) {
@@ -45,9 +46,9 @@ router.post('/trace', (req, res) => {
       });
     }
 
-    // 执行追溯
+    // 执行追溯（支持graph_id参数）
     const startTime = Date.now();
-    const result = traceService.trace(entity_id, query_type, depth);
+    const result = await traceService.trace(entity_id, query_type, depth, graph_id);
     const duration = Date.now() - startTime;
 
     res.json({
@@ -83,10 +84,12 @@ router.post('/trace', (req, res) => {
 /**
  * 获取实体的完整路径
  */
-router.get('/path/:entityId', (req, res) => {
+router.get('/path/:entityId', async (req, res) => {
   try {
     const { entityId } = req.params;
-    const paths = traceService.getFullPath(entityId);
+    const { graph_id } = req.query;
+    const graphData = graph_id ? (await multiGraphService.getGraph(graph_id)).data : null;
+    const paths = await traceService.getFullPath(entityId, graphData);
 
     res.json({
       success: true,
@@ -111,10 +114,12 @@ router.get('/path/:entityId', (req, res) => {
 /**
  * 获取测试覆盖情况
  */
-router.get('/coverage/:entityId', (req, res) => {
+router.get('/coverage/:entityId', async (req, res) => {
   try {
     const { entityId } = req.params;
-    const coverage = traceService.getTestCoverage(entityId);
+    const { graph_id } = req.query;
+    const graphData = graph_id ? (await multiGraphService.getGraph(graph_id)).data : null;
+    const coverage = await traceService.getTestCoverage(entityId, graphData);
 
     res.json({
       success: true,

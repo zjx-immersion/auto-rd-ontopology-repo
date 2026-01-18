@@ -12,7 +12,10 @@ const api = axios.create({
 
 // 响应拦截器
 api.interceptors.response.use(
-  response => response.data,
+  response => {
+    // 直接返回response.data，保持原始响应格式
+    return response.data;
+  },
   error => {
     const message = error.response?.data?.error?.message || error.message || '请求失败';
     return Promise.reject(new Error(message));
@@ -22,12 +25,12 @@ api.interceptors.response.use(
 // 图谱相关API
 export const fetchGraphData = async () => {
   const response = await api.get('/graph/data');
-  return response.data;
+  return response.data; // 返回实际数据，不含success/message包装
 };
 
 export const fetchSchema = async () => {
   const response = await api.get('/graph/schema');
-  return response.data;
+  return response.data; // 返回实际schema数据
 };
 
 export const fetchNodes = async (filter = {}) => {
@@ -91,17 +94,25 @@ export const deleteEdge = async (id) => {
   return response.data;
 };
 
-export const fetchObjectProperties = async (nodeId) => {
-  const response = await api.get(`/graph/nodes/${nodeId}/object-properties`);
-  return response.data;
+export const fetchObjectProperties = async (nodeId, graphId) => {
+  if (graphId) {
+    // 使用多图谱API
+    const response = await api.get(`/graphs/${graphId}/nodes/${nodeId}/object-properties`);
+    return response.data;
+  } else {
+    // 兼容旧API（单图谱）
+    const response = await api.get(`/graph/nodes/${nodeId}/object-properties`);
+    return response.data;
+  }
 };
 
 // 追溯相关API
-export const traceEntity = async (entityId, queryType = 'full_trace', depth = 3) => {
+export const traceEntity = async (entityId, queryType = 'full_trace', depth = 3, graphId = null) => {
   const response = await api.post('/ontology/trace', {
     entity_id: entityId,
     query_type: queryType,
-    depth: depth
+    depth: depth,
+    graph_id: graphId
   });
   return response;
 };

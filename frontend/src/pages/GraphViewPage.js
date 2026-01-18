@@ -33,6 +33,7 @@ const GraphViewPage = () => {
   const [viewMode, setViewMode] = useState('graph');
   const [selectedNode, setSelectedNode] = useState(null);
   const [traceResult, setTraceResult] = useState(null);
+  const [highlightedEntityType, setHighlightedEntityType] = useState(null);
 
   // 计算实时统计信息
   const statistics = useMemo(() => {
@@ -106,6 +107,15 @@ const GraphViewPage = () => {
     await loadGraph(id);
   };
 
+  const handleEntityTypeClick = (entityType) => {
+    // 如果点击的是已选中的类型，则取消高亮
+    if (highlightedEntityType === entityType) {
+      setHighlightedEntityType(null);
+    } else {
+      setHighlightedEntityType(entityType);
+    }
+  };
+
   // 加载中
   if (loading) {
     return (
@@ -175,6 +185,8 @@ const GraphViewPage = () => {
               onSearch={(keyword) => {
                 console.log('搜索:', keyword);
               }}
+              onEntityTypeClick={handleEntityTypeClick}
+              highlightedEntityType={highlightedEntityType}
             />
           </Sider>
         )}
@@ -187,6 +199,8 @@ const GraphViewPage = () => {
               schema={schema}
               onNodeClick={handleNodeClick}
               onTraceResult={handleTraceResult}
+              selectedNodeId={selectedNode?.id}
+              highlightedEntityType={highlightedEntityType}
             />
           )}
 
@@ -232,7 +246,9 @@ const GraphViewPage = () => {
               node={selectedNode}
               data={currentGraph.data}
               schema={schema}
+              graphId={currentGraph?.id}
               onClose={() => setSelectedNode(null)}
+              onTrace={handleTraceResult}
             />
           )}
 
