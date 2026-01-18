@@ -1,176 +1,34 @@
-import React, { useState, useEffect } from 'react';
-import { Layout, message } from 'antd';
-import Header from './components/Header';
-import Sidebar from './components/Sidebar';
-import GraphView from './components/GraphView';
-import TableView from './components/TableView';
-import TreeView from './components/TreeView';
-import MatrixViewOptimized from './components/MatrixViewOptimized';
-import Dashboard from './components/Dashboard';
-import SchemaViewer from './components/SchemaViewer';
-import NodeDetailPanel from './components/NodeDetailPanel';
-import TraceResultPanel from './components/TraceResultPanel';
-import ImportModal from './components/ImportModal';
-import { fetchGraphData, fetchSchema } from './services/api';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { GraphsProvider } from './contexts/GraphsContext';
+import GraphListPage from './pages/GraphListPage';
+import GraphViewPage from './pages/GraphViewPage';
 import './App.css';
 
-const { Header: AntHeader, Content, Sider } = Layout;
-
+/**
+ * 应用主组件
+ * 使用React Router进行页面路由管理
+ * 使用Context进行状态管理
+ */
 function App() {
-  const [loading, setLoading] = useState(true);
-  const [graphData, setGraphData] = useState({ nodes: [], edges: [] });
-  const [schema, setSchema] = useState(null);
-  const [selectedNode, setSelectedNode] = useState(null);
-  const [traceResult, setTraceResult] = useState(null);
-  const [importModalVisible, setImportModalVisible] = useState(false);
-  const [viewMode, setViewMode] = useState('graph'); // 'graph', 'table', 'tree', 'matrix', 'dashboard', 'schema'
-
-  // 加载数据
-  useEffect(() => {
-    loadData();
-  }, []);
-
-  const loadData = async () => {
-    try {
-      setLoading(true);
-      const [data, schemaData] = await Promise.all([
-        fetchGraphData(),
-        fetchSchema()
-      ]);
-      setGraphData(data);
-      setSchema(schemaData);
-      message.success(`数据加载成功：${data.nodes?.length || 0}个节点，${data.edges?.length || 0}条边`);
-    } catch (error) {
-      message.error('数据加载失败: ' + error.message);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const handleNodeClick = (node) => {
-    setSelectedNode(node);
-    setTraceResult(null);
-  };
-
-  const handleTraceResult = (result) => {
-    setTraceResult(result);
-  };
-
-  const handleImportSuccess = () => {
-    loadData();
-    setImportModalVisible(false);
-  };
-
   return (
-    <Layout className="app-layout">
-      <AntHeader className="app-header">
-        <Header
-          onRefresh={loadData}
-          onImport={() => setImportModalVisible(true)}
-          viewMode={viewMode}
-          onViewModeChange={setViewMode}
-        />
-      </AntHeader>
-
-      <Layout className="content-layout">
-        {viewMode === 'graph' && (
-          <Sider
-            width={260}
-            collapsible={false}
-            style={{ background: '#fff' }}
-          >
-            <Sidebar
-              schema={schema}
-              statistics={graphData.statistics}
-              onSearch={(keyword) => {
-                // TODO: 实现搜索功能
-                console.log('搜索:', keyword);
-              }}
-            />
-          </Sider>
-        )}
-
-        <Content className="main-content">
-          {/* 图谱视图 */}
-          {viewMode === 'graph' && (
-            <>
-              <GraphView
-                data={graphData}
-                schema={schema}
-                loading={loading}
-                onNodeClick={handleNodeClick}
-                selectedNodeId={selectedNode?.id}
-              />
-
-              {selectedNode && !traceResult && (
-                <NodeDetailPanel
-                  node={selectedNode}
-                  schema={schema}
-                  onClose={() => setSelectedNode(null)}
-                  onTrace={handleTraceResult}
-                />
-              )}
-
-              {traceResult && (
-                <TraceResultPanel
-                  result={traceResult}
-                  schema={schema}
-                  onClose={() => setTraceResult(null)}
-                />
-              )}
-            </>
-          )}
-
-          {/* 表格视图 */}
-          {viewMode === 'table' && (
-            <TableView
-              data={graphData}
-              schema={schema}
-              onNodeClick={handleNodeClick}
-            />
-          )}
-
-          {/* 树形视图 */}
-          {viewMode === 'tree' && (
-            <TreeView
-              data={graphData}
-              schema={schema}
-              onNodeSelect={handleNodeClick}
-            />
-          )}
-
-          {/* 矩阵视图 */}
-          {viewMode === 'matrix' && (
-            <MatrixViewOptimized
-              data={graphData}
-              schema={schema}
-            />
-          )}
-
-          {/* 仪表盘视图 */}
-          {viewMode === 'dashboard' && (
-            <Dashboard
-              data={graphData}
-              schema={schema}
-            />
-          )}
-
-          {/* Schema管理视图 */}
-          {viewMode === 'schema' && (
-            <SchemaViewer
-              schema={schema}
-              data={graphData}
-            />
-          )}
-        </Content>
-      </Layout>
-
-      <ImportModal
-        visible={importModalVisible}
-        onCancel={() => setImportModalVisible(false)}
-        onSuccess={handleImportSuccess}
-      />
-    </Layout>
+    <Router>
+      <GraphsProvider>
+        <Routes>
+          {/* 默认重定向到图谱列表 */}
+          <Route path="/" element={<Navigate to="/graphs" replace />} />
+          
+          {/* 图谱列表页 */}
+          <Route path="/graphs" element={<GraphListPage />} />
+          
+          {/* 图谱查看页 */}
+          <Route path="/graphs/:id" element={<GraphViewPage />} />
+          
+          {/* 404页面 */}
+          <Route path="*" element={<Navigate to="/graphs" replace />} />
+        </Routes>
+      </GraphsProvider>
+    </Router>
   );
 }
 

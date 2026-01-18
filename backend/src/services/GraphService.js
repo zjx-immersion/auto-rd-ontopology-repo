@@ -18,11 +18,34 @@ class GraphService {
    */
   loadData() {
     try {
-      // 加载Schema
-      const schemaPath = path.join(this.dataPath, 'schema.json');
-      if (fs.existsSync(schemaPath)) {
+      // 加载Schema - 优先使用schemaVersions目录下的V2.0版本
+      const schemaV2Path = path.join(this.dataPath, 'schemaVersions', 'core-domain-schema-v2.json');
+      const schemaPath = path.join(this.dataPath, 'schemaVersions', 'schema.json');
+      const oldSchemaPath = path.join(this.dataPath, 'schema.json');
+      
+      let schemaLoaded = false;
+      
+      // 优先加载V2.0 Schema
+      if (fs.existsSync(schemaV2Path)) {
+        this.schema = JSON.parse(fs.readFileSync(schemaV2Path, 'utf8'));
+        console.log('✅ Schema V2.0加载成功');
+        schemaLoaded = true;
+      }
+      // 其次加载当前活动Schema
+      else if (fs.existsSync(schemaPath)) {
         this.schema = JSON.parse(fs.readFileSync(schemaPath, 'utf8'));
         console.log('✅ Schema加载成功');
+        schemaLoaded = true;
+      }
+      // 最后尝试旧路径（向后兼容）
+      else if (fs.existsSync(oldSchemaPath)) {
+        this.schema = JSON.parse(fs.readFileSync(oldSchemaPath, 'utf8'));
+        console.log('✅ Schema加载成功（旧路径）');
+        schemaLoaded = true;
+      }
+      
+      if (!schemaLoaded) {
+        console.warn('⚠️  未找到Schema文件，请检查data/schemaVersions/目录');
       }
 
       // 加载样本数据

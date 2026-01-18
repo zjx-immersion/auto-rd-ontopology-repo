@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { Card, Descriptions, Button, Space, Select, InputNumber, message, Collapse, Tag, Spin } from 'antd';
 import { CloseOutlined, BranchesOutlined, ApartmentOutlined, EditOutlined } from '@ant-design/icons';
 import { traceEntity, fetchObjectProperties } from '../services/api';
@@ -8,7 +8,7 @@ import './NodeDetailPanel.css';
 const { Option } = Select;
 const { Panel } = Collapse;
 
-const NodeDetailPanel = ({ node, schema, onClose, onTrace }) => {
+const NodeDetailPanel = ({ node, data, schema, graphId, onClose, onTrace }) => {
   const [loading, setLoading] = useState(false);
   const [queryType, setQueryType] = useState('full_trace');
   const [depth, setDepth] = useState(3);
@@ -17,11 +17,60 @@ const NodeDetailPanel = ({ node, schema, onClose, onTrace }) => {
   const [editingEdge, setEditingEdge] = useState(null);
   const [editorVisible, setEditorVisible] = useState(false);
 
+  // 从完整数据中获取节点信息
+  const fullNodeData = useMemo(() => {
+    console.log('NodeDetailPanel - fullNodeData计算:', {
+      hasNode: !!node,
+      nodeId: node?.id,
+      hasData: !!data,
+      hasNodes: !!data?.nodes,
+      nodesLength: data?.nodes?.length,
+      nodeDataKeys: node?.data ? Object.keys(node.data) : [],
+      nodeData: node?.data
+    });
+    
+    if (!node || !data || !data.nodes) {
+      console.log('NodeDetailPanel - 返回原始node（缺少数据）');
+      return node;
+    }
+    
+    // 从data.nodes中查找完整的节点数据
+    const fullNode = data.nodes.find(n => n.id === node.id);
+    console.log('NodeDetailPanel - 查找结果:', {
+      found: !!fullNode,
+      fullNodeId: fullNode?.id,
+      fullNodeDataKeys: fullNode?.data ? Object.keys(fullNode.data) : [],
+      fullNodeData: fullNode?.data
+    });
+    
+    if (fullNode) {
+      const result = {
+        ...node,
+        label: fullNode.label || node.label || node.id,
+        data: fullNode.data || node.data || {},
+        type: fullNode.type || node.type
+      };
+      console.log('NodeDetailPanel - 返回完整节点数据:', {
+        id: result.id,
+        type: result.type,
+        dataKeys: Object.keys(result.data || {}),
+        dataCount: Object.keys(result.data || {}).length
+      });
+      return result;
+    }
+    
+    console.log('NodeDetailPanel - 未找到完整节点，返回原始node');
+    return node;
+  }, [node, data]);
+
   // 加载对象属性
   const loadObjectProperties = async () => {
+    if (!fullNodeData?.id || !graphId) return;
     try {
       setLoadingProps(true);
-      const result = await fetchObjectProperties(node.id);
+      console.log('加载对象属性:', { nodeId: fullNodeData.id, graphId });
+      const result = await fetchObjectProperties(fullNodeData.id, graphId);
+      console.log('对象属性加载结果:', result);
       setObjectProperties(result);
     } catch (error) {
       console.error('加载对象属性失败:', error);
@@ -32,8 +81,10 @@ const NodeDetailPanel = ({ node, schema, onClose, onTrace }) => {
   };
 
   useEffect(() => {
-    loadObjectProperties();
-  }, [node.id]);
+    if (fullNodeData?.id && graphId) {
+      loadObjectProperties();
+    }
+  }, [fullNodeData?.id, graphId]);
 
   const handleEditProperty = (edge) => {
     setEditingEdge(edge);
@@ -53,8 +104,8 @@ const NodeDetailPanel = ({ node, schema, onClose, onTrace }) => {
   const handleTrace = async () => {
     try {
       setLoading(true);
-      console.log('开始追溯查询:', { nodeId: node.id, queryType, depth });
-      const result = await traceEntity(node.id, queryType, depth);
+      console.log('开始追溯查询:', { nodeId: fullNodeData?.id, queryType, depth, graphId });
+      const result = await traceEntity(fullNodeData?.id, queryType, depth, graphId);
       console.log('追溯查询结果:', result);
       message.success('追溯查询成功');
       onTrace(result.data);
@@ -67,9 +118,21 @@ const NodeDetailPanel = ({ node, schema, onClose, onTrace }) => {
   };
 
   const renderProperties = () => {
-    if (!node.data) return null;
+    console.log('renderProperties调用:', {
+      hasFullNodeData: !!fullNodeData,
+      hasData: !!fullNodeData?.data,
+      dataKeys: fullNodeData?.data ? Object.keys(fullNodeData.data) : [],
+      dataType: typeof fullNodeData?.data,
+      dataValue: fullNodeData?.data
+    });
+    
+    if (!fullNodeData || !fullNodeData.data || Object.keys(fullNodeData.data).length === 0) {
+      console.log('renderProperties: 返回"暂无属性数据"');
+      return <Descriptions.Item label="属性">暂无属性数据</Descriptions.Item>;
+    }
 
-    return Object.entries(node.data).map(([key, value]) => {
+    console.log('renderProperties: 渲染属性，数量:', Object.keys(fullNodeData.data).length);
+    return Object.entries(fullNodeData.data).map(([key, value]) => {
       let displayValue = value;
       
       if (typeof value === 'boolean') {
@@ -198,7 +261,7 @@ const NodeDetailPanel = ({ node, schema, onClose, onTrace }) => {
     );
   };
 
-  const entityType = schema?.entityTypes?.[node.type];
+  const entityType = schema?.entityTypes?.[fullNodeData?.type];
 
   return (
     <div className="node-detail-panel">
@@ -206,10 +269,10 @@ const NodeDetailPanel = ({ node, schema, onClose, onTrace }) => {
         title={
           <Space>
             <span style={{ color: entityType?.color || '#1890ff' }}>
-              {entityType?.label || node.type}
+              {entityType?.label || fullNodeData?.type}
             </span>
             <span>-</span>
-            <span>{node.id}</span>
+            <span>{fullNodeData?.id || fullNodeData?.label}</span>
           </Space>
         }
         extra={

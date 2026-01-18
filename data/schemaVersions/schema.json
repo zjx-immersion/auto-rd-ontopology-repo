@@ -1,0 +1,1877 @@
+{
+  "version": "2.0.0",
+  "name": "完整领域模型本体 V2.0",
+  "description": "基于整车软件研发端到端协同平台的完整领域模型，包含10个领域、47个核心实体",
+  "lastUpdate": "2026-01-17",
+  "baseSchema": "core-domain-schema.json",
+  "changelog": {
+    "2.0.0": {
+      "date": "2026-01-17",
+      "changes": [
+        "新增资产管理域（4个实体）",
+        "新增质量管理域（4个实体）",
+        "新增度量管理域（3个实体）",
+        "新增用户管理域（5个实体）",
+        "扩展产品管理域（新增3个版本管理实体）",
+        "扩展需求管理域（新增2个版本管理实体）",
+        "扩展规划管理域（新增2个实体）",
+        "扩展执行管理域（新增3个实体）",
+        "重命名部分实体以符合领域模型（Vehicle, ProjectMilestone, PI, WorkItem, CodeCommit）",
+        "新增50+个关系类型以支持完整的端到端数据流"
+      ]
+    }
+  },
+  "entityTypes": {
+    "Vehicle": {
+      "code": "Vehicle",
+      "label": "车型",
+      "description": "车型定义，是最高层级的项目管理单元",
+      "domain": "项目管理域",
+      "properties": {
+        "id": {
+          "type": "String",
+          "required": true,
+          "description": "车型ID，格式：VEH-XXX"
+        },
+        "name": {
+          "type": "String",
+          "required": true,
+          "description": "车型名称"
+        },
+        "code": {
+          "type": "String",
+          "required": true,
+          "description": "车型代码"
+        },
+        "platform": {
+          "type": "String",
+          "description": "技术平台（如ESSA、GOP）"
+        },
+        "launchDate": {
+          "type": "Date",
+          "description": "上市日期"
+        },
+        "status": {
+          "type": "Enum",
+          "values": ["PLANNING", "DEVELOPING", "LAUNCHED", "DISCONTINUED"],
+          "required": true
+        }
+      },
+      "color": "#1890ff"
+    },
+    "DomainProject": {
+      "code": "DomainProject",
+      "label": "领域项目",
+      "description": "车型下的领域级研发项目",
+      "domain": "项目管理域",
+      "properties": {
+        "id": {
+          "type": "String",
+          "required": true
+        },
+        "vehicleId": {
+          "type": "String",
+          "required": true,
+          "description": "所属车型"
+        },
+        "name": {
+          "type": "String",
+          "required": true
+        },
+        "domain": {
+          "type": "Enum",
+          "values": ["ADAS", "CABIN", "ECU_BODY", "ECU_THERMAL", "POWER", "CHASSIS"],
+          "required": true
+        },
+        "managerId": {
+          "type": "String",
+          "description": "项目经理"
+        },
+        "description": {
+          "type": "Text"
+        }
+      },
+      "color": "#096dd9"
+    },
+    "ProjectMilestone": {
+      "code": "ProjectMilestone",
+      "label": "项目里程碑",
+      "description": "领域项目的关键里程碑节点",
+      "domain": "项目管理域",
+      "properties": {
+        "id": {
+          "type": "String",
+          "required": true
+        },
+        "domainProjectId": {
+          "type": "String",
+          "required": true
+        },
+        "name": {
+          "type": "String",
+          "required": true
+        },
+        "targetDate": {
+          "type": "Date"
+        },
+        "type": {
+          "type": "Enum",
+          "values": ["SOP", "PVS", "DVS", "PROTOTYPE"]
+        },
+        "status": {
+          "type": "Enum",
+          "values": ["PLANNING", "IN_PROGRESS", "COMPLETED"]
+        }
+      },
+      "color": "#13c2c2"
+    },
+    "Baseline": {
+      "code": "Baseline",
+      "label": "基线",
+      "description": "里程碑的功能基线",
+      "domain": "项目管理域",
+      "properties": {
+        "id": {
+          "type": "String",
+          "required": true
+        },
+        "milestoneId": {
+          "type": "String",
+          "required": true
+        },
+        "name": {
+          "type": "String",
+          "required": true
+        },
+        "version": {
+          "type": "String"
+        },
+        "freezeDate": {
+          "type": "Date"
+        },
+        "scope": {
+          "type": "Text",
+          "description": "基线范围描述"
+        }
+      },
+      "color": "#faad14"
+    },
+    "ProductLine": {
+      "code": "ProductLine",
+      "label": "产品线",
+      "description": "产品线资产，管理多个产品",
+      "domain": "产品管理域",
+      "properties": {
+        "id": {
+          "type": "String",
+          "required": true
+        },
+        "name": {
+          "type": "String",
+          "required": true
+        },
+        "code": {
+          "type": "String"
+        },
+        "type": {
+          "type": "Enum",
+          "values": ["ADAS", "CABIN", "EE"]
+        },
+        "description": {
+          "type": "Text"
+        }
+      },
+      "color": "#9254de"
+    },
+    "Product": {
+      "code": "Product",
+      "label": "产品",
+      "description": "产品资产，属于某个产品线",
+      "domain": "产品管理域",
+      "properties": {
+        "id": {
+          "type": "String",
+          "required": true
+        },
+        "productLineId": {
+          "type": "String",
+          "required": true
+        },
+        "name": {
+          "type": "String",
+          "required": true
+        },
+        "code": {
+          "type": "String"
+        },
+        "description": {
+          "type": "Text"
+        }
+      },
+      "color": "#b37feb"
+    },
+    "ProductVersion": {
+      "code": "ProductVersion",
+      "label": "产品版本",
+      "description": "产品的版本管理",
+      "domain": "产品管理域",
+      "properties": {
+        "id": {
+          "type": "String",
+          "required": true
+        },
+        "productId": {
+          "type": "String",
+          "required": true
+        },
+        "version": {
+          "type": "String",
+          "required": true
+        },
+        "baselineId": {
+          "type": "String",
+          "description": "关联基线"
+        },
+        "releaseDate": {
+          "type": "Date"
+        },
+        "status": {
+          "type": "Enum",
+          "values": ["PLANNING", "DEVELOPING", "RELEASED", "DEPRECATED"]
+        }
+      },
+      "color": "#d3adf7"
+    },
+    "Feature": {
+      "code": "Feature",
+      "label": "特性",
+      "description": "产品的业务特性（业务架构）",
+      "domain": "产品管理域",
+      "properties": {
+        "id": {
+          "type": "String",
+          "required": true
+        },
+        "productId": {
+          "type": "String",
+          "required": true
+        },
+        "parentFeatureId": {
+          "type": "String",
+          "description": "父特性ID（支持层次结构）"
+        },
+        "name": {
+          "type": "String",
+          "required": true
+        },
+        "code": {
+          "type": "String"
+        },
+        "description": {
+          "type": "Text"
+        }
+      },
+      "color": "#efdbff"
+    },
+    "Module": {
+      "code": "Module",
+      "label": "模块",
+      "description": "特性的模块（业务架构）",
+      "domain": "产品管理域",
+      "properties": {
+        "id": {
+          "type": "String",
+          "required": true
+        },
+        "featureId": {
+          "type": "String",
+          "required": true
+        },
+        "name": {
+          "type": "String",
+          "required": true
+        },
+        "code": {
+          "type": "String"
+        },
+        "ownerTeamId": {
+          "type": "String",
+          "description": "负责团队"
+        },
+        "description": {
+          "type": "Text"
+        }
+      },
+      "color": "#bae637"
+    },
+    "FeaturePackage": {
+      "code": "FeaturePackage",
+      "label": "特性包",
+      "description": "特性的打包组合",
+      "domain": "产品管理域",
+      "properties": {
+        "id": {
+          "type": "String",
+          "required": true
+        },
+        "productId": {
+          "type": "String",
+          "required": true
+        },
+        "name": {
+          "type": "String",
+          "required": true
+        },
+        "description": {
+          "type": "Text"
+        }
+      },
+      "color": "#f9f0ff"
+    },
+    "FeaturePackageVersion": {
+      "code": "FeaturePackageVersion",
+      "label": "特性包版本",
+      "description": "特性包的版本管理",
+      "domain": "产品管理域",
+      "properties": {
+        "id": {
+          "type": "String",
+          "required": true
+        },
+        "featurePackageId": {
+          "type": "String",
+          "required": true
+        },
+        "version": {
+          "type": "String",
+          "required": true
+        },
+        "releaseDate": {
+          "type": "Date"
+        }
+      },
+      "color": "#f9f0ff"
+    },
+    "Epic": {
+      "code": "Epic",
+      "label": "Epic需求",
+      "description": "原始需求，需求池中的最初形态",
+      "domain": "需求管理域",
+      "properties": {
+        "id": {
+          "type": "String",
+          "required": true
+        },
+        "productId": {
+          "type": "String",
+          "description": "所属产品"
+        },
+        "name": {
+          "type": "String",
+          "required": true
+        },
+        "description": {
+          "type": "Text"
+        },
+        "ownerId": {
+          "type": "String"
+        },
+        "priority": {
+          "type": "Enum",
+          "values": ["HIGH", "MEDIUM", "LOW"]
+        },
+        "status": {
+          "type": "Enum",
+          "values": ["DRAFT", "APPROVED", "DEVELOPING", "DONE"]
+        }
+      },
+      "color": "#fa8c16"
+    },
+    "FeatureRequirement": {
+      "code": "FeatureRequirement",
+      "label": "特性需求",
+      "description": "Epic在某个领域的实现需求",
+      "domain": "需求管理域",
+      "properties": {
+        "id": {
+          "type": "String",
+          "required": true
+        },
+        "epicId": {
+          "type": "String",
+          "required": true
+        },
+        "featureId": {
+          "type": "String",
+          "description": "关联业务特性"
+        },
+        "name": {
+          "type": "String",
+          "required": true
+        },
+        "description": {
+          "type": "Text"
+        },
+        "priority": {
+          "type": "Enum",
+          "values": ["HIGH", "MEDIUM", "LOW"]
+        },
+        "status": {
+          "type": "Enum",
+          "values": ["DRAFT", "APPROVED", "DEVELOPING", "DONE"]
+        }
+      },
+      "color": "#f5222d"
+    },
+    "ModuleRequirement": {
+      "code": "ModuleRequirement",
+      "label": "模块需求",
+      "description": "从特性需求拆解的模块级需求",
+      "domain": "需求管理域",
+      "properties": {
+        "id": {
+          "type": "String",
+          "required": true
+        },
+        "featureRequirementId": {
+          "type": "String",
+          "required": true
+        },
+        "moduleId": {
+          "type": "String",
+          "description": "关联业务模块"
+        },
+        "name": {
+          "type": "String",
+          "required": true
+        },
+        "description": {
+          "type": "Text"
+        },
+        "type": {
+          "type": "Enum",
+          "values": ["FUNCTIONAL", "NON_FUNCTIONAL"]
+        },
+        "status": {
+          "type": "Enum",
+          "values": ["DRAFT", "APPROVED", "DEVELOPING", "DONE"]
+        }
+      },
+      "color": "#a0d911"
+    },
+    "SSTS": {
+      "code": "SSTS",
+      "label": "系统需求",
+      "description": "模块需求的场景化细化",
+      "domain": "需求管理域",
+      "properties": {
+        "id": {
+          "type": "String",
+          "required": true
+        },
+        "moduleRequirementId": {
+          "type": "String",
+          "required": true
+        },
+        "name": {
+          "type": "String",
+          "required": true
+        },
+        "description": {
+          "type": "Text"
+        },
+        "type": {
+          "type": "Enum",
+          "values": ["FUNCTIONAL", "PERFORMANCE", "SAFETY"]
+        }
+      },
+      "color": "#fadb14"
+    },
+    "FeatureRequirementVersion": {
+      "code": "FeatureRequirementVersion",
+      "label": "特性需求版本",
+      "description": "特性需求的版本管理",
+      "domain": "需求管理域",
+      "properties": {
+        "id": {
+          "type": "String",
+          "required": true
+        },
+        "featureRequirementId": {
+          "type": "String",
+          "required": true
+        },
+        "version": {
+          "type": "String",
+          "required": true
+        },
+        "content": {
+          "type": "Text"
+        },
+        "createdAt": {
+          "type": "DateTime"
+        }
+      },
+      "color": "#ff7a45"
+    },
+    "ModuleRequirementVersion": {
+      "code": "ModuleRequirementVersion",
+      "label": "模块需求版本",
+      "description": "模块需求的版本管理",
+      "domain": "需求管理域",
+      "properties": {
+        "id": {
+          "type": "String",
+          "required": true
+        },
+        "moduleRequirementId": {
+          "type": "String",
+          "required": true
+        },
+        "version": {
+          "type": "String",
+          "required": true
+        },
+        "content": {
+          "type": "Text"
+        },
+        "createdAt": {
+          "type": "DateTime"
+        }
+      },
+      "color": "#d3f261"
+    },
+    "PRDDocument": {
+      "code": "PRDDocument",
+      "label": "PRD文档",
+      "description": "产品需求文档",
+      "domain": "需求管理域",
+      "properties": {
+        "id": {
+          "type": "String",
+          "required": true
+        },
+        "featureRequirementId": {
+          "type": "String",
+          "required": true
+        },
+        "title": {
+          "type": "String",
+          "required": true
+        },
+        "version": {
+          "type": "String"
+        },
+        "status": {
+          "type": "Enum",
+          "values": ["DRAFT", "REVIEWING", "APPROVED"]
+        }
+      },
+      "color": "#ff7a45"
+    },
+    "Asset": {
+      "code": "Asset",
+      "label": "资产",
+      "description": "可复用的技术资产",
+      "domain": "资产管理域",
+      "properties": {
+        "id": {
+          "type": "String",
+          "required": true
+        },
+        "name": {
+          "type": "String",
+          "required": true
+        },
+        "type": {
+          "type": "Enum",
+          "values": ["MODEL", "ALGORITHM", "COMPONENT", "TOOL"]
+        },
+        "ownerTeamId": {
+          "type": "String"
+        },
+        "description": {
+          "type": "Text"
+        },
+        "maturityLevel": {
+          "type": "Enum",
+          "values": ["L1", "L2", "L3", "L4", "L5"]
+        }
+      },
+      "color": "#13c2c2"
+    },
+    "AssetVersion": {
+      "code": "AssetVersion",
+      "label": "资产版本",
+      "description": "资产的版本管理",
+      "domain": "资产管理域",
+      "properties": {
+        "id": {
+          "type": "String",
+          "required": true
+        },
+        "assetId": {
+          "type": "String",
+          "required": true
+        },
+        "version": {
+          "type": "String",
+          "required": true
+        },
+        "storageUrl": {
+          "type": "String"
+        },
+        "createdAt": {
+          "type": "DateTime"
+        },
+        "status": {
+          "type": "Enum",
+          "values": ["DRAFT", "RELEASED", "DEPRECATED"]
+        }
+      },
+      "color": "#36cfc9"
+    },
+    "AssetUsage": {
+      "code": "AssetUsage",
+      "label": "资产使用",
+      "description": "资产在需求中的使用记录",
+      "domain": "资产管理域",
+      "properties": {
+        "id": {
+          "type": "String",
+          "required": true
+        },
+        "assetVersionId": {
+          "type": "String",
+          "required": true
+        },
+        "moduleRequirementId": {
+          "type": "String",
+          "required": true
+        },
+        "usageType": {
+          "type": "Enum",
+          "values": ["REUSE", "ADAPT", "REFERENCE"]
+        },
+        "notes": {
+          "type": "Text"
+        }
+      },
+      "color": "#5cdbd3"
+    },
+    "AssetDependency": {
+      "code": "AssetDependency",
+      "label": "资产依赖",
+      "description": "资产之间的依赖关系",
+      "domain": "资产管理域",
+      "properties": {
+        "id": {
+          "type": "String",
+          "required": true
+        },
+        "assetVersionId": {
+          "type": "String",
+          "required": true
+        },
+        "dependsOnAssetVersionId": {
+          "type": "String",
+          "required": true
+        },
+        "dependencyType": {
+          "type": "Enum",
+          "values": ["REQUIRED", "OPTIONAL"]
+        }
+      },
+      "color": "#87e8de"
+    },
+    "PI": {
+      "code": "PI",
+      "label": "PI规划",
+      "description": "Program Increment规划，通常6-12周",
+      "domain": "规划管理域",
+      "properties": {
+        "id": {
+          "type": "String",
+          "required": true
+        },
+        "domainProjectId": {
+          "type": "String",
+          "required": true
+        },
+        "name": {
+          "type": "String",
+          "required": true
+        },
+        "startDate": {
+          "type": "Date",
+          "required": true
+        },
+        "endDate": {
+          "type": "Date",
+          "required": true
+        },
+        "goal": {
+          "type": "Text"
+        },
+        "status": {
+          "type": "Enum",
+          "values": ["PLANNING", "ACTIVE", "COMPLETED"]
+        }
+      },
+      "color": "#722ed1"
+    },
+    "Sprint": {
+      "code": "Sprint",
+      "label": "迭代",
+      "description": "敏捷开发的Sprint迭代，通常2-4周",
+      "domain": "规划管理域",
+      "properties": {
+        "id": {
+          "type": "String",
+          "required": true
+        },
+        "piId": {
+          "type": "String",
+          "required": true
+        },
+        "name": {
+          "type": "String",
+          "required": true
+        },
+        "startDate": {
+          "type": "Date",
+          "required": true
+        },
+        "endDate": {
+          "type": "Date",
+          "required": true
+        },
+        "status": {
+          "type": "Enum",
+          "values": ["PLANNING", "ACTIVE", "COMPLETED"]
+        }
+      },
+      "color": "#eb2f96"
+    },
+    "SprintBacklog": {
+      "code": "SprintBacklog",
+      "label": "Sprint待办",
+      "description": "Sprint的待办列表项",
+      "domain": "规划管理域",
+      "properties": {
+        "id": {
+          "type": "String",
+          "required": true
+        },
+        "sprintId": {
+          "type": "String",
+          "required": true
+        },
+        "moduleRequirementId": {
+          "type": "String",
+          "required": true
+        },
+        "storyPoints": {
+          "type": "Integer"
+        },
+        "priority": {
+          "type": "Enum",
+          "values": ["HIGH", "MEDIUM", "LOW"]
+        },
+        "status": {
+          "type": "Enum",
+          "values": ["TODO", "IN_PROGRESS", "DONE"]
+        }
+      },
+      "color": "#f759ab"
+    },
+    "TeamCapacity": {
+      "code": "TeamCapacity",
+      "label": "团队容量",
+      "description": "团队在Sprint中的工作容量",
+      "domain": "规划管理域",
+      "properties": {
+        "id": {
+          "type": "String",
+          "required": true
+        },
+        "sprintId": {
+          "type": "String",
+          "required": true
+        },
+        "teamId": {
+          "type": "String",
+          "required": true
+        },
+        "availableHours": {
+          "type": "Integer"
+        },
+        "committedHours": {
+          "type": "Integer"
+        }
+      },
+      "color": "#ff85c0"
+    },
+    "WorkItem": {
+      "code": "WorkItem",
+      "label": "工作项",
+      "description": "具体的开发工作项",
+      "domain": "执行管理域",
+      "properties": {
+        "id": {
+          "type": "String",
+          "required": true
+        },
+        "sprintId": {
+          "type": "String",
+          "required": true
+        },
+        "type": {
+          "type": "Enum",
+          "values": ["REQUIREMENT", "DEVELOPMENT", "TECHNICAL", "DEBT", "BUG"],
+          "required": true
+        },
+        "title": {
+          "type": "String",
+          "required": true
+        },
+        "description": {
+          "type": "Text"
+        },
+        "assigneeId": {
+          "type": "String"
+        },
+        "status": {
+          "type": "Enum",
+          "values": ["TODO", "IN_PROGRESS", "DONE"]
+        },
+        "estimatedHours": {
+          "type": "Float"
+        },
+        "moduleRequirementId": {
+          "type": "String",
+          "description": "关联模块需求（type=REQUIREMENT时）"
+        }
+      },
+      "color": "#52c41a"
+    },
+    "WorkLog": {
+      "code": "WorkLog",
+      "label": "工作日志",
+      "description": "工作项的工时记录",
+      "domain": "执行管理域",
+      "properties": {
+        "id": {
+          "type": "String",
+          "required": true
+        },
+        "workItemId": {
+          "type": "String",
+          "required": true
+        },
+        "userId": {
+          "type": "String",
+          "required": true
+        },
+        "hoursSpent": {
+          "type": "Integer"
+        },
+        "logDate": {
+          "type": "Date"
+        },
+        "comment": {
+          "type": "Text"
+        }
+      },
+      "color": "#73d13d"
+    },
+    "CodeCommit": {
+      "code": "CodeCommit",
+      "label": "代码提交",
+      "description": "Git代码提交记录",
+      "domain": "执行管理域",
+      "properties": {
+        "id": {
+          "type": "String",
+          "required": true
+        },
+        "workItemId": {
+          "type": "String",
+          "required": true
+        },
+        "commitHash": {
+          "type": "String"
+        },
+        "repository": {
+          "type": "String"
+        },
+        "branch": {
+          "type": "String"
+        },
+        "commitTime": {
+          "type": "DateTime"
+        },
+        "author": {
+          "type": "String"
+        }
+      },
+      "color": "#87e8de"
+    },
+    "Build": {
+      "code": "Build",
+      "label": "构建",
+      "description": "CI/CD构建记录",
+      "domain": "执行管理域",
+      "properties": {
+        "id": {
+          "type": "String",
+          "required": true
+        },
+        "commitId": {
+          "type": "String",
+          "required": true
+        },
+        "buildNumber": {
+          "type": "String"
+        },
+        "status": {
+          "type": "Enum",
+          "values": ["SUCCESS", "FAILED"]
+        },
+        "buildTime": {
+          "type": "DateTime"
+        },
+        "buildUrl": {
+          "type": "String"
+        }
+      },
+      "color": "#69c0ff"
+    },
+    "WorkItemDependency": {
+      "code": "WorkItemDependency",
+      "label": "工作项依赖",
+      "description": "工作项之间的依赖关系",
+      "domain": "执行管理域",
+      "properties": {
+        "id": {
+          "type": "String",
+          "required": true
+        },
+        "workItemId": {
+          "type": "String",
+          "required": true
+        },
+        "dependsOnWorkItemId": {
+          "type": "String",
+          "required": true
+        },
+        "type": {
+          "type": "Enum",
+          "values": ["BLOCKS", "DEPENDS_ON"]
+        }
+      },
+      "color": "#95de64"
+    },
+    "WorkItemAttachment": {
+      "code": "WorkItemAttachment",
+      "label": "工作项附件",
+      "description": "工作项的附件文档",
+      "domain": "执行管理域",
+      "properties": {
+        "id": {
+          "type": "String",
+          "required": true
+        },
+        "workItemId": {
+          "type": "String",
+          "required": true
+        },
+        "fileName": {
+          "type": "String",
+          "required": true
+        },
+        "fileUrl": {
+          "type": "String"
+        },
+        "uploadedAt": {
+          "type": "DateTime"
+        },
+        "uploadedBy": {
+          "type": "String"
+        }
+      },
+      "color": "#b7eb8f"
+    },
+    "Repository": {
+      "code": "Repository",
+      "label": "代码仓库",
+      "description": "Git代码仓库",
+      "domain": "执行管理域",
+      "properties": {
+        "id": {
+          "type": "String",
+          "required": true
+        },
+        "name": {
+          "type": "String",
+          "required": true
+        },
+        "url": {
+          "type": "String"
+        },
+        "moduleId": {
+          "type": "String"
+        }
+      },
+      "color": "#5cdbd3"
+    },
+    "TestPlan": {
+      "code": "TestPlan",
+      "label": "测试计划",
+      "description": "模块需求的测试计划",
+      "domain": "质量管理域",
+      "properties": {
+        "id": {
+          "type": "String",
+          "required": true
+        },
+        "moduleRequirementId": {
+          "type": "String",
+          "required": true
+        },
+        "name": {
+          "type": "String",
+          "required": true
+        },
+        "type": {
+          "type": "Enum",
+          "values": ["UNIT", "INTEGRATION", "SYSTEM", "SIL", "HIL"]
+        },
+        "status": {
+          "type": "Enum",
+          "values": ["DRAFT", "APPROVED", "EXECUTING", "COMPLETED"]
+        }
+      },
+      "color": "#faad14"
+    },
+    "TestCase": {
+      "code": "TestCase",
+      "label": "测试用例",
+      "description": "测试计划中的具体测试用例",
+      "domain": "质量管理域",
+      "properties": {
+        "id": {
+          "type": "String",
+          "required": true
+        },
+        "testPlanId": {
+          "type": "String",
+          "required": true
+        },
+        "name": {
+          "type": "String",
+          "required": true
+        },
+        "steps": {
+          "type": "Text"
+        },
+        "expectedResult": {
+          "type": "Text"
+        },
+        "priority": {
+          "type": "Enum",
+          "values": ["HIGH", "MEDIUM", "LOW"]
+        }
+      },
+      "color": "#ffc53d"
+    },
+    "TestExecution": {
+      "code": "TestExecution",
+      "label": "测试执行",
+      "description": "测试用例的执行记录",
+      "domain": "质量管理域",
+      "properties": {
+        "id": {
+          "type": "String",
+          "required": true
+        },
+        "testCaseId": {
+          "type": "String",
+          "required": true
+        },
+        "buildId": {
+          "type": "String",
+          "required": true
+        },
+        "result": {
+          "type": "Enum",
+          "values": ["PASS", "FAIL", "BLOCKED"]
+        },
+        "executionTime": {
+          "type": "DateTime"
+        },
+        "executorId": {
+          "type": "String"
+        },
+        "notes": {
+          "type": "Text"
+        }
+      },
+      "color": "#ffd666"
+    },
+    "Defect": {
+      "code": "Defect",
+      "label": "缺陷",
+      "description": "测试发现的缺陷",
+      "domain": "质量管理域",
+      "properties": {
+        "id": {
+          "type": "String",
+          "required": true
+        },
+        "testExecutionId": {
+          "type": "String",
+          "required": true
+        },
+        "title": {
+          "type": "String",
+          "required": true
+        },
+        "description": {
+          "type": "Text"
+        },
+        "severity": {
+          "type": "Enum",
+          "values": ["CRITICAL", "MAJOR", "MINOR"]
+        },
+        "status": {
+          "type": "Enum",
+          "values": ["OPEN", "FIXED", "CLOSED"]
+        },
+        "assigneeId": {
+          "type": "String"
+        }
+      },
+      "color": "#ffe58f"
+    },
+    "Artifact": {
+      "code": "Artifact",
+      "label": "制品",
+      "description": "构建产出的制品",
+      "domain": "交付管理域",
+      "properties": {
+        "id": {
+          "type": "String",
+          "required": true
+        },
+        "buildId": {
+          "type": "String",
+          "required": true
+        },
+        "name": {
+          "type": "String",
+          "required": true
+        },
+        "version": {
+          "type": "String"
+        },
+        "storageUrl": {
+          "type": "String"
+        },
+        "createdAt": {
+          "type": "DateTime"
+        },
+        "type": {
+          "type": "Enum",
+          "values": ["BINARY", "IMAGE", "PACKAGE"]
+        }
+      },
+      "color": "#40a9ff"
+    },
+    "Release": {
+      "code": "Release",
+      "label": "发布",
+      "description": "制品的发布记录",
+      "domain": "交付管理域",
+      "properties": {
+        "id": {
+          "type": "String",
+          "required": true
+        },
+        "artifactId": {
+          "type": "String",
+          "required": true
+        },
+        "productVersionId": {
+          "type": "String",
+          "description": "关联产品版本"
+        },
+        "version": {
+          "type": "String",
+          "required": true
+        },
+        "releaseDate": {
+          "type": "Date"
+        },
+        "status": {
+          "type": "Enum",
+          "values": ["PLANNED", "RELEASED", "DEPRECATED"]
+        },
+        "releaseNotes": {
+          "type": "Text"
+        }
+      },
+      "color": "#69c0ff"
+    },
+    "Deployment": {
+      "code": "Deployment",
+      "label": "部署",
+      "description": "发布的部署记录",
+      "domain": "交付管理域",
+      "properties": {
+        "id": {
+          "type": "String",
+          "required": true
+        },
+        "releaseId": {
+          "type": "String",
+          "required": true
+        },
+        "environment": {
+          "type": "Enum",
+          "values": ["DEV", "TEST", "STAGING", "PROD"]
+        },
+        "deployTime": {
+          "type": "DateTime"
+        },
+        "status": {
+          "type": "Enum",
+          "values": ["SUCCESS", "FAILED"]
+        },
+        "deployedBy": {
+          "type": "String"
+        }
+      },
+      "color": "#91d5ff"
+    },
+    "MetricSet": {
+      "code": "MetricSet",
+      "label": "度量集",
+      "description": "度量指标的集合",
+      "domain": "度量管理域",
+      "properties": {
+        "id": {
+          "type": "String",
+          "required": true
+        },
+        "domainProjectId": {
+          "type": "String",
+          "required": true
+        },
+        "name": {
+          "type": "String",
+          "required": true
+        },
+        "description": {
+          "type": "Text"
+        }
+      },
+      "color": "#8c8c8c"
+    },
+    "Metric": {
+      "code": "Metric",
+      "label": "度量指标",
+      "description": "具体的度量指标定义",
+      "domain": "度量管理域",
+      "properties": {
+        "id": {
+          "type": "String",
+          "required": true
+        },
+        "metricSetId": {
+          "type": "String",
+          "required": true
+        },
+        "name": {
+          "type": "String",
+          "required": true
+        },
+        "type": {
+          "type": "Enum",
+          "values": ["VELOCITY", "QUALITY", "EFFICIENCY", "DELIVERY"]
+        },
+        "unit": {
+          "type": "String"
+        },
+        "formula": {
+          "type": "Text"
+        }
+      },
+      "color": "#bfbfbf"
+    },
+    "MetricValue": {
+      "code": "MetricValue",
+      "label": "度量数据",
+      "description": "度量指标的具体数值",
+      "domain": "度量管理域",
+      "properties": {
+        "id": {
+          "type": "String",
+          "required": true
+        },
+        "metricId": {
+          "type": "String",
+          "required": true
+        },
+        "value": {
+          "type": "Float",
+          "required": true
+        },
+        "measureDate": {
+          "type": "Date"
+        },
+        "context": {
+          "type": "Text"
+        }
+      },
+      "color": "#d9d9d9"
+    },
+    "User": {
+      "code": "User",
+      "label": "用户",
+      "description": "系统用户",
+      "domain": "用户管理域",
+      "properties": {
+        "id": {
+          "type": "String",
+          "required": true
+        },
+        "username": {
+          "type": "String",
+          "required": true
+        },
+        "email": {
+          "type": "String"
+        },
+        "name": {
+          "type": "String",
+          "required": true
+        },
+        "department": {
+          "type": "String"
+        },
+        "status": {
+          "type": "Enum",
+          "values": ["ACTIVE", "INACTIVE"]
+        }
+      },
+      "color": "#73d13d"
+    },
+    "Team": {
+      "code": "Team",
+      "label": "团队",
+      "description": "研发团队",
+      "domain": "用户管理域",
+      "properties": {
+        "id": {
+          "type": "String",
+          "required": true
+        },
+        "name": {
+          "type": "String",
+          "required": true
+        },
+        "domainProjectId": {
+          "type": "String"
+        },
+        "leaderId": {
+          "type": "String"
+        },
+        "description": {
+          "type": "Text"
+        }
+      },
+      "color": "#95de64"
+    },
+    "TeamMember": {
+      "code": "TeamMember",
+      "label": "团队成员",
+      "description": "团队成员关系",
+      "domain": "用户管理域",
+      "properties": {
+        "id": {
+          "type": "String",
+          "required": true
+        },
+        "teamId": {
+          "type": "String",
+          "required": true
+        },
+        "userId": {
+          "type": "String",
+          "required": true
+        },
+        "joinDate": {
+          "type": "Date"
+        },
+        "role": {
+          "type": "Enum",
+          "values": ["MEMBER", "LEAD"]
+        }
+      },
+      "color": "#b7eb8f"
+    },
+    "Role": {
+      "code": "Role",
+      "label": "角色",
+      "description": "用户角色定义",
+      "domain": "用户管理域",
+      "properties": {
+        "id": {
+          "type": "String",
+          "required": true
+        },
+        "name": {
+          "type": "String",
+          "required": true
+        },
+        "permissions": {
+          "type": "Text",
+          "description": "权限列表"
+        },
+        "description": {
+          "type": "Text"
+        }
+      },
+      "color": "#d3f261"
+    },
+    "UserRole": {
+      "code": "UserRole",
+      "label": "用户角色",
+      "description": "用户与角色的关联",
+      "domain": "用户管理域",
+      "properties": {
+        "id": {
+          "type": "String",
+          "required": true
+        },
+        "userId": {
+          "type": "String",
+          "required": true
+        },
+        "roleId": {
+          "type": "String",
+          "required": true
+        },
+        "assignedDate": {
+          "type": "Date"
+        }
+      },
+      "color": "#f6ffed"
+    }
+  },
+  "relationTypes": {
+    "has_domain_project": {
+      "label": "包含领域项目",
+      "from": ["Vehicle"],
+      "to": ["DomainProject"],
+      "description": "车型包含多个领域项目"
+    },
+    "has_milestone": {
+      "label": "包含里程碑",
+      "from": ["DomainProject"],
+      "to": ["ProjectMilestone"],
+      "description": "领域项目包含多个里程碑"
+    },
+    "has_baseline": {
+      "label": "包含基线",
+      "from": ["ProjectMilestone"],
+      "to": ["Baseline"],
+      "description": "里程碑包含基线"
+    },
+    "has_product": {
+      "label": "包含产品",
+      "from": ["ProductLine", "Vehicle"],
+      "to": ["Product"],
+      "description": "产品线或车型包含产品"
+    },
+    "has_product_version": {
+      "label": "有版本",
+      "from": ["Product"],
+      "to": ["ProductVersion"],
+      "description": "产品有多个版本"
+    },
+    "version_relates_baseline": {
+      "label": "关联基线",
+      "from": ["ProductVersion"],
+      "to": ["Baseline"],
+      "description": "产品版本关联基线"
+    },
+    "has_feature": {
+      "label": "包含特性",
+      "from": ["Product"],
+      "to": ["Feature"],
+      "description": "产品包含多个特性"
+    },
+    "has_module": {
+      "label": "包含模块",
+      "from": ["Feature"],
+      "to": ["Module"],
+      "description": "特性包含多个模块"
+    },
+    "feature_hierarchy": {
+      "label": "特性层次",
+      "from": ["Feature"],
+      "to": ["Feature"],
+      "description": "特性的父子关系"
+    },
+    "has_feature_package": {
+      "label": "打包",
+      "from": ["Product"],
+      "to": ["FeaturePackage"],
+      "description": "产品打包特性"
+    },
+    "package_has_version": {
+      "label": "包版本",
+      "from": ["FeaturePackage"],
+      "to": ["FeaturePackageVersion"],
+      "description": "特性包有版本"
+    },
+    "epic_to_fr": {
+      "label": "拆分为特性需求",
+      "from": ["Epic"],
+      "to": ["FeatureRequirement"],
+      "description": "Epic拆分为特性需求"
+    },
+    "fr_to_mr": {
+      "label": "拆分为模块需求",
+      "from": ["FeatureRequirement"],
+      "to": ["ModuleRequirement"],
+      "description": "特性需求拆分为模块需求"
+    },
+    "mr_to_ssts": {
+      "label": "细化为系统需求",
+      "from": ["ModuleRequirement"],
+      "to": ["SSTS"],
+      "description": "模块需求细化为系统需求"
+    },
+    "fr_has_version": {
+      "label": "需求版本",
+      "from": ["FeatureRequirement"],
+      "to": ["FeatureRequirementVersion"],
+      "description": "特性需求有版本"
+    },
+    "mr_has_version": {
+      "label": "需求版本",
+      "from": ["ModuleRequirement"],
+      "to": ["ModuleRequirementVersion"],
+      "description": "模块需求有版本"
+    },
+    "fr_has_prd": {
+      "label": "有PRD文档",
+      "from": ["FeatureRequirement"],
+      "to": ["PRDDocument"],
+      "description": "特性需求有PRD文档"
+    },
+    "feature_carries_fr": {
+      "label": "承载需求",
+      "from": ["Feature"],
+      "to": ["FeatureRequirement"],
+      "description": "业务特性承载特性需求"
+    },
+    "module_carries_mr": {
+      "label": "承载需求",
+      "from": ["Module"],
+      "to": ["ModuleRequirement"],
+      "description": "业务模块承载模块需求"
+    },
+    "epic_in_product": {
+      "label": "包含Epic",
+      "from": ["Product"],
+      "to": ["Epic"],
+      "description": "产品包含Epic"
+    },
+    "asset_has_version": {
+      "label": "资产版本",
+      "from": ["Asset"],
+      "to": ["AssetVersion"],
+      "description": "资产有多个版本"
+    },
+    "mr_uses_asset": {
+      "label": "使用资产",
+      "from": ["ModuleRequirement"],
+      "to": ["AssetUsage"],
+      "description": "模块需求使用资产"
+    },
+    "usage_refers_version": {
+      "label": "引用版本",
+      "from": ["AssetUsage"],
+      "to": ["AssetVersion"],
+      "description": "资产使用引用具体版本"
+    },
+    "asset_depends": {
+      "label": "依赖",
+      "from": ["AssetVersion"],
+      "to": ["AssetDependency"],
+      "description": "资产版本有依赖"
+    },
+    "dependency_targets": {
+      "label": "依赖目标",
+      "from": ["AssetDependency"],
+      "to": ["AssetVersion"],
+      "description": "依赖指向目标版本"
+    },
+    "project_has_pi": {
+      "label": "规划PI",
+      "from": ["DomainProject"],
+      "to": ["PI"],
+      "description": "领域项目规划PI"
+    },
+    "pi_has_sprint": {
+      "label": "包含Sprint",
+      "from": ["PI"],
+      "to": ["Sprint"],
+      "description": "PI包含多个Sprint"
+    },
+    "pi_targets_milestone": {
+      "label": "目标里程碑",
+      "from": ["PI"],
+      "to": ["ProjectMilestone"],
+      "description": "PI交付到里程碑"
+    },
+    "sprint_has_backlog": {
+      "label": "有待办",
+      "from": ["Sprint"],
+      "to": ["SprintBacklog"],
+      "description": "Sprint有待办列表"
+    },
+    "backlog_refers_mr": {
+      "label": "关联需求",
+      "from": ["SprintBacklog"],
+      "to": ["ModuleRequirement"],
+      "description": "待办关联模块需求"
+    },
+    "sprint_has_capacity": {
+      "label": "有容量",
+      "from": ["Sprint"],
+      "to": ["TeamCapacity"],
+      "description": "Sprint有团队容量"
+    },
+    "capacity_by_team": {
+      "label": "团队容量",
+      "from": ["TeamCapacity"],
+      "to": ["Team"],
+      "description": "容量由团队提供"
+    },
+    "sprint_has_workitem": {
+      "label": "包含工作项",
+      "from": ["Sprint"],
+      "to": ["WorkItem"],
+      "description": "Sprint包含工作项"
+    },
+    "workitem_implements_mr": {
+      "label": "实现需求",
+      "from": ["WorkItem"],
+      "to": ["ModuleRequirement"],
+      "description": "工作项实现模块需求"
+    },
+    "workitem_has_log": {
+      "label": "有工作日志",
+      "from": ["WorkItem"],
+      "to": ["WorkLog"],
+      "description": "工作项有工时记录"
+    },
+    "log_by_user": {
+      "label": "用户记录",
+      "from": ["WorkLog"],
+      "to": ["User"],
+      "description": "工时由用户记录"
+    },
+    "workitem_has_commit": {
+      "label": "关联提交",
+      "from": ["WorkItem"],
+      "to": ["CodeCommit"],
+      "description": "工作项关联代码提交"
+    },
+    "commit_in_repo": {
+      "label": "在仓库中",
+      "from": ["CodeCommit"],
+      "to": ["Repository"],
+      "description": "提交在仓库中"
+    },
+    "commit_triggers_build": {
+      "label": "触发构建",
+      "from": ["CodeCommit"],
+      "to": ["Build"],
+      "description": "提交触发构建"
+    },
+    "workitem_depends": {
+      "label": "依赖",
+      "from": ["WorkItem"],
+      "to": ["WorkItemDependency"],
+      "description": "工作项有依赖"
+    },
+    "dependency_targets_workitem": {
+      "label": "依赖目标",
+      "from": ["WorkItemDependency"],
+      "to": ["WorkItem"],
+      "description": "依赖指向工作项"
+    },
+    "workitem_has_attachment": {
+      "label": "有附件",
+      "from": ["WorkItem"],
+      "to": ["WorkItemAttachment"],
+      "description": "工作项有附件"
+    },
+    "mr_has_testplan": {
+      "label": "有测试计划",
+      "from": ["ModuleRequirement"],
+      "to": ["TestPlan"],
+      "description": "模块需求有测试计划"
+    },
+    "testplan_has_case": {
+      "label": "包含用例",
+      "from": ["TestPlan"],
+      "to": ["TestCase"],
+      "description": "测试计划包含用例"
+    },
+    "build_triggers_test": {
+      "label": "触发测试",
+      "from": ["Build"],
+      "to": ["TestExecution"],
+      "description": "构建触发测试执行"
+    },
+    "case_executes": {
+      "label": "被执行",
+      "from": ["TestCase"],
+      "to": ["TestExecution"],
+      "description": "测试用例被执行"
+    },
+    "execution_by_user": {
+      "label": "执行人",
+      "from": ["TestExecution"],
+      "to": ["User"],
+      "description": "测试由用户执行"
+    },
+    "execution_finds_defect": {
+      "label": "发现缺陷",
+      "from": ["TestExecution"],
+      "to": ["Defect"],
+      "description": "测试执行发现缺陷"
+    },
+    "defect_assigned": {
+      "label": "分配给",
+      "from": ["Defect"],
+      "to": ["User"],
+      "description": "缺陷分配给用户"
+    },
+    "build_produces_artifact": {
+      "label": "产出制品",
+      "from": ["Build"],
+      "to": ["Artifact"],
+      "description": "构建产出制品"
+    },
+    "artifact_releases": {
+      "label": "发布",
+      "from": ["Artifact"],
+      "to": ["Release"],
+      "description": "制品发布"
+    },
+    "release_relates_version": {
+      "label": "关联版本",
+      "from": ["Release"],
+      "to": ["ProductVersion"],
+      "description": "发布关联产品版本"
+    },
+    "release_deploys": {
+      "label": "部署",
+      "from": ["Release"],
+      "to": ["Deployment"],
+      "description": "发布进行部署"
+    },
+    "project_has_metricset": {
+      "label": "有度量集",
+      "from": ["DomainProject"],
+      "to": ["MetricSet"],
+      "description": "项目有度量集"
+    },
+    "metricset_has_metric": {
+      "label": "包含指标",
+      "from": ["MetricSet"],
+      "to": ["Metric"],
+      "description": "度量集包含指标"
+    },
+    "metric_has_value": {
+      "label": "有数据",
+      "from": ["Metric"],
+      "to": ["MetricValue"],
+      "description": "指标有度量数据"
+    },
+    "user_in_team": {
+      "label": "加入团队",
+      "from": ["User"],
+      "to": ["TeamMember"],
+      "description": "用户加入团队"
+    },
+    "team_has_member": {
+      "label": "有成员",
+      "from": ["Team"],
+      "to": ["TeamMember"],
+      "description": "团队有成员"
+    },
+    "user_has_role": {
+      "label": "有角色",
+      "from": ["User"],
+      "to": ["UserRole"],
+      "description": "用户有角色"
+    },
+    "role_assigned": {
+      "label": "分配给用户",
+      "from": ["Role"],
+      "to": ["UserRole"],
+      "description": "角色分配给用户"
+    },
+    "project_has_team": {
+      "label": "有团队",
+      "from": ["DomainProject"],
+      "to": ["Team"],
+      "description": "项目有团队"
+    },
+    "user_manages_project": {
+      "label": "管理项目",
+      "from": ["User"],
+      "to": ["DomainProject"],
+      "description": "用户管理项目"
+    },
+    "user_owns_epic": {
+      "label": "负责Epic",
+      "from": ["User"],
+      "to": ["Epic"],
+      "description": "用户负责Epic"
+    },
+    "user_assigned_workitem": {
+      "label": "分配工作项",
+      "from": ["User"],
+      "to": ["WorkItem"],
+      "description": "用户被分配工作项"
+    },
+    "team_owns_module": {
+      "label": "负责模块",
+      "from": ["Team"],
+      "to": ["Module"],
+      "description": "团队负责模块"
+    },
+    "team_owns_asset": {
+      "label": "负责资产",
+      "from": ["Team"],
+      "to": ["Asset"],
+      "description": "团队负责资产"
+    },
+    "fr_in_baseline": {
+      "label": "在基线中",
+      "from": ["FeatureRequirement"],
+      "to": ["Baseline"],
+      "description": "特性需求在基线中"
+    }
+  }
+}

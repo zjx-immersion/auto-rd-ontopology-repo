@@ -1,0 +1,3500 @@
+{
+  "id": "graph_b8eaaa22e5",
+  "metadata": {
+    "name": "智能座舱研发体系",
+    "description": "岚图智能座舱研发知识图谱，包含座舱OS和智能语音产品的完整研发流程，基于Schema V2.0",
+    "createdAt": "2026-01-17T17:34:53.677Z",
+    "updatedAt": "2026-01-17T17:34:53.677Z",
+    "schemaId": "core-domain-schema-v2",
+    "schemaVersion": "2.0.0",
+    "tags": [
+      "v2",
+      "auto-generated",
+      "Cockpit"
+    ],
+    "statistics": {
+      "nodeCount": 146,
+      "edgeCount": 144,
+      "lastAccessed": "2026-01-17T17:34:53.677Z"
+    }
+  },
+  "data": {
+    "nodes": [
+      {
+        "id": "VEH-001",
+        "type": "Vehicle",
+        "label": "岚图梦想家",
+        "data": {
+          "id": "VEH-001",
+          "name": "岚图梦想家",
+          "code": "VOYAH_DREAMER",
+          "platform": "ESSA",
+          "launchDate": "2023-06-01",
+          "status": "LAUNCHED"
+        }
+      },
+      {
+        "id": "DP-COCKPIT-001",
+        "type": "DomainProject",
+        "label": "梦想家智能座舱项目",
+        "data": {
+          "id": "DP-COCKPIT-001",
+          "vehicleId": "VEH-001",
+          "name": "梦想家智能座舱项目",
+          "domain": "COCKPIT",
+          "managerId": "USER-PM-002",
+          "description": "岚图梦想家车型的智能座舱系统研发项目，包含座舱OS和智能语音功能"
+        }
+      },
+      {
+        "id": "MS-COCKPIT-001",
+        "type": "ProjectMilestone",
+        "label": "SOP量产",
+        "data": {
+          "id": "MS-COCKPIT-001",
+          "domainProjectId": "DP-COCKPIT-001",
+          "name": "SOP量产",
+          "targetDate": "2023-06-01",
+          "type": "SOP",
+          "status": "COMPLETED"
+        }
+      },
+      {
+        "id": "MS-COCKPIT-002",
+        "type": "ProjectMilestone",
+        "label": "PVS生产验证",
+        "data": {
+          "id": "MS-COCKPIT-002",
+          "domainProjectId": "DP-COCKPIT-001",
+          "name": "PVS生产验证",
+          "targetDate": "2023-03-01",
+          "type": "PVS",
+          "status": "COMPLETED"
+        }
+      },
+      {
+        "id": "MS-COCKPIT-003",
+        "type": "ProjectMilestone",
+        "label": "DVS设计验证",
+        "data": {
+          "id": "MS-COCKPIT-003",
+          "domainProjectId": "DP-COCKPIT-001",
+          "name": "DVS设计验证",
+          "targetDate": "2022-12-01",
+          "type": "DVS",
+          "status": "COMPLETED"
+        }
+      },
+      {
+        "id": "MS-COCKPIT-004",
+        "type": "ProjectMilestone",
+        "label": "样车阶段",
+        "data": {
+          "id": "MS-COCKPIT-004",
+          "domainProjectId": "DP-COCKPIT-001",
+          "name": "样车阶段",
+          "targetDate": "2022-09-01",
+          "type": "PROTOTYPE",
+          "status": "COMPLETED"
+        }
+      },
+      {
+        "id": "BL-COCKPIT-SOP-001",
+        "type": "Baseline",
+        "label": "SOP基线",
+        "data": {
+          "id": "BL-COCKPIT-SOP-001",
+          "milestoneId": "MS-COCKPIT-001",
+          "name": "SOP基线",
+          "version": "V1.0",
+          "freezeDate": "2023-05-01",
+          "scope": "座舱OS V1.0 + 智能语音助手 + 多屏联动 + 车载应用生态"
+        }
+      },
+      {
+        "id": "BL-COCKPIT-PVS-001",
+        "type": "Baseline",
+        "label": "PVS基线",
+        "data": {
+          "id": "BL-COCKPIT-PVS-001",
+          "milestoneId": "MS-COCKPIT-002",
+          "name": "PVS基线",
+          "version": "V0.9",
+          "freezeDate": "2023-02-01",
+          "scope": "座舱OS基础功能 + 智能语音基础功能"
+        }
+      },
+      {
+        "id": "BL-COCKPIT-DVS-001",
+        "type": "Baseline",
+        "label": "DVS基线",
+        "data": {
+          "id": "BL-COCKPIT-DVS-001",
+          "milestoneId": "MS-COCKPIT-003",
+          "name": "DVS基线",
+          "version": "V0.8",
+          "freezeDate": "2022-11-01",
+          "scope": "核心框架验证 + 基础功能验证"
+        }
+      },
+      {
+        "id": "PL-COCKPIT-001",
+        "type": "ProductLine",
+        "label": "智能座舱产品线",
+        "data": {
+          "id": "PL-COCKPIT-001",
+          "name": "智能座舱产品线",
+          "code": "COCKPIT",
+          "type": "COCKPIT",
+          "description": "智能座舱系统产品线，包含座舱OS、HMI、语音、应用生态等"
+        }
+      },
+      {
+        "id": "PROD-COCKPIT-OS-001",
+        "type": "Product",
+        "label": "座舱OS产品",
+        "data": {
+          "id": "PROD-COCKPIT-OS-001",
+          "productLineId": "PL-COCKPIT-001",
+          "name": "座舱OS产品",
+          "code": "COCKPIT_OS",
+          "description": "智能座舱操作系统，基于Android Automotive OS定制开发"
+        }
+      },
+      {
+        "id": "PROD-VOICE-001",
+        "type": "Product",
+        "label": "智能语音产品",
+        "data": {
+          "id": "PROD-VOICE-001",
+          "productLineId": "PL-COCKPIT-001",
+          "name": "智能语音产品",
+          "code": "VOICE_ASSISTANT",
+          "description": "智能语音助手系统，支持语音唤醒、语音识别、语音合成、多轮对话"
+        }
+      },
+      {
+        "id": "PV-COCKPIT-OS-V1.0",
+        "type": "ProductVersion",
+        "label": "PV-COCKPIT-OS-V1.0",
+        "data": {
+          "id": "PV-COCKPIT-OS-V1.0",
+          "productId": "PROD-COCKPIT-OS-001",
+          "version": "V1.0",
+          "baselineId": "BL-COCKPIT-SOP-001",
+          "releaseDate": "2023-06-01",
+          "status": "RELEASED"
+        }
+      },
+      {
+        "id": "PV-COCKPIT-OS-V1.1",
+        "type": "ProductVersion",
+        "label": "PV-COCKPIT-OS-V1.1",
+        "data": {
+          "id": "PV-COCKPIT-OS-V1.1",
+          "productId": "PROD-COCKPIT-OS-001",
+          "version": "V1.1",
+          "baselineId": null,
+          "releaseDate": "2023-12-01",
+          "status": "DEVELOPING"
+        }
+      },
+      {
+        "id": "PV-VOICE-V1.0",
+        "type": "ProductVersion",
+        "label": "PV-VOICE-V1.0",
+        "data": {
+          "id": "PV-VOICE-V1.0",
+          "productId": "PROD-VOICE-001",
+          "version": "V1.0",
+          "baselineId": "BL-COCKPIT-SOP-001",
+          "releaseDate": "2023-06-01",
+          "status": "RELEASED"
+        }
+      },
+      {
+        "id": "FEAT-OS-001",
+        "type": "Feature",
+        "label": "多屏联动",
+        "data": {
+          "id": "FEAT-OS-001",
+          "productId": "PROD-COCKPIT-OS-001",
+          "parentFeatureId": null,
+          "name": "多屏联动",
+          "code": "MULTI_SCREEN",
+          "description": "支持仪表、中控、副驾、后排多屏联动显示"
+        }
+      },
+      {
+        "id": "FEAT-OS-002",
+        "type": "Feature",
+        "label": "应用生态",
+        "data": {
+          "id": "FEAT-OS-002",
+          "productId": "PROD-COCKPIT-OS-001",
+          "parentFeatureId": null,
+          "name": "应用生态",
+          "code": "APP_ECOSYSTEM",
+          "description": "车载应用生态，支持第三方应用安装和管理"
+        }
+      },
+      {
+        "id": "FEAT-OS-003",
+        "type": "Feature",
+        "label": "车机互联",
+        "data": {
+          "id": "FEAT-OS-003",
+          "productId": "PROD-COCKPIT-OS-001",
+          "parentFeatureId": null,
+          "name": "车机互联",
+          "code": "PHONE_PROJECTION",
+          "description": "支持CarPlay、HiCar、CarLife等手机投屏"
+        }
+      },
+      {
+        "id": "FEAT-OS-004",
+        "type": "Feature",
+        "label": "系统设置",
+        "data": {
+          "id": "FEAT-OS-004",
+          "productId": "PROD-COCKPIT-OS-001",
+          "parentFeatureId": null,
+          "name": "系统设置",
+          "code": "SYSTEM_SETTINGS",
+          "description": "系统设置和个性化配置"
+        }
+      },
+      {
+        "id": "FEAT-VOICE-001",
+        "type": "Feature",
+        "label": "语音唤醒",
+        "data": {
+          "id": "FEAT-VOICE-001",
+          "productId": "PROD-VOICE-001",
+          "parentFeatureId": null,
+          "name": "语音唤醒",
+          "code": "VOICE_WAKEUP",
+          "description": "支持自定义唤醒词的语音唤醒功能"
+        }
+      },
+      {
+        "id": "FEAT-VOICE-002",
+        "type": "Feature",
+        "label": "语音识别",
+        "data": {
+          "id": "FEAT-VOICE-002",
+          "productId": "PROD-VOICE-001",
+          "parentFeatureId": null,
+          "name": "语音识别",
+          "code": "ASR",
+          "description": "自动语音识别，支持普通话、方言、英语"
+        }
+      },
+      {
+        "id": "FEAT-VOICE-003",
+        "type": "Feature",
+        "label": "语义理解",
+        "data": {
+          "id": "FEAT-VOICE-003",
+          "productId": "PROD-VOICE-001",
+          "parentFeatureId": null,
+          "name": "语义理解",
+          "code": "NLU",
+          "description": "自然语言理解，支持多轮对话和上下文理解"
+        }
+      },
+      {
+        "id": "FEAT-VOICE-004",
+        "type": "Feature",
+        "label": "语音合成",
+        "data": {
+          "id": "FEAT-VOICE-004",
+          "productId": "PROD-VOICE-001",
+          "parentFeatureId": null,
+          "name": "语音合成",
+          "code": "TTS",
+          "description": "文本转语音，支持多种音色和情感"
+        }
+      },
+      {
+        "id": "FEAT-VOICE-005",
+        "type": "Feature",
+        "label": "车控指令",
+        "data": {
+          "id": "FEAT-VOICE-005",
+          "productId": "PROD-VOICE-001",
+          "parentFeatureId": null,
+          "name": "车控指令",
+          "code": "VEHICLE_CONTROL",
+          "description": "通过语音控制车辆功能（空调、车窗、座椅等）"
+        }
+      },
+      {
+        "id": "MOD-OS-001",
+        "type": "Module",
+        "label": "显示管理模块",
+        "data": {
+          "id": "MOD-OS-001",
+          "featureId": "FEAT-OS-001",
+          "name": "显示管理模块",
+          "code": "DISPLAY_MANAGER",
+          "ownerTeamId": "TEAM-COCKPIT-FRAMEWORK",
+          "description": "多屏显示管理和窗口管理"
+        }
+      },
+      {
+        "id": "MOD-OS-002",
+        "type": "Module",
+        "label": "屏幕同步模块",
+        "data": {
+          "id": "MOD-OS-002",
+          "featureId": "FEAT-OS-001",
+          "name": "屏幕同步模块",
+          "code": "SCREEN_SYNC",
+          "ownerTeamId": "TEAM-COCKPIT-FRAMEWORK",
+          "description": "多屏内容同步和联动控制"
+        }
+      },
+      {
+        "id": "MOD-OS-003",
+        "type": "Module",
+        "label": "应用管理模块",
+        "data": {
+          "id": "MOD-OS-003",
+          "featureId": "FEAT-OS-002",
+          "name": "应用管理模块",
+          "code": "APP_MANAGER",
+          "ownerTeamId": "TEAM-COCKPIT-APP",
+          "description": "应用安装、卸载、更新、权限管理"
+        }
+      },
+      {
+        "id": "MOD-OS-004",
+        "type": "Module",
+        "label": "应用商店模块",
+        "data": {
+          "id": "MOD-OS-004",
+          "featureId": "FEAT-OS-002",
+          "name": "应用商店模块",
+          "code": "APP_STORE",
+          "ownerTeamId": "TEAM-COCKPIT-APP",
+          "description": "车载应用商店"
+        }
+      },
+      {
+        "id": "MOD-OS-005",
+        "type": "Module",
+        "label": "CarPlay模块",
+        "data": {
+          "id": "MOD-OS-005",
+          "featureId": "FEAT-OS-003",
+          "name": "CarPlay模块",
+          "code": "CARPLAY",
+          "ownerTeamId": "TEAM-COCKPIT-CONNECTIVITY",
+          "description": "Apple CarPlay集成"
+        }
+      },
+      {
+        "id": "MOD-OS-006",
+        "type": "Module",
+        "label": "HiCar模块",
+        "data": {
+          "id": "MOD-OS-006",
+          "featureId": "FEAT-OS-003",
+          "name": "HiCar模块",
+          "code": "HICAR",
+          "ownerTeamId": "TEAM-COCKPIT-CONNECTIVITY",
+          "description": "华为HiCar集成"
+        }
+      },
+      {
+        "id": "MOD-VOICE-001",
+        "type": "Module",
+        "label": "唤醒词检测模块",
+        "data": {
+          "id": "MOD-VOICE-001",
+          "featureId": "FEAT-VOICE-001",
+          "name": "唤醒词检测模块",
+          "code": "WAKEUP_DETECTION",
+          "ownerTeamId": "TEAM-COCKPIT-VOICE",
+          "description": "本地唤醒词检测引擎"
+        }
+      },
+      {
+        "id": "MOD-VOICE-002",
+        "type": "Module",
+        "label": "ASR引擎模块",
+        "data": {
+          "id": "MOD-VOICE-002",
+          "featureId": "FEAT-VOICE-002",
+          "name": "ASR引擎模块",
+          "code": "ASR_ENGINE",
+          "ownerTeamId": "TEAM-COCKPIT-VOICE",
+          "description": "语音识别引擎，支持云端和本地"
+        }
+      },
+      {
+        "id": "MOD-VOICE-003",
+        "type": "Module",
+        "label": "NLU引擎模块",
+        "data": {
+          "id": "MOD-VOICE-003",
+          "featureId": "FEAT-VOICE-003",
+          "name": "NLU引擎模块",
+          "code": "NLU_ENGINE",
+          "ownerTeamId": "TEAM-COCKPIT-VOICE",
+          "description": "自然语言理解引擎"
+        }
+      },
+      {
+        "id": "MOD-VOICE-004",
+        "type": "Module",
+        "label": "对话管理模块",
+        "data": {
+          "id": "MOD-VOICE-004",
+          "featureId": "FEAT-VOICE-003",
+          "name": "对话管理模块",
+          "code": "DIALOG_MANAGER",
+          "ownerTeamId": "TEAM-COCKPIT-VOICE",
+          "description": "多轮对话管理和上下文管理"
+        }
+      },
+      {
+        "id": "MOD-VOICE-005",
+        "type": "Module",
+        "label": "TTS引擎模块",
+        "data": {
+          "id": "MOD-VOICE-005",
+          "featureId": "FEAT-VOICE-004",
+          "name": "TTS引擎模块",
+          "code": "TTS_ENGINE",
+          "ownerTeamId": "TEAM-COCKPIT-VOICE",
+          "description": "语音合成引擎"
+        }
+      },
+      {
+        "id": "MOD-VOICE-006",
+        "type": "Module",
+        "label": "车控指令解析模块",
+        "data": {
+          "id": "MOD-VOICE-006",
+          "featureId": "FEAT-VOICE-005",
+          "name": "车控指令解析模块",
+          "code": "VEHICLE_CMD_PARSER",
+          "ownerTeamId": "TEAM-COCKPIT-VOICE",
+          "description": "车控指令解析和执行"
+        }
+      },
+      {
+        "id": "FP-COCKPIT-BASIC",
+        "type": "FeaturePackage",
+        "label": "座舱OS基础包",
+        "data": {
+          "id": "FP-COCKPIT-BASIC",
+          "productId": "PROD-COCKPIT-OS-001",
+          "name": "座舱OS基础包",
+          "description": "包含多屏联动 + 基础应用生态"
+        }
+      },
+      {
+        "id": "FP-COCKPIT-ADVANCED",
+        "type": "FeaturePackage",
+        "label": "座舱OS高级包",
+        "data": {
+          "id": "FP-COCKPIT-ADVANCED",
+          "productId": "PROD-COCKPIT-OS-001",
+          "name": "座舱OS高级包",
+          "description": "包含多屏联动 + 完整应用生态 + 车机互联"
+        }
+      },
+      {
+        "id": "FP-VOICE-FULL",
+        "type": "FeaturePackage",
+        "label": "智能语音完整包",
+        "data": {
+          "id": "FP-VOICE-FULL",
+          "productId": "PROD-VOICE-001",
+          "name": "智能语音完整包",
+          "description": "包含所有语音功能：唤醒、识别、理解、合成、车控"
+        }
+      },
+      {
+        "id": "EPIC-OS-001",
+        "type": "Epic",
+        "label": "多屏联动核心功能",
+        "data": {
+          "id": "EPIC-OS-001",
+          "productId": "PROD-COCKPIT-OS-001",
+          "name": "多屏联动核心功能",
+          "description": "实现仪表、中控、副驾、后排多屏联动显示",
+          "ownerId": "USER-PO-003",
+          "priority": "HIGH",
+          "status": "DONE"
+        }
+      },
+      {
+        "id": "EPIC-OS-002",
+        "type": "Epic",
+        "label": "应用生态建设",
+        "data": {
+          "id": "EPIC-OS-002",
+          "productId": "PROD-COCKPIT-OS-001",
+          "name": "应用生态建设",
+          "description": "建设车载应用生态，支持第三方应用",
+          "ownerId": "USER-PO-003",
+          "priority": "HIGH",
+          "status": "DONE"
+        }
+      },
+      {
+        "id": "EPIC-VOICE-001",
+        "type": "Epic",
+        "label": "智能语音核心功能",
+        "data": {
+          "id": "EPIC-VOICE-001",
+          "productId": "PROD-VOICE-001",
+          "name": "智能语音核心功能",
+          "description": "实现语音唤醒、识别、理解、合成核心功能",
+          "ownerId": "USER-PO-004",
+          "priority": "HIGH",
+          "status": "DONE"
+        }
+      },
+      {
+        "id": "EPIC-VOICE-002",
+        "type": "Epic",
+        "label": "车控语音指令",
+        "data": {
+          "id": "EPIC-VOICE-002",
+          "productId": "PROD-VOICE-001",
+          "name": "车控语音指令",
+          "description": "实现通过语音控制车辆功能",
+          "ownerId": "USER-PO-004",
+          "priority": "MEDIUM",
+          "status": "DONE"
+        }
+      },
+      {
+        "id": "FR-OS-001",
+        "type": "FeatureRequirement",
+        "label": "多屏显示管理需求",
+        "data": {
+          "id": "FR-OS-001",
+          "epicId": "EPIC-OS-001",
+          "featureId": "FEAT-OS-001",
+          "name": "多屏显示管理需求",
+          "description": "支持4块屏幕的独立显示和联动控制",
+          "priority": "HIGH",
+          "status": "DONE"
+        }
+      },
+      {
+        "id": "FR-OS-002",
+        "type": "FeatureRequirement",
+        "label": "应用生态需求",
+        "data": {
+          "id": "FR-OS-002",
+          "epicId": "EPIC-OS-002",
+          "featureId": "FEAT-OS-002",
+          "name": "应用生态需求",
+          "description": "支持第三方应用安装、管理、权限控制",
+          "priority": "HIGH",
+          "status": "DONE"
+        }
+      },
+      {
+        "id": "FR-OS-003",
+        "type": "FeatureRequirement",
+        "label": "车机互联需求",
+        "data": {
+          "id": "FR-OS-003",
+          "epicId": "EPIC-OS-002",
+          "featureId": "FEAT-OS-003",
+          "name": "车机互联需求",
+          "description": "支持CarPlay、HiCar手机投屏",
+          "priority": "MEDIUM",
+          "status": "DONE"
+        }
+      },
+      {
+        "id": "FR-VOICE-001",
+        "type": "FeatureRequirement",
+        "label": "语音唤醒需求",
+        "data": {
+          "id": "FR-VOICE-001",
+          "epicId": "EPIC-VOICE-001",
+          "featureId": "FEAT-VOICE-001",
+          "name": "语音唤醒需求",
+          "description": "支持自定义唤醒词，唤醒率>95%，误唤醒率<1次/天",
+          "priority": "HIGH",
+          "status": "DONE"
+        }
+      },
+      {
+        "id": "FR-VOICE-002",
+        "type": "FeatureRequirement",
+        "label": "语音识别需求",
+        "data": {
+          "id": "FR-VOICE-002",
+          "epicId": "EPIC-VOICE-001",
+          "featureId": "FEAT-VOICE-002",
+          "name": "语音识别需求",
+          "description": "支持普通话、方言、英语识别，准确率>95%",
+          "priority": "HIGH",
+          "status": "DONE"
+        }
+      },
+      {
+        "id": "FR-VOICE-003",
+        "type": "FeatureRequirement",
+        "label": "语义理解需求",
+        "data": {
+          "id": "FR-VOICE-003",
+          "epicId": "EPIC-VOICE-001",
+          "featureId": "FEAT-VOICE-003",
+          "name": "语义理解需求",
+          "description": "支持多轮对话和上下文理解，理解准确率>90%",
+          "priority": "HIGH",
+          "status": "DONE"
+        }
+      },
+      {
+        "id": "FR-VOICE-004",
+        "type": "FeatureRequirement",
+        "label": "车控指令需求",
+        "data": {
+          "id": "FR-VOICE-004",
+          "epicId": "EPIC-VOICE-002",
+          "featureId": "FEAT-VOICE-005",
+          "name": "车控指令需求",
+          "description": "支持空调、车窗、座椅等车辆功能的语音控制",
+          "priority": "MEDIUM",
+          "status": "DONE"
+        }
+      },
+      {
+        "id": "MR-OS-001",
+        "type": "ModuleRequirement",
+        "label": "多屏显示架构需求",
+        "data": {
+          "id": "MR-OS-001",
+          "featureRequirementId": "FR-OS-001",
+          "moduleId": "MOD-OS-001",
+          "name": "多屏显示架构需求",
+          "description": "基于Android SurfaceFlinger的多屏显示架构",
+          "type": "FUNCTIONAL",
+          "status": "DONE"
+        }
+      },
+      {
+        "id": "MR-OS-002",
+        "type": "ModuleRequirement",
+        "label": "屏幕同步协议需求",
+        "data": {
+          "id": "MR-OS-002",
+          "featureRequirementId": "FR-OS-001",
+          "moduleId": "MOD-OS-002",
+          "name": "屏幕同步协议需求",
+          "description": "多屏内容同步协议和数据传输",
+          "type": "FUNCTIONAL",
+          "status": "DONE"
+        }
+      },
+      {
+        "id": "MR-OS-003",
+        "type": "ModuleRequirement",
+        "label": "应用管理框架需求",
+        "data": {
+          "id": "MR-OS-003",
+          "featureRequirementId": "FR-OS-002",
+          "moduleId": "MOD-OS-003",
+          "name": "应用管理框架需求",
+          "description": "基于Android PackageManager的应用管理框架",
+          "type": "FUNCTIONAL",
+          "status": "DONE"
+        }
+      },
+      {
+        "id": "MR-OS-004",
+        "type": "ModuleRequirement",
+        "label": "应用商店需求",
+        "data": {
+          "id": "MR-OS-004",
+          "featureRequirementId": "FR-OS-002",
+          "moduleId": "MOD-OS-004",
+          "name": "应用商店需求",
+          "description": "车载应用商店，支持应用浏览、下载、安装",
+          "type": "FUNCTIONAL",
+          "status": "DONE"
+        }
+      },
+      {
+        "id": "MR-OS-005",
+        "type": "ModuleRequirement",
+        "label": "CarPlay集成需求",
+        "data": {
+          "id": "MR-OS-005",
+          "featureRequirementId": "FR-OS-003",
+          "moduleId": "MOD-OS-005",
+          "name": "CarPlay集成需求",
+          "description": "集成Apple CarPlay SDK",
+          "type": "FUNCTIONAL",
+          "status": "DONE"
+        }
+      },
+      {
+        "id": "MR-OS-006",
+        "type": "ModuleRequirement",
+        "label": "显示性能需求",
+        "data": {
+          "id": "MR-OS-006",
+          "featureRequirementId": "FR-OS-001",
+          "moduleId": "MOD-OS-001",
+          "name": "显示性能需求",
+          "description": "多屏显示帧率>60fps，延迟<16ms",
+          "type": "NON_FUNCTIONAL",
+          "status": "DONE"
+        }
+      },
+      {
+        "id": "MR-VOICE-001",
+        "type": "ModuleRequirement",
+        "label": "唤醒词检测算法需求",
+        "data": {
+          "id": "MR-VOICE-001",
+          "featureRequirementId": "FR-VOICE-001",
+          "moduleId": "MOD-VOICE-001",
+          "name": "唤醒词检测算法需求",
+          "description": "基于深度学习的唤醒词检测算法",
+          "type": "FUNCTIONAL",
+          "status": "DONE"
+        }
+      },
+      {
+        "id": "MR-VOICE-002",
+        "type": "ModuleRequirement",
+        "label": "ASR引擎集成需求",
+        "data": {
+          "id": "MR-VOICE-002",
+          "featureRequirementId": "FR-VOICE-002",
+          "moduleId": "MOD-VOICE-002",
+          "name": "ASR引擎集成需求",
+          "description": "集成科大讯飞ASR引擎",
+          "type": "FUNCTIONAL",
+          "status": "DONE"
+        }
+      },
+      {
+        "id": "MR-VOICE-003",
+        "type": "ModuleRequirement",
+        "label": "NLU引擎集成需求",
+        "data": {
+          "id": "MR-VOICE-003",
+          "featureRequirementId": "FR-VOICE-003",
+          "moduleId": "MOD-VOICE-003",
+          "name": "NLU引擎集成需求",
+          "description": "集成阿里云NLU引擎",
+          "type": "FUNCTIONAL",
+          "status": "DONE"
+        }
+      },
+      {
+        "id": "MR-VOICE-004",
+        "type": "ModuleRequirement",
+        "label": "对话管理需求",
+        "data": {
+          "id": "MR-VOICE-004",
+          "featureRequirementId": "FR-VOICE-003",
+          "moduleId": "MOD-VOICE-004",
+          "name": "对话管理需求",
+          "description": "多轮对话管理和上下文管理算法",
+          "type": "FUNCTIONAL",
+          "status": "DONE"
+        }
+      },
+      {
+        "id": "MR-VOICE-005",
+        "type": "ModuleRequirement",
+        "label": "车控指令解析需求",
+        "data": {
+          "id": "MR-VOICE-005",
+          "featureRequirementId": "FR-VOICE-004",
+          "moduleId": "MOD-VOICE-006",
+          "name": "车控指令解析需求",
+          "description": "车控指令解析和CAN总线通信",
+          "type": "FUNCTIONAL",
+          "status": "DONE"
+        }
+      },
+      {
+        "id": "MR-VOICE-006",
+        "type": "ModuleRequirement",
+        "label": "唤醒性能需求",
+        "data": {
+          "id": "MR-VOICE-006",
+          "featureRequirementId": "FR-VOICE-001",
+          "moduleId": "MOD-VOICE-001",
+          "name": "唤醒性能需求",
+          "description": "唤醒响应时间<500ms，唤醒率>95%",
+          "type": "NON_FUNCTIONAL",
+          "status": "DONE"
+        }
+      },
+      {
+        "id": "ASSET-COCKPIT-001",
+        "type": "Asset",
+        "label": "Android Automotive OS",
+        "data": {
+          "id": "ASSET-COCKPIT-001",
+          "name": "Android Automotive OS",
+          "type": "FRAMEWORK",
+          "ownerTeamId": "TEAM-COCKPIT-FRAMEWORK",
+          "description": "Google Android Automotive OS基础框架",
+          "maturityLevel": "L5"
+        }
+      },
+      {
+        "id": "ASSET-COCKPIT-002",
+        "type": "Asset",
+        "label": "多屏显示框架",
+        "data": {
+          "id": "ASSET-COCKPIT-002",
+          "name": "多屏显示框架",
+          "type": "FRAMEWORK",
+          "ownerTeamId": "TEAM-COCKPIT-FRAMEWORK",
+          "description": "自研多屏显示管理框架",
+          "maturityLevel": "L4"
+        }
+      },
+      {
+        "id": "ASSET-COCKPIT-003",
+        "type": "Asset",
+        "label": "科大讯飞ASR SDK",
+        "data": {
+          "id": "ASSET-COCKPIT-003",
+          "name": "科大讯飞ASR SDK",
+          "type": "SDK",
+          "ownerTeamId": "TEAM-COCKPIT-VOICE",
+          "description": "科大讯飞语音识别SDK",
+          "maturityLevel": "L5"
+        }
+      },
+      {
+        "id": "ASSET-COCKPIT-004",
+        "type": "Asset",
+        "label": "阿里云NLU SDK",
+        "data": {
+          "id": "ASSET-COCKPIT-004",
+          "name": "阿里云NLU SDK",
+          "type": "SDK",
+          "ownerTeamId": "TEAM-COCKPIT-VOICE",
+          "description": "阿里云自然语言理解SDK",
+          "maturityLevel": "L5"
+        }
+      },
+      {
+        "id": "ASSET-COCKPIT-005",
+        "type": "Asset",
+        "label": "唤醒词检测模型",
+        "data": {
+          "id": "ASSET-COCKPIT-005",
+          "name": "唤醒词检测模型",
+          "type": "MODEL",
+          "ownerTeamId": "TEAM-COCKPIT-VOICE",
+          "description": "基于CRNN的唤醒词检测深度学习模型",
+          "maturityLevel": "L4"
+        }
+      },
+      {
+        "id": "ASSET-COCKPIT-006",
+        "type": "Asset",
+        "label": "CarPlay SDK",
+        "data": {
+          "id": "ASSET-COCKPIT-006",
+          "name": "CarPlay SDK",
+          "type": "SDK",
+          "ownerTeamId": "TEAM-COCKPIT-CONNECTIVITY",
+          "description": "Apple CarPlay官方SDK",
+          "maturityLevel": "L5"
+        }
+      },
+      {
+        "id": "AV-COCKPIT-001-V12",
+        "type": "AssetVersion",
+        "label": "AV-COCKPIT-001-V12",
+        "data": {
+          "id": "AV-COCKPIT-001-V12",
+          "assetId": "ASSET-COCKPIT-001",
+          "version": "Android 12",
+          "releaseDate": "2022-06-01",
+          "status": "RELEASED"
+        }
+      },
+      {
+        "id": "AV-COCKPIT-002-V1.0",
+        "type": "AssetVersion",
+        "label": "AV-COCKPIT-002-V1.0",
+        "data": {
+          "id": "AV-COCKPIT-002-V1.0",
+          "assetId": "ASSET-COCKPIT-002",
+          "version": "V1.0",
+          "releaseDate": "2022-09-01",
+          "status": "RELEASED"
+        }
+      },
+      {
+        "id": "AV-COCKPIT-003-V5.0",
+        "type": "AssetVersion",
+        "label": "AV-COCKPIT-003-V5.0",
+        "data": {
+          "id": "AV-COCKPIT-003-V5.0",
+          "assetId": "ASSET-COCKPIT-003",
+          "version": "V5.0",
+          "releaseDate": "2022-06-01",
+          "status": "RELEASED"
+        }
+      },
+      {
+        "id": "AV-COCKPIT-004-V3.0",
+        "type": "AssetVersion",
+        "label": "AV-COCKPIT-004-V3.0",
+        "data": {
+          "id": "AV-COCKPIT-004-V3.0",
+          "assetId": "ASSET-COCKPIT-004",
+          "version": "V3.0",
+          "releaseDate": "2022-06-01",
+          "status": "RELEASED"
+        }
+      },
+      {
+        "id": "AV-COCKPIT-005-V1.0",
+        "type": "AssetVersion",
+        "label": "AV-COCKPIT-005-V1.0",
+        "data": {
+          "id": "AV-COCKPIT-005-V1.0",
+          "assetId": "ASSET-COCKPIT-005",
+          "version": "V1.0",
+          "releaseDate": "2022-09-01",
+          "status": "RELEASED"
+        }
+      },
+      {
+        "id": "AU-COCKPIT-001",
+        "type": "AssetUsage",
+        "label": "AU-COCKPIT-001",
+        "data": {
+          "id": "AU-COCKPIT-001",
+          "assetVersionId": "AV-COCKPIT-001-V12",
+          "moduleRequirementId": "MR-OS-001",
+          "usageType": "REUSE",
+          "customizationLevel": "MAJOR"
+        }
+      },
+      {
+        "id": "AU-COCKPIT-002",
+        "type": "AssetUsage",
+        "label": "AU-COCKPIT-002",
+        "data": {
+          "id": "AU-COCKPIT-002",
+          "assetVersionId": "AV-COCKPIT-002-V1.0",
+          "moduleRequirementId": "MR-OS-001",
+          "usageType": "REUSE",
+          "customizationLevel": "NONE"
+        }
+      },
+      {
+        "id": "AU-COCKPIT-003",
+        "type": "AssetUsage",
+        "label": "AU-COCKPIT-003",
+        "data": {
+          "id": "AU-COCKPIT-003",
+          "assetVersionId": "AV-COCKPIT-003-V5.0",
+          "moduleRequirementId": "MR-VOICE-002",
+          "usageType": "REUSE",
+          "customizationLevel": "MINOR"
+        }
+      },
+      {
+        "id": "AU-COCKPIT-004",
+        "type": "AssetUsage",
+        "label": "AU-COCKPIT-004",
+        "data": {
+          "id": "AU-COCKPIT-004",
+          "assetVersionId": "AV-COCKPIT-004-V3.0",
+          "moduleRequirementId": "MR-VOICE-003",
+          "usageType": "REUSE",
+          "customizationLevel": "MINOR"
+        }
+      },
+      {
+        "id": "AU-COCKPIT-005",
+        "type": "AssetUsage",
+        "label": "AU-COCKPIT-005",
+        "data": {
+          "id": "AU-COCKPIT-005",
+          "assetVersionId": "AV-COCKPIT-005-V1.0",
+          "moduleRequirementId": "MR-VOICE-001",
+          "usageType": "REUSE",
+          "customizationLevel": "NONE"
+        }
+      },
+      {
+        "id": "PI-COCKPIT-2022-Q3",
+        "type": "PI",
+        "label": "2022 Q3 PI",
+        "data": {
+          "id": "PI-COCKPIT-2022-Q3",
+          "domainProjectId": "DP-COCKPIT-001",
+          "name": "2022 Q3 PI",
+          "startDate": "2022-07-01",
+          "endDate": "2022-09-30",
+          "status": "COMPLETED"
+        }
+      },
+      {
+        "id": "PI-COCKPIT-2022-Q4",
+        "type": "PI",
+        "label": "2022 Q4 PI",
+        "data": {
+          "id": "PI-COCKPIT-2022-Q4",
+          "domainProjectId": "DP-COCKPIT-001",
+          "name": "2022 Q4 PI",
+          "startDate": "2022-10-01",
+          "endDate": "2022-12-31",
+          "status": "COMPLETED"
+        }
+      },
+      {
+        "id": "PI-COCKPIT-2023-Q1",
+        "type": "PI",
+        "label": "2023 Q1 PI",
+        "data": {
+          "id": "PI-COCKPIT-2023-Q1",
+          "domainProjectId": "DP-COCKPIT-001",
+          "name": "2023 Q1 PI",
+          "startDate": "2023-01-01",
+          "endDate": "2023-03-31",
+          "status": "COMPLETED"
+        }
+      },
+      {
+        "id": "PI-COCKPIT-2023-Q2",
+        "type": "PI",
+        "label": "2023 Q2 PI",
+        "data": {
+          "id": "PI-COCKPIT-2023-Q2",
+          "domainProjectId": "DP-COCKPIT-001",
+          "name": "2023 Q2 PI",
+          "startDate": "2023-04-01",
+          "endDate": "2023-06-30",
+          "status": "COMPLETED"
+        }
+      },
+      {
+        "id": "SPRINT-COCKPIT-2022-Q3-S1",
+        "type": "Sprint",
+        "label": "Sprint 1 - 多屏显示框架开发",
+        "data": {
+          "id": "SPRINT-COCKPIT-2022-Q3-S1",
+          "piId": "PI-COCKPIT-2022-Q3",
+          "name": "Sprint 1 - 多屏显示框架开发",
+          "startDate": "2022-07-01",
+          "endDate": "2022-07-14",
+          "status": "COMPLETED"
+        }
+      },
+      {
+        "id": "SPRINT-COCKPIT-2022-Q3-S2",
+        "type": "Sprint",
+        "label": "Sprint 2 - 应用管理框架开发",
+        "data": {
+          "id": "SPRINT-COCKPIT-2022-Q3-S2",
+          "piId": "PI-COCKPIT-2022-Q3",
+          "name": "Sprint 2 - 应用管理框架开发",
+          "startDate": "2022-07-15",
+          "endDate": "2022-07-28",
+          "status": "COMPLETED"
+        }
+      },
+      {
+        "id": "SPRINT-COCKPIT-2022-Q3-S3",
+        "type": "Sprint",
+        "label": "Sprint 3 - 语音唤醒开发",
+        "data": {
+          "id": "SPRINT-COCKPIT-2022-Q3-S3",
+          "piId": "PI-COCKPIT-2022-Q3",
+          "name": "Sprint 3 - 语音唤醒开发",
+          "startDate": "2022-07-29",
+          "endDate": "2022-08-11",
+          "status": "COMPLETED"
+        }
+      },
+      {
+        "id": "SPRINT-COCKPIT-2022-Q3-S4",
+        "type": "Sprint",
+        "label": "Sprint 4 - 语音识别集成",
+        "data": {
+          "id": "SPRINT-COCKPIT-2022-Q3-S4",
+          "piId": "PI-COCKPIT-2022-Q3",
+          "name": "Sprint 4 - 语音识别集成",
+          "startDate": "2022-08-12",
+          "endDate": "2022-08-25",
+          "status": "COMPLETED"
+        }
+      },
+      {
+        "id": "SPRINT-COCKPIT-2022-Q3-S5",
+        "type": "Sprint",
+        "label": "Sprint 5 - 集成测试",
+        "data": {
+          "id": "SPRINT-COCKPIT-2022-Q3-S5",
+          "piId": "PI-COCKPIT-2022-Q3",
+          "name": "Sprint 5 - 集成测试",
+          "startDate": "2022-08-26",
+          "endDate": "2022-09-08",
+          "status": "COMPLETED"
+        }
+      },
+      {
+        "id": "SB-COCKPIT-001",
+        "type": "SprintBacklog",
+        "label": "SB-COCKPIT-001",
+        "data": {
+          "id": "SB-COCKPIT-001",
+          "sprintId": "SPRINT-COCKPIT-2022-Q3-S1",
+          "moduleRequirementId": "MR-OS-001",
+          "estimatedEffort": 60,
+          "priority": "HIGH"
+        }
+      },
+      {
+        "id": "SB-COCKPIT-002",
+        "type": "SprintBacklog",
+        "label": "SB-COCKPIT-002",
+        "data": {
+          "id": "SB-COCKPIT-002",
+          "sprintId": "SPRINT-COCKPIT-2022-Q3-S2",
+          "moduleRequirementId": "MR-OS-003",
+          "estimatedEffort": 60,
+          "priority": "HIGH"
+        }
+      },
+      {
+        "id": "SB-COCKPIT-003",
+        "type": "SprintBacklog",
+        "label": "SB-COCKPIT-003",
+        "data": {
+          "id": "SB-COCKPIT-003",
+          "sprintId": "SPRINT-COCKPIT-2022-Q3-S3",
+          "moduleRequirementId": "MR-VOICE-001",
+          "estimatedEffort": 40,
+          "priority": "HIGH"
+        }
+      },
+      {
+        "id": "SB-COCKPIT-004",
+        "type": "SprintBacklog",
+        "label": "SB-COCKPIT-004",
+        "data": {
+          "id": "SB-COCKPIT-004",
+          "sprintId": "SPRINT-COCKPIT-2022-Q3-S4",
+          "moduleRequirementId": "MR-VOICE-002",
+          "estimatedEffort": 40,
+          "priority": "HIGH"
+        }
+      },
+      {
+        "id": "WI-COCKPIT-REQ-001",
+        "type": "WorkItem",
+        "label": "实现多屏显示管理框架",
+        "data": {
+          "id": "WI-COCKPIT-REQ-001",
+          "sprintBacklogId": "SB-COCKPIT-001",
+          "title": "实现多屏显示管理框架",
+          "type": "REQUIREMENT_TASK",
+          "assigneeId": "USER-COCKPIT-DEV-001",
+          "status": "DONE",
+          "estimatedHours": 60,
+          "actualHours": 65
+        }
+      },
+      {
+        "id": "WI-COCKPIT-REQ-002",
+        "type": "WorkItem",
+        "label": "实现应用管理框架",
+        "data": {
+          "id": "WI-COCKPIT-REQ-002",
+          "sprintBacklogId": "SB-COCKPIT-002",
+          "title": "实现应用管理框架",
+          "type": "REQUIREMENT_TASK",
+          "assigneeId": "USER-COCKPIT-DEV-002",
+          "status": "DONE",
+          "estimatedHours": 60,
+          "actualHours": 58
+        }
+      },
+      {
+        "id": "WI-COCKPIT-REQ-003",
+        "type": "WorkItem",
+        "label": "实现语音唤醒功能",
+        "data": {
+          "id": "WI-COCKPIT-REQ-003",
+          "sprintBacklogId": "SB-COCKPIT-003",
+          "title": "实现语音唤醒功能",
+          "type": "REQUIREMENT_TASK",
+          "assigneeId": "USER-COCKPIT-DEV-003",
+          "status": "DONE",
+          "estimatedHours": 40,
+          "actualHours": 42
+        }
+      },
+      {
+        "id": "WI-COCKPIT-REQ-004",
+        "type": "WorkItem",
+        "label": "集成ASR引擎",
+        "data": {
+          "id": "WI-COCKPIT-REQ-004",
+          "sprintBacklogId": "SB-COCKPIT-004",
+          "title": "集成ASR引擎",
+          "type": "REQUIREMENT_TASK",
+          "assigneeId": "USER-COCKPIT-DEV-003",
+          "status": "DONE",
+          "estimatedHours": 40,
+          "actualHours": 38
+        }
+      },
+      {
+        "id": "CC-COCKPIT-001",
+        "type": "CodeCommit",
+        "label": "CC-COCKPIT-001",
+        "data": {
+          "id": "CC-COCKPIT-001",
+          "workItemId": "WI-COCKPIT-REQ-001",
+          "commitHash": "e1f2g3h4i5j6",
+          "repository": "cockpit-framework",
+          "branch": "feature/multi-screen",
+          "authorId": "USER-COCKPIT-DEV-001",
+          "commitDate": "2022-07-10T10:30:00Z",
+          "message": "feat: implement multi-screen display manager"
+        }
+      },
+      {
+        "id": "CC-COCKPIT-002",
+        "type": "CodeCommit",
+        "label": "CC-COCKPIT-002",
+        "data": {
+          "id": "CC-COCKPIT-002",
+          "workItemId": "WI-COCKPIT-REQ-002",
+          "commitHash": "f2g3h4i5j6k7",
+          "repository": "cockpit-framework",
+          "branch": "feature/app-manager",
+          "authorId": "USER-COCKPIT-DEV-002",
+          "commitDate": "2022-07-20T14:20:00Z",
+          "message": "feat: implement app manager framework"
+        }
+      },
+      {
+        "id": "CC-COCKPIT-003",
+        "type": "CodeCommit",
+        "label": "CC-COCKPIT-003",
+        "data": {
+          "id": "CC-COCKPIT-003",
+          "workItemId": "WI-COCKPIT-REQ-003",
+          "commitHash": "g3h4i5j6k7l8",
+          "repository": "cockpit-voice",
+          "branch": "feature/wakeup",
+          "authorId": "USER-COCKPIT-DEV-003",
+          "commitDate": "2022-08-05T09:15:00Z",
+          "message": "feat: implement voice wakeup detection"
+        }
+      },
+      {
+        "id": "CC-COCKPIT-004",
+        "type": "CodeCommit",
+        "label": "CC-COCKPIT-004",
+        "data": {
+          "id": "CC-COCKPIT-004",
+          "workItemId": "WI-COCKPIT-REQ-004",
+          "commitHash": "h4i5j6k7l8m9",
+          "repository": "cockpit-voice",
+          "branch": "feature/asr",
+          "authorId": "USER-COCKPIT-DEV-003",
+          "commitDate": "2022-08-15T11:45:00Z",
+          "message": "feat: integrate iFlytek ASR SDK"
+        }
+      },
+      {
+        "id": "BUILD-COCKPIT-001",
+        "type": "Build",
+        "label": "BUILD-COCKPIT-001",
+        "data": {
+          "id": "BUILD-COCKPIT-001",
+          "codeCommitId": "CC-COCKPIT-001",
+          "buildNumber": "20220710.1",
+          "status": "SUCCESS",
+          "startTime": "2022-07-10T10:35:00Z",
+          "endTime": "2022-07-10T11:05:00Z",
+          "duration": 1800
+        }
+      },
+      {
+        "id": "BUILD-COCKPIT-002",
+        "type": "Build",
+        "label": "BUILD-COCKPIT-002",
+        "data": {
+          "id": "BUILD-COCKPIT-002",
+          "codeCommitId": "CC-COCKPIT-002",
+          "buildNumber": "20220720.1",
+          "status": "SUCCESS",
+          "startTime": "2022-07-20T14:25:00Z",
+          "endTime": "2022-07-20T14:55:00Z",
+          "duration": 1800
+        }
+      },
+      {
+        "id": "BUILD-COCKPIT-003",
+        "type": "Build",
+        "label": "BUILD-COCKPIT-003",
+        "data": {
+          "id": "BUILD-COCKPIT-003",
+          "codeCommitId": "CC-COCKPIT-003",
+          "buildNumber": "20220805.1",
+          "status": "SUCCESS",
+          "startTime": "2022-08-05T09:20:00Z",
+          "endTime": "2022-08-05T09:40:00Z",
+          "duration": 1200
+        }
+      },
+      {
+        "id": "BUILD-COCKPIT-004",
+        "type": "Build",
+        "label": "BUILD-COCKPIT-004",
+        "data": {
+          "id": "BUILD-COCKPIT-004",
+          "codeCommitId": "CC-COCKPIT-004",
+          "buildNumber": "20220815.1",
+          "status": "SUCCESS",
+          "startTime": "2022-08-15T11:50:00Z",
+          "endTime": "2022-08-15T12:10:00Z",
+          "duration": 1200
+        }
+      },
+      {
+        "id": "TP-COCKPIT-001",
+        "type": "TestPlan",
+        "label": "多屏显示模块测试计划",
+        "data": {
+          "id": "TP-COCKPIT-001",
+          "name": "多屏显示模块测试计划",
+          "moduleId": "MOD-OS-001",
+          "testType": "UNIT_TEST",
+          "ownerId": "USER-COCKPIT-QA-001",
+          "status": "COMPLETED"
+        }
+      },
+      {
+        "id": "TP-COCKPIT-002",
+        "type": "TestPlan",
+        "label": "语音唤醒模块测试计划",
+        "data": {
+          "id": "TP-COCKPIT-002",
+          "name": "语音唤醒模块测试计划",
+          "moduleId": "MOD-VOICE-001",
+          "testType": "UNIT_TEST",
+          "ownerId": "USER-COCKPIT-QA-002",
+          "status": "COMPLETED"
+        }
+      },
+      {
+        "id": "TP-COCKPIT-003",
+        "type": "TestPlan",
+        "label": "座舱OS系统集成测试计划",
+        "data": {
+          "id": "TP-COCKPIT-003",
+          "name": "座舱OS系统集成测试计划",
+          "productId": "PROD-COCKPIT-OS-001",
+          "testType": "INTEGRATION_TEST",
+          "ownerId": "USER-COCKPIT-QA-001",
+          "status": "COMPLETED"
+        }
+      },
+      {
+        "id": "TP-COCKPIT-004",
+        "type": "TestPlan",
+        "label": "智能语音功能测试计划",
+        "data": {
+          "id": "TP-COCKPIT-004",
+          "name": "智能语音功能测试计划",
+          "productId": "PROD-VOICE-001",
+          "testType": "FUNCTIONAL_TEST",
+          "ownerId": "USER-COCKPIT-QA-002",
+          "status": "COMPLETED"
+        }
+      },
+      {
+        "id": "TC-COCKPIT-001",
+        "type": "TeamCapacity",
+        "label": "多屏显示性能测试",
+        "data": {
+          "id": "TC-COCKPIT-001",
+          "testPlanId": "TP-COCKPIT-001",
+          "name": "多屏显示性能测试",
+          "description": "测试多屏显示帧率是否达到60fps",
+          "priority": "HIGH",
+          "status": "PASSED"
+        }
+      },
+      {
+        "id": "TC-COCKPIT-002",
+        "type": "TeamCapacity",
+        "label": "语音唤醒率测试",
+        "data": {
+          "id": "TC-COCKPIT-002",
+          "testPlanId": "TP-COCKPIT-002",
+          "name": "语音唤醒率测试",
+          "description": "测试语音唤醒率是否达到95%以上",
+          "priority": "HIGH",
+          "status": "PASSED"
+        }
+      },
+      {
+        "id": "TC-COCKPIT-003",
+        "type": "TeamCapacity",
+        "label": "应用安装测试",
+        "data": {
+          "id": "TC-COCKPIT-003",
+          "testPlanId": "TP-COCKPIT-003",
+          "name": "应用安装测试",
+          "description": "测试第三方应用安装功能",
+          "priority": "HIGH",
+          "status": "PASSED"
+        }
+      },
+      {
+        "id": "TC-COCKPIT-004",
+        "type": "TeamCapacity",
+        "label": "语音识别准确率测试",
+        "data": {
+          "id": "TC-COCKPIT-004",
+          "testPlanId": "TP-COCKPIT-004",
+          "name": "语音识别准确率测试",
+          "description": "测试语音识别准确率是否达到95%以上",
+          "priority": "HIGH",
+          "status": "PASSED"
+        }
+      },
+      {
+        "id": "TE-COCKPIT-001",
+        "type": "TestExecution",
+        "label": "TE-COCKPIT-001",
+        "data": {
+          "id": "TE-COCKPIT-001",
+          "testCaseId": "TC-COCKPIT-001",
+          "buildId": "BUILD-COCKPIT-001",
+          "executedBy": "USER-COCKPIT-QA-001",
+          "executedAt": "2022-07-11T10:00:00Z",
+          "result": "PASSED",
+          "actualResult": "帧率: 62fps"
+        }
+      },
+      {
+        "id": "TE-COCKPIT-002",
+        "type": "TestExecution",
+        "label": "TE-COCKPIT-002",
+        "data": {
+          "id": "TE-COCKPIT-002",
+          "testCaseId": "TC-COCKPIT-002",
+          "buildId": "BUILD-COCKPIT-003",
+          "executedBy": "USER-COCKPIT-QA-002",
+          "executedAt": "2022-08-06T10:00:00Z",
+          "result": "PASSED",
+          "actualResult": "唤醒率: 96.8%"
+        }
+      },
+      {
+        "id": "TE-COCKPIT-003",
+        "type": "TestExecution",
+        "label": "TE-COCKPIT-003",
+        "data": {
+          "id": "TE-COCKPIT-003",
+          "testCaseId": "TC-COCKPIT-004",
+          "buildId": "BUILD-COCKPIT-004",
+          "executedBy": "USER-COCKPIT-QA-002",
+          "executedAt": "2022-08-16T10:00:00Z",
+          "result": "PASSED",
+          "actualResult": "识别准确率: 96.2%"
+        }
+      },
+      {
+        "id": "DEFECT-COCKPIT-001",
+        "type": "Defect",
+        "label": "副驾屏幕偶现黑屏",
+        "data": {
+          "id": "DEFECT-COCKPIT-001",
+          "testExecutionId": "TE-COCKPIT-001",
+          "title": "副驾屏幕偶现黑屏",
+          "severity": "MEDIUM",
+          "priority": "HIGH",
+          "status": "CLOSED",
+          "reporterId": "USER-COCKPIT-QA-001",
+          "assigneeId": "USER-COCKPIT-DEV-001",
+          "reportedAt": "2022-07-12T10:00:00Z",
+          "resolvedAt": "2022-07-15T16:00:00Z"
+        }
+      },
+      {
+        "id": "DEFECT-COCKPIT-002",
+        "type": "Defect",
+        "label": "噪音环境下唤醒率下降",
+        "data": {
+          "id": "DEFECT-COCKPIT-002",
+          "testExecutionId": "TE-COCKPIT-002",
+          "title": "噪音环境下唤醒率下降",
+          "severity": "LOW",
+          "priority": "MEDIUM",
+          "status": "CLOSED",
+          "reporterId": "USER-COCKPIT-QA-002",
+          "assigneeId": "USER-COCKPIT-DEV-003",
+          "reportedAt": "2022-08-07T10:00:00Z",
+          "resolvedAt": "2022-08-10T16:00:00Z"
+        }
+      },
+      {
+        "id": "ARTIFACT-COCKPIT-001",
+        "type": "Artifact",
+        "label": "cockpit-framework-v1.0.0",
+        "data": {
+          "id": "ARTIFACT-COCKPIT-001",
+          "buildId": "BUILD-COCKPIT-001",
+          "name": "cockpit-framework-v1.0.0",
+          "type": "LIBRARY",
+          "version": "1.0.0",
+          "repository": "nexus-cockpit",
+          "path": "com/voyah/cockpit/framework/1.0.0"
+        }
+      },
+      {
+        "id": "ARTIFACT-COCKPIT-002",
+        "type": "Artifact",
+        "label": "cockpit-voice-v1.0.0",
+        "data": {
+          "id": "ARTIFACT-COCKPIT-002",
+          "buildId": "BUILD-COCKPIT-003",
+          "name": "cockpit-voice-v1.0.0",
+          "type": "LIBRARY",
+          "version": "1.0.0",
+          "repository": "nexus-cockpit",
+          "path": "com/voyah/cockpit/voice/1.0.0"
+        }
+      },
+      {
+        "id": "ARTIFACT-COCKPIT-003",
+        "type": "Artifact",
+        "label": "cockpit-os-v1.0.0",
+        "data": {
+          "id": "ARTIFACT-COCKPIT-003",
+          "buildId": null,
+          "name": "cockpit-os-v1.0.0",
+          "type": "IMAGE",
+          "version": "1.0.0",
+          "repository": "docker-cockpit",
+          "path": "voyah/cockpit-os:1.0.0"
+        }
+      },
+      {
+        "id": "RELEASE-COCKPIT-001",
+        "type": "Release",
+        "label": "座舱OS V1.0 SOP版本",
+        "data": {
+          "id": "RELEASE-COCKPIT-001",
+          "productVersionId": "PV-COCKPIT-OS-V1.0",
+          "name": "座舱OS V1.0 SOP版本",
+          "version": "V1.0",
+          "releaseDate": "2023-06-01",
+          "status": "RELEASED",
+          "releaseNotes": "座舱OS V1.0正式发布，支持多屏联动、应用生态、车机互联"
+        }
+      },
+      {
+        "id": "RELEASE-COCKPIT-002",
+        "type": "Release",
+        "label": "智能语音 V1.0 SOP版本",
+        "data": {
+          "id": "RELEASE-COCKPIT-002",
+          "productVersionId": "PV-VOICE-V1.0",
+          "name": "智能语音 V1.0 SOP版本",
+          "version": "V1.0",
+          "releaseDate": "2023-06-01",
+          "status": "RELEASED",
+          "releaseNotes": "智能语音V1.0正式发布，支持语音唤醒、识别、理解、合成、车控"
+        }
+      },
+      {
+        "id": "DEPLOY-COCKPIT-001",
+        "type": "Deployment",
+        "label": "DEPLOY-COCKPIT-001",
+        "data": {
+          "id": "DEPLOY-COCKPIT-001",
+          "releaseId": "RELEASE-COCKPIT-001",
+          "environment": "PRODUCTION",
+          "deployedAt": "2023-06-01T08:00:00Z",
+          "deployedBy": "USER-COCKPIT-OPS-001",
+          "status": "SUCCESS",
+          "targetVehicles": "岚图梦想家全系车型"
+        }
+      },
+      {
+        "id": "DEPLOY-COCKPIT-002",
+        "type": "Deployment",
+        "label": "DEPLOY-COCKPIT-002",
+        "data": {
+          "id": "DEPLOY-COCKPIT-002",
+          "releaseId": "RELEASE-COCKPIT-002",
+          "environment": "PRODUCTION",
+          "deployedAt": "2023-06-01T08:00:00Z",
+          "deployedBy": "USER-COCKPIT-OPS-001",
+          "status": "SUCCESS",
+          "targetVehicles": "岚图梦想家全系车型"
+        }
+      },
+      {
+        "id": "MV-COCKPIT-001",
+        "type": "MetricValue",
+        "label": "MV-COCKPIT-001",
+        "data": {
+          "id": "MV-COCKPIT-001",
+          "metricId": "METRIC-001",
+          "entityType": "PRODUCT",
+          "entityId": "PROD-COCKPIT-OS-001",
+          "value": 42,
+          "collectedAt": "2023-06-30T00:00:00Z"
+        }
+      },
+      {
+        "id": "MV-COCKPIT-002",
+        "type": "MetricValue",
+        "label": "MV-COCKPIT-002",
+        "data": {
+          "id": "MV-COCKPIT-002",
+          "metricId": "METRIC-002",
+          "entityType": "MODULE",
+          "entityId": "MOD-OS-001",
+          "value": 90,
+          "collectedAt": "2023-06-30T00:00:00Z"
+        }
+      },
+      {
+        "id": "MV-COCKPIT-003",
+        "type": "MetricValue",
+        "label": "MV-COCKPIT-003",
+        "data": {
+          "id": "MV-COCKPIT-003",
+          "metricId": "METRIC-003",
+          "entityType": "MODULE",
+          "entityId": "MOD-OS-001",
+          "value": 82,
+          "collectedAt": "2023-06-30T00:00:00Z"
+        }
+      },
+      {
+        "id": "MV-COCKPIT-004",
+        "type": "MetricValue",
+        "label": "MV-COCKPIT-004",
+        "data": {
+          "id": "MV-COCKPIT-004",
+          "metricId": "METRIC-005",
+          "entityType": "MODULE",
+          "entityId": "MOD-VOICE-001",
+          "value": 96.8,
+          "collectedAt": "2023-06-30T00:00:00Z"
+        }
+      },
+      {
+        "id": "USER-PM-002",
+        "type": "User",
+        "label": "黄芳",
+        "data": {
+          "id": "USER-PM-002",
+          "name": "黄芳",
+          "email": "huang.fang@voyah.com",
+          "department": "智能座舱",
+          "title": "项目经理"
+        }
+      },
+      {
+        "id": "USER-PO-003",
+        "type": "User",
+        "label": "徐鹏",
+        "data": {
+          "id": "USER-PO-003",
+          "name": "徐鹏",
+          "email": "xu.peng@voyah.com",
+          "department": "智能座舱",
+          "title": "产品经理"
+        }
+      },
+      {
+        "id": "USER-PO-004",
+        "type": "User",
+        "label": "朱丽",
+        "data": {
+          "id": "USER-PO-004",
+          "name": "朱丽",
+          "email": "zhu.li@voyah.com",
+          "department": "智能座舱",
+          "title": "产品经理"
+        }
+      },
+      {
+        "id": "USER-COCKPIT-DEV-001",
+        "type": "User",
+        "label": "林浩",
+        "data": {
+          "id": "USER-COCKPIT-DEV-001",
+          "name": "林浩",
+          "email": "lin.hao@voyah.com",
+          "department": "智能座舱",
+          "title": "系统工程师"
+        }
+      },
+      {
+        "id": "USER-COCKPIT-DEV-002",
+        "type": "User",
+        "label": "何敏",
+        "data": {
+          "id": "USER-COCKPIT-DEV-002",
+          "name": "何敏",
+          "email": "he.min@voyah.com",
+          "department": "智能座舱",
+          "title": "应用工程师"
+        }
+      },
+      {
+        "id": "USER-COCKPIT-DEV-003",
+        "type": "User",
+        "label": "郭强",
+        "data": {
+          "id": "USER-COCKPIT-DEV-003",
+          "name": "郭强",
+          "email": "guo.qiang@voyah.com",
+          "department": "智能座舱",
+          "title": "语音工程师"
+        }
+      },
+      {
+        "id": "USER-COCKPIT-QA-001",
+        "type": "User",
+        "label": "高磊",
+        "data": {
+          "id": "USER-COCKPIT-QA-001",
+          "name": "高磊",
+          "email": "gao.lei@voyah.com",
+          "department": "智能座舱",
+          "title": "测试工程师"
+        }
+      },
+      {
+        "id": "USER-COCKPIT-QA-002",
+        "type": "User",
+        "label": "宋静",
+        "data": {
+          "id": "USER-COCKPIT-QA-002",
+          "name": "宋静",
+          "email": "song.jing@voyah.com",
+          "department": "智能座舱",
+          "title": "测试工程师"
+        }
+      },
+      {
+        "id": "USER-COCKPIT-OPS-001",
+        "type": "User",
+        "label": "韩涛",
+        "data": {
+          "id": "USER-COCKPIT-OPS-001",
+          "name": "韩涛",
+          "email": "han.tao@voyah.com",
+          "department": "智能座舱",
+          "title": "运维工程师"
+        }
+      },
+      {
+        "id": "TEAM-COCKPIT-FRAMEWORK",
+        "type": "Team",
+        "label": "座舱框架团队",
+        "data": {
+          "id": "TEAM-COCKPIT-FRAMEWORK",
+          "name": "座舱框架团队",
+          "leaderId": "USER-COCKPIT-DEV-001",
+          "description": "负责座舱OS框架和多屏显示的研发"
+        }
+      },
+      {
+        "id": "TEAM-COCKPIT-APP",
+        "type": "Team",
+        "label": "应用生态团队",
+        "data": {
+          "id": "TEAM-COCKPIT-APP",
+          "name": "应用生态团队",
+          "leaderId": "USER-COCKPIT-DEV-002",
+          "description": "负责应用生态和应用商店的研发"
+        }
+      },
+      {
+        "id": "TEAM-COCKPIT-VOICE",
+        "type": "Team",
+        "label": "语音团队",
+        "data": {
+          "id": "TEAM-COCKPIT-VOICE",
+          "name": "语音团队",
+          "leaderId": "USER-COCKPIT-DEV-003",
+          "description": "负责智能语音功能的研发"
+        }
+      },
+      {
+        "id": "TEAM-COCKPIT-CONNECTIVITY",
+        "type": "Team",
+        "label": "互联团队",
+        "data": {
+          "id": "TEAM-COCKPIT-CONNECTIVITY",
+          "name": "互联团队",
+          "leaderId": "USER-COCKPIT-DEV-001",
+          "description": "负责车机互联功能的研发"
+        }
+      },
+      {
+        "id": "MS-001",
+        "type": "ProjectMilestone",
+        "label": "研发效能度量集",
+        "data": {
+          "id": "MS-001",
+          "name": "研发效能度量集",
+          "description": "软件研发效能度量指标集合",
+          "ownerId": "USER-PM-001"
+        }
+      },
+      {
+        "id": "METRIC-001",
+        "type": "Metric",
+        "label": "需求交付周期",
+        "data": {
+          "id": "METRIC-001",
+          "metricSetId": "MS-001",
+          "name": "需求交付周期",
+          "code": "LEAD_TIME",
+          "unit": "DAY",
+          "description": "从需求提出到交付上线的平均周期"
+        }
+      },
+      {
+        "id": "METRIC-002",
+        "type": "Metric",
+        "label": "代码质量",
+        "data": {
+          "id": "METRIC-002",
+          "metricSetId": "MS-001",
+          "name": "代码质量",
+          "code": "CODE_QUALITY",
+          "unit": "SCORE",
+          "description": "代码质量评分（0-100）"
+        }
+      },
+      {
+        "id": "METRIC-003",
+        "type": "Metric",
+        "label": "测试覆盖率",
+        "data": {
+          "id": "METRIC-003",
+          "metricSetId": "MS-001",
+          "name": "测试覆盖率",
+          "code": "TEST_COVERAGE",
+          "unit": "PERCENTAGE",
+          "description": "单元测试覆盖率"
+        }
+      },
+      {
+        "id": "METRIC-004",
+        "type": "Metric",
+        "label": "缺陷密度",
+        "data": {
+          "id": "METRIC-004",
+          "metricSetId": "MS-001",
+          "name": "缺陷密度",
+          "code": "DEFECT_DENSITY",
+          "unit": "COUNT_PER_KLOC",
+          "description": "每千行代码的缺陷数"
+        }
+      },
+      {
+        "id": "METRIC-005",
+        "type": "Metric",
+        "label": "算法准确率",
+        "data": {
+          "id": "METRIC-005",
+          "metricSetId": "MS-001",
+          "name": "算法准确率",
+          "code": "ALGORITHM_ACCURACY",
+          "unit": "PERCENTAGE",
+          "description": "感知算法的准确率"
+        }
+      }
+    ],
+    "edges": [
+      {
+        "id": "edge_9c2c8eb78d",
+        "source": "VEH-001",
+        "target": "DP-COCKPIT-001",
+        "type": "has_domain_project",
+        "data": {
+          "relationship": "车型包含多个领域项目",
+          "priority": "MEDIUM",
+          "createdAt": "2026-01-17"
+        }
+      },
+      {
+        "id": "edge_a7cfc2c7f7",
+        "source": "DP-COCKPIT-001",
+        "target": "MS-COCKPIT-001",
+        "type": "has_milestone",
+        "data": {
+          "relationship": "领域项目包含多个里程碑",
+          "sequence": 1,
+          "dependency": null
+        }
+      },
+      {
+        "id": "edge_606f54a5c7",
+        "source": "DP-COCKPIT-001",
+        "target": "MS-COCKPIT-002",
+        "type": "has_milestone",
+        "data": {
+          "relationship": "领域项目包含多个里程碑",
+          "sequence": 1,
+          "dependency": null
+        }
+      },
+      {
+        "id": "edge_a109c1e925",
+        "source": "DP-COCKPIT-001",
+        "target": "MS-COCKPIT-003",
+        "type": "has_milestone",
+        "data": {
+          "relationship": "领域项目包含多个里程碑",
+          "sequence": 1,
+          "dependency": null
+        }
+      },
+      {
+        "id": "edge_a8dd3b1a61",
+        "source": "DP-COCKPIT-001",
+        "target": "MS-COCKPIT-004",
+        "type": "has_milestone",
+        "data": {
+          "relationship": "领域项目包含多个里程碑",
+          "sequence": 1,
+          "dependency": null
+        }
+      },
+      {
+        "id": "edge_34e397e286",
+        "source": "MS-COCKPIT-001",
+        "target": "BL-COCKPIT-SOP-001",
+        "type": "has_baseline",
+        "data": {
+          "relationship": "里程碑包含基线",
+          "freezeDate": "2023-05-01",
+          "scope": "座舱OS V1.0 + 智能语音助手 + 多屏联动 + 车载应用生态"
+        }
+      },
+      {
+        "id": "edge_caf3d71fa7",
+        "source": "MS-COCKPIT-002",
+        "target": "BL-COCKPIT-PVS-001",
+        "type": "has_baseline",
+        "data": {
+          "relationship": "里程碑包含基线",
+          "freezeDate": "2023-02-01",
+          "scope": "座舱OS基础功能 + 智能语音基础功能"
+        }
+      },
+      {
+        "id": "edge_cffe9fca4d",
+        "source": "MS-COCKPIT-003",
+        "target": "BL-COCKPIT-DVS-001",
+        "type": "has_baseline",
+        "data": {
+          "relationship": "里程碑包含基线",
+          "freezeDate": "2022-11-01",
+          "scope": "核心框架验证 + 基础功能验证"
+        }
+      },
+      {
+        "id": "edge_1751803c33",
+        "source": "PL-COCKPIT-001",
+        "target": "PROD-COCKPIT-OS-001",
+        "type": "has_product",
+        "data": {
+          "relationship": "产品线或车型包含产品",
+          "priority": "MEDIUM"
+        }
+      },
+      {
+        "id": "edge_fd4a1b954b",
+        "source": "PL-COCKPIT-001",
+        "target": "PROD-VOICE-001",
+        "type": "has_product",
+        "data": {
+          "relationship": "产品线或车型包含产品",
+          "priority": "MEDIUM"
+        }
+      },
+      {
+        "id": "edge_935925e0aa",
+        "source": "PROD-COCKPIT-OS-001",
+        "target": "PV-COCKPIT-OS-V1.0",
+        "type": "has_product_version",
+        "data": {
+          "relationship": "产品有多个版本",
+          "releaseDate": "2026-01-17",
+          "status": "RELEASED"
+        }
+      },
+      {
+        "id": "edge_5f0c90f151",
+        "source": "PV-COCKPIT-OS-V1.0",
+        "target": "BL-COCKPIT-SOP-001",
+        "type": "version_relates_baseline",
+        "data": {
+          "relationship": "产品版本关联基线",
+          "relationType": "BASED_ON"
+        }
+      },
+      {
+        "id": "edge_15c974c23e",
+        "source": "PROD-COCKPIT-OS-001",
+        "target": "PV-COCKPIT-OS-V1.1",
+        "type": "has_product_version",
+        "data": {
+          "relationship": "产品有多个版本",
+          "releaseDate": "2026-01-17",
+          "status": "DEVELOPING"
+        }
+      },
+      {
+        "id": "edge_b0ea4f874b",
+        "source": "PROD-VOICE-001",
+        "target": "PV-VOICE-V1.0",
+        "type": "has_product_version",
+        "data": {
+          "relationship": "产品有多个版本",
+          "releaseDate": "2026-01-17",
+          "status": "RELEASED"
+        }
+      },
+      {
+        "id": "edge_49ac348a87",
+        "source": "PV-VOICE-V1.0",
+        "target": "BL-COCKPIT-SOP-001",
+        "type": "version_relates_baseline",
+        "data": {
+          "relationship": "产品版本关联基线",
+          "relationType": "BASED_ON"
+        }
+      },
+      {
+        "id": "edge_4d3ee89e12",
+        "source": "PROD-COCKPIT-OS-001",
+        "target": "FEAT-OS-001",
+        "type": "has_feature",
+        "data": {
+          "relationship": "产品包含多个特性",
+          "priority": "MEDIUM",
+          "businessValue": null
+        }
+      },
+      {
+        "id": "edge_a867ffece7",
+        "source": "PROD-COCKPIT-OS-001",
+        "target": "FEAT-OS-002",
+        "type": "has_feature",
+        "data": {
+          "relationship": "产品包含多个特性",
+          "priority": "MEDIUM",
+          "businessValue": null
+        }
+      },
+      {
+        "id": "edge_60c0e7f09d",
+        "source": "PROD-COCKPIT-OS-001",
+        "target": "FEAT-OS-003",
+        "type": "has_feature",
+        "data": {
+          "relationship": "产品包含多个特性",
+          "priority": "MEDIUM",
+          "businessValue": null
+        }
+      },
+      {
+        "id": "edge_da0fe901b5",
+        "source": "PROD-COCKPIT-OS-001",
+        "target": "FEAT-OS-004",
+        "type": "has_feature",
+        "data": {
+          "relationship": "产品包含多个特性",
+          "priority": "MEDIUM",
+          "businessValue": null
+        }
+      },
+      {
+        "id": "edge_d04249f1a7",
+        "source": "PROD-VOICE-001",
+        "target": "FEAT-VOICE-001",
+        "type": "has_feature",
+        "data": {
+          "relationship": "产品包含多个特性",
+          "priority": "MEDIUM",
+          "businessValue": null
+        }
+      },
+      {
+        "id": "edge_7d44c4a6ed",
+        "source": "PROD-VOICE-001",
+        "target": "FEAT-VOICE-002",
+        "type": "has_feature",
+        "data": {
+          "relationship": "产品包含多个特性",
+          "priority": "MEDIUM",
+          "businessValue": null
+        }
+      },
+      {
+        "id": "edge_8f1583ed91",
+        "source": "PROD-VOICE-001",
+        "target": "FEAT-VOICE-003",
+        "type": "has_feature",
+        "data": {
+          "relationship": "产品包含多个特性",
+          "priority": "MEDIUM",
+          "businessValue": null
+        }
+      },
+      {
+        "id": "edge_f35e4ca0c2",
+        "source": "PROD-VOICE-001",
+        "target": "FEAT-VOICE-004",
+        "type": "has_feature",
+        "data": {
+          "relationship": "产品包含多个特性",
+          "priority": "MEDIUM",
+          "businessValue": null
+        }
+      },
+      {
+        "id": "edge_bc71111360",
+        "source": "PROD-VOICE-001",
+        "target": "FEAT-VOICE-005",
+        "type": "has_feature",
+        "data": {
+          "relationship": "产品包含多个特性",
+          "priority": "MEDIUM",
+          "businessValue": null
+        }
+      },
+      {
+        "id": "edge_ecae959fa3",
+        "source": "FEAT-OS-001",
+        "target": "MOD-OS-001",
+        "type": "has_module",
+        "data": {
+          "relationship": "特性包含多个模块",
+          "ownerTeamId": "TEAM-COCKPIT-FRAMEWORK",
+          "complexity": "SIMPLE"
+        }
+      },
+      {
+        "id": "edge_5d0e440b20",
+        "source": "FEAT-OS-001",
+        "target": "MOD-OS-002",
+        "type": "has_module",
+        "data": {
+          "relationship": "特性包含多个模块",
+          "ownerTeamId": "TEAM-COCKPIT-FRAMEWORK",
+          "complexity": "SIMPLE"
+        }
+      },
+      {
+        "id": "edge_601adde929",
+        "source": "FEAT-OS-002",
+        "target": "MOD-OS-003",
+        "type": "has_module",
+        "data": {
+          "relationship": "特性包含多个模块",
+          "ownerTeamId": "TEAM-COCKPIT-APP",
+          "complexity": "SIMPLE"
+        }
+      },
+      {
+        "id": "edge_996e50e96f",
+        "source": "FEAT-OS-002",
+        "target": "MOD-OS-004",
+        "type": "has_module",
+        "data": {
+          "relationship": "特性包含多个模块",
+          "ownerTeamId": "TEAM-COCKPIT-APP",
+          "complexity": "SIMPLE"
+        }
+      },
+      {
+        "id": "edge_69d14d6cd8",
+        "source": "FEAT-OS-003",
+        "target": "MOD-OS-005",
+        "type": "has_module",
+        "data": {
+          "relationship": "特性包含多个模块",
+          "ownerTeamId": "TEAM-COCKPIT-CONNECTIVITY",
+          "complexity": "SIMPLE"
+        }
+      },
+      {
+        "id": "edge_536a140a7a",
+        "source": "FEAT-OS-003",
+        "target": "MOD-OS-006",
+        "type": "has_module",
+        "data": {
+          "relationship": "特性包含多个模块",
+          "ownerTeamId": "TEAM-COCKPIT-CONNECTIVITY",
+          "complexity": "SIMPLE"
+        }
+      },
+      {
+        "id": "edge_fbeb121a9f",
+        "source": "FEAT-VOICE-001",
+        "target": "MOD-VOICE-001",
+        "type": "has_module",
+        "data": {
+          "relationship": "特性包含多个模块",
+          "ownerTeamId": "TEAM-COCKPIT-VOICE",
+          "complexity": "SIMPLE"
+        }
+      },
+      {
+        "id": "edge_1374ff64fb",
+        "source": "FEAT-VOICE-002",
+        "target": "MOD-VOICE-002",
+        "type": "has_module",
+        "data": {
+          "relationship": "特性包含多个模块",
+          "ownerTeamId": "TEAM-COCKPIT-VOICE",
+          "complexity": "SIMPLE"
+        }
+      },
+      {
+        "id": "edge_3cf15f9d00",
+        "source": "FEAT-VOICE-003",
+        "target": "MOD-VOICE-003",
+        "type": "has_module",
+        "data": {
+          "relationship": "特性包含多个模块",
+          "ownerTeamId": "TEAM-COCKPIT-VOICE",
+          "complexity": "SIMPLE"
+        }
+      },
+      {
+        "id": "edge_256a84844a",
+        "source": "FEAT-VOICE-003",
+        "target": "MOD-VOICE-004",
+        "type": "has_module",
+        "data": {
+          "relationship": "特性包含多个模块",
+          "ownerTeamId": "TEAM-COCKPIT-VOICE",
+          "complexity": "SIMPLE"
+        }
+      },
+      {
+        "id": "edge_72422ddd69",
+        "source": "FEAT-VOICE-004",
+        "target": "MOD-VOICE-005",
+        "type": "has_module",
+        "data": {
+          "relationship": "特性包含多个模块",
+          "ownerTeamId": "TEAM-COCKPIT-VOICE",
+          "complexity": "SIMPLE"
+        }
+      },
+      {
+        "id": "edge_5b17fba483",
+        "source": "FEAT-VOICE-005",
+        "target": "MOD-VOICE-006",
+        "type": "has_module",
+        "data": {
+          "relationship": "特性包含多个模块",
+          "ownerTeamId": "TEAM-COCKPIT-VOICE",
+          "complexity": "SIMPLE"
+        }
+      },
+      {
+        "id": "edge_ea6b4a4890",
+        "source": "PROD-COCKPIT-OS-001",
+        "target": "FP-COCKPIT-BASIC",
+        "type": "has_feature_package",
+        "data": {
+          "relationship": "产品打包特性",
+          "packageType": "STANDARD"
+        }
+      },
+      {
+        "id": "edge_61a1c57820",
+        "source": "PROD-COCKPIT-OS-001",
+        "target": "FP-COCKPIT-ADVANCED",
+        "type": "has_feature_package",
+        "data": {
+          "relationship": "产品打包特性",
+          "packageType": "STANDARD"
+        }
+      },
+      {
+        "id": "edge_294f08d3da",
+        "source": "PROD-VOICE-001",
+        "target": "FP-VOICE-FULL",
+        "type": "has_feature_package",
+        "data": {
+          "relationship": "产品打包特性",
+          "packageType": "STANDARD"
+        }
+      },
+      {
+        "id": "edge_125d40eef5",
+        "source": "PROD-COCKPIT-OS-001",
+        "target": "EPIC-OS-001",
+        "type": "epic_in_product",
+        "data": {
+          "relationship": "产品包含Epic",
+          "priority": "HIGH",
+          "businessValue": null
+        }
+      },
+      {
+        "id": "edge_57bd8d2043",
+        "source": "PROD-COCKPIT-OS-001",
+        "target": "EPIC-OS-002",
+        "type": "epic_in_product",
+        "data": {
+          "relationship": "产品包含Epic",
+          "priority": "HIGH",
+          "businessValue": null
+        }
+      },
+      {
+        "id": "edge_35b39e50dc",
+        "source": "PROD-VOICE-001",
+        "target": "EPIC-VOICE-001",
+        "type": "epic_in_product",
+        "data": {
+          "relationship": "产品包含Epic",
+          "priority": "HIGH",
+          "businessValue": null
+        }
+      },
+      {
+        "id": "edge_109e83f74b",
+        "source": "PROD-VOICE-001",
+        "target": "EPIC-VOICE-002",
+        "type": "epic_in_product",
+        "data": {
+          "relationship": "产品包含Epic",
+          "priority": "MEDIUM",
+          "businessValue": null
+        }
+      },
+      {
+        "id": "edge_e1c3fbf415",
+        "source": "EPIC-OS-001",
+        "target": "FR-OS-001",
+        "type": "epic_to_fr",
+        "data": {
+          "relationship": "Epic拆分为特性需求",
+          "decompositionRule": null,
+          "priority": "HIGH"
+        }
+      },
+      {
+        "id": "edge_2930224f16",
+        "source": "FEAT-OS-001",
+        "target": "FR-OS-001",
+        "type": "feature_carries_fr",
+        "data": {
+          "relationship": "业务特性承载特性需求",
+          "alignment": "ALIGNED"
+        }
+      },
+      {
+        "id": "edge_ce272e6559",
+        "source": "EPIC-OS-002",
+        "target": "FR-OS-002",
+        "type": "epic_to_fr",
+        "data": {
+          "relationship": "Epic拆分为特性需求",
+          "decompositionRule": null,
+          "priority": "HIGH"
+        }
+      },
+      {
+        "id": "edge_9d4d3403bd",
+        "source": "FEAT-OS-002",
+        "target": "FR-OS-002",
+        "type": "feature_carries_fr",
+        "data": {
+          "relationship": "业务特性承载特性需求",
+          "alignment": "ALIGNED"
+        }
+      },
+      {
+        "id": "edge_759aa1de4c",
+        "source": "EPIC-OS-002",
+        "target": "FR-OS-003",
+        "type": "epic_to_fr",
+        "data": {
+          "relationship": "Epic拆分为特性需求",
+          "decompositionRule": null,
+          "priority": "HIGH"
+        }
+      },
+      {
+        "id": "edge_324772901c",
+        "source": "FEAT-OS-003",
+        "target": "FR-OS-003",
+        "type": "feature_carries_fr",
+        "data": {
+          "relationship": "业务特性承载特性需求",
+          "alignment": "ALIGNED"
+        }
+      },
+      {
+        "id": "edge_d577a8a7da",
+        "source": "EPIC-VOICE-001",
+        "target": "FR-VOICE-001",
+        "type": "epic_to_fr",
+        "data": {
+          "relationship": "Epic拆分为特性需求",
+          "decompositionRule": null,
+          "priority": "HIGH"
+        }
+      },
+      {
+        "id": "edge_c7775e6d2f",
+        "source": "FEAT-VOICE-001",
+        "target": "FR-VOICE-001",
+        "type": "feature_carries_fr",
+        "data": {
+          "relationship": "业务特性承载特性需求",
+          "alignment": "ALIGNED"
+        }
+      },
+      {
+        "id": "edge_0700fabc3d",
+        "source": "EPIC-VOICE-001",
+        "target": "FR-VOICE-002",
+        "type": "epic_to_fr",
+        "data": {
+          "relationship": "Epic拆分为特性需求",
+          "decompositionRule": null,
+          "priority": "HIGH"
+        }
+      },
+      {
+        "id": "edge_e8337aa5d7",
+        "source": "FEAT-VOICE-002",
+        "target": "FR-VOICE-002",
+        "type": "feature_carries_fr",
+        "data": {
+          "relationship": "业务特性承载特性需求",
+          "alignment": "ALIGNED"
+        }
+      },
+      {
+        "id": "edge_4b47d76fb4",
+        "source": "EPIC-VOICE-001",
+        "target": "FR-VOICE-003",
+        "type": "epic_to_fr",
+        "data": {
+          "relationship": "Epic拆分为特性需求",
+          "decompositionRule": null,
+          "priority": "HIGH"
+        }
+      },
+      {
+        "id": "edge_8ddc942bb7",
+        "source": "FEAT-VOICE-003",
+        "target": "FR-VOICE-003",
+        "type": "feature_carries_fr",
+        "data": {
+          "relationship": "业务特性承载特性需求",
+          "alignment": "ALIGNED"
+        }
+      },
+      {
+        "id": "edge_344a0d74e9",
+        "source": "EPIC-VOICE-002",
+        "target": "FR-VOICE-004",
+        "type": "epic_to_fr",
+        "data": {
+          "relationship": "Epic拆分为特性需求",
+          "decompositionRule": null,
+          "priority": "MEDIUM"
+        }
+      },
+      {
+        "id": "edge_6fdf65c322",
+        "source": "FEAT-VOICE-005",
+        "target": "FR-VOICE-004",
+        "type": "feature_carries_fr",
+        "data": {
+          "relationship": "业务特性承载特性需求",
+          "alignment": "ALIGNED"
+        }
+      },
+      {
+        "id": "edge_ec81e34cb5",
+        "source": "FR-OS-001",
+        "target": "MR-OS-001",
+        "type": "fr_to_mr",
+        "data": {
+          "relationship": "特性需求拆分为模块需求",
+          "traceability": null,
+          "coverage": 0
+        }
+      },
+      {
+        "id": "edge_7e1c844104",
+        "source": "MOD-OS-001",
+        "target": "MR-OS-001",
+        "type": "module_carries_mr",
+        "data": {
+          "relationship": "业务模块承载模块需求",
+          "implementationStatus": "NOT_STARTED"
+        }
+      },
+      {
+        "id": "edge_301eb821d6",
+        "source": "FR-OS-001",
+        "target": "MR-OS-002",
+        "type": "fr_to_mr",
+        "data": {
+          "relationship": "特性需求拆分为模块需求",
+          "traceability": null,
+          "coverage": 0
+        }
+      },
+      {
+        "id": "edge_10b7ca6b11",
+        "source": "MOD-OS-002",
+        "target": "MR-OS-002",
+        "type": "module_carries_mr",
+        "data": {
+          "relationship": "业务模块承载模块需求",
+          "implementationStatus": "NOT_STARTED"
+        }
+      },
+      {
+        "id": "edge_34845aab51",
+        "source": "FR-OS-002",
+        "target": "MR-OS-003",
+        "type": "fr_to_mr",
+        "data": {
+          "relationship": "特性需求拆分为模块需求",
+          "traceability": null,
+          "coverage": 0
+        }
+      },
+      {
+        "id": "edge_9452806fbb",
+        "source": "MOD-OS-003",
+        "target": "MR-OS-003",
+        "type": "module_carries_mr",
+        "data": {
+          "relationship": "业务模块承载模块需求",
+          "implementationStatus": "NOT_STARTED"
+        }
+      },
+      {
+        "id": "edge_4cfe40cd97",
+        "source": "FR-OS-002",
+        "target": "MR-OS-004",
+        "type": "fr_to_mr",
+        "data": {
+          "relationship": "特性需求拆分为模块需求",
+          "traceability": null,
+          "coverage": 0
+        }
+      },
+      {
+        "id": "edge_9591864562",
+        "source": "MOD-OS-004",
+        "target": "MR-OS-004",
+        "type": "module_carries_mr",
+        "data": {
+          "relationship": "业务模块承载模块需求",
+          "implementationStatus": "NOT_STARTED"
+        }
+      },
+      {
+        "id": "edge_ef7626b0eb",
+        "source": "FR-OS-003",
+        "target": "MR-OS-005",
+        "type": "fr_to_mr",
+        "data": {
+          "relationship": "特性需求拆分为模块需求",
+          "traceability": null,
+          "coverage": 0
+        }
+      },
+      {
+        "id": "edge_25f7e2588e",
+        "source": "MOD-OS-005",
+        "target": "MR-OS-005",
+        "type": "module_carries_mr",
+        "data": {
+          "relationship": "业务模块承载模块需求",
+          "implementationStatus": "NOT_STARTED"
+        }
+      },
+      {
+        "id": "edge_cdf2f563cf",
+        "source": "FR-OS-001",
+        "target": "MR-OS-006",
+        "type": "fr_to_mr",
+        "data": {
+          "relationship": "特性需求拆分为模块需求",
+          "traceability": null,
+          "coverage": 0
+        }
+      },
+      {
+        "id": "edge_8926fca82b",
+        "source": "MOD-OS-001",
+        "target": "MR-OS-006",
+        "type": "module_carries_mr",
+        "data": {
+          "relationship": "业务模块承载模块需求",
+          "implementationStatus": "NOT_STARTED"
+        }
+      },
+      {
+        "id": "edge_c87ab773d2",
+        "source": "FR-VOICE-001",
+        "target": "MR-VOICE-001",
+        "type": "fr_to_mr",
+        "data": {
+          "relationship": "特性需求拆分为模块需求",
+          "traceability": null,
+          "coverage": 0
+        }
+      },
+      {
+        "id": "edge_c2bb804e40",
+        "source": "MOD-VOICE-001",
+        "target": "MR-VOICE-001",
+        "type": "module_carries_mr",
+        "data": {
+          "relationship": "业务模块承载模块需求",
+          "implementationStatus": "NOT_STARTED"
+        }
+      },
+      {
+        "id": "edge_8585d830ac",
+        "source": "FR-VOICE-002",
+        "target": "MR-VOICE-002",
+        "type": "fr_to_mr",
+        "data": {
+          "relationship": "特性需求拆分为模块需求",
+          "traceability": null,
+          "coverage": 0
+        }
+      },
+      {
+        "id": "edge_f93c367296",
+        "source": "MOD-VOICE-002",
+        "target": "MR-VOICE-002",
+        "type": "module_carries_mr",
+        "data": {
+          "relationship": "业务模块承载模块需求",
+          "implementationStatus": "NOT_STARTED"
+        }
+      },
+      {
+        "id": "edge_99adec2c0c",
+        "source": "FR-VOICE-003",
+        "target": "MR-VOICE-003",
+        "type": "fr_to_mr",
+        "data": {
+          "relationship": "特性需求拆分为模块需求",
+          "traceability": null,
+          "coverage": 0
+        }
+      },
+      {
+        "id": "edge_e636228dff",
+        "source": "MOD-VOICE-003",
+        "target": "MR-VOICE-003",
+        "type": "module_carries_mr",
+        "data": {
+          "relationship": "业务模块承载模块需求",
+          "implementationStatus": "NOT_STARTED"
+        }
+      },
+      {
+        "id": "edge_976b016b3b",
+        "source": "FR-VOICE-003",
+        "target": "MR-VOICE-004",
+        "type": "fr_to_mr",
+        "data": {
+          "relationship": "特性需求拆分为模块需求",
+          "traceability": null,
+          "coverage": 0
+        }
+      },
+      {
+        "id": "edge_5386254d37",
+        "source": "MOD-VOICE-004",
+        "target": "MR-VOICE-004",
+        "type": "module_carries_mr",
+        "data": {
+          "relationship": "业务模块承载模块需求",
+          "implementationStatus": "NOT_STARTED"
+        }
+      },
+      {
+        "id": "edge_08b3960d1c",
+        "source": "FR-VOICE-004",
+        "target": "MR-VOICE-005",
+        "type": "fr_to_mr",
+        "data": {
+          "relationship": "特性需求拆分为模块需求",
+          "traceability": null,
+          "coverage": 0
+        }
+      },
+      {
+        "id": "edge_3d198af0d6",
+        "source": "MOD-VOICE-006",
+        "target": "MR-VOICE-005",
+        "type": "module_carries_mr",
+        "data": {
+          "relationship": "业务模块承载模块需求",
+          "implementationStatus": "NOT_STARTED"
+        }
+      },
+      {
+        "id": "edge_e1e8557c8f",
+        "source": "FR-VOICE-001",
+        "target": "MR-VOICE-006",
+        "type": "fr_to_mr",
+        "data": {
+          "relationship": "特性需求拆分为模块需求",
+          "traceability": null,
+          "coverage": 0
+        }
+      },
+      {
+        "id": "edge_1711d04495",
+        "source": "MOD-VOICE-001",
+        "target": "MR-VOICE-006",
+        "type": "module_carries_mr",
+        "data": {
+          "relationship": "业务模块承载模块需求",
+          "implementationStatus": "NOT_STARTED"
+        }
+      },
+      {
+        "id": "edge_d60f08cb2c",
+        "source": "ASSET-COCKPIT-001",
+        "target": "AV-COCKPIT-001-V12",
+        "type": "asset_has_version",
+        "data": {
+          "relationship": "资产有多个版本",
+          "version": "Android 12",
+          "releaseDate": "2026-01-17"
+        }
+      },
+      {
+        "id": "edge_fc05114bec",
+        "source": "ASSET-COCKPIT-002",
+        "target": "AV-COCKPIT-002-V1.0",
+        "type": "asset_has_version",
+        "data": {
+          "relationship": "资产有多个版本",
+          "version": "V1.0",
+          "releaseDate": "2026-01-17"
+        }
+      },
+      {
+        "id": "edge_903d171493",
+        "source": "ASSET-COCKPIT-003",
+        "target": "AV-COCKPIT-003-V5.0",
+        "type": "asset_has_version",
+        "data": {
+          "relationship": "资产有多个版本",
+          "version": "V5.0",
+          "releaseDate": "2026-01-17"
+        }
+      },
+      {
+        "id": "edge_61c57999fa",
+        "source": "ASSET-COCKPIT-004",
+        "target": "AV-COCKPIT-004-V3.0",
+        "type": "asset_has_version",
+        "data": {
+          "relationship": "资产有多个版本",
+          "version": "V3.0",
+          "releaseDate": "2026-01-17"
+        }
+      },
+      {
+        "id": "edge_28f2e7b714",
+        "source": "ASSET-COCKPIT-005",
+        "target": "AV-COCKPIT-005-V1.0",
+        "type": "asset_has_version",
+        "data": {
+          "relationship": "资产有多个版本",
+          "version": "V1.0",
+          "releaseDate": "2026-01-17"
+        }
+      },
+      {
+        "id": "edge_2948962bfa",
+        "source": "MR-OS-001",
+        "target": "AU-COCKPIT-001",
+        "type": "mr_uses_asset",
+        "data": {
+          "relationship": "模块需求使用资产",
+          "usageType": "REUSE",
+          "versionConstraint": null
+        }
+      },
+      {
+        "id": "edge_848c1e8a89",
+        "source": "AU-COCKPIT-001",
+        "target": "AV-COCKPIT-001-V12",
+        "type": "usage_refers_version",
+        "data": {
+          "relationship": "资产使用引用具体版本",
+          "version": "Android 12",
+          "compatibility": "COMPATIBLE"
+        }
+      },
+      {
+        "id": "edge_45fafb3eb2",
+        "source": "MR-OS-001",
+        "target": "AU-COCKPIT-002",
+        "type": "mr_uses_asset",
+        "data": {
+          "relationship": "模块需求使用资产",
+          "usageType": "REUSE",
+          "versionConstraint": null
+        }
+      },
+      {
+        "id": "edge_b29b55ba02",
+        "source": "AU-COCKPIT-002",
+        "target": "AV-COCKPIT-002-V1.0",
+        "type": "usage_refers_version",
+        "data": {
+          "relationship": "资产使用引用具体版本",
+          "version": "V1.0",
+          "compatibility": "COMPATIBLE"
+        }
+      },
+      {
+        "id": "edge_fc6d64215e",
+        "source": "MR-VOICE-002",
+        "target": "AU-COCKPIT-003",
+        "type": "mr_uses_asset",
+        "data": {
+          "relationship": "模块需求使用资产",
+          "usageType": "REUSE",
+          "versionConstraint": null
+        }
+      },
+      {
+        "id": "edge_d3c67908b3",
+        "source": "AU-COCKPIT-003",
+        "target": "AV-COCKPIT-003-V5.0",
+        "type": "usage_refers_version",
+        "data": {
+          "relationship": "资产使用引用具体版本",
+          "version": "V5.0",
+          "compatibility": "COMPATIBLE"
+        }
+      },
+      {
+        "id": "edge_2c2b509d86",
+        "source": "MR-VOICE-003",
+        "target": "AU-COCKPIT-004",
+        "type": "mr_uses_asset",
+        "data": {
+          "relationship": "模块需求使用资产",
+          "usageType": "REUSE",
+          "versionConstraint": null
+        }
+      },
+      {
+        "id": "edge_91afd76075",
+        "source": "AU-COCKPIT-004",
+        "target": "AV-COCKPIT-004-V3.0",
+        "type": "usage_refers_version",
+        "data": {
+          "relationship": "资产使用引用具体版本",
+          "version": "V3.0",
+          "compatibility": "COMPATIBLE"
+        }
+      },
+      {
+        "id": "edge_e981b57e96",
+        "source": "MR-VOICE-001",
+        "target": "AU-COCKPIT-005",
+        "type": "mr_uses_asset",
+        "data": {
+          "relationship": "模块需求使用资产",
+          "usageType": "REUSE",
+          "versionConstraint": null
+        }
+      },
+      {
+        "id": "edge_4d530fbecc",
+        "source": "AU-COCKPIT-005",
+        "target": "AV-COCKPIT-005-V1.0",
+        "type": "usage_refers_version",
+        "data": {
+          "relationship": "资产使用引用具体版本",
+          "version": "V1.0",
+          "compatibility": "COMPATIBLE"
+        }
+      },
+      {
+        "id": "edge_537086bffd",
+        "source": "DP-COCKPIT-001",
+        "target": "PI-COCKPIT-2022-Q3",
+        "type": "project_has_pi",
+        "data": {
+          "relationship": "领域项目规划PI",
+          "piNumber": 1,
+          "startDate": "2026-01-17",
+          "endDate": "2026-01-17"
+        }
+      },
+      {
+        "id": "edge_47c048bf31",
+        "source": "DP-COCKPIT-001",
+        "target": "PI-COCKPIT-2022-Q4",
+        "type": "project_has_pi",
+        "data": {
+          "relationship": "领域项目规划PI",
+          "piNumber": 1,
+          "startDate": "2026-01-17",
+          "endDate": "2026-01-17"
+        }
+      },
+      {
+        "id": "edge_a1d10b49d8",
+        "source": "DP-COCKPIT-001",
+        "target": "PI-COCKPIT-2023-Q1",
+        "type": "project_has_pi",
+        "data": {
+          "relationship": "领域项目规划PI",
+          "piNumber": 1,
+          "startDate": "2026-01-17",
+          "endDate": "2026-01-17"
+        }
+      },
+      {
+        "id": "edge_b5c0eac69d",
+        "source": "DP-COCKPIT-001",
+        "target": "PI-COCKPIT-2023-Q2",
+        "type": "project_has_pi",
+        "data": {
+          "relationship": "领域项目规划PI",
+          "piNumber": 1,
+          "startDate": "2026-01-17",
+          "endDate": "2026-01-17"
+        }
+      },
+      {
+        "id": "edge_bb70fd0bec",
+        "source": "PI-COCKPIT-2022-Q3",
+        "target": "SPRINT-COCKPIT-2022-Q3-S1",
+        "type": "pi_has_sprint",
+        "data": {
+          "relationship": "PI包含多个Sprint",
+          "sprintNumber": 1,
+          "capacity": 0
+        }
+      },
+      {
+        "id": "edge_ca188697e2",
+        "source": "PI-COCKPIT-2022-Q3",
+        "target": "SPRINT-COCKPIT-2022-Q3-S2",
+        "type": "pi_has_sprint",
+        "data": {
+          "relationship": "PI包含多个Sprint",
+          "sprintNumber": 1,
+          "capacity": 0
+        }
+      },
+      {
+        "id": "edge_d818b91d6c",
+        "source": "PI-COCKPIT-2022-Q3",
+        "target": "SPRINT-COCKPIT-2022-Q3-S3",
+        "type": "pi_has_sprint",
+        "data": {
+          "relationship": "PI包含多个Sprint",
+          "sprintNumber": 1,
+          "capacity": 0
+        }
+      },
+      {
+        "id": "edge_32ef8000ea",
+        "source": "PI-COCKPIT-2022-Q3",
+        "target": "SPRINT-COCKPIT-2022-Q3-S4",
+        "type": "pi_has_sprint",
+        "data": {
+          "relationship": "PI包含多个Sprint",
+          "sprintNumber": 1,
+          "capacity": 0
+        }
+      },
+      {
+        "id": "edge_c6bd438f10",
+        "source": "PI-COCKPIT-2022-Q3",
+        "target": "SPRINT-COCKPIT-2022-Q3-S5",
+        "type": "pi_has_sprint",
+        "data": {
+          "relationship": "PI包含多个Sprint",
+          "sprintNumber": 1,
+          "capacity": 0
+        }
+      },
+      {
+        "id": "edge_71f64bbf28",
+        "source": "SPRINT-COCKPIT-2022-Q3-S1",
+        "target": "SB-COCKPIT-001",
+        "type": "sprint_has_backlog",
+        "data": {
+          "relationship": "Sprint有待办列表",
+          "backlogSize": null
+        }
+      },
+      {
+        "id": "edge_00e1db7194",
+        "source": "SB-COCKPIT-001",
+        "target": "MR-OS-001",
+        "type": "backlog_refers_mr",
+        "data": {
+          "relationship": "待办关联模块需求",
+          "priority": "HIGH",
+          "estimatedStoryPoints": null
+        }
+      },
+      {
+        "id": "edge_e2505ead57",
+        "source": "SPRINT-COCKPIT-2022-Q3-S2",
+        "target": "SB-COCKPIT-002",
+        "type": "sprint_has_backlog",
+        "data": {
+          "relationship": "Sprint有待办列表",
+          "backlogSize": null
+        }
+      },
+      {
+        "id": "edge_73eb9626c6",
+        "source": "SB-COCKPIT-002",
+        "target": "MR-OS-003",
+        "type": "backlog_refers_mr",
+        "data": {
+          "relationship": "待办关联模块需求",
+          "priority": "HIGH",
+          "estimatedStoryPoints": null
+        }
+      },
+      {
+        "id": "edge_d70acafee2",
+        "source": "SPRINT-COCKPIT-2022-Q3-S3",
+        "target": "SB-COCKPIT-003",
+        "type": "sprint_has_backlog",
+        "data": {
+          "relationship": "Sprint有待办列表",
+          "backlogSize": null
+        }
+      },
+      {
+        "id": "edge_5b68c5a24f",
+        "source": "SB-COCKPIT-003",
+        "target": "MR-VOICE-001",
+        "type": "backlog_refers_mr",
+        "data": {
+          "relationship": "待办关联模块需求",
+          "priority": "HIGH",
+          "estimatedStoryPoints": null
+        }
+      },
+      {
+        "id": "edge_825652528a",
+        "source": "SPRINT-COCKPIT-2022-Q3-S4",
+        "target": "SB-COCKPIT-004",
+        "type": "sprint_has_backlog",
+        "data": {
+          "relationship": "Sprint有待办列表",
+          "backlogSize": null
+        }
+      },
+      {
+        "id": "edge_55fedec99e",
+        "source": "SB-COCKPIT-004",
+        "target": "MR-VOICE-002",
+        "type": "backlog_refers_mr",
+        "data": {
+          "relationship": "待办关联模块需求",
+          "priority": "HIGH",
+          "estimatedStoryPoints": null
+        }
+      },
+      {
+        "id": "edge_7c51bc22e9",
+        "source": "WI-COCKPIT-REQ-001",
+        "target": "CC-COCKPIT-001",
+        "type": "workitem_has_commit",
+        "data": {
+          "relationship": "工作项关联代码提交",
+          "commitCount": null,
+          "lastCommitDate": null
+        }
+      },
+      {
+        "id": "edge_c245e8e2a0",
+        "source": "WI-COCKPIT-REQ-002",
+        "target": "CC-COCKPIT-002",
+        "type": "workitem_has_commit",
+        "data": {
+          "relationship": "工作项关联代码提交",
+          "commitCount": null,
+          "lastCommitDate": null
+        }
+      },
+      {
+        "id": "edge_25b9027808",
+        "source": "WI-COCKPIT-REQ-003",
+        "target": "CC-COCKPIT-003",
+        "type": "workitem_has_commit",
+        "data": {
+          "relationship": "工作项关联代码提交",
+          "commitCount": null,
+          "lastCommitDate": null
+        }
+      },
+      {
+        "id": "edge_45d49d83a6",
+        "source": "WI-COCKPIT-REQ-004",
+        "target": "CC-COCKPIT-004",
+        "type": "workitem_has_commit",
+        "data": {
+          "relationship": "工作项关联代码提交",
+          "commitCount": null,
+          "lastCommitDate": null
+        }
+      },
+      {
+        "id": "edge_0851ec2e0c",
+        "source": "CC-COCKPIT-001",
+        "target": "BUILD-COCKPIT-001",
+        "type": "commit_triggers_build",
+        "data": {
+          "relationship": "提交触发构建",
+          "buildStatus": "SUCCESS",
+          "buildDuration": 0
+        }
+      },
+      {
+        "id": "edge_1cf1522140",
+        "source": "CC-COCKPIT-002",
+        "target": "BUILD-COCKPIT-002",
+        "type": "commit_triggers_build",
+        "data": {
+          "relationship": "提交触发构建",
+          "buildStatus": "SUCCESS",
+          "buildDuration": 0
+        }
+      },
+      {
+        "id": "edge_b35b9ee0b1",
+        "source": "CC-COCKPIT-003",
+        "target": "BUILD-COCKPIT-003",
+        "type": "commit_triggers_build",
+        "data": {
+          "relationship": "提交触发构建",
+          "buildStatus": "SUCCESS",
+          "buildDuration": 0
+        }
+      },
+      {
+        "id": "edge_9f5be9f0e8",
+        "source": "CC-COCKPIT-004",
+        "target": "BUILD-COCKPIT-004",
+        "type": "commit_triggers_build",
+        "data": {
+          "relationship": "提交触发构建",
+          "buildStatus": "SUCCESS",
+          "buildDuration": 0
+        }
+      },
+      {
+        "id": "edge_a8d02bf4c1",
+        "source": "MOD-OS-001",
+        "target": "TP-COCKPIT-001",
+        "type": "mr_has_testplan",
+        "data": {
+          "relationship": "模块需求有测试计划",
+          "testPlanType": "UNIT"
+        }
+      },
+      {
+        "id": "edge_016f341f3b",
+        "source": "MOD-VOICE-001",
+        "target": "TP-COCKPIT-002",
+        "type": "mr_has_testplan",
+        "data": {
+          "relationship": "模块需求有测试计划",
+          "testPlanType": "UNIT"
+        }
+      },
+      {
+        "id": "edge_9de9e2bb85",
+        "source": "BUILD-COCKPIT-001",
+        "target": "TE-COCKPIT-001",
+        "type": "build_triggers_test",
+        "data": {
+          "relationship": "构建触发测试执行",
+          "testStatus": "SUCCESS",
+          "executionTime": 0
+        }
+      },
+      {
+        "id": "edge_d61b4dc22d",
+        "source": "TC-COCKPIT-001",
+        "target": "TE-COCKPIT-001",
+        "type": "case_executes",
+        "data": {
+          "relationship": "测试用例被执行",
+          "executionStatus": "PASSED",
+          "executedAt": "2026-01-17"
+        }
+      },
+      {
+        "id": "edge_2009a5d3cf",
+        "source": "BUILD-COCKPIT-003",
+        "target": "TE-COCKPIT-002",
+        "type": "build_triggers_test",
+        "data": {
+          "relationship": "构建触发测试执行",
+          "testStatus": "SUCCESS",
+          "executionTime": 0
+        }
+      },
+      {
+        "id": "edge_bca601b3fc",
+        "source": "TC-COCKPIT-002",
+        "target": "TE-COCKPIT-002",
+        "type": "case_executes",
+        "data": {
+          "relationship": "测试用例被执行",
+          "executionStatus": "PASSED",
+          "executedAt": "2026-01-17"
+        }
+      },
+      {
+        "id": "edge_e3680c8b36",
+        "source": "BUILD-COCKPIT-004",
+        "target": "TE-COCKPIT-003",
+        "type": "build_triggers_test",
+        "data": {
+          "relationship": "构建触发测试执行",
+          "testStatus": "SUCCESS",
+          "executionTime": 0
+        }
+      },
+      {
+        "id": "edge_ab58cda332",
+        "source": "TC-COCKPIT-004",
+        "target": "TE-COCKPIT-003",
+        "type": "case_executes",
+        "data": {
+          "relationship": "测试用例被执行",
+          "executionStatus": "PASSED",
+          "executedAt": "2026-01-17"
+        }
+      },
+      {
+        "id": "edge_1d7273db3e",
+        "source": "TE-COCKPIT-001",
+        "target": "DEFECT-COCKPIT-001",
+        "type": "execution_finds_defect",
+        "data": {
+          "relationship": "测试执行发现缺陷",
+          "severity": "MEDIUM",
+          "foundDate": "2026-01-17"
+        }
+      },
+      {
+        "id": "edge_b377f2cf24",
+        "source": "TE-COCKPIT-002",
+        "target": "DEFECT-COCKPIT-002",
+        "type": "execution_finds_defect",
+        "data": {
+          "relationship": "测试执行发现缺陷",
+          "severity": "LOW",
+          "foundDate": "2026-01-17"
+        }
+      },
+      {
+        "id": "edge_1dfcc2c0ec",
+        "source": "BUILD-COCKPIT-001",
+        "target": "ARTIFACT-COCKPIT-001",
+        "type": "build_produces_artifact",
+        "data": {
+          "relationship": "构建产出制品",
+          "artifactType": "LIBRARY",
+          "size": 0
+        }
+      },
+      {
+        "id": "edge_192b274a45",
+        "source": "BUILD-COCKPIT-003",
+        "target": "ARTIFACT-COCKPIT-002",
+        "type": "build_produces_artifact",
+        "data": {
+          "relationship": "构建产出制品",
+          "artifactType": "LIBRARY",
+          "size": 0
+        }
+      },
+      {
+        "id": "edge_39715a17d2",
+        "source": "RELEASE-COCKPIT-001",
+        "target": "DEPLOY-COCKPIT-001",
+        "type": "release_deploys",
+        "data": {
+          "relationship": "发布进行部署",
+          "deploymentEnvironment": "DEV",
+          "deployedAt": "2026-01-17"
+        }
+      },
+      {
+        "id": "edge_1d647af3f0",
+        "source": "RELEASE-COCKPIT-002",
+        "target": "DEPLOY-COCKPIT-002",
+        "type": "release_deploys",
+        "data": {
+          "relationship": "发布进行部署",
+          "deploymentEnvironment": "DEV",
+          "deployedAt": "2026-01-17"
+        }
+      },
+      {
+        "id": "edge_3bc2d5be7b",
+        "source": "METRIC-001",
+        "target": "MV-COCKPIT-001",
+        "type": "metric_has_value",
+        "data": {
+          "relationship": "指标有度量数据",
+          "value": 42,
+          "recordedAt": "2026-01-17"
+        }
+      },
+      {
+        "id": "edge_00cf1ee306",
+        "source": "METRIC-002",
+        "target": "MV-COCKPIT-002",
+        "type": "metric_has_value",
+        "data": {
+          "relationship": "指标有度量数据",
+          "value": 90,
+          "recordedAt": "2026-01-17"
+        }
+      },
+      {
+        "id": "edge_643047257a",
+        "source": "METRIC-003",
+        "target": "MV-COCKPIT-003",
+        "type": "metric_has_value",
+        "data": {
+          "relationship": "指标有度量数据",
+          "value": 82,
+          "recordedAt": "2026-01-17"
+        }
+      },
+      {
+        "id": "edge_d89c9cdc19",
+        "source": "METRIC-005",
+        "target": "MV-COCKPIT-004",
+        "type": "metric_has_value",
+        "data": {
+          "relationship": "指标有度量数据",
+          "value": 96.8,
+          "recordedAt": "2026-01-17"
+        }
+      },
+      {
+        "id": "edge_300469a201",
+        "source": "MS-001",
+        "target": "METRIC-001",
+        "type": "metricset_has_metric",
+        "data": {
+          "relationship": "度量集包含指标",
+          "unit": "DAY",
+          "targetValue": 0
+        }
+      },
+      {
+        "id": "edge_bc5e944c39",
+        "source": "MS-001",
+        "target": "METRIC-002",
+        "type": "metricset_has_metric",
+        "data": {
+          "relationship": "度量集包含指标",
+          "unit": "SCORE",
+          "targetValue": 0
+        }
+      },
+      {
+        "id": "edge_f1ee1cde97",
+        "source": "MS-001",
+        "target": "METRIC-003",
+        "type": "metricset_has_metric",
+        "data": {
+          "relationship": "度量集包含指标",
+          "unit": "PERCENTAGE",
+          "targetValue": 0
+        }
+      },
+      {
+        "id": "edge_2de4a4a046",
+        "source": "MS-001",
+        "target": "METRIC-004",
+        "type": "metricset_has_metric",
+        "data": {
+          "relationship": "度量集包含指标",
+          "unit": "COUNT_PER_KLOC",
+          "targetValue": 0
+        }
+      },
+      {
+        "id": "edge_0cc486425e",
+        "source": "MS-001",
+        "target": "METRIC-005",
+        "type": "metricset_has_metric",
+        "data": {
+          "relationship": "度量集包含指标",
+          "unit": "PERCENTAGE",
+          "targetValue": 0
+        }
+      }
+    ]
+  }
+}

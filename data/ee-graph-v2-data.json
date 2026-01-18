@@ -1,0 +1,3754 @@
+{
+  "schemaId": "core-domain-schema-v2",
+  "schemaVersion": "2.0.0",
+  "data": {
+    "nodes": [
+      {
+        "id": "VEH-001",
+        "type": "Vehicle",
+        "label": "岚图梦想家",
+        "data": {
+          "id": "VEH-001",
+          "name": "岚图梦想家",
+          "code": "VOYAH_DREAMER",
+          "platform": "ESSA",
+          "launchDate": "2023-06-01",
+          "status": "LAUNCHED"
+        }
+      },
+      {
+        "id": "DP-EE-001",
+        "type": "DomainProject",
+        "label": "梦想家电子电器项目",
+        "data": {
+          "id": "DP-EE-001",
+          "vehicleId": "VEH-001",
+          "name": "梦想家电子电器项目",
+          "domain": "EE",
+          "managerId": "USER-PM-003",
+          "description": "岚图梦想家车型的电子电器系统研发项目，包含域控制器和车身控制系统"
+        }
+      },
+      {
+        "id": "MS-EE-001",
+        "type": "ProjectMilestone",
+        "label": "SOP量产",
+        "data": {
+          "id": "MS-EE-001",
+          "domainProjectId": "DP-EE-001",
+          "name": "SOP量产",
+          "targetDate": "2023-06-01",
+          "type": "SOP",
+          "status": "COMPLETED"
+        }
+      },
+      {
+        "id": "MS-EE-002",
+        "type": "ProjectMilestone",
+        "label": "PVS生产验证",
+        "data": {
+          "id": "MS-EE-002",
+          "domainProjectId": "DP-EE-001",
+          "name": "PVS生产验证",
+          "targetDate": "2023-03-01",
+          "type": "PVS",
+          "status": "COMPLETED"
+        }
+      },
+      {
+        "id": "MS-EE-003",
+        "type": "ProjectMilestone",
+        "label": "DVS设计验证",
+        "data": {
+          "id": "MS-EE-003",
+          "domainProjectId": "DP-EE-001",
+          "name": "DVS设计验证",
+          "targetDate": "2022-12-01",
+          "type": "DVS",
+          "status": "COMPLETED"
+        }
+      },
+      {
+        "id": "MS-EE-004",
+        "type": "ProjectMilestone",
+        "label": "样车阶段",
+        "data": {
+          "id": "MS-EE-004",
+          "domainProjectId": "DP-EE-001",
+          "name": "样车阶段",
+          "targetDate": "2022-09-01",
+          "type": "PROTOTYPE",
+          "status": "COMPLETED"
+        }
+      },
+      {
+        "id": "BL-EE-SOP-001",
+        "type": "Baseline",
+        "label": "SOP基线",
+        "data": {
+          "id": "BL-EE-SOP-001",
+          "milestoneId": "MS-EE-001",
+          "name": "SOP基线",
+          "version": "V1.0",
+          "freezeDate": "2023-05-01",
+          "scope": "中央计算平台V1.0 + 车身控制系统V1.0 + 完整电子电器架构"
+        }
+      },
+      {
+        "id": "BL-EE-PVS-001",
+        "type": "Baseline",
+        "label": "PVS基线",
+        "data": {
+          "id": "BL-EE-PVS-001",
+          "milestoneId": "MS-EE-002",
+          "name": "PVS基线",
+          "version": "V0.9",
+          "freezeDate": "2023-02-01",
+          "scope": "域控制器基础功能 + BCM基础功能"
+        }
+      },
+      {
+        "id": "BL-EE-DVS-001",
+        "type": "Baseline",
+        "label": "DVS基线",
+        "data": {
+          "id": "BL-EE-DVS-001",
+          "milestoneId": "MS-EE-003",
+          "name": "DVS基线",
+          "version": "V0.8",
+          "freezeDate": "2022-11-01",
+          "scope": "核心架构验证 + 基础功能验证"
+        }
+      },
+      {
+        "id": "PL-EE-001",
+        "type": "ProductLine",
+        "label": "电子电器产品线",
+        "data": {
+          "id": "PL-EE-001",
+          "name": "电子电器产品线",
+          "code": "EE",
+          "type": "EE",
+          "description": "电子电器系统产品线，包含域控制器、车身控制、电源管理等"
+        }
+      },
+      {
+        "id": "PROD-CDC-001",
+        "type": "Product",
+        "label": "中央计算平台产品",
+        "data": {
+          "id": "PROD-CDC-001",
+          "productLineId": "PL-EE-001",
+          "name": "中央计算平台产品",
+          "code": "CENTRAL_DOMAIN_CONTROLLER",
+          "description": "中央计算平台（CDC），集成多域功能的高性能域控制器"
+        }
+      },
+      {
+        "id": "PROD-BCM-001",
+        "type": "Product",
+        "label": "车身控制系统产品",
+        "data": {
+          "id": "PROD-BCM-001",
+          "productLineId": "PL-EE-001",
+          "name": "车身控制系统产品",
+          "code": "BODY_CONTROL_MODULE",
+          "description": "车身控制模块（BCM），负责车身电子设备的控制和管理"
+        }
+      },
+      {
+        "id": "PV-CDC-V1.0",
+        "type": "ProductVersion",
+        "label": "PV-CDC-V1.0",
+        "data": {
+          "id": "PV-CDC-V1.0",
+          "productId": "PROD-CDC-001",
+          "version": "V1.0",
+          "baselineId": "BL-EE-SOP-001",
+          "releaseDate": "2023-06-01",
+          "status": "RELEASED"
+        }
+      },
+      {
+        "id": "PV-CDC-V1.1",
+        "type": "ProductVersion",
+        "label": "PV-CDC-V1.1",
+        "data": {
+          "id": "PV-CDC-V1.1",
+          "productId": "PROD-CDC-001",
+          "version": "V1.1",
+          "baselineId": null,
+          "releaseDate": "2023-12-01",
+          "status": "DEVELOPING"
+        }
+      },
+      {
+        "id": "PV-BCM-V1.0",
+        "type": "ProductVersion",
+        "label": "PV-BCM-V1.0",
+        "data": {
+          "id": "PV-BCM-V1.0",
+          "productId": "PROD-BCM-001",
+          "version": "V1.0",
+          "baselineId": "BL-EE-SOP-001",
+          "releaseDate": "2023-06-01",
+          "status": "RELEASED"
+        }
+      },
+      {
+        "id": "FEAT-CDC-001",
+        "type": "Feature",
+        "label": "SOA服务化架构",
+        "data": {
+          "id": "FEAT-CDC-001",
+          "productId": "PROD-CDC-001",
+          "parentFeatureId": null,
+          "name": "SOA服务化架构",
+          "code": "SOA_ARCHITECTURE",
+          "description": "基于SOA的服务化软件架构"
+        }
+      },
+      {
+        "id": "FEAT-CDC-002",
+        "type": "Feature",
+        "label": "车辆网关",
+        "data": {
+          "id": "FEAT-CDC-002",
+          "productId": "PROD-CDC-001",
+          "parentFeatureId": null,
+          "name": "车辆网关",
+          "code": "VEHICLE_GATEWAY",
+          "description": "车辆网关功能，负责CAN/LIN/Ethernet网络通信"
+        }
+      },
+      {
+        "id": "FEAT-CDC-003",
+        "type": "Feature",
+        "label": "OTA升级",
+        "data": {
+          "id": "FEAT-CDC-003",
+          "productId": "PROD-CDC-001",
+          "parentFeatureId": null,
+          "name": "OTA升级",
+          "code": "OTA_UPDATE",
+          "description": "整车OTA升级管理"
+        }
+      },
+      {
+        "id": "FEAT-CDC-004",
+        "type": "Feature",
+        "label": "诊断服务",
+        "data": {
+          "id": "FEAT-CDC-004",
+          "productId": "PROD-CDC-001",
+          "parentFeatureId": null,
+          "name": "诊断服务",
+          "code": "DIAGNOSTIC",
+          "description": "车辆诊断服务（UDS协议）"
+        }
+      },
+      {
+        "id": "FEAT-BCM-001",
+        "type": "Feature",
+        "label": "车灯控制",
+        "data": {
+          "id": "FEAT-BCM-001",
+          "productId": "PROD-BCM-001",
+          "parentFeatureId": null,
+          "name": "车灯控制",
+          "code": "LIGHTING_CONTROL",
+          "description": "车灯控制功能（前照灯、尾灯、转向灯等）"
+        }
+      },
+      {
+        "id": "FEAT-BCM-002",
+        "type": "Feature",
+        "label": "车窗控制",
+        "data": {
+          "id": "FEAT-BCM-002",
+          "productId": "PROD-BCM-001",
+          "parentFeatureId": null,
+          "name": "车窗控制",
+          "code": "WINDOW_CONTROL",
+          "description": "电动车窗控制功能"
+        }
+      },
+      {
+        "id": "FEAT-BCM-003",
+        "type": "Feature",
+        "label": "门锁控制",
+        "data": {
+          "id": "FEAT-BCM-003",
+          "productId": "PROD-BCM-001",
+          "parentFeatureId": null,
+          "name": "门锁控制",
+          "code": "DOOR_LOCK_CONTROL",
+          "description": "中控锁和防盗控制功能"
+        }
+      },
+      {
+        "id": "FEAT-BCM-004",
+        "type": "Feature",
+        "label": "雨刮控制",
+        "data": {
+          "id": "FEAT-BCM-004",
+          "productId": "PROD-BCM-001",
+          "parentFeatureId": null,
+          "name": "雨刮控制",
+          "code": "WIPER_CONTROL",
+          "description": "雨刮器控制功能"
+        }
+      },
+      {
+        "id": "FEAT-BCM-005",
+        "type": "Feature",
+        "label": "电源管理",
+        "data": {
+          "id": "FEAT-BCM-005",
+          "productId": "PROD-BCM-001",
+          "parentFeatureId": null,
+          "name": "电源管理",
+          "code": "POWER_MANAGEMENT",
+          "description": "车身电源管理和低功耗模式"
+        }
+      },
+      {
+        "id": "MOD-CDC-001",
+        "type": "Module",
+        "label": "服务管理模块",
+        "data": {
+          "id": "MOD-CDC-001",
+          "featureId": "FEAT-CDC-001",
+          "name": "服务管理模块",
+          "code": "SERVICE_MANAGER",
+          "ownerTeamId": "TEAM-EE-PLATFORM",
+          "description": "SOA服务注册、发现、调用管理"
+        }
+      },
+      {
+        "id": "MOD-CDC-002",
+        "type": "Module",
+        "label": "通信中间件模块",
+        "data": {
+          "id": "MOD-CDC-002",
+          "featureId": "FEAT-CDC-001",
+          "name": "通信中间件模块",
+          "code": "COMMUNICATION_MIDDLEWARE",
+          "ownerTeamId": "TEAM-EE-PLATFORM",
+          "description": "基于SOME/IP的通信中间件"
+        }
+      },
+      {
+        "id": "MOD-CDC-003",
+        "type": "Module",
+        "label": "CAN网关模块",
+        "data": {
+          "id": "MOD-CDC-003",
+          "featureId": "FEAT-CDC-002",
+          "name": "CAN网关模块",
+          "code": "CAN_GATEWAY",
+          "ownerTeamId": "TEAM-EE-GATEWAY",
+          "description": "CAN总线网关和路由"
+        }
+      },
+      {
+        "id": "MOD-CDC-004",
+        "type": "Module",
+        "label": "以太网网关模块",
+        "data": {
+          "id": "MOD-CDC-004",
+          "featureId": "FEAT-CDC-002",
+          "name": "以太网网关模块",
+          "code": "ETHERNET_GATEWAY",
+          "ownerTeamId": "TEAM-EE-GATEWAY",
+          "description": "车载以太网网关"
+        }
+      },
+      {
+        "id": "MOD-CDC-005",
+        "type": "Module",
+        "label": "OTA管理模块",
+        "data": {
+          "id": "MOD-CDC-005",
+          "featureId": "FEAT-CDC-003",
+          "name": "OTA管理模块",
+          "code": "OTA_MANAGER",
+          "ownerTeamId": "TEAM-EE-OTA",
+          "description": "OTA升级包管理和调度"
+        }
+      },
+      {
+        "id": "MOD-CDC-006",
+        "type": "Module",
+        "label": "升级代理模块",
+        "data": {
+          "id": "MOD-CDC-006",
+          "featureId": "FEAT-CDC-003",
+          "name": "升级代理模块",
+          "code": "UPDATE_AGENT",
+          "ownerTeamId": "TEAM-EE-OTA",
+          "description": "ECU升级代理和回滚"
+        }
+      },
+      {
+        "id": "MOD-CDC-007",
+        "type": "Module",
+        "label": "UDS诊断模块",
+        "data": {
+          "id": "MOD-CDC-007",
+          "featureId": "FEAT-CDC-004",
+          "name": "UDS诊断模块",
+          "code": "UDS_DIAGNOSTIC",
+          "ownerTeamId": "TEAM-EE-DIAGNOSTIC",
+          "description": "UDS诊断协议实现"
+        }
+      },
+      {
+        "id": "MOD-BCM-001",
+        "type": "Module",
+        "label": "前照灯控制模块",
+        "data": {
+          "id": "MOD-BCM-001",
+          "featureId": "FEAT-BCM-001",
+          "name": "前照灯控制模块",
+          "code": "HEADLIGHT_CONTROL",
+          "ownerTeamId": "TEAM-EE-BCM",
+          "description": "前照灯控制逻辑（远光、近光、自动大灯）"
+        }
+      },
+      {
+        "id": "MOD-BCM-002",
+        "type": "Module",
+        "label": "转向灯控制模块",
+        "data": {
+          "id": "MOD-BCM-002",
+          "featureId": "FEAT-BCM-001",
+          "name": "转向灯控制模块",
+          "code": "TURN_SIGNAL_CONTROL",
+          "ownerTeamId": "TEAM-EE-BCM",
+          "description": "转向灯控制逻辑"
+        }
+      },
+      {
+        "id": "MOD-BCM-003",
+        "type": "Module",
+        "label": "车窗控制模块",
+        "data": {
+          "id": "MOD-BCM-003",
+          "featureId": "FEAT-BCM-002",
+          "name": "车窗控制模块",
+          "code": "WINDOW_CONTROL",
+          "ownerTeamId": "TEAM-EE-BCM",
+          "description": "电动车窗控制逻辑（防夹、一键升降）"
+        }
+      },
+      {
+        "id": "MOD-BCM-004",
+        "type": "Module",
+        "label": "中控锁模块",
+        "data": {
+          "id": "MOD-BCM-004",
+          "featureId": "FEAT-BCM-003",
+          "name": "中控锁模块",
+          "code": "CENTRAL_LOCK",
+          "ownerTeamId": "TEAM-EE-BCM",
+          "description": "中控锁控制逻辑"
+        }
+      },
+      {
+        "id": "MOD-BCM-005",
+        "type": "Module",
+        "label": "防盗模块",
+        "data": {
+          "id": "MOD-BCM-005",
+          "featureId": "FEAT-BCM-003",
+          "name": "防盗模块",
+          "code": "ANTI_THEFT",
+          "ownerTeamId": "TEAM-EE-BCM",
+          "description": "防盗报警控制逻辑"
+        }
+      },
+      {
+        "id": "MOD-BCM-006",
+        "type": "Module",
+        "label": "电源管理模块",
+        "data": {
+          "id": "MOD-BCM-006",
+          "featureId": "FEAT-BCM-005",
+          "name": "电源管理模块",
+          "code": "POWER_MANAGER",
+          "ownerTeamId": "TEAM-EE-BCM",
+          "description": "车身电源管理和低功耗控制"
+        }
+      },
+      {
+        "id": "EPIC-CDC-001",
+        "type": "Epic",
+        "label": "SOA架构核心功能",
+        "data": {
+          "id": "EPIC-CDC-001",
+          "productId": "PROD-CDC-001",
+          "name": "SOA架构核心功能",
+          "description": "实现基于SOA的服务化软件架构",
+          "ownerId": "USER-PO-005",
+          "priority": "HIGH",
+          "status": "DONE"
+        }
+      },
+      {
+        "id": "EPIC-CDC-002",
+        "type": "Epic",
+        "label": "车辆网关功能",
+        "data": {
+          "id": "EPIC-CDC-002",
+          "productId": "PROD-CDC-001",
+          "name": "车辆网关功能",
+          "description": "实现车辆网关和网络通信功能",
+          "ownerId": "USER-PO-005",
+          "priority": "HIGH",
+          "status": "DONE"
+        }
+      },
+      {
+        "id": "EPIC-CDC-003",
+        "type": "Epic",
+        "label": "OTA升级功能",
+        "data": {
+          "id": "EPIC-CDC-003",
+          "productId": "PROD-CDC-001",
+          "name": "OTA升级功能",
+          "description": "实现整车OTA升级管理功能",
+          "ownerId": "USER-PO-005",
+          "priority": "MEDIUM",
+          "status": "DONE"
+        }
+      },
+      {
+        "id": "EPIC-BCM-001",
+        "type": "Epic",
+        "label": "车身控制核心功能",
+        "data": {
+          "id": "EPIC-BCM-001",
+          "productId": "PROD-BCM-001",
+          "name": "车身控制核心功能",
+          "description": "实现车灯、车窗、门锁等车身控制功能",
+          "ownerId": "USER-PO-006",
+          "priority": "HIGH",
+          "status": "DONE"
+        }
+      },
+      {
+        "id": "EPIC-BCM-002",
+        "type": "Epic",
+        "label": "电源管理功能",
+        "data": {
+          "id": "EPIC-BCM-002",
+          "productId": "PROD-BCM-001",
+          "name": "电源管理功能",
+          "description": "实现车身电源管理和低功耗模式",
+          "ownerId": "USER-PO-006",
+          "priority": "MEDIUM",
+          "status": "DONE"
+        }
+      },
+      {
+        "id": "FR-CDC-001",
+        "type": "FeatureRequirement",
+        "label": "SOA服务化架构需求",
+        "data": {
+          "id": "FR-CDC-001",
+          "epicId": "EPIC-CDC-001",
+          "featureId": "FEAT-CDC-001",
+          "name": "SOA服务化架构需求",
+          "description": "基于SOME/IP的SOA服务化架构",
+          "priority": "HIGH",
+          "status": "DONE"
+        }
+      },
+      {
+        "id": "FR-CDC-002",
+        "type": "FeatureRequirement",
+        "label": "车辆网关需求",
+        "data": {
+          "id": "FR-CDC-002",
+          "epicId": "EPIC-CDC-002",
+          "featureId": "FEAT-CDC-002",
+          "name": "车辆网关需求",
+          "description": "支持CAN/LIN/Ethernet多网络通信和路由",
+          "priority": "HIGH",
+          "status": "DONE"
+        }
+      },
+      {
+        "id": "FR-CDC-003",
+        "type": "FeatureRequirement",
+        "label": "OTA升级需求",
+        "data": {
+          "id": "FR-CDC-003",
+          "epicId": "EPIC-CDC-003",
+          "featureId": "FEAT-CDC-003",
+          "name": "OTA升级需求",
+          "description": "支持整车ECU的OTA升级和回滚",
+          "priority": "MEDIUM",
+          "status": "DONE"
+        }
+      },
+      {
+        "id": "FR-CDC-004",
+        "type": "FeatureRequirement",
+        "label": "诊断服务需求",
+        "data": {
+          "id": "FR-CDC-004",
+          "epicId": "EPIC-CDC-001",
+          "featureId": "FEAT-CDC-004",
+          "name": "诊断服务需求",
+          "description": "支持UDS诊断协议和故障码管理",
+          "priority": "HIGH",
+          "status": "DONE"
+        }
+      },
+      {
+        "id": "FR-BCM-001",
+        "type": "FeatureRequirement",
+        "label": "车灯控制需求",
+        "data": {
+          "id": "FR-BCM-001",
+          "epicId": "EPIC-BCM-001",
+          "featureId": "FEAT-BCM-001",
+          "name": "车灯控制需求",
+          "description": "支持前照灯、尾灯、转向灯等车灯控制",
+          "priority": "HIGH",
+          "status": "DONE"
+        }
+      },
+      {
+        "id": "FR-BCM-002",
+        "type": "FeatureRequirement",
+        "label": "车窗控制需求",
+        "data": {
+          "id": "FR-BCM-002",
+          "epicId": "EPIC-BCM-001",
+          "featureId": "FEAT-BCM-002",
+          "name": "车窗控制需求",
+          "description": "支持电动车窗控制，包含防夹功能",
+          "priority": "HIGH",
+          "status": "DONE"
+        }
+      },
+      {
+        "id": "FR-BCM-003",
+        "type": "FeatureRequirement",
+        "label": "门锁控制需求",
+        "data": {
+          "id": "FR-BCM-003",
+          "epicId": "EPIC-BCM-001",
+          "featureId": "FEAT-BCM-003",
+          "name": "门锁控制需求",
+          "description": "支持中控锁和防盗功能",
+          "priority": "HIGH",
+          "status": "DONE"
+        }
+      },
+      {
+        "id": "FR-BCM-004",
+        "type": "FeatureRequirement",
+        "label": "电源管理需求",
+        "data": {
+          "id": "FR-BCM-004",
+          "epicId": "EPIC-BCM-002",
+          "featureId": "FEAT-BCM-005",
+          "name": "电源管理需求",
+          "description": "支持车身电源管理和低功耗模式",
+          "priority": "MEDIUM",
+          "status": "DONE"
+        }
+      },
+      {
+        "id": "MR-CDC-001",
+        "type": "ModuleRequirement",
+        "label": "服务管理框架需求",
+        "data": {
+          "id": "MR-CDC-001",
+          "featureRequirementId": "FR-CDC-001",
+          "moduleId": "MOD-CDC-001",
+          "name": "服务管理框架需求",
+          "description": "基于AUTOSAR Adaptive的服务管理框架",
+          "type": "FUNCTIONAL",
+          "status": "DONE"
+        }
+      },
+      {
+        "id": "MR-CDC-002",
+        "type": "ModuleRequirement",
+        "label": "SOME/IP通信需求",
+        "data": {
+          "id": "MR-CDC-002",
+          "featureRequirementId": "FR-CDC-001",
+          "moduleId": "MOD-CDC-002",
+          "name": "SOME/IP通信需求",
+          "description": "实现SOME/IP通信协议栈",
+          "type": "FUNCTIONAL",
+          "status": "DONE"
+        }
+      },
+      {
+        "id": "MR-CDC-003",
+        "type": "ModuleRequirement",
+        "label": "CAN网关需求",
+        "data": {
+          "id": "MR-CDC-003",
+          "featureRequirementId": "FR-CDC-002",
+          "moduleId": "MOD-CDC-003",
+          "name": "CAN网关需求",
+          "description": "实现CAN总线网关和信号路由",
+          "type": "FUNCTIONAL",
+          "status": "DONE"
+        }
+      },
+      {
+        "id": "MR-CDC-004",
+        "type": "ModuleRequirement",
+        "label": "以太网网关需求",
+        "data": {
+          "id": "MR-CDC-004",
+          "featureRequirementId": "FR-CDC-002",
+          "moduleId": "MOD-CDC-004",
+          "name": "以太网网关需求",
+          "description": "实现车载以太网网关（100BASE-T1/1000BASE-T1）",
+          "type": "FUNCTIONAL",
+          "status": "DONE"
+        }
+      },
+      {
+        "id": "MR-CDC-005",
+        "type": "ModuleRequirement",
+        "label": "OTA管理需求",
+        "data": {
+          "id": "MR-CDC-005",
+          "featureRequirementId": "FR-CDC-003",
+          "moduleId": "MOD-CDC-005",
+          "name": "OTA管理需求",
+          "description": "实现OTA升级包下载、验证、分发",
+          "type": "FUNCTIONAL",
+          "status": "DONE"
+        }
+      },
+      {
+        "id": "MR-CDC-006",
+        "type": "ModuleRequirement",
+        "label": "UDS诊断需求",
+        "data": {
+          "id": "MR-CDC-006",
+          "featureRequirementId": "FR-CDC-004",
+          "moduleId": "MOD-CDC-007",
+          "name": "UDS诊断需求",
+          "description": "实现UDS诊断服务（0x10, 0x22, 0x2E等）",
+          "type": "FUNCTIONAL",
+          "status": "DONE"
+        }
+      },
+      {
+        "id": "MR-CDC-007",
+        "type": "ModuleRequirement",
+        "label": "通信性能需求",
+        "data": {
+          "id": "MR-CDC-007",
+          "featureRequirementId": "FR-CDC-001",
+          "moduleId": "MOD-CDC-002",
+          "name": "通信性能需求",
+          "description": "SOME/IP通信延迟<10ms，吞吐量>100Mbps",
+          "type": "NON_FUNCTIONAL",
+          "status": "DONE"
+        }
+      },
+      {
+        "id": "MR-BCM-001",
+        "type": "ModuleRequirement",
+        "label": "前照灯控制需求",
+        "data": {
+          "id": "MR-BCM-001",
+          "featureRequirementId": "FR-BCM-001",
+          "moduleId": "MOD-BCM-001",
+          "name": "前照灯控制需求",
+          "description": "实现前照灯控制逻辑（远光、近光、自动大灯）",
+          "type": "FUNCTIONAL",
+          "status": "DONE"
+        }
+      },
+      {
+        "id": "MR-BCM-002",
+        "type": "ModuleRequirement",
+        "label": "转向灯控制需求",
+        "data": {
+          "id": "MR-BCM-002",
+          "featureRequirementId": "FR-BCM-001",
+          "moduleId": "MOD-BCM-002",
+          "name": "转向灯控制需求",
+          "description": "实现转向灯控制逻辑（左转、右转、双闪）",
+          "type": "FUNCTIONAL",
+          "status": "DONE"
+        }
+      },
+      {
+        "id": "MR-BCM-003",
+        "type": "ModuleRequirement",
+        "label": "车窗控制需求",
+        "data": {
+          "id": "MR-BCM-003",
+          "featureRequirementId": "FR-BCM-002",
+          "moduleId": "MOD-BCM-003",
+          "name": "车窗控制需求",
+          "description": "实现电动车窗控制逻辑，包含防夹功能",
+          "type": "FUNCTIONAL",
+          "status": "DONE"
+        }
+      },
+      {
+        "id": "MR-BCM-004",
+        "type": "ModuleRequirement",
+        "label": "中控锁需求",
+        "data": {
+          "id": "MR-BCM-004",
+          "featureRequirementId": "FR-BCM-003",
+          "moduleId": "MOD-BCM-004",
+          "name": "中控锁需求",
+          "description": "实现中控锁控制逻辑",
+          "type": "FUNCTIONAL",
+          "status": "DONE"
+        }
+      },
+      {
+        "id": "MR-BCM-005",
+        "type": "ModuleRequirement",
+        "label": "电源管理需求",
+        "data": {
+          "id": "MR-BCM-005",
+          "featureRequirementId": "FR-BCM-004",
+          "moduleId": "MOD-BCM-006",
+          "name": "电源管理需求",
+          "description": "实现车身电源管理和低功耗控制（静态电流<50mA）",
+          "type": "FUNCTIONAL",
+          "status": "DONE"
+        }
+      },
+      {
+        "id": "MR-BCM-006",
+        "type": "ModuleRequirement",
+        "label": "车窗防夹性能需求",
+        "data": {
+          "id": "MR-BCM-006",
+          "featureRequirementId": "FR-BCM-002",
+          "moduleId": "MOD-BCM-003",
+          "name": "车窗防夹性能需求",
+          "description": "车窗防夹力<100N，响应时间<200ms",
+          "type": "NON_FUNCTIONAL",
+          "status": "DONE"
+        }
+      },
+      {
+        "id": "ASSET-EE-001",
+        "type": "Asset",
+        "label": "AUTOSAR Adaptive Platform",
+        "data": {
+          "id": "ASSET-EE-001",
+          "name": "AUTOSAR Adaptive Platform",
+          "type": "FRAMEWORK",
+          "ownerTeamId": "TEAM-EE-PLATFORM",
+          "description": "AUTOSAR Adaptive Platform基础框架",
+          "maturityLevel": "L5"
+        }
+      },
+      {
+        "id": "ASSET-EE-002",
+        "type": "Asset",
+        "label": "SOME/IP协议栈",
+        "data": {
+          "id": "ASSET-EE-002",
+          "name": "SOME/IP协议栈",
+          "type": "COMPONENT",
+          "ownerTeamId": "TEAM-EE-PLATFORM",
+          "description": "SOME/IP通信协议栈组件",
+          "maturityLevel": "L5"
+        }
+      },
+      {
+        "id": "ASSET-EE-003",
+        "type": "Asset",
+        "label": "CAN驱动库",
+        "data": {
+          "id": "ASSET-EE-003",
+          "name": "CAN驱动库",
+          "type": "COMPONENT",
+          "ownerTeamId": "TEAM-EE-GATEWAY",
+          "description": "CAN总线驱动库（支持CAN FD）",
+          "maturityLevel": "L5"
+        }
+      },
+      {
+        "id": "ASSET-EE-004",
+        "type": "Asset",
+        "label": "UDS诊断协议栈",
+        "data": {
+          "id": "ASSET-EE-004",
+          "name": "UDS诊断协议栈",
+          "type": "COMPONENT",
+          "ownerTeamId": "TEAM-EE-DIAGNOSTIC",
+          "description": "UDS诊断协议栈组件",
+          "maturityLevel": "L5"
+        }
+      },
+      {
+        "id": "ASSET-EE-005",
+        "type": "Asset",
+        "label": "OTA升级框架",
+        "data": {
+          "id": "ASSET-EE-005",
+          "name": "OTA升级框架",
+          "type": "FRAMEWORK",
+          "ownerTeamId": "TEAM-EE-OTA",
+          "description": "自研OTA升级管理框架",
+          "maturityLevel": "L4"
+        }
+      },
+      {
+        "id": "ASSET-EE-006",
+        "type": "Asset",
+        "label": "AUTOSAR Classic BSW",
+        "data": {
+          "id": "ASSET-EE-006",
+          "name": "AUTOSAR Classic BSW",
+          "type": "FRAMEWORK",
+          "ownerTeamId": "TEAM-EE-BCM",
+          "description": "AUTOSAR Classic基础软件",
+          "maturityLevel": "L5"
+        }
+      },
+      {
+        "id": "AV-EE-001-R21-11",
+        "type": "AssetVersion",
+        "label": "AV-EE-001-R21-11",
+        "data": {
+          "id": "AV-EE-001-R21-11",
+          "assetId": "ASSET-EE-001",
+          "version": "R21-11",
+          "releaseDate": "2022-06-01",
+          "status": "RELEASED"
+        }
+      },
+      {
+        "id": "AV-EE-002-V1.3",
+        "type": "AssetVersion",
+        "label": "AV-EE-002-V1.3",
+        "data": {
+          "id": "AV-EE-002-V1.3",
+          "assetId": "ASSET-EE-002",
+          "version": "V1.3",
+          "releaseDate": "2022-06-01",
+          "status": "RELEASED"
+        }
+      },
+      {
+        "id": "AV-EE-003-V2.0",
+        "type": "AssetVersion",
+        "label": "AV-EE-003-V2.0",
+        "data": {
+          "id": "AV-EE-003-V2.0",
+          "assetId": "ASSET-EE-003",
+          "version": "V2.0",
+          "releaseDate": "2022-06-01",
+          "status": "RELEASED"
+        }
+      },
+      {
+        "id": "AV-EE-004-V1.5",
+        "type": "AssetVersion",
+        "label": "AV-EE-004-V1.5",
+        "data": {
+          "id": "AV-EE-004-V1.5",
+          "assetId": "ASSET-EE-004",
+          "version": "V1.5",
+          "releaseDate": "2022-06-01",
+          "status": "RELEASED"
+        }
+      },
+      {
+        "id": "AV-EE-005-V1.0",
+        "type": "AssetVersion",
+        "label": "AV-EE-005-V1.0",
+        "data": {
+          "id": "AV-EE-005-V1.0",
+          "assetId": "ASSET-EE-005",
+          "version": "V1.0",
+          "releaseDate": "2022-09-01",
+          "status": "RELEASED"
+        }
+      },
+      {
+        "id": "AV-EE-006-R4.3",
+        "type": "AssetVersion",
+        "label": "AV-EE-006-R4.3",
+        "data": {
+          "id": "AV-EE-006-R4.3",
+          "assetId": "ASSET-EE-006",
+          "version": "R4.3",
+          "releaseDate": "2022-06-01",
+          "status": "RELEASED"
+        }
+      },
+      {
+        "id": "AU-EE-001",
+        "type": "AssetUsage",
+        "label": "AU-EE-001",
+        "data": {
+          "id": "AU-EE-001",
+          "assetVersionId": "AV-EE-001-R21-11",
+          "moduleRequirementId": "MR-CDC-001",
+          "usageType": "REUSE",
+          "customizationLevel": "MAJOR"
+        }
+      },
+      {
+        "id": "AU-EE-002",
+        "type": "AssetUsage",
+        "label": "AU-EE-002",
+        "data": {
+          "id": "AU-EE-002",
+          "assetVersionId": "AV-EE-002-V1.3",
+          "moduleRequirementId": "MR-CDC-002",
+          "usageType": "REUSE",
+          "customizationLevel": "MINOR"
+        }
+      },
+      {
+        "id": "AU-EE-003",
+        "type": "AssetUsage",
+        "label": "AU-EE-003",
+        "data": {
+          "id": "AU-EE-003",
+          "assetVersionId": "AV-EE-003-V2.0",
+          "moduleRequirementId": "MR-CDC-003",
+          "usageType": "REUSE",
+          "customizationLevel": "NONE"
+        }
+      },
+      {
+        "id": "AU-EE-004",
+        "type": "AssetUsage",
+        "label": "AU-EE-004",
+        "data": {
+          "id": "AU-EE-004",
+          "assetVersionId": "AV-EE-004-V1.5",
+          "moduleRequirementId": "MR-CDC-006",
+          "usageType": "REUSE",
+          "customizationLevel": "MINOR"
+        }
+      },
+      {
+        "id": "AU-EE-005",
+        "type": "AssetUsage",
+        "label": "AU-EE-005",
+        "data": {
+          "id": "AU-EE-005",
+          "assetVersionId": "AV-EE-005-V1.0",
+          "moduleRequirementId": "MR-CDC-005",
+          "usageType": "REUSE",
+          "customizationLevel": "NONE"
+        }
+      },
+      {
+        "id": "AU-EE-006",
+        "type": "AssetUsage",
+        "label": "AU-EE-006",
+        "data": {
+          "id": "AU-EE-006",
+          "assetVersionId": "AV-EE-006-R4.3",
+          "moduleRequirementId": "MR-BCM-001",
+          "usageType": "REUSE",
+          "customizationLevel": "MAJOR"
+        }
+      },
+      {
+        "id": "PI-EE-2022-Q3",
+        "type": "PI",
+        "label": "2022 Q3 PI",
+        "data": {
+          "id": "PI-EE-2022-Q3",
+          "domainProjectId": "DP-EE-001",
+          "name": "2022 Q3 PI",
+          "startDate": "2022-07-01",
+          "endDate": "2022-09-30",
+          "status": "COMPLETED"
+        }
+      },
+      {
+        "id": "PI-EE-2022-Q4",
+        "type": "PI",
+        "label": "2022 Q4 PI",
+        "data": {
+          "id": "PI-EE-2022-Q4",
+          "domainProjectId": "DP-EE-001",
+          "name": "2022 Q4 PI",
+          "startDate": "2022-10-01",
+          "endDate": "2022-12-31",
+          "status": "COMPLETED"
+        }
+      },
+      {
+        "id": "PI-EE-2023-Q1",
+        "type": "PI",
+        "label": "2023 Q1 PI",
+        "data": {
+          "id": "PI-EE-2023-Q1",
+          "domainProjectId": "DP-EE-001",
+          "name": "2023 Q1 PI",
+          "startDate": "2023-01-01",
+          "endDate": "2023-03-31",
+          "status": "COMPLETED"
+        }
+      },
+      {
+        "id": "PI-EE-2023-Q2",
+        "type": "PI",
+        "label": "2023 Q2 PI",
+        "data": {
+          "id": "PI-EE-2023-Q2",
+          "domainProjectId": "DP-EE-001",
+          "name": "2023 Q2 PI",
+          "startDate": "2023-04-01",
+          "endDate": "2023-06-30",
+          "status": "COMPLETED"
+        }
+      },
+      {
+        "id": "SPRINT-EE-2022-Q3-S1",
+        "type": "Sprint",
+        "label": "Sprint 1 - SOA架构开发",
+        "data": {
+          "id": "SPRINT-EE-2022-Q3-S1",
+          "piId": "PI-EE-2022-Q3",
+          "name": "Sprint 1 - SOA架构开发",
+          "startDate": "2022-07-01",
+          "endDate": "2022-07-14",
+          "status": "COMPLETED"
+        }
+      },
+      {
+        "id": "SPRINT-EE-2022-Q3-S2",
+        "type": "Sprint",
+        "label": "Sprint 2 - 网关功能开发",
+        "data": {
+          "id": "SPRINT-EE-2022-Q3-S2",
+          "piId": "PI-EE-2022-Q3",
+          "name": "Sprint 2 - 网关功能开发",
+          "startDate": "2022-07-15",
+          "endDate": "2022-07-28",
+          "status": "COMPLETED"
+        }
+      },
+      {
+        "id": "SPRINT-EE-2022-Q3-S3",
+        "type": "Sprint",
+        "label": "Sprint 3 - BCM功能开发",
+        "data": {
+          "id": "SPRINT-EE-2022-Q3-S3",
+          "piId": "PI-EE-2022-Q3",
+          "name": "Sprint 3 - BCM功能开发",
+          "startDate": "2022-07-29",
+          "endDate": "2022-08-11",
+          "status": "COMPLETED"
+        }
+      },
+      {
+        "id": "SPRINT-EE-2022-Q3-S4",
+        "type": "Sprint",
+        "label": "Sprint 4 - OTA功能开发",
+        "data": {
+          "id": "SPRINT-EE-2022-Q3-S4",
+          "piId": "PI-EE-2022-Q3",
+          "name": "Sprint 4 - OTA功能开发",
+          "startDate": "2022-08-12",
+          "endDate": "2022-08-25",
+          "status": "COMPLETED"
+        }
+      },
+      {
+        "id": "SPRINT-EE-2022-Q3-S5",
+        "type": "Sprint",
+        "label": "Sprint 5 - 集成测试",
+        "data": {
+          "id": "SPRINT-EE-2022-Q3-S5",
+          "piId": "PI-EE-2022-Q3",
+          "name": "Sprint 5 - 集成测试",
+          "startDate": "2022-08-26",
+          "endDate": "2022-09-08",
+          "status": "COMPLETED"
+        }
+      },
+      {
+        "id": "SB-EE-001",
+        "type": "SprintBacklog",
+        "label": "SB-EE-001",
+        "data": {
+          "id": "SB-EE-001",
+          "sprintId": "SPRINT-EE-2022-Q3-S1",
+          "moduleRequirementId": "MR-CDC-001",
+          "estimatedEffort": 60,
+          "priority": "HIGH"
+        }
+      },
+      {
+        "id": "SB-EE-002",
+        "type": "SprintBacklog",
+        "label": "SB-EE-002",
+        "data": {
+          "id": "SB-EE-002",
+          "sprintId": "SPRINT-EE-2022-Q3-S2",
+          "moduleRequirementId": "MR-CDC-003",
+          "estimatedEffort": 60,
+          "priority": "HIGH"
+        }
+      },
+      {
+        "id": "SB-EE-003",
+        "type": "SprintBacklog",
+        "label": "SB-EE-003",
+        "data": {
+          "id": "SB-EE-003",
+          "sprintId": "SPRINT-EE-2022-Q3-S3",
+          "moduleRequirementId": "MR-BCM-001",
+          "estimatedEffort": 40,
+          "priority": "HIGH"
+        }
+      },
+      {
+        "id": "SB-EE-004",
+        "type": "SprintBacklog",
+        "label": "SB-EE-004",
+        "data": {
+          "id": "SB-EE-004",
+          "sprintId": "SPRINT-EE-2022-Q3-S4",
+          "moduleRequirementId": "MR-CDC-005",
+          "estimatedEffort": 40,
+          "priority": "MEDIUM"
+        }
+      },
+      {
+        "id": "WI-EE-REQ-001",
+        "type": "WorkItem",
+        "label": "实现SOA服务管理框架",
+        "data": {
+          "id": "WI-EE-REQ-001",
+          "sprintBacklogId": "SB-EE-001",
+          "title": "实现SOA服务管理框架",
+          "type": "REQUIREMENT_TASK",
+          "assigneeId": "USER-EE-DEV-001",
+          "status": "DONE",
+          "estimatedHours": 60,
+          "actualHours": 62
+        }
+      },
+      {
+        "id": "WI-EE-REQ-002",
+        "type": "WorkItem",
+        "label": "实现CAN网关功能",
+        "data": {
+          "id": "WI-EE-REQ-002",
+          "sprintBacklogId": "SB-EE-002",
+          "title": "实现CAN网关功能",
+          "type": "REQUIREMENT_TASK",
+          "assigneeId": "USER-EE-DEV-002",
+          "status": "DONE",
+          "estimatedHours": 60,
+          "actualHours": 58
+        }
+      },
+      {
+        "id": "WI-EE-REQ-003",
+        "type": "WorkItem",
+        "label": "实现前照灯控制功能",
+        "data": {
+          "id": "WI-EE-REQ-003",
+          "sprintBacklogId": "SB-EE-003",
+          "title": "实现前照灯控制功能",
+          "type": "REQUIREMENT_TASK",
+          "assigneeId": "USER-EE-DEV-003",
+          "status": "DONE",
+          "estimatedHours": 40,
+          "actualHours": 38
+        }
+      },
+      {
+        "id": "WI-EE-REQ-004",
+        "type": "WorkItem",
+        "label": "实现OTA管理功能",
+        "data": {
+          "id": "WI-EE-REQ-004",
+          "sprintBacklogId": "SB-EE-004",
+          "title": "实现OTA管理功能",
+          "type": "REQUIREMENT_TASK",
+          "assigneeId": "USER-EE-DEV-004",
+          "status": "DONE",
+          "estimatedHours": 40,
+          "actualHours": 45
+        }
+      },
+      {
+        "id": "CC-EE-001",
+        "type": "CodeCommit",
+        "label": "CC-EE-001",
+        "data": {
+          "id": "CC-EE-001",
+          "workItemId": "WI-EE-REQ-001",
+          "commitHash": "i1j2k3l4m5n6",
+          "repository": "ee-platform",
+          "branch": "feature/soa-framework",
+          "authorId": "USER-EE-DEV-001",
+          "commitDate": "2022-07-10T10:30:00Z",
+          "message": "feat: implement SOA service manager"
+        }
+      },
+      {
+        "id": "CC-EE-002",
+        "type": "CodeCommit",
+        "label": "CC-EE-002",
+        "data": {
+          "id": "CC-EE-002",
+          "workItemId": "WI-EE-REQ-002",
+          "commitHash": "j2k3l4m5n6o7",
+          "repository": "ee-gateway",
+          "branch": "feature/can-gateway",
+          "authorId": "USER-EE-DEV-002",
+          "commitDate": "2022-07-20T14:20:00Z",
+          "message": "feat: implement CAN gateway and routing"
+        }
+      },
+      {
+        "id": "CC-EE-003",
+        "type": "CodeCommit",
+        "label": "CC-EE-003",
+        "data": {
+          "id": "CC-EE-003",
+          "workItemId": "WI-EE-REQ-003",
+          "commitHash": "k3l4m5n6o7p8",
+          "repository": "ee-bcm",
+          "branch": "feature/headlight-control",
+          "authorId": "USER-EE-DEV-003",
+          "commitDate": "2022-08-05T09:15:00Z",
+          "message": "feat: implement headlight control logic"
+        }
+      },
+      {
+        "id": "CC-EE-004",
+        "type": "CodeCommit",
+        "label": "CC-EE-004",
+        "data": {
+          "id": "CC-EE-004",
+          "workItemId": "WI-EE-REQ-004",
+          "commitHash": "l4m5n6o7p8q9",
+          "repository": "ee-ota",
+          "branch": "feature/ota-manager",
+          "authorId": "USER-EE-DEV-004",
+          "commitDate": "2022-08-15T11:45:00Z",
+          "message": "feat: implement OTA manager"
+        }
+      },
+      {
+        "id": "BUILD-EE-001",
+        "type": "Build",
+        "label": "BUILD-EE-001",
+        "data": {
+          "id": "BUILD-EE-001",
+          "codeCommitId": "CC-EE-001",
+          "buildNumber": "20220710.1",
+          "status": "SUCCESS",
+          "startTime": "2022-07-10T10:35:00Z",
+          "endTime": "2022-07-10T11:00:00Z",
+          "duration": 1500
+        }
+      },
+      {
+        "id": "BUILD-EE-002",
+        "type": "Build",
+        "label": "BUILD-EE-002",
+        "data": {
+          "id": "BUILD-EE-002",
+          "codeCommitId": "CC-EE-002",
+          "buildNumber": "20220720.1",
+          "status": "SUCCESS",
+          "startTime": "2022-07-20T14:25:00Z",
+          "endTime": "2022-07-20T14:50:00Z",
+          "duration": 1500
+        }
+      },
+      {
+        "id": "BUILD-EE-003",
+        "type": "Build",
+        "label": "BUILD-EE-003",
+        "data": {
+          "id": "BUILD-EE-003",
+          "codeCommitId": "CC-EE-003",
+          "buildNumber": "20220805.1",
+          "status": "SUCCESS",
+          "startTime": "2022-08-05T09:20:00Z",
+          "endTime": "2022-08-05T09:35:00Z",
+          "duration": 900
+        }
+      },
+      {
+        "id": "BUILD-EE-004",
+        "type": "Build",
+        "label": "BUILD-EE-004",
+        "data": {
+          "id": "BUILD-EE-004",
+          "codeCommitId": "CC-EE-004",
+          "buildNumber": "20220815.1",
+          "status": "SUCCESS",
+          "startTime": "2022-08-15T11:50:00Z",
+          "endTime": "2022-08-15T12:05:00Z",
+          "duration": 900
+        }
+      },
+      {
+        "id": "TP-EE-001",
+        "type": "TestPlan",
+        "label": "SOA服务管理模块测试计划",
+        "data": {
+          "id": "TP-EE-001",
+          "name": "SOA服务管理模块测试计划",
+          "moduleId": "MOD-CDC-001",
+          "testType": "UNIT_TEST",
+          "ownerId": "USER-EE-QA-001",
+          "status": "COMPLETED"
+        }
+      },
+      {
+        "id": "TP-EE-002",
+        "type": "TestPlan",
+        "label": "CAN网关模块测试计划",
+        "data": {
+          "id": "TP-EE-002",
+          "name": "CAN网关模块测试计划",
+          "moduleId": "MOD-CDC-003",
+          "testType": "UNIT_TEST",
+          "ownerId": "USER-EE-QA-001",
+          "status": "COMPLETED"
+        }
+      },
+      {
+        "id": "TP-EE-003",
+        "type": "TestPlan",
+        "label": "BCM功能测试计划",
+        "data": {
+          "id": "TP-EE-003",
+          "name": "BCM功能测试计划",
+          "productId": "PROD-BCM-001",
+          "testType": "FUNCTIONAL_TEST",
+          "ownerId": "USER-EE-QA-002",
+          "status": "COMPLETED"
+        }
+      },
+      {
+        "id": "TP-EE-004",
+        "type": "TestPlan",
+        "label": "域控制器集成测试计划",
+        "data": {
+          "id": "TP-EE-004",
+          "name": "域控制器集成测试计划",
+          "productId": "PROD-CDC-001",
+          "testType": "INTEGRATION_TEST",
+          "ownerId": "USER-EE-QA-001",
+          "status": "COMPLETED"
+        }
+      },
+      {
+        "id": "TC-EE-001",
+        "type": "TeamCapacity",
+        "label": "服务注册发现测试",
+        "data": {
+          "id": "TC-EE-001",
+          "testPlanId": "TP-EE-001",
+          "name": "服务注册发现测试",
+          "description": "测试SOA服务注册和发现功能",
+          "priority": "HIGH",
+          "status": "PASSED"
+        }
+      },
+      {
+        "id": "TC-EE-002",
+        "type": "TeamCapacity",
+        "label": "CAN信号路由测试",
+        "data": {
+          "id": "TC-EE-002",
+          "testPlanId": "TP-EE-002",
+          "name": "CAN信号路由测试",
+          "description": "测试CAN信号路由功能",
+          "priority": "HIGH",
+          "status": "PASSED"
+        }
+      },
+      {
+        "id": "TC-EE-003",
+        "type": "TeamCapacity",
+        "label": "前照灯控制测试",
+        "data": {
+          "id": "TC-EE-003",
+          "testPlanId": "TP-EE-003",
+          "name": "前照灯控制测试",
+          "description": "测试前照灯远光、近光、自动大灯功能",
+          "priority": "HIGH",
+          "status": "PASSED"
+        }
+      },
+      {
+        "id": "TC-EE-004",
+        "type": "TeamCapacity",
+        "label": "车窗防夹测试",
+        "data": {
+          "id": "TC-EE-004",
+          "testPlanId": "TP-EE-003",
+          "name": "车窗防夹测试",
+          "description": "测试车窗防夹功能",
+          "priority": "HIGH",
+          "status": "PASSED"
+        }
+      },
+      {
+        "id": "TE-EE-001",
+        "type": "TestExecution",
+        "label": "TE-EE-001",
+        "data": {
+          "id": "TE-EE-001",
+          "testCaseId": "TC-EE-001",
+          "buildId": "BUILD-EE-001",
+          "executedBy": "USER-EE-QA-001",
+          "executedAt": "2022-07-11T10:00:00Z",
+          "result": "PASSED",
+          "actualResult": "服务注册发现功能正常"
+        }
+      },
+      {
+        "id": "TE-EE-002",
+        "type": "TestExecution",
+        "label": "TE-EE-002",
+        "data": {
+          "id": "TE-EE-002",
+          "testCaseId": "TC-EE-002",
+          "buildId": "BUILD-EE-002",
+          "executedBy": "USER-EE-QA-001",
+          "executedAt": "2022-07-21T10:00:00Z",
+          "result": "PASSED",
+          "actualResult": "CAN信号路由功能正常"
+        }
+      },
+      {
+        "id": "TE-EE-003",
+        "type": "TestExecution",
+        "label": "TE-EE-003",
+        "data": {
+          "id": "TE-EE-003",
+          "testCaseId": "TC-EE-003",
+          "buildId": "BUILD-EE-003",
+          "executedBy": "USER-EE-QA-002",
+          "executedAt": "2022-08-06T10:00:00Z",
+          "result": "PASSED",
+          "actualResult": "前照灯控制功能正常"
+        }
+      },
+      {
+        "id": "TE-EE-004",
+        "type": "TestExecution",
+        "label": "TE-EE-004",
+        "data": {
+          "id": "TE-EE-004",
+          "testCaseId": "TC-EE-004",
+          "buildId": "BUILD-EE-003",
+          "executedBy": "USER-EE-QA-002",
+          "executedAt": "2022-08-06T11:00:00Z",
+          "result": "PASSED",
+          "actualResult": "防夹力: 85N, 响应时间: 150ms"
+        }
+      },
+      {
+        "id": "DEFECT-EE-001",
+        "type": "Defect",
+        "label": "服务发现偶现超时",
+        "data": {
+          "id": "DEFECT-EE-001",
+          "testExecutionId": "TE-EE-001",
+          "title": "服务发现偶现超时",
+          "severity": "LOW",
+          "priority": "MEDIUM",
+          "status": "CLOSED",
+          "reporterId": "USER-EE-QA-001",
+          "assigneeId": "USER-EE-DEV-001",
+          "reportedAt": "2022-07-12T10:00:00Z",
+          "resolvedAt": "2022-07-14T16:00:00Z"
+        }
+      },
+      {
+        "id": "DEFECT-EE-002",
+        "type": "Defect",
+        "label": "CAN信号丢失",
+        "data": {
+          "id": "DEFECT-EE-002",
+          "testExecutionId": "TE-EE-002",
+          "title": "CAN信号丢失",
+          "severity": "MEDIUM",
+          "priority": "HIGH",
+          "status": "CLOSED",
+          "reporterId": "USER-EE-QA-001",
+          "assigneeId": "USER-EE-DEV-002",
+          "reportedAt": "2022-07-22T10:00:00Z",
+          "resolvedAt": "2022-07-25T16:00:00Z"
+        }
+      },
+      {
+        "id": "ARTIFACT-EE-001",
+        "type": "Artifact",
+        "label": "ee-platform-v1.0.0",
+        "data": {
+          "id": "ARTIFACT-EE-001",
+          "buildId": "BUILD-EE-001",
+          "name": "ee-platform-v1.0.0",
+          "type": "LIBRARY",
+          "version": "1.0.0",
+          "repository": "nexus-ee",
+          "path": "com/voyah/ee/platform/1.0.0"
+        }
+      },
+      {
+        "id": "ARTIFACT-EE-002",
+        "type": "Artifact",
+        "label": "ee-gateway-v1.0.0",
+        "data": {
+          "id": "ARTIFACT-EE-002",
+          "buildId": "BUILD-EE-002",
+          "name": "ee-gateway-v1.0.0",
+          "type": "LIBRARY",
+          "version": "1.0.0",
+          "repository": "nexus-ee",
+          "path": "com/voyah/ee/gateway/1.0.0"
+        }
+      },
+      {
+        "id": "ARTIFACT-EE-003",
+        "type": "Artifact",
+        "label": "ee-bcm-v1.0.0.hex",
+        "data": {
+          "id": "ARTIFACT-EE-003",
+          "buildId": "BUILD-EE-003",
+          "name": "ee-bcm-v1.0.0.hex",
+          "type": "BINARY",
+          "version": "1.0.0",
+          "repository": "nexus-ee",
+          "path": "com/voyah/ee/bcm/1.0.0/bcm.hex"
+        }
+      },
+      {
+        "id": "ARTIFACT-EE-004",
+        "type": "Artifact",
+        "label": "cdc-v1.0.0",
+        "data": {
+          "id": "ARTIFACT-EE-004",
+          "buildId": null,
+          "name": "cdc-v1.0.0",
+          "type": "IMAGE",
+          "version": "1.0.0",
+          "repository": "docker-ee",
+          "path": "voyah/cdc:1.0.0"
+        }
+      },
+      {
+        "id": "RELEASE-EE-001",
+        "type": "Release",
+        "label": "中央计算平台 V1.0 SOP版本",
+        "data": {
+          "id": "RELEASE-EE-001",
+          "productVersionId": "PV-CDC-V1.0",
+          "name": "中央计算平台 V1.0 SOP版本",
+          "version": "V1.0",
+          "releaseDate": "2023-06-01",
+          "status": "RELEASED",
+          "releaseNotes": "中央计算平台V1.0正式发布，支持SOA架构、车辆网关、OTA升级、诊断服务"
+        }
+      },
+      {
+        "id": "RELEASE-EE-002",
+        "type": "Release",
+        "label": "车身控制系统 V1.0 SOP版本",
+        "data": {
+          "id": "RELEASE-EE-002",
+          "productVersionId": "PV-BCM-V1.0",
+          "name": "车身控制系统 V1.0 SOP版本",
+          "version": "V1.0",
+          "releaseDate": "2023-06-01",
+          "status": "RELEASED",
+          "releaseNotes": "车身控制系统V1.0正式发布，支持车灯、车窗、门锁、雨刮、电源管理"
+        }
+      },
+      {
+        "id": "DEPLOY-EE-001",
+        "type": "Deployment",
+        "label": "DEPLOY-EE-001",
+        "data": {
+          "id": "DEPLOY-EE-001",
+          "releaseId": "RELEASE-EE-001",
+          "environment": "PRODUCTION",
+          "deployedAt": "2023-06-01T08:00:00Z",
+          "deployedBy": "USER-EE-OPS-001",
+          "status": "SUCCESS",
+          "targetVehicles": "岚图梦想家全系车型"
+        }
+      },
+      {
+        "id": "DEPLOY-EE-002",
+        "type": "Deployment",
+        "label": "DEPLOY-EE-002",
+        "data": {
+          "id": "DEPLOY-EE-002",
+          "releaseId": "RELEASE-EE-002",
+          "environment": "PRODUCTION",
+          "deployedAt": "2023-06-01T08:00:00Z",
+          "deployedBy": "USER-EE-OPS-001",
+          "status": "SUCCESS",
+          "targetVehicles": "岚图梦想家全系车型"
+        }
+      },
+      {
+        "id": "MV-EE-001",
+        "type": "MetricValue",
+        "label": "MV-EE-001",
+        "data": {
+          "id": "MV-EE-001",
+          "metricId": "METRIC-001",
+          "entityType": "PRODUCT",
+          "entityId": "PROD-CDC-001",
+          "value": 48,
+          "collectedAt": "2023-06-30T00:00:00Z"
+        }
+      },
+      {
+        "id": "MV-EE-002",
+        "type": "MetricValue",
+        "label": "MV-EE-002",
+        "data": {
+          "id": "MV-EE-002",
+          "metricId": "METRIC-002",
+          "entityType": "MODULE",
+          "entityId": "MOD-CDC-001",
+          "value": 88,
+          "collectedAt": "2023-06-30T00:00:00Z"
+        }
+      },
+      {
+        "id": "MV-EE-003",
+        "type": "MetricValue",
+        "label": "MV-EE-003",
+        "data": {
+          "id": "MV-EE-003",
+          "metricId": "METRIC-003",
+          "entityType": "MODULE",
+          "entityId": "MOD-CDC-001",
+          "value": 78,
+          "collectedAt": "2023-06-30T00:00:00Z"
+        }
+      },
+      {
+        "id": "MV-EE-004",
+        "type": "MetricValue",
+        "label": "MV-EE-004",
+        "data": {
+          "id": "MV-EE-004",
+          "metricId": "METRIC-004",
+          "entityType": "MODULE",
+          "entityId": "MOD-BCM-001",
+          "value": 0.5,
+          "collectedAt": "2023-06-30T00:00:00Z"
+        }
+      },
+      {
+        "id": "USER-PM-003",
+        "type": "User",
+        "label": "钱伟",
+        "data": {
+          "id": "USER-PM-003",
+          "name": "钱伟",
+          "email": "qian.wei@voyah.com",
+          "department": "电子电器",
+          "title": "项目经理"
+        }
+      },
+      {
+        "id": "USER-PO-005",
+        "type": "User",
+        "label": "孙娜",
+        "data": {
+          "id": "USER-PO-005",
+          "name": "孙娜",
+          "email": "sun.na@voyah.com",
+          "department": "电子电器",
+          "title": "产品经理"
+        }
+      },
+      {
+        "id": "USER-PO-006",
+        "type": "User",
+        "label": "李强",
+        "data": {
+          "id": "USER-PO-006",
+          "name": "李强",
+          "email": "li.qiang@voyah.com",
+          "department": "电子电器",
+          "title": "产品经理"
+        }
+      },
+      {
+        "id": "USER-EE-DEV-001",
+        "type": "User",
+        "label": "周洋",
+        "data": {
+          "id": "USER-EE-DEV-001",
+          "name": "周洋",
+          "email": "zhou.yang@voyah.com",
+          "department": "电子电器",
+          "title": "平台工程师"
+        }
+      },
+      {
+        "id": "USER-EE-DEV-002",
+        "type": "User",
+        "label": "吴明",
+        "data": {
+          "id": "USER-EE-DEV-002",
+          "name": "吴明",
+          "email": "wu.ming@voyah.com",
+          "department": "电子电器",
+          "title": "网关工程师"
+        }
+      },
+      {
+        "id": "USER-EE-DEV-003",
+        "type": "User",
+        "label": "郑磊",
+        "data": {
+          "id": "USER-EE-DEV-003",
+          "name": "郑磊",
+          "email": "zheng.lei@voyah.com",
+          "department": "电子电器",
+          "title": "BCM工程师"
+        }
+      },
+      {
+        "id": "USER-EE-DEV-004",
+        "type": "User",
+        "label": "王静",
+        "data": {
+          "id": "USER-EE-DEV-004",
+          "name": "王静",
+          "email": "wang.jing@voyah.com",
+          "department": "电子电器",
+          "title": "OTA工程师"
+        }
+      },
+      {
+        "id": "USER-EE-QA-001",
+        "type": "User",
+        "label": "冯涛",
+        "data": {
+          "id": "USER-EE-QA-001",
+          "name": "冯涛",
+          "email": "feng.tao@voyah.com",
+          "department": "电子电器",
+          "title": "测试工程师"
+        }
+      },
+      {
+        "id": "USER-EE-QA-002",
+        "type": "User",
+        "label": "陈敏",
+        "data": {
+          "id": "USER-EE-QA-002",
+          "name": "陈敏",
+          "email": "chen.min@voyah.com",
+          "department": "电子电器",
+          "title": "测试工程师"
+        }
+      },
+      {
+        "id": "USER-EE-OPS-001",
+        "type": "User",
+        "label": "赵超",
+        "data": {
+          "id": "USER-EE-OPS-001",
+          "name": "赵超",
+          "email": "zhao.chao@voyah.com",
+          "department": "电子电器",
+          "title": "运维工程师"
+        }
+      },
+      {
+        "id": "TEAM-EE-PLATFORM",
+        "type": "Team",
+        "label": "平台团队",
+        "data": {
+          "id": "TEAM-EE-PLATFORM",
+          "name": "平台团队",
+          "leaderId": "USER-EE-DEV-001",
+          "description": "负责中央计算平台SOA架构的研发"
+        }
+      },
+      {
+        "id": "TEAM-EE-GATEWAY",
+        "type": "Team",
+        "label": "网关团队",
+        "data": {
+          "id": "TEAM-EE-GATEWAY",
+          "name": "网关团队",
+          "leaderId": "USER-EE-DEV-002",
+          "description": "负责车辆网关功能的研发"
+        }
+      },
+      {
+        "id": "TEAM-EE-BCM",
+        "type": "Team",
+        "label": "BCM团队",
+        "data": {
+          "id": "TEAM-EE-BCM",
+          "name": "BCM团队",
+          "leaderId": "USER-EE-DEV-003",
+          "description": "负责车身控制系统的研发"
+        }
+      },
+      {
+        "id": "TEAM-EE-OTA",
+        "type": "Team",
+        "label": "OTA团队",
+        "data": {
+          "id": "TEAM-EE-OTA",
+          "name": "OTA团队",
+          "leaderId": "USER-EE-DEV-004",
+          "description": "负责OTA升级功能的研发"
+        }
+      },
+      {
+        "id": "TEAM-EE-DIAGNOSTIC",
+        "type": "Team",
+        "label": "诊断团队",
+        "data": {
+          "id": "TEAM-EE-DIAGNOSTIC",
+          "name": "诊断团队",
+          "leaderId": "USER-EE-DEV-001",
+          "description": "负责诊断服务的研发"
+        }
+      },
+      {
+        "id": "MS-001",
+        "type": "ProjectMilestone",
+        "label": "研发效能度量集",
+        "data": {
+          "id": "MS-001",
+          "name": "研发效能度量集",
+          "description": "软件研发效能度量指标集合",
+          "ownerId": "USER-PM-001"
+        }
+      },
+      {
+        "id": "METRIC-001",
+        "type": "Metric",
+        "label": "需求交付周期",
+        "data": {
+          "id": "METRIC-001",
+          "metricSetId": "MS-001",
+          "name": "需求交付周期",
+          "code": "LEAD_TIME",
+          "unit": "DAY",
+          "description": "从需求提出到交付上线的平均周期"
+        }
+      },
+      {
+        "id": "METRIC-002",
+        "type": "Metric",
+        "label": "代码质量",
+        "data": {
+          "id": "METRIC-002",
+          "metricSetId": "MS-001",
+          "name": "代码质量",
+          "code": "CODE_QUALITY",
+          "unit": "SCORE",
+          "description": "代码质量评分（0-100）"
+        }
+      },
+      {
+        "id": "METRIC-003",
+        "type": "Metric",
+        "label": "测试覆盖率",
+        "data": {
+          "id": "METRIC-003",
+          "metricSetId": "MS-001",
+          "name": "测试覆盖率",
+          "code": "TEST_COVERAGE",
+          "unit": "PERCENTAGE",
+          "description": "单元测试覆盖率"
+        }
+      },
+      {
+        "id": "METRIC-004",
+        "type": "Metric",
+        "label": "缺陷密度",
+        "data": {
+          "id": "METRIC-004",
+          "metricSetId": "MS-001",
+          "name": "缺陷密度",
+          "code": "DEFECT_DENSITY",
+          "unit": "COUNT_PER_KLOC",
+          "description": "每千行代码的缺陷数"
+        }
+      },
+      {
+        "id": "METRIC-005",
+        "type": "Metric",
+        "label": "算法准确率",
+        "data": {
+          "id": "METRIC-005",
+          "metricSetId": "MS-001",
+          "name": "算法准确率",
+          "code": "ALGORITHM_ACCURACY",
+          "unit": "PERCENTAGE",
+          "description": "感知算法的准确率"
+        }
+      }
+    ],
+    "edges": [
+      {
+        "id": "edge_21a604a887",
+        "source": "VEH-001",
+        "target": "DP-EE-001",
+        "type": "has_domain_project",
+        "data": {
+          "relationship": "车型包含多个领域项目",
+          "priority": "MEDIUM",
+          "createdAt": "2026-01-17"
+        }
+      },
+      {
+        "id": "edge_a1f98c93a2",
+        "source": "DP-EE-001",
+        "target": "MS-EE-001",
+        "type": "has_milestone",
+        "data": {
+          "relationship": "领域项目包含多个里程碑",
+          "sequence": 1,
+          "dependency": null
+        }
+      },
+      {
+        "id": "edge_9d76a2d8ae",
+        "source": "DP-EE-001",
+        "target": "MS-EE-002",
+        "type": "has_milestone",
+        "data": {
+          "relationship": "领域项目包含多个里程碑",
+          "sequence": 1,
+          "dependency": null
+        }
+      },
+      {
+        "id": "edge_e6cd718e76",
+        "source": "DP-EE-001",
+        "target": "MS-EE-003",
+        "type": "has_milestone",
+        "data": {
+          "relationship": "领域项目包含多个里程碑",
+          "sequence": 1,
+          "dependency": null
+        }
+      },
+      {
+        "id": "edge_e0b51ae711",
+        "source": "DP-EE-001",
+        "target": "MS-EE-004",
+        "type": "has_milestone",
+        "data": {
+          "relationship": "领域项目包含多个里程碑",
+          "sequence": 1,
+          "dependency": null
+        }
+      },
+      {
+        "id": "edge_bde43dc71f",
+        "source": "MS-EE-001",
+        "target": "BL-EE-SOP-001",
+        "type": "has_baseline",
+        "data": {
+          "relationship": "里程碑包含基线",
+          "freezeDate": "2023-05-01",
+          "scope": "中央计算平台V1.0 + 车身控制系统V1.0 + 完整电子电器架构"
+        }
+      },
+      {
+        "id": "edge_f204388c7c",
+        "source": "MS-EE-002",
+        "target": "BL-EE-PVS-001",
+        "type": "has_baseline",
+        "data": {
+          "relationship": "里程碑包含基线",
+          "freezeDate": "2023-02-01",
+          "scope": "域控制器基础功能 + BCM基础功能"
+        }
+      },
+      {
+        "id": "edge_d51e1c4eea",
+        "source": "MS-EE-003",
+        "target": "BL-EE-DVS-001",
+        "type": "has_baseline",
+        "data": {
+          "relationship": "里程碑包含基线",
+          "freezeDate": "2022-11-01",
+          "scope": "核心架构验证 + 基础功能验证"
+        }
+      },
+      {
+        "id": "edge_127a6c6ab3",
+        "source": "PL-EE-001",
+        "target": "PROD-CDC-001",
+        "type": "has_product",
+        "data": {
+          "relationship": "产品线或车型包含产品",
+          "priority": "MEDIUM"
+        }
+      },
+      {
+        "id": "edge_5cb0e6653c",
+        "source": "PL-EE-001",
+        "target": "PROD-BCM-001",
+        "type": "has_product",
+        "data": {
+          "relationship": "产品线或车型包含产品",
+          "priority": "MEDIUM"
+        }
+      },
+      {
+        "id": "edge_880ab2557c",
+        "source": "PROD-CDC-001",
+        "target": "PV-CDC-V1.0",
+        "type": "has_product_version",
+        "data": {
+          "relationship": "产品有多个版本",
+          "releaseDate": "2026-01-17",
+          "status": "RELEASED"
+        }
+      },
+      {
+        "id": "edge_53ce0bec8d",
+        "source": "PV-CDC-V1.0",
+        "target": "BL-EE-SOP-001",
+        "type": "version_relates_baseline",
+        "data": {
+          "relationship": "产品版本关联基线",
+          "relationType": "BASED_ON"
+        }
+      },
+      {
+        "id": "edge_ba07ed9e97",
+        "source": "PROD-CDC-001",
+        "target": "PV-CDC-V1.1",
+        "type": "has_product_version",
+        "data": {
+          "relationship": "产品有多个版本",
+          "releaseDate": "2026-01-17",
+          "status": "DEVELOPING"
+        }
+      },
+      {
+        "id": "edge_5947caceb3",
+        "source": "PROD-BCM-001",
+        "target": "PV-BCM-V1.0",
+        "type": "has_product_version",
+        "data": {
+          "relationship": "产品有多个版本",
+          "releaseDate": "2026-01-17",
+          "status": "RELEASED"
+        }
+      },
+      {
+        "id": "edge_4de5e56d28",
+        "source": "PV-BCM-V1.0",
+        "target": "BL-EE-SOP-001",
+        "type": "version_relates_baseline",
+        "data": {
+          "relationship": "产品版本关联基线",
+          "relationType": "BASED_ON"
+        }
+      },
+      {
+        "id": "edge_0417052d81",
+        "source": "PROD-CDC-001",
+        "target": "FEAT-CDC-001",
+        "type": "has_feature",
+        "data": {
+          "relationship": "产品包含多个特性",
+          "priority": "MEDIUM",
+          "businessValue": null
+        }
+      },
+      {
+        "id": "edge_5092e2c893",
+        "source": "PROD-CDC-001",
+        "target": "FEAT-CDC-002",
+        "type": "has_feature",
+        "data": {
+          "relationship": "产品包含多个特性",
+          "priority": "MEDIUM",
+          "businessValue": null
+        }
+      },
+      {
+        "id": "edge_5f57578a61",
+        "source": "PROD-CDC-001",
+        "target": "FEAT-CDC-003",
+        "type": "has_feature",
+        "data": {
+          "relationship": "产品包含多个特性",
+          "priority": "MEDIUM",
+          "businessValue": null
+        }
+      },
+      {
+        "id": "edge_6f5c7dc88a",
+        "source": "PROD-CDC-001",
+        "target": "FEAT-CDC-004",
+        "type": "has_feature",
+        "data": {
+          "relationship": "产品包含多个特性",
+          "priority": "MEDIUM",
+          "businessValue": null
+        }
+      },
+      {
+        "id": "edge_6c3d69d697",
+        "source": "PROD-BCM-001",
+        "target": "FEAT-BCM-001",
+        "type": "has_feature",
+        "data": {
+          "relationship": "产品包含多个特性",
+          "priority": "MEDIUM",
+          "businessValue": null
+        }
+      },
+      {
+        "id": "edge_4168566d21",
+        "source": "PROD-BCM-001",
+        "target": "FEAT-BCM-002",
+        "type": "has_feature",
+        "data": {
+          "relationship": "产品包含多个特性",
+          "priority": "MEDIUM",
+          "businessValue": null
+        }
+      },
+      {
+        "id": "edge_e5cc5b1a0a",
+        "source": "PROD-BCM-001",
+        "target": "FEAT-BCM-003",
+        "type": "has_feature",
+        "data": {
+          "relationship": "产品包含多个特性",
+          "priority": "MEDIUM",
+          "businessValue": null
+        }
+      },
+      {
+        "id": "edge_5333774c78",
+        "source": "PROD-BCM-001",
+        "target": "FEAT-BCM-004",
+        "type": "has_feature",
+        "data": {
+          "relationship": "产品包含多个特性",
+          "priority": "MEDIUM",
+          "businessValue": null
+        }
+      },
+      {
+        "id": "edge_aa35eb8869",
+        "source": "PROD-BCM-001",
+        "target": "FEAT-BCM-005",
+        "type": "has_feature",
+        "data": {
+          "relationship": "产品包含多个特性",
+          "priority": "MEDIUM",
+          "businessValue": null
+        }
+      },
+      {
+        "id": "edge_d9281e0230",
+        "source": "FEAT-CDC-001",
+        "target": "MOD-CDC-001",
+        "type": "has_module",
+        "data": {
+          "relationship": "特性包含多个模块",
+          "ownerTeamId": "TEAM-EE-PLATFORM",
+          "complexity": "SIMPLE"
+        }
+      },
+      {
+        "id": "edge_5f2f729a2e",
+        "source": "FEAT-CDC-001",
+        "target": "MOD-CDC-002",
+        "type": "has_module",
+        "data": {
+          "relationship": "特性包含多个模块",
+          "ownerTeamId": "TEAM-EE-PLATFORM",
+          "complexity": "SIMPLE"
+        }
+      },
+      {
+        "id": "edge_352c12469b",
+        "source": "FEAT-CDC-002",
+        "target": "MOD-CDC-003",
+        "type": "has_module",
+        "data": {
+          "relationship": "特性包含多个模块",
+          "ownerTeamId": "TEAM-EE-GATEWAY",
+          "complexity": "SIMPLE"
+        }
+      },
+      {
+        "id": "edge_6fcab6fb62",
+        "source": "FEAT-CDC-002",
+        "target": "MOD-CDC-004",
+        "type": "has_module",
+        "data": {
+          "relationship": "特性包含多个模块",
+          "ownerTeamId": "TEAM-EE-GATEWAY",
+          "complexity": "SIMPLE"
+        }
+      },
+      {
+        "id": "edge_d28b0ddf7c",
+        "source": "FEAT-CDC-003",
+        "target": "MOD-CDC-005",
+        "type": "has_module",
+        "data": {
+          "relationship": "特性包含多个模块",
+          "ownerTeamId": "TEAM-EE-OTA",
+          "complexity": "SIMPLE"
+        }
+      },
+      {
+        "id": "edge_a060f085e8",
+        "source": "FEAT-CDC-003",
+        "target": "MOD-CDC-006",
+        "type": "has_module",
+        "data": {
+          "relationship": "特性包含多个模块",
+          "ownerTeamId": "TEAM-EE-OTA",
+          "complexity": "SIMPLE"
+        }
+      },
+      {
+        "id": "edge_1d1c7c0a0f",
+        "source": "FEAT-CDC-004",
+        "target": "MOD-CDC-007",
+        "type": "has_module",
+        "data": {
+          "relationship": "特性包含多个模块",
+          "ownerTeamId": "TEAM-EE-DIAGNOSTIC",
+          "complexity": "SIMPLE"
+        }
+      },
+      {
+        "id": "edge_d574addd81",
+        "source": "FEAT-BCM-001",
+        "target": "MOD-BCM-001",
+        "type": "has_module",
+        "data": {
+          "relationship": "特性包含多个模块",
+          "ownerTeamId": "TEAM-EE-BCM",
+          "complexity": "SIMPLE"
+        }
+      },
+      {
+        "id": "edge_4b397acbf1",
+        "source": "FEAT-BCM-001",
+        "target": "MOD-BCM-002",
+        "type": "has_module",
+        "data": {
+          "relationship": "特性包含多个模块",
+          "ownerTeamId": "TEAM-EE-BCM",
+          "complexity": "SIMPLE"
+        }
+      },
+      {
+        "id": "edge_3d277cef89",
+        "source": "FEAT-BCM-002",
+        "target": "MOD-BCM-003",
+        "type": "has_module",
+        "data": {
+          "relationship": "特性包含多个模块",
+          "ownerTeamId": "TEAM-EE-BCM",
+          "complexity": "SIMPLE"
+        }
+      },
+      {
+        "id": "edge_b587140601",
+        "source": "FEAT-BCM-003",
+        "target": "MOD-BCM-004",
+        "type": "has_module",
+        "data": {
+          "relationship": "特性包含多个模块",
+          "ownerTeamId": "TEAM-EE-BCM",
+          "complexity": "SIMPLE"
+        }
+      },
+      {
+        "id": "edge_f73d13afd4",
+        "source": "FEAT-BCM-003",
+        "target": "MOD-BCM-005",
+        "type": "has_module",
+        "data": {
+          "relationship": "特性包含多个模块",
+          "ownerTeamId": "TEAM-EE-BCM",
+          "complexity": "SIMPLE"
+        }
+      },
+      {
+        "id": "edge_ed51da9f75",
+        "source": "FEAT-BCM-005",
+        "target": "MOD-BCM-006",
+        "type": "has_module",
+        "data": {
+          "relationship": "特性包含多个模块",
+          "ownerTeamId": "TEAM-EE-BCM",
+          "complexity": "SIMPLE"
+        }
+      },
+      {
+        "id": "edge_ea9de3e3c6",
+        "source": "PROD-CDC-001",
+        "target": "EPIC-CDC-001",
+        "type": "epic_in_product",
+        "data": {
+          "relationship": "产品包含Epic",
+          "priority": "HIGH",
+          "businessValue": null
+        }
+      },
+      {
+        "id": "edge_d7d7468a7b",
+        "source": "PROD-CDC-001",
+        "target": "EPIC-CDC-002",
+        "type": "epic_in_product",
+        "data": {
+          "relationship": "产品包含Epic",
+          "priority": "HIGH",
+          "businessValue": null
+        }
+      },
+      {
+        "id": "edge_268af9ee5a",
+        "source": "PROD-CDC-001",
+        "target": "EPIC-CDC-003",
+        "type": "epic_in_product",
+        "data": {
+          "relationship": "产品包含Epic",
+          "priority": "MEDIUM",
+          "businessValue": null
+        }
+      },
+      {
+        "id": "edge_818b52ff32",
+        "source": "PROD-BCM-001",
+        "target": "EPIC-BCM-001",
+        "type": "epic_in_product",
+        "data": {
+          "relationship": "产品包含Epic",
+          "priority": "HIGH",
+          "businessValue": null
+        }
+      },
+      {
+        "id": "edge_dc342c717c",
+        "source": "PROD-BCM-001",
+        "target": "EPIC-BCM-002",
+        "type": "epic_in_product",
+        "data": {
+          "relationship": "产品包含Epic",
+          "priority": "MEDIUM",
+          "businessValue": null
+        }
+      },
+      {
+        "id": "edge_0349d183f2",
+        "source": "EPIC-CDC-001",
+        "target": "FR-CDC-001",
+        "type": "epic_to_fr",
+        "data": {
+          "relationship": "Epic拆分为特性需求",
+          "decompositionRule": null,
+          "priority": "HIGH"
+        }
+      },
+      {
+        "id": "edge_9af7b7e4de",
+        "source": "FEAT-CDC-001",
+        "target": "FR-CDC-001",
+        "type": "feature_carries_fr",
+        "data": {
+          "relationship": "业务特性承载特性需求",
+          "alignment": "ALIGNED"
+        }
+      },
+      {
+        "id": "edge_0739ce2d67",
+        "source": "EPIC-CDC-002",
+        "target": "FR-CDC-002",
+        "type": "epic_to_fr",
+        "data": {
+          "relationship": "Epic拆分为特性需求",
+          "decompositionRule": null,
+          "priority": "HIGH"
+        }
+      },
+      {
+        "id": "edge_b1eb9c40e5",
+        "source": "FEAT-CDC-002",
+        "target": "FR-CDC-002",
+        "type": "feature_carries_fr",
+        "data": {
+          "relationship": "业务特性承载特性需求",
+          "alignment": "ALIGNED"
+        }
+      },
+      {
+        "id": "edge_900a0d7c94",
+        "source": "EPIC-CDC-003",
+        "target": "FR-CDC-003",
+        "type": "epic_to_fr",
+        "data": {
+          "relationship": "Epic拆分为特性需求",
+          "decompositionRule": null,
+          "priority": "MEDIUM"
+        }
+      },
+      {
+        "id": "edge_14c32bbbe6",
+        "source": "FEAT-CDC-003",
+        "target": "FR-CDC-003",
+        "type": "feature_carries_fr",
+        "data": {
+          "relationship": "业务特性承载特性需求",
+          "alignment": "ALIGNED"
+        }
+      },
+      {
+        "id": "edge_aced495234",
+        "source": "EPIC-CDC-001",
+        "target": "FR-CDC-004",
+        "type": "epic_to_fr",
+        "data": {
+          "relationship": "Epic拆分为特性需求",
+          "decompositionRule": null,
+          "priority": "HIGH"
+        }
+      },
+      {
+        "id": "edge_228d5e5928",
+        "source": "FEAT-CDC-004",
+        "target": "FR-CDC-004",
+        "type": "feature_carries_fr",
+        "data": {
+          "relationship": "业务特性承载特性需求",
+          "alignment": "ALIGNED"
+        }
+      },
+      {
+        "id": "edge_b32733965c",
+        "source": "EPIC-BCM-001",
+        "target": "FR-BCM-001",
+        "type": "epic_to_fr",
+        "data": {
+          "relationship": "Epic拆分为特性需求",
+          "decompositionRule": null,
+          "priority": "HIGH"
+        }
+      },
+      {
+        "id": "edge_3b3b40ebb9",
+        "source": "FEAT-BCM-001",
+        "target": "FR-BCM-001",
+        "type": "feature_carries_fr",
+        "data": {
+          "relationship": "业务特性承载特性需求",
+          "alignment": "ALIGNED"
+        }
+      },
+      {
+        "id": "edge_f3e8cd5ba8",
+        "source": "EPIC-BCM-001",
+        "target": "FR-BCM-002",
+        "type": "epic_to_fr",
+        "data": {
+          "relationship": "Epic拆分为特性需求",
+          "decompositionRule": null,
+          "priority": "HIGH"
+        }
+      },
+      {
+        "id": "edge_e3ca1009b8",
+        "source": "FEAT-BCM-002",
+        "target": "FR-BCM-002",
+        "type": "feature_carries_fr",
+        "data": {
+          "relationship": "业务特性承载特性需求",
+          "alignment": "ALIGNED"
+        }
+      },
+      {
+        "id": "edge_5bc0fa287e",
+        "source": "EPIC-BCM-001",
+        "target": "FR-BCM-003",
+        "type": "epic_to_fr",
+        "data": {
+          "relationship": "Epic拆分为特性需求",
+          "decompositionRule": null,
+          "priority": "HIGH"
+        }
+      },
+      {
+        "id": "edge_bf45e30232",
+        "source": "FEAT-BCM-003",
+        "target": "FR-BCM-003",
+        "type": "feature_carries_fr",
+        "data": {
+          "relationship": "业务特性承载特性需求",
+          "alignment": "ALIGNED"
+        }
+      },
+      {
+        "id": "edge_6df2931574",
+        "source": "EPIC-BCM-002",
+        "target": "FR-BCM-004",
+        "type": "epic_to_fr",
+        "data": {
+          "relationship": "Epic拆分为特性需求",
+          "decompositionRule": null,
+          "priority": "MEDIUM"
+        }
+      },
+      {
+        "id": "edge_3233451e56",
+        "source": "FEAT-BCM-005",
+        "target": "FR-BCM-004",
+        "type": "feature_carries_fr",
+        "data": {
+          "relationship": "业务特性承载特性需求",
+          "alignment": "ALIGNED"
+        }
+      },
+      {
+        "id": "edge_7d21b20ecc",
+        "source": "FR-CDC-001",
+        "target": "MR-CDC-001",
+        "type": "fr_to_mr",
+        "data": {
+          "relationship": "特性需求拆分为模块需求",
+          "traceability": null,
+          "coverage": 0
+        }
+      },
+      {
+        "id": "edge_baaf7e1325",
+        "source": "MOD-CDC-001",
+        "target": "MR-CDC-001",
+        "type": "module_carries_mr",
+        "data": {
+          "relationship": "业务模块承载模块需求",
+          "implementationStatus": "NOT_STARTED"
+        }
+      },
+      {
+        "id": "edge_134b35e125",
+        "source": "FR-CDC-001",
+        "target": "MR-CDC-002",
+        "type": "fr_to_mr",
+        "data": {
+          "relationship": "特性需求拆分为模块需求",
+          "traceability": null,
+          "coverage": 0
+        }
+      },
+      {
+        "id": "edge_74ba41135c",
+        "source": "MOD-CDC-002",
+        "target": "MR-CDC-002",
+        "type": "module_carries_mr",
+        "data": {
+          "relationship": "业务模块承载模块需求",
+          "implementationStatus": "NOT_STARTED"
+        }
+      },
+      {
+        "id": "edge_e0a050dc13",
+        "source": "FR-CDC-002",
+        "target": "MR-CDC-003",
+        "type": "fr_to_mr",
+        "data": {
+          "relationship": "特性需求拆分为模块需求",
+          "traceability": null,
+          "coverage": 0
+        }
+      },
+      {
+        "id": "edge_a034b3c396",
+        "source": "MOD-CDC-003",
+        "target": "MR-CDC-003",
+        "type": "module_carries_mr",
+        "data": {
+          "relationship": "业务模块承载模块需求",
+          "implementationStatus": "NOT_STARTED"
+        }
+      },
+      {
+        "id": "edge_c4091cbe4b",
+        "source": "FR-CDC-002",
+        "target": "MR-CDC-004",
+        "type": "fr_to_mr",
+        "data": {
+          "relationship": "特性需求拆分为模块需求",
+          "traceability": null,
+          "coverage": 0
+        }
+      },
+      {
+        "id": "edge_bff92c3d2e",
+        "source": "MOD-CDC-004",
+        "target": "MR-CDC-004",
+        "type": "module_carries_mr",
+        "data": {
+          "relationship": "业务模块承载模块需求",
+          "implementationStatus": "NOT_STARTED"
+        }
+      },
+      {
+        "id": "edge_c7cdca72a6",
+        "source": "FR-CDC-003",
+        "target": "MR-CDC-005",
+        "type": "fr_to_mr",
+        "data": {
+          "relationship": "特性需求拆分为模块需求",
+          "traceability": null,
+          "coverage": 0
+        }
+      },
+      {
+        "id": "edge_378ebf7fea",
+        "source": "MOD-CDC-005",
+        "target": "MR-CDC-005",
+        "type": "module_carries_mr",
+        "data": {
+          "relationship": "业务模块承载模块需求",
+          "implementationStatus": "NOT_STARTED"
+        }
+      },
+      {
+        "id": "edge_92e16604e3",
+        "source": "FR-CDC-004",
+        "target": "MR-CDC-006",
+        "type": "fr_to_mr",
+        "data": {
+          "relationship": "特性需求拆分为模块需求",
+          "traceability": null,
+          "coverage": 0
+        }
+      },
+      {
+        "id": "edge_a7564619c5",
+        "source": "MOD-CDC-007",
+        "target": "MR-CDC-006",
+        "type": "module_carries_mr",
+        "data": {
+          "relationship": "业务模块承载模块需求",
+          "implementationStatus": "NOT_STARTED"
+        }
+      },
+      {
+        "id": "edge_fc89455c21",
+        "source": "FR-CDC-001",
+        "target": "MR-CDC-007",
+        "type": "fr_to_mr",
+        "data": {
+          "relationship": "特性需求拆分为模块需求",
+          "traceability": null,
+          "coverage": 0
+        }
+      },
+      {
+        "id": "edge_4ef6672e4f",
+        "source": "MOD-CDC-002",
+        "target": "MR-CDC-007",
+        "type": "module_carries_mr",
+        "data": {
+          "relationship": "业务模块承载模块需求",
+          "implementationStatus": "NOT_STARTED"
+        }
+      },
+      {
+        "id": "edge_17756ec614",
+        "source": "FR-BCM-001",
+        "target": "MR-BCM-001",
+        "type": "fr_to_mr",
+        "data": {
+          "relationship": "特性需求拆分为模块需求",
+          "traceability": null,
+          "coverage": 0
+        }
+      },
+      {
+        "id": "edge_449e9668bb",
+        "source": "MOD-BCM-001",
+        "target": "MR-BCM-001",
+        "type": "module_carries_mr",
+        "data": {
+          "relationship": "业务模块承载模块需求",
+          "implementationStatus": "NOT_STARTED"
+        }
+      },
+      {
+        "id": "edge_e500f4d505",
+        "source": "FR-BCM-001",
+        "target": "MR-BCM-002",
+        "type": "fr_to_mr",
+        "data": {
+          "relationship": "特性需求拆分为模块需求",
+          "traceability": null,
+          "coverage": 0
+        }
+      },
+      {
+        "id": "edge_e034daf8f8",
+        "source": "MOD-BCM-002",
+        "target": "MR-BCM-002",
+        "type": "module_carries_mr",
+        "data": {
+          "relationship": "业务模块承载模块需求",
+          "implementationStatus": "NOT_STARTED"
+        }
+      },
+      {
+        "id": "edge_e0ddbf403a",
+        "source": "FR-BCM-002",
+        "target": "MR-BCM-003",
+        "type": "fr_to_mr",
+        "data": {
+          "relationship": "特性需求拆分为模块需求",
+          "traceability": null,
+          "coverage": 0
+        }
+      },
+      {
+        "id": "edge_6d05e899b1",
+        "source": "MOD-BCM-003",
+        "target": "MR-BCM-003",
+        "type": "module_carries_mr",
+        "data": {
+          "relationship": "业务模块承载模块需求",
+          "implementationStatus": "NOT_STARTED"
+        }
+      },
+      {
+        "id": "edge_ba10bee2a2",
+        "source": "FR-BCM-003",
+        "target": "MR-BCM-004",
+        "type": "fr_to_mr",
+        "data": {
+          "relationship": "特性需求拆分为模块需求",
+          "traceability": null,
+          "coverage": 0
+        }
+      },
+      {
+        "id": "edge_804e29e2f8",
+        "source": "MOD-BCM-004",
+        "target": "MR-BCM-004",
+        "type": "module_carries_mr",
+        "data": {
+          "relationship": "业务模块承载模块需求",
+          "implementationStatus": "NOT_STARTED"
+        }
+      },
+      {
+        "id": "edge_f35796ed23",
+        "source": "FR-BCM-004",
+        "target": "MR-BCM-005",
+        "type": "fr_to_mr",
+        "data": {
+          "relationship": "特性需求拆分为模块需求",
+          "traceability": null,
+          "coverage": 0
+        }
+      },
+      {
+        "id": "edge_270d4272e5",
+        "source": "MOD-BCM-006",
+        "target": "MR-BCM-005",
+        "type": "module_carries_mr",
+        "data": {
+          "relationship": "业务模块承载模块需求",
+          "implementationStatus": "NOT_STARTED"
+        }
+      },
+      {
+        "id": "edge_c7952abb58",
+        "source": "FR-BCM-002",
+        "target": "MR-BCM-006",
+        "type": "fr_to_mr",
+        "data": {
+          "relationship": "特性需求拆分为模块需求",
+          "traceability": null,
+          "coverage": 0
+        }
+      },
+      {
+        "id": "edge_6c21b7f628",
+        "source": "MOD-BCM-003",
+        "target": "MR-BCM-006",
+        "type": "module_carries_mr",
+        "data": {
+          "relationship": "业务模块承载模块需求",
+          "implementationStatus": "NOT_STARTED"
+        }
+      },
+      {
+        "id": "edge_7bb41701ee",
+        "source": "ASSET-EE-001",
+        "target": "AV-EE-001-R21-11",
+        "type": "asset_has_version",
+        "data": {
+          "relationship": "资产有多个版本",
+          "version": "R21-11",
+          "releaseDate": "2026-01-17"
+        }
+      },
+      {
+        "id": "edge_2dba2ba023",
+        "source": "ASSET-EE-002",
+        "target": "AV-EE-002-V1.3",
+        "type": "asset_has_version",
+        "data": {
+          "relationship": "资产有多个版本",
+          "version": "V1.3",
+          "releaseDate": "2026-01-17"
+        }
+      },
+      {
+        "id": "edge_430945823e",
+        "source": "ASSET-EE-003",
+        "target": "AV-EE-003-V2.0",
+        "type": "asset_has_version",
+        "data": {
+          "relationship": "资产有多个版本",
+          "version": "V2.0",
+          "releaseDate": "2026-01-17"
+        }
+      },
+      {
+        "id": "edge_c10b6de259",
+        "source": "ASSET-EE-004",
+        "target": "AV-EE-004-V1.5",
+        "type": "asset_has_version",
+        "data": {
+          "relationship": "资产有多个版本",
+          "version": "V1.5",
+          "releaseDate": "2026-01-17"
+        }
+      },
+      {
+        "id": "edge_3c62cc6a9b",
+        "source": "ASSET-EE-005",
+        "target": "AV-EE-005-V1.0",
+        "type": "asset_has_version",
+        "data": {
+          "relationship": "资产有多个版本",
+          "version": "V1.0",
+          "releaseDate": "2026-01-17"
+        }
+      },
+      {
+        "id": "edge_71d1804d32",
+        "source": "ASSET-EE-006",
+        "target": "AV-EE-006-R4.3",
+        "type": "asset_has_version",
+        "data": {
+          "relationship": "资产有多个版本",
+          "version": "R4.3",
+          "releaseDate": "2026-01-17"
+        }
+      },
+      {
+        "id": "edge_d880c958be",
+        "source": "MR-CDC-001",
+        "target": "AU-EE-001",
+        "type": "mr_uses_asset",
+        "data": {
+          "relationship": "模块需求使用资产",
+          "usageType": "REUSE",
+          "versionConstraint": null
+        }
+      },
+      {
+        "id": "edge_f9995687be",
+        "source": "AU-EE-001",
+        "target": "AV-EE-001-R21-11",
+        "type": "usage_refers_version",
+        "data": {
+          "relationship": "资产使用引用具体版本",
+          "version": "R21-11",
+          "compatibility": "COMPATIBLE"
+        }
+      },
+      {
+        "id": "edge_6d8b42dfb1",
+        "source": "MR-CDC-002",
+        "target": "AU-EE-002",
+        "type": "mr_uses_asset",
+        "data": {
+          "relationship": "模块需求使用资产",
+          "usageType": "REUSE",
+          "versionConstraint": null
+        }
+      },
+      {
+        "id": "edge_5c3f3a1be4",
+        "source": "AU-EE-002",
+        "target": "AV-EE-002-V1.3",
+        "type": "usage_refers_version",
+        "data": {
+          "relationship": "资产使用引用具体版本",
+          "version": "V1.3",
+          "compatibility": "COMPATIBLE"
+        }
+      },
+      {
+        "id": "edge_0bd8afd6de",
+        "source": "MR-CDC-003",
+        "target": "AU-EE-003",
+        "type": "mr_uses_asset",
+        "data": {
+          "relationship": "模块需求使用资产",
+          "usageType": "REUSE",
+          "versionConstraint": null
+        }
+      },
+      {
+        "id": "edge_65eac0fef6",
+        "source": "AU-EE-003",
+        "target": "AV-EE-003-V2.0",
+        "type": "usage_refers_version",
+        "data": {
+          "relationship": "资产使用引用具体版本",
+          "version": "V2.0",
+          "compatibility": "COMPATIBLE"
+        }
+      },
+      {
+        "id": "edge_872ba337f3",
+        "source": "MR-CDC-006",
+        "target": "AU-EE-004",
+        "type": "mr_uses_asset",
+        "data": {
+          "relationship": "模块需求使用资产",
+          "usageType": "REUSE",
+          "versionConstraint": null
+        }
+      },
+      {
+        "id": "edge_f4c9fc21c2",
+        "source": "AU-EE-004",
+        "target": "AV-EE-004-V1.5",
+        "type": "usage_refers_version",
+        "data": {
+          "relationship": "资产使用引用具体版本",
+          "version": "V1.5",
+          "compatibility": "COMPATIBLE"
+        }
+      },
+      {
+        "id": "edge_923da24f2e",
+        "source": "MR-CDC-005",
+        "target": "AU-EE-005",
+        "type": "mr_uses_asset",
+        "data": {
+          "relationship": "模块需求使用资产",
+          "usageType": "REUSE",
+          "versionConstraint": null
+        }
+      },
+      {
+        "id": "edge_665ccf82d0",
+        "source": "AU-EE-005",
+        "target": "AV-EE-005-V1.0",
+        "type": "usage_refers_version",
+        "data": {
+          "relationship": "资产使用引用具体版本",
+          "version": "V1.0",
+          "compatibility": "COMPATIBLE"
+        }
+      },
+      {
+        "id": "edge_3131b265c2",
+        "source": "MR-BCM-001",
+        "target": "AU-EE-006",
+        "type": "mr_uses_asset",
+        "data": {
+          "relationship": "模块需求使用资产",
+          "usageType": "REUSE",
+          "versionConstraint": null
+        }
+      },
+      {
+        "id": "edge_ab60cc1066",
+        "source": "AU-EE-006",
+        "target": "AV-EE-006-R4.3",
+        "type": "usage_refers_version",
+        "data": {
+          "relationship": "资产使用引用具体版本",
+          "version": "R4.3",
+          "compatibility": "COMPATIBLE"
+        }
+      },
+      {
+        "id": "edge_a91133b917",
+        "source": "DP-EE-001",
+        "target": "PI-EE-2022-Q3",
+        "type": "project_has_pi",
+        "data": {
+          "relationship": "领域项目规划PI",
+          "piNumber": 1,
+          "startDate": "2026-01-17",
+          "endDate": "2026-01-17"
+        }
+      },
+      {
+        "id": "edge_8e12df706b",
+        "source": "DP-EE-001",
+        "target": "PI-EE-2022-Q4",
+        "type": "project_has_pi",
+        "data": {
+          "relationship": "领域项目规划PI",
+          "piNumber": 1,
+          "startDate": "2026-01-17",
+          "endDate": "2026-01-17"
+        }
+      },
+      {
+        "id": "edge_e4490f5598",
+        "source": "DP-EE-001",
+        "target": "PI-EE-2023-Q1",
+        "type": "project_has_pi",
+        "data": {
+          "relationship": "领域项目规划PI",
+          "piNumber": 1,
+          "startDate": "2026-01-17",
+          "endDate": "2026-01-17"
+        }
+      },
+      {
+        "id": "edge_389fd21e89",
+        "source": "DP-EE-001",
+        "target": "PI-EE-2023-Q2",
+        "type": "project_has_pi",
+        "data": {
+          "relationship": "领域项目规划PI",
+          "piNumber": 1,
+          "startDate": "2026-01-17",
+          "endDate": "2026-01-17"
+        }
+      },
+      {
+        "id": "edge_8b4e2f5e0c",
+        "source": "PI-EE-2022-Q3",
+        "target": "SPRINT-EE-2022-Q3-S1",
+        "type": "pi_has_sprint",
+        "data": {
+          "relationship": "PI包含多个Sprint",
+          "sprintNumber": 1,
+          "capacity": 0
+        }
+      },
+      {
+        "id": "edge_5724331a3e",
+        "source": "PI-EE-2022-Q3",
+        "target": "SPRINT-EE-2022-Q3-S2",
+        "type": "pi_has_sprint",
+        "data": {
+          "relationship": "PI包含多个Sprint",
+          "sprintNumber": 1,
+          "capacity": 0
+        }
+      },
+      {
+        "id": "edge_944ac0d32a",
+        "source": "PI-EE-2022-Q3",
+        "target": "SPRINT-EE-2022-Q3-S3",
+        "type": "pi_has_sprint",
+        "data": {
+          "relationship": "PI包含多个Sprint",
+          "sprintNumber": 1,
+          "capacity": 0
+        }
+      },
+      {
+        "id": "edge_6268defc64",
+        "source": "PI-EE-2022-Q3",
+        "target": "SPRINT-EE-2022-Q3-S4",
+        "type": "pi_has_sprint",
+        "data": {
+          "relationship": "PI包含多个Sprint",
+          "sprintNumber": 1,
+          "capacity": 0
+        }
+      },
+      {
+        "id": "edge_c27d58afe1",
+        "source": "PI-EE-2022-Q3",
+        "target": "SPRINT-EE-2022-Q3-S5",
+        "type": "pi_has_sprint",
+        "data": {
+          "relationship": "PI包含多个Sprint",
+          "sprintNumber": 1,
+          "capacity": 0
+        }
+      },
+      {
+        "id": "edge_1554d56ce8",
+        "source": "SPRINT-EE-2022-Q3-S1",
+        "target": "SB-EE-001",
+        "type": "sprint_has_backlog",
+        "data": {
+          "relationship": "Sprint有待办列表",
+          "backlogSize": null
+        }
+      },
+      {
+        "id": "edge_ef193af65a",
+        "source": "SB-EE-001",
+        "target": "MR-CDC-001",
+        "type": "backlog_refers_mr",
+        "data": {
+          "relationship": "待办关联模块需求",
+          "priority": "HIGH",
+          "estimatedStoryPoints": null
+        }
+      },
+      {
+        "id": "edge_d298ce464c",
+        "source": "SPRINT-EE-2022-Q3-S2",
+        "target": "SB-EE-002",
+        "type": "sprint_has_backlog",
+        "data": {
+          "relationship": "Sprint有待办列表",
+          "backlogSize": null
+        }
+      },
+      {
+        "id": "edge_ec96a54476",
+        "source": "SB-EE-002",
+        "target": "MR-CDC-003",
+        "type": "backlog_refers_mr",
+        "data": {
+          "relationship": "待办关联模块需求",
+          "priority": "HIGH",
+          "estimatedStoryPoints": null
+        }
+      },
+      {
+        "id": "edge_af359c19ec",
+        "source": "SPRINT-EE-2022-Q3-S3",
+        "target": "SB-EE-003",
+        "type": "sprint_has_backlog",
+        "data": {
+          "relationship": "Sprint有待办列表",
+          "backlogSize": null
+        }
+      },
+      {
+        "id": "edge_cfca895a2c",
+        "source": "SB-EE-003",
+        "target": "MR-BCM-001",
+        "type": "backlog_refers_mr",
+        "data": {
+          "relationship": "待办关联模块需求",
+          "priority": "HIGH",
+          "estimatedStoryPoints": null
+        }
+      },
+      {
+        "id": "edge_6ff91b28d7",
+        "source": "SPRINT-EE-2022-Q3-S4",
+        "target": "SB-EE-004",
+        "type": "sprint_has_backlog",
+        "data": {
+          "relationship": "Sprint有待办列表",
+          "backlogSize": null
+        }
+      },
+      {
+        "id": "edge_09054c7e83",
+        "source": "SB-EE-004",
+        "target": "MR-CDC-005",
+        "type": "backlog_refers_mr",
+        "data": {
+          "relationship": "待办关联模块需求",
+          "priority": "MEDIUM",
+          "estimatedStoryPoints": null
+        }
+      },
+      {
+        "id": "edge_d14ec66568",
+        "source": "WI-EE-REQ-001",
+        "target": "CC-EE-001",
+        "type": "workitem_has_commit",
+        "data": {
+          "relationship": "工作项关联代码提交",
+          "commitCount": null,
+          "lastCommitDate": null
+        }
+      },
+      {
+        "id": "edge_0087c7ea41",
+        "source": "WI-EE-REQ-002",
+        "target": "CC-EE-002",
+        "type": "workitem_has_commit",
+        "data": {
+          "relationship": "工作项关联代码提交",
+          "commitCount": null,
+          "lastCommitDate": null
+        }
+      },
+      {
+        "id": "edge_7d94563725",
+        "source": "WI-EE-REQ-003",
+        "target": "CC-EE-003",
+        "type": "workitem_has_commit",
+        "data": {
+          "relationship": "工作项关联代码提交",
+          "commitCount": null,
+          "lastCommitDate": null
+        }
+      },
+      {
+        "id": "edge_54d5eacf0e",
+        "source": "WI-EE-REQ-004",
+        "target": "CC-EE-004",
+        "type": "workitem_has_commit",
+        "data": {
+          "relationship": "工作项关联代码提交",
+          "commitCount": null,
+          "lastCommitDate": null
+        }
+      },
+      {
+        "id": "edge_136ae5e8ec",
+        "source": "CC-EE-001",
+        "target": "BUILD-EE-001",
+        "type": "commit_triggers_build",
+        "data": {
+          "relationship": "提交触发构建",
+          "buildStatus": "SUCCESS",
+          "buildDuration": 0
+        }
+      },
+      {
+        "id": "edge_e3337b13ab",
+        "source": "CC-EE-002",
+        "target": "BUILD-EE-002",
+        "type": "commit_triggers_build",
+        "data": {
+          "relationship": "提交触发构建",
+          "buildStatus": "SUCCESS",
+          "buildDuration": 0
+        }
+      },
+      {
+        "id": "edge_f8442f9a16",
+        "source": "CC-EE-003",
+        "target": "BUILD-EE-003",
+        "type": "commit_triggers_build",
+        "data": {
+          "relationship": "提交触发构建",
+          "buildStatus": "SUCCESS",
+          "buildDuration": 0
+        }
+      },
+      {
+        "id": "edge_a2891f06fb",
+        "source": "CC-EE-004",
+        "target": "BUILD-EE-004",
+        "type": "commit_triggers_build",
+        "data": {
+          "relationship": "提交触发构建",
+          "buildStatus": "SUCCESS",
+          "buildDuration": 0
+        }
+      },
+      {
+        "id": "edge_509060d315",
+        "source": "MOD-CDC-001",
+        "target": "TP-EE-001",
+        "type": "mr_has_testplan",
+        "data": {
+          "relationship": "模块需求有测试计划",
+          "testPlanType": "UNIT"
+        }
+      },
+      {
+        "id": "edge_a0d1e84835",
+        "source": "MOD-CDC-003",
+        "target": "TP-EE-002",
+        "type": "mr_has_testplan",
+        "data": {
+          "relationship": "模块需求有测试计划",
+          "testPlanType": "UNIT"
+        }
+      },
+      {
+        "id": "edge_433291e8ee",
+        "source": "BUILD-EE-001",
+        "target": "TE-EE-001",
+        "type": "build_triggers_test",
+        "data": {
+          "relationship": "构建触发测试执行",
+          "testStatus": "SUCCESS",
+          "executionTime": 0
+        }
+      },
+      {
+        "id": "edge_8d333d199f",
+        "source": "TC-EE-001",
+        "target": "TE-EE-001",
+        "type": "case_executes",
+        "data": {
+          "relationship": "测试用例被执行",
+          "executionStatus": "PASSED",
+          "executedAt": "2026-01-17"
+        }
+      },
+      {
+        "id": "edge_6735504f3e",
+        "source": "BUILD-EE-002",
+        "target": "TE-EE-002",
+        "type": "build_triggers_test",
+        "data": {
+          "relationship": "构建触发测试执行",
+          "testStatus": "SUCCESS",
+          "executionTime": 0
+        }
+      },
+      {
+        "id": "edge_034aedac9a",
+        "source": "TC-EE-002",
+        "target": "TE-EE-002",
+        "type": "case_executes",
+        "data": {
+          "relationship": "测试用例被执行",
+          "executionStatus": "PASSED",
+          "executedAt": "2026-01-17"
+        }
+      },
+      {
+        "id": "edge_673c480141",
+        "source": "BUILD-EE-003",
+        "target": "TE-EE-003",
+        "type": "build_triggers_test",
+        "data": {
+          "relationship": "构建触发测试执行",
+          "testStatus": "SUCCESS",
+          "executionTime": 0
+        }
+      },
+      {
+        "id": "edge_0488cce6f1",
+        "source": "TC-EE-003",
+        "target": "TE-EE-003",
+        "type": "case_executes",
+        "data": {
+          "relationship": "测试用例被执行",
+          "executionStatus": "PASSED",
+          "executedAt": "2026-01-17"
+        }
+      },
+      {
+        "id": "edge_d109cec9b6",
+        "source": "BUILD-EE-003",
+        "target": "TE-EE-004",
+        "type": "build_triggers_test",
+        "data": {
+          "relationship": "构建触发测试执行",
+          "testStatus": "SUCCESS",
+          "executionTime": 0
+        }
+      },
+      {
+        "id": "edge_5bbffa54c0",
+        "source": "TC-EE-004",
+        "target": "TE-EE-004",
+        "type": "case_executes",
+        "data": {
+          "relationship": "测试用例被执行",
+          "executionStatus": "PASSED",
+          "executedAt": "2026-01-17"
+        }
+      },
+      {
+        "id": "edge_9d7e9746f9",
+        "source": "TE-EE-001",
+        "target": "DEFECT-EE-001",
+        "type": "execution_finds_defect",
+        "data": {
+          "relationship": "测试执行发现缺陷",
+          "severity": "LOW",
+          "foundDate": "2026-01-17"
+        }
+      },
+      {
+        "id": "edge_da933aa3a1",
+        "source": "TE-EE-002",
+        "target": "DEFECT-EE-002",
+        "type": "execution_finds_defect",
+        "data": {
+          "relationship": "测试执行发现缺陷",
+          "severity": "MEDIUM",
+          "foundDate": "2026-01-17"
+        }
+      },
+      {
+        "id": "edge_08aed47eee",
+        "source": "BUILD-EE-001",
+        "target": "ARTIFACT-EE-001",
+        "type": "build_produces_artifact",
+        "data": {
+          "relationship": "构建产出制品",
+          "artifactType": "LIBRARY",
+          "size": 0
+        }
+      },
+      {
+        "id": "edge_d2143b97f0",
+        "source": "BUILD-EE-002",
+        "target": "ARTIFACT-EE-002",
+        "type": "build_produces_artifact",
+        "data": {
+          "relationship": "构建产出制品",
+          "artifactType": "LIBRARY",
+          "size": 0
+        }
+      },
+      {
+        "id": "edge_3c692e0ef7",
+        "source": "BUILD-EE-003",
+        "target": "ARTIFACT-EE-003",
+        "type": "build_produces_artifact",
+        "data": {
+          "relationship": "构建产出制品",
+          "artifactType": "LIBRARY",
+          "size": 0
+        }
+      },
+      {
+        "id": "edge_4bacf99aa2",
+        "source": "RELEASE-EE-001",
+        "target": "DEPLOY-EE-001",
+        "type": "release_deploys",
+        "data": {
+          "relationship": "发布进行部署",
+          "deploymentEnvironment": "DEV",
+          "deployedAt": "2026-01-17"
+        }
+      },
+      {
+        "id": "edge_a89f15612a",
+        "source": "RELEASE-EE-002",
+        "target": "DEPLOY-EE-002",
+        "type": "release_deploys",
+        "data": {
+          "relationship": "发布进行部署",
+          "deploymentEnvironment": "DEV",
+          "deployedAt": "2026-01-17"
+        }
+      },
+      {
+        "id": "edge_e16708dc2d",
+        "source": "METRIC-001",
+        "target": "MV-EE-001",
+        "type": "metric_has_value",
+        "data": {
+          "relationship": "指标有度量数据",
+          "value": 48,
+          "recordedAt": "2026-01-17"
+        }
+      },
+      {
+        "id": "edge_6039ac385c",
+        "source": "METRIC-002",
+        "target": "MV-EE-002",
+        "type": "metric_has_value",
+        "data": {
+          "relationship": "指标有度量数据",
+          "value": 88,
+          "recordedAt": "2026-01-17"
+        }
+      },
+      {
+        "id": "edge_fe6a923440",
+        "source": "METRIC-003",
+        "target": "MV-EE-003",
+        "type": "metric_has_value",
+        "data": {
+          "relationship": "指标有度量数据",
+          "value": 78,
+          "recordedAt": "2026-01-17"
+        }
+      },
+      {
+        "id": "edge_13792f3a88",
+        "source": "METRIC-004",
+        "target": "MV-EE-004",
+        "type": "metric_has_value",
+        "data": {
+          "relationship": "指标有度量数据",
+          "value": 0.5,
+          "recordedAt": "2026-01-17"
+        }
+      },
+      {
+        "id": "edge_01e8992f65",
+        "source": "MS-001",
+        "target": "METRIC-001",
+        "type": "metricset_has_metric",
+        "data": {
+          "relationship": "度量集包含指标",
+          "unit": "DAY",
+          "targetValue": 0
+        }
+      },
+      {
+        "id": "edge_856727e247",
+        "source": "MS-001",
+        "target": "METRIC-002",
+        "type": "metricset_has_metric",
+        "data": {
+          "relationship": "度量集包含指标",
+          "unit": "SCORE",
+          "targetValue": 0
+        }
+      },
+      {
+        "id": "edge_6ac0402fda",
+        "source": "MS-001",
+        "target": "METRIC-003",
+        "type": "metricset_has_metric",
+        "data": {
+          "relationship": "度量集包含指标",
+          "unit": "PERCENTAGE",
+          "targetValue": 0
+        }
+      },
+      {
+        "id": "edge_dae125dc0c",
+        "source": "MS-001",
+        "target": "METRIC-004",
+        "type": "metricset_has_metric",
+        "data": {
+          "relationship": "度量集包含指标",
+          "unit": "COUNT_PER_KLOC",
+          "targetValue": 0
+        }
+      },
+      {
+        "id": "edge_e42994a8fb",
+        "source": "MS-001",
+        "target": "METRIC-005",
+        "type": "metricset_has_metric",
+        "data": {
+          "relationship": "度量集包含指标",
+          "unit": "PERCENTAGE",
+          "targetValue": 0
+        }
+      }
+    ]
+  },
+  "metadata": {
+    "name": "电子电器研发体系",
+    "createdAt": "2026-01-17T17:34:49.530Z",
+    "statistics": {
+      "nodeCount": 153,
+      "edgeCount": 153,
+      "nodeTypes": {
+        "Vehicle": 1,
+        "DomainProject": 1,
+        "ProjectMilestone": 5,
+        "Baseline": 3,
+        "ProductLine": 1,
+        "Product": 2,
+        "ProductVersion": 3,
+        "Feature": 9,
+        "Module": 13,
+        "Epic": 5,
+        "FeatureRequirement": 8,
+        "ModuleRequirement": 13,
+        "Asset": 6,
+        "AssetVersion": 6,
+        "AssetUsage": 6,
+        "PI": 4,
+        "Sprint": 5,
+        "SprintBacklog": 4,
+        "WorkItem": 4,
+        "CodeCommit": 4,
+        "Build": 4,
+        "TestPlan": 4,
+        "TeamCapacity": 4,
+        "TestExecution": 4,
+        "Defect": 2,
+        "Artifact": 4,
+        "Release": 2,
+        "Deployment": 2,
+        "MetricValue": 4,
+        "User": 10,
+        "Team": 5,
+        "Metric": 5
+      },
+      "edgeTypes": {
+        "has_domain_project": 1,
+        "has_milestone": 4,
+        "has_baseline": 3,
+        "has_product": 2,
+        "has_product_version": 3,
+        "version_relates_baseline": 2,
+        "has_feature": 9,
+        "has_module": 13,
+        "epic_in_product": 5,
+        "epic_to_fr": 8,
+        "feature_carries_fr": 8,
+        "fr_to_mr": 13,
+        "module_carries_mr": 13,
+        "asset_has_version": 6,
+        "mr_uses_asset": 6,
+        "usage_refers_version": 6,
+        "project_has_pi": 4,
+        "pi_has_sprint": 5,
+        "sprint_has_backlog": 4,
+        "backlog_refers_mr": 4,
+        "workitem_has_commit": 4,
+        "commit_triggers_build": 4,
+        "mr_has_testplan": 2,
+        "build_triggers_test": 4,
+        "case_executes": 4,
+        "execution_finds_defect": 2,
+        "build_produces_artifact": 3,
+        "release_deploys": 2,
+        "metric_has_value": 4,
+        "metricset_has_metric": 5
+      }
+    }
+  }
+}

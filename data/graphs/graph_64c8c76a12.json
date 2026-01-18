@@ -1,0 +1,4548 @@
+{
+  "id": "graph_64c8c76a12",
+  "metadata": {
+    "name": "智能驾驶研发体系",
+    "description": "岚图智能驾驶研发知识图谱，包含城市NOA和自动泊车产品的完整研发流程，基于Schema V2.0",
+    "createdAt": "2026-01-17T17:34:53.674Z",
+    "updatedAt": "2026-01-17T17:34:53.674Z",
+    "schemaId": "core-domain-schema-v2",
+    "schemaVersion": "2.0.0",
+    "tags": [
+      "v2",
+      "auto-generated",
+      "ADAS"
+    ],
+    "statistics": {
+      "nodeCount": 199,
+      "edgeCount": 180,
+      "lastAccessed": "2026-01-18T04:00:36.598Z"
+    }
+  },
+  "data": {
+    "nodes": [
+      {
+        "id": "VEH-001",
+        "type": "Vehicle",
+        "label": "岚图梦想家",
+        "data": {
+          "id": "VEH-001",
+          "name": "岚图梦想家",
+          "code": "VOYAH_DREAMER",
+          "platform": "ESSA",
+          "launchDate": "2023-06-01",
+          "status": "LAUNCHED"
+        }
+      },
+      {
+        "id": "DP-ADAS-001",
+        "type": "DomainProject",
+        "label": "梦想家智能驾驶项目",
+        "data": {
+          "id": "DP-ADAS-001",
+          "vehicleId": "VEH-001",
+          "name": "梦想家智能驾驶项目",
+          "domain": "ADAS",
+          "managerId": "USER-PM-001",
+          "description": "岚图梦想家车型的智能驾驶系统研发项目，包含城市NOA和自动泊车功能"
+        }
+      },
+      {
+        "id": "MS-001",
+        "type": "ProjectMilestone",
+        "label": "SOP量产",
+        "data": {
+          "id": "MS-001",
+          "domainProjectId": "DP-ADAS-001",
+          "name": "SOP量产",
+          "targetDate": "2023-06-01",
+          "type": "SOP",
+          "status": "COMPLETED"
+        }
+      },
+      {
+        "id": "MS-002",
+        "type": "ProjectMilestone",
+        "label": "PVS生产验证",
+        "data": {
+          "id": "MS-002",
+          "domainProjectId": "DP-ADAS-001",
+          "name": "PVS生产验证",
+          "targetDate": "2023-03-01",
+          "type": "PVS",
+          "status": "COMPLETED"
+        }
+      },
+      {
+        "id": "MS-003",
+        "type": "ProjectMilestone",
+        "label": "DVS设计验证",
+        "data": {
+          "id": "MS-003",
+          "domainProjectId": "DP-ADAS-001",
+          "name": "DVS设计验证",
+          "targetDate": "2022-12-01",
+          "type": "DVS",
+          "status": "COMPLETED"
+        }
+      },
+      {
+        "id": "MS-004",
+        "type": "ProjectMilestone",
+        "label": "样车阶段",
+        "data": {
+          "id": "MS-004",
+          "domainProjectId": "DP-ADAS-001",
+          "name": "样车阶段",
+          "targetDate": "2022-09-01",
+          "type": "PROTOTYPE",
+          "status": "COMPLETED"
+        }
+      },
+      {
+        "id": "BL-SOP-001",
+        "type": "Baseline",
+        "label": "SOP基线",
+        "data": {
+          "id": "BL-SOP-001",
+          "milestoneId": "MS-001",
+          "name": "SOP基线",
+          "version": "V1.0",
+          "freezeDate": "2023-05-01",
+          "scope": "城市NOA L2+级别（高速+城市快速路）+ 自动泊车（垂直、平行、斜列）"
+        }
+      },
+      {
+        "id": "BL-PVS-001",
+        "type": "Baseline",
+        "label": "PVS基线",
+        "data": {
+          "id": "BL-PVS-001",
+          "milestoneId": "MS-002",
+          "name": "PVS基线",
+          "version": "V0.9",
+          "freezeDate": "2023-02-01",
+          "scope": "城市NOA基础功能 + 自动泊车基础功能"
+        }
+      },
+      {
+        "id": "BL-DVS-001",
+        "type": "Baseline",
+        "label": "DVS基线",
+        "data": {
+          "id": "BL-DVS-001",
+          "milestoneId": "MS-003",
+          "name": "DVS基线",
+          "version": "V0.8",
+          "freezeDate": "2022-11-01",
+          "scope": "核心算法验证 + 基础功能验证"
+        }
+      },
+      {
+        "id": "PL-ADAS-001",
+        "type": "ProductLine",
+        "label": "智能驾驶产品线",
+        "data": {
+          "id": "PL-ADAS-001",
+          "name": "智能驾驶产品线",
+          "code": "ADAS",
+          "type": "ADAS",
+          "description": "智能驾驶辅助系统产品线，包含L2-L4级别的自动驾驶功能"
+        }
+      },
+      {
+        "id": "PROD-NOA-001",
+        "type": "Product",
+        "label": "城市NOA产品",
+        "data": {
+          "id": "PROD-NOA-001",
+          "productLineId": "PL-ADAS-001",
+          "name": "城市NOA产品",
+          "code": "CITY_NOA",
+          "description": "城市领航辅助驾驶系统，支持高速+城市快速路+城市道路的L2+级别自动驾驶"
+        }
+      },
+      {
+        "id": "PROD-APA-001",
+        "type": "Product",
+        "label": "自动泊车产品",
+        "data": {
+          "id": "PROD-APA-001",
+          "productLineId": "PL-ADAS-001",
+          "name": "自动泊车产品",
+          "code": "AUTO_PARKING",
+          "description": "自动泊车辅助系统，支持垂直、平行、斜列泊车及记忆泊车"
+        }
+      },
+      {
+        "id": "PV-NOA-V1.0",
+        "type": "ProductVersion",
+        "label": "PV-NOA-V1.0",
+        "data": {
+          "id": "PV-NOA-V1.0",
+          "productId": "PROD-NOA-001",
+          "version": "V1.0",
+          "baselineId": "BL-SOP-001",
+          "releaseDate": "2023-06-01",
+          "status": "RELEASED"
+        }
+      },
+      {
+        "id": "PV-NOA-V1.1",
+        "type": "ProductVersion",
+        "label": "PV-NOA-V1.1",
+        "data": {
+          "id": "PV-NOA-V1.1",
+          "productId": "PROD-NOA-001",
+          "version": "V1.1",
+          "baselineId": null,
+          "releaseDate": "2023-12-01",
+          "status": "DEVELOPING"
+        }
+      },
+      {
+        "id": "PV-APA-V1.0",
+        "type": "ProductVersion",
+        "label": "PV-APA-V1.0",
+        "data": {
+          "id": "PV-APA-V1.0",
+          "productId": "PROD-APA-001",
+          "version": "V1.0",
+          "baselineId": "BL-SOP-001",
+          "releaseDate": "2023-06-01",
+          "status": "RELEASED"
+        }
+      },
+      {
+        "id": "FEAT-NOA-001",
+        "type": "Feature",
+        "label": "高速NOA",
+        "data": {
+          "id": "FEAT-NOA-001",
+          "productId": "PROD-NOA-001",
+          "parentFeatureId": null,
+          "name": "高速NOA",
+          "code": "HWY_NOA",
+          "description": "高速公路领航辅助驾驶"
+        }
+      },
+      {
+        "id": "FEAT-NOA-002",
+        "type": "Feature",
+        "label": "城市NOA",
+        "data": {
+          "id": "FEAT-NOA-002",
+          "productId": "PROD-NOA-001",
+          "parentFeatureId": null,
+          "name": "城市NOA",
+          "code": "CITY_NOA",
+          "description": "城市道路领航辅助驾驶"
+        }
+      },
+      {
+        "id": "FEAT-NOA-003",
+        "type": "Feature",
+        "label": "AEB紧急制动",
+        "data": {
+          "id": "FEAT-NOA-003",
+          "productId": "PROD-NOA-001",
+          "parentFeatureId": null,
+          "name": "AEB紧急制动",
+          "code": "AEB",
+          "description": "自动紧急制动系统"
+        }
+      },
+      {
+        "id": "FEAT-NOA-004",
+        "type": "Feature",
+        "label": "LKA车道保持",
+        "data": {
+          "id": "FEAT-NOA-004",
+          "productId": "PROD-NOA-001",
+          "parentFeatureId": null,
+          "name": "LKA车道保持",
+          "code": "LKA",
+          "description": "车道保持辅助系统"
+        }
+      },
+      {
+        "id": "FEAT-APA-001",
+        "type": "Feature",
+        "label": "垂直泊车",
+        "data": {
+          "id": "FEAT-APA-001",
+          "productId": "PROD-APA-001",
+          "parentFeatureId": null,
+          "name": "垂直泊车",
+          "code": "VERTICAL_PARKING",
+          "description": "垂直车位自动泊车"
+        }
+      },
+      {
+        "id": "FEAT-APA-002",
+        "type": "Feature",
+        "label": "平行泊车",
+        "data": {
+          "id": "FEAT-APA-002",
+          "productId": "PROD-APA-001",
+          "parentFeatureId": null,
+          "name": "平行泊车",
+          "code": "PARALLEL_PARKING",
+          "description": "平行车位自动泊车"
+        }
+      },
+      {
+        "id": "FEAT-APA-003",
+        "type": "Feature",
+        "label": "斜列泊车",
+        "data": {
+          "id": "FEAT-APA-003",
+          "productId": "PROD-APA-001",
+          "parentFeatureId": null,
+          "name": "斜列泊车",
+          "code": "DIAGONAL_PARKING",
+          "description": "斜列车位自动泊车"
+        }
+      },
+      {
+        "id": "FEAT-APA-004",
+        "type": "Feature",
+        "label": "记忆泊车",
+        "data": {
+          "id": "FEAT-APA-004",
+          "productId": "PROD-APA-001",
+          "parentFeatureId": null,
+          "name": "记忆泊车",
+          "code": "MEMORY_PARKING",
+          "description": "记忆泊车路径，自动泊入泊出"
+        }
+      },
+      {
+        "id": "MOD-NOA-001",
+        "type": "Module",
+        "label": "感知融合模块",
+        "data": {
+          "id": "MOD-NOA-001",
+          "featureId": "FEAT-NOA-002",
+          "name": "感知融合模块",
+          "code": "PERCEPTION",
+          "ownerTeamId": "TEAM-ADAS-PERCEPTION",
+          "description": "多传感器融合感知，包含摄像头、毫米波雷达、激光雷达"
+        }
+      },
+      {
+        "id": "MOD-NOA-002",
+        "type": "Module",
+        "label": "定位模块",
+        "data": {
+          "id": "MOD-NOA-002",
+          "featureId": "FEAT-NOA-002",
+          "name": "定位模块",
+          "code": "LOCALIZATION",
+          "ownerTeamId": "TEAM-ADAS-LOCALIZATION",
+          "description": "高精度定位，融合GPS、IMU、视觉定位"
+        }
+      },
+      {
+        "id": "MOD-NOA-003",
+        "type": "Module",
+        "label": "规划决策模块",
+        "data": {
+          "id": "MOD-NOA-003",
+          "featureId": "FEAT-NOA-002",
+          "name": "规划决策模块",
+          "code": "PLANNING",
+          "ownerTeamId": "TEAM-ADAS-PLANNING",
+          "description": "路径规划、行为决策、轨迹规划"
+        }
+      },
+      {
+        "id": "MOD-NOA-004",
+        "type": "Module",
+        "label": "控制执行模块",
+        "data": {
+          "id": "MOD-NOA-004",
+          "featureId": "FEAT-NOA-002",
+          "name": "控制执行模块",
+          "code": "CONTROL",
+          "ownerTeamId": "TEAM-ADAS-CONTROL",
+          "description": "纵向控制、横向控制、执行器控制"
+        }
+      },
+      {
+        "id": "MOD-NOA-005",
+        "type": "Module",
+        "label": "AEB目标检测模块",
+        "data": {
+          "id": "MOD-NOA-005",
+          "featureId": "FEAT-NOA-003",
+          "name": "AEB目标检测模块",
+          "code": "AEB_DETECTION",
+          "ownerTeamId": "TEAM-ADAS-PERCEPTION",
+          "description": "AEB目标检测与跟踪"
+        }
+      },
+      {
+        "id": "MOD-NOA-006",
+        "type": "Module",
+        "label": "AEB决策控制模块",
+        "data": {
+          "id": "MOD-NOA-006",
+          "featureId": "FEAT-NOA-003",
+          "name": "AEB决策控制模块",
+          "code": "AEB_CONTROL",
+          "ownerTeamId": "TEAM-ADAS-CONTROL",
+          "description": "AEB制动决策与控制"
+        }
+      },
+      {
+        "id": "MOD-APA-001",
+        "type": "Module",
+        "label": "车位检测模块",
+        "data": {
+          "id": "MOD-APA-001",
+          "featureId": "FEAT-APA-001",
+          "name": "车位检测模块",
+          "code": "SLOT_DETECTION",
+          "ownerTeamId": "TEAM-ADAS-PARKING",
+          "description": "基于超声波和视觉的车位检测"
+        }
+      },
+      {
+        "id": "MOD-APA-002",
+        "type": "Module",
+        "label": "泊车路径规划模块",
+        "data": {
+          "id": "MOD-APA-002",
+          "featureId": "FEAT-APA-001",
+          "name": "泊车路径规划模块",
+          "code": "PARKING_PLANNING",
+          "ownerTeamId": "TEAM-ADAS-PARKING",
+          "description": "泊车路径规划算法"
+        }
+      },
+      {
+        "id": "MOD-APA-003",
+        "type": "Module",
+        "label": "泊车控制模块",
+        "data": {
+          "id": "MOD-APA-003",
+          "featureId": "FEAT-APA-001",
+          "name": "泊车控制模块",
+          "code": "PARKING_CONTROL",
+          "ownerTeamId": "TEAM-ADAS-PARKING",
+          "description": "泊车过程的车辆控制"
+        }
+      },
+      {
+        "id": "MOD-APA-004",
+        "type": "Module",
+        "label": "记忆泊车地图模块",
+        "data": {
+          "id": "MOD-APA-004",
+          "featureId": "FEAT-APA-004",
+          "name": "记忆泊车地图模块",
+          "code": "MEMORY_MAP",
+          "ownerTeamId": "TEAM-ADAS-PARKING",
+          "description": "记忆泊车路径地图构建与管理"
+        }
+      },
+      {
+        "id": "FP-NOA-BASIC",
+        "type": "FeaturePackage",
+        "label": "城市NOA基础包",
+        "data": {
+          "id": "FP-NOA-BASIC",
+          "productId": "PROD-NOA-001",
+          "name": "城市NOA基础包",
+          "description": "包含高速NOA + AEB + LKA基础功能"
+        }
+      },
+      {
+        "id": "FP-NOA-ADVANCED",
+        "type": "FeaturePackage",
+        "label": "城市NOA高级包",
+        "data": {
+          "id": "FP-NOA-ADVANCED",
+          "productId": "PROD-NOA-001",
+          "name": "城市NOA高级包",
+          "description": "包含城市NOA + 高速NOA + AEB + LKA完整功能"
+        }
+      },
+      {
+        "id": "FP-APA-FULL",
+        "type": "FeaturePackage",
+        "label": "自动泊车完整包",
+        "data": {
+          "id": "FP-APA-FULL",
+          "productId": "PROD-APA-001",
+          "name": "自动泊车完整包",
+          "description": "包含所有泊车功能：垂直、平行、斜列、记忆泊车"
+        }
+      },
+      {
+        "id": "FPV-NOA-BASIC-V1.0",
+        "type": "FeaturePackageVersion",
+        "label": "FPV-NOA-BASIC-V1.0",
+        "data": {
+          "id": "FPV-NOA-BASIC-V1.0",
+          "featurePackageId": "FP-NOA-BASIC",
+          "version": "V1.0",
+          "releaseDate": "2023-06-01"
+        }
+      },
+      {
+        "id": "FPV-NOA-ADVANCED-V1.0",
+        "type": "FeaturePackageVersion",
+        "label": "FPV-NOA-ADVANCED-V1.0",
+        "data": {
+          "id": "FPV-NOA-ADVANCED-V1.0",
+          "featurePackageId": "FP-NOA-ADVANCED",
+          "version": "V1.0",
+          "releaseDate": "2023-06-01"
+        }
+      },
+      {
+        "id": "FPV-APA-FULL-V1.0",
+        "type": "FeaturePackageVersion",
+        "label": "FPV-APA-FULL-V1.0",
+        "data": {
+          "id": "FPV-APA-FULL-V1.0",
+          "featurePackageId": "FP-APA-FULL",
+          "version": "V1.0",
+          "releaseDate": "2023-06-01"
+        }
+      },
+      {
+        "id": "EPIC-NOA-001",
+        "type": "Epic",
+        "label": "城市NOA核心功能",
+        "data": {
+          "id": "EPIC-NOA-001",
+          "productId": "PROD-NOA-001",
+          "name": "城市NOA核心功能",
+          "description": "实现城市道路的领航辅助驾驶核心功能",
+          "ownerId": "USER-PO-001",
+          "priority": "HIGH",
+          "status": "DONE"
+        }
+      },
+      {
+        "id": "EPIC-NOA-002",
+        "type": "Epic",
+        "label": "安全冗余系统",
+        "data": {
+          "id": "EPIC-NOA-002",
+          "productId": "PROD-NOA-001",
+          "name": "安全冗余系统",
+          "description": "实现AEB、LKA等安全冗余功能",
+          "ownerId": "USER-PO-001",
+          "priority": "HIGH",
+          "status": "DONE"
+        }
+      },
+      {
+        "id": "EPIC-APA-001",
+        "type": "Epic",
+        "label": "自动泊车核心功能",
+        "data": {
+          "id": "EPIC-APA-001",
+          "productId": "PROD-APA-001",
+          "name": "自动泊车核心功能",
+          "description": "实现垂直、平行、斜列泊车功能",
+          "ownerId": "USER-PO-002",
+          "priority": "HIGH",
+          "status": "DONE"
+        }
+      },
+      {
+        "id": "EPIC-APA-002",
+        "type": "Epic",
+        "label": "记忆泊车功能",
+        "data": {
+          "id": "EPIC-APA-002",
+          "productId": "PROD-APA-001",
+          "name": "记忆泊车功能",
+          "description": "实现记忆泊车路径的自动泊入泊出",
+          "ownerId": "USER-PO-002",
+          "priority": "MEDIUM",
+          "status": "DEVELOPING"
+        }
+      },
+      {
+        "id": "FR-NOA-001",
+        "type": "FeatureRequirement",
+        "label": "城市NOA感知需求",
+        "data": {
+          "id": "FR-NOA-001",
+          "epicId": "EPIC-NOA-001",
+          "featureId": "FEAT-NOA-002",
+          "name": "城市NOA感知需求",
+          "description": "城市道路场景下的多传感器融合感知需求",
+          "priority": "HIGH",
+          "status": "DONE"
+        }
+      },
+      {
+        "id": "FR-NOA-002",
+        "type": "FeatureRequirement",
+        "label": "城市NOA规划需求",
+        "data": {
+          "id": "FR-NOA-002",
+          "epicId": "EPIC-NOA-001",
+          "featureId": "FEAT-NOA-002",
+          "name": "城市NOA规划需求",
+          "description": "城市道路场景下的路径规划和行为决策需求",
+          "priority": "HIGH",
+          "status": "DONE"
+        }
+      },
+      {
+        "id": "FR-NOA-003",
+        "type": "FeatureRequirement",
+        "label": "AEB功能需求",
+        "data": {
+          "id": "FR-NOA-003",
+          "epicId": "EPIC-NOA-002",
+          "featureId": "FEAT-NOA-003",
+          "name": "AEB功能需求",
+          "description": "自动紧急制动功能需求，支持行人、车辆、自行车检测",
+          "priority": "HIGH",
+          "status": "DONE"
+        }
+      },
+      {
+        "id": "FR-APA-001",
+        "type": "FeatureRequirement",
+        "label": "垂直泊车需求",
+        "data": {
+          "id": "FR-APA-001",
+          "epicId": "EPIC-APA-001",
+          "featureId": "FEAT-APA-001",
+          "name": "垂直泊车需求",
+          "description": "垂直车位的自动泊车功能需求",
+          "priority": "HIGH",
+          "status": "DONE"
+        }
+      },
+      {
+        "id": "FR-APA-002",
+        "type": "FeatureRequirement",
+        "label": "平行泊车需求",
+        "data": {
+          "id": "FR-APA-002",
+          "epicId": "EPIC-APA-001",
+          "featureId": "FEAT-APA-002",
+          "name": "平行泊车需求",
+          "description": "平行车位的自动泊车功能需求",
+          "priority": "HIGH",
+          "status": "DONE"
+        }
+      },
+      {
+        "id": "FR-APA-003",
+        "type": "FeatureRequirement",
+        "label": "记忆泊车需求",
+        "data": {
+          "id": "FR-APA-003",
+          "epicId": "EPIC-APA-002",
+          "featureId": "FEAT-APA-004",
+          "name": "记忆泊车需求",
+          "description": "记忆泊车路径的自动泊入泊出功能需求",
+          "priority": "MEDIUM",
+          "status": "DEVELOPING"
+        }
+      },
+      {
+        "id": "MR-NOA-001",
+        "type": "ModuleRequirement",
+        "label": "摄像头感知算法需求",
+        "data": {
+          "id": "MR-NOA-001",
+          "featureRequirementId": "FR-NOA-001",
+          "moduleId": "MOD-NOA-001",
+          "name": "摄像头感知算法需求",
+          "description": "基于深度学习的摄像头目标检测、分割、跟踪算法",
+          "type": "FUNCTIONAL",
+          "status": "DONE"
+        }
+      },
+      {
+        "id": "MR-NOA-002",
+        "type": "ModuleRequirement",
+        "label": "激光雷达感知算法需求",
+        "data": {
+          "id": "MR-NOA-002",
+          "featureRequirementId": "FR-NOA-001",
+          "moduleId": "MOD-NOA-001",
+          "name": "激光雷达感知算法需求",
+          "description": "激光雷达点云处理、目标检测、跟踪算法",
+          "type": "FUNCTIONAL",
+          "status": "DONE"
+        }
+      },
+      {
+        "id": "MR-NOA-003",
+        "type": "ModuleRequirement",
+        "label": "多传感器融合算法需求",
+        "data": {
+          "id": "MR-NOA-003",
+          "featureRequirementId": "FR-NOA-001",
+          "moduleId": "MOD-NOA-001",
+          "name": "多传感器融合算法需求",
+          "description": "摄像头、激光雷达、毫米波雷达的融合算法",
+          "type": "FUNCTIONAL",
+          "status": "DONE"
+        }
+      },
+      {
+        "id": "MR-NOA-004",
+        "type": "ModuleRequirement",
+        "label": "路径规划算法需求",
+        "data": {
+          "id": "MR-NOA-004",
+          "featureRequirementId": "FR-NOA-002",
+          "moduleId": "MOD-NOA-003",
+          "name": "路径规划算法需求",
+          "description": "城市道路场景下的全局路径规划和局部路径规划",
+          "type": "FUNCTIONAL",
+          "status": "DONE"
+        }
+      },
+      {
+        "id": "MR-NOA-005",
+        "type": "ModuleRequirement",
+        "label": "行为决策算法需求",
+        "data": {
+          "id": "MR-NOA-005",
+          "featureRequirementId": "FR-NOA-002",
+          "moduleId": "MOD-NOA-003",
+          "name": "行为决策算法需求",
+          "description": "城市道路场景下的行为决策，包括变道、超车、避障等",
+          "type": "FUNCTIONAL",
+          "status": "DONE"
+        }
+      },
+      {
+        "id": "MR-NOA-006",
+        "type": "ModuleRequirement",
+        "label": "AEB目标检测需求",
+        "data": {
+          "id": "MR-NOA-006",
+          "featureRequirementId": "FR-NOA-003",
+          "moduleId": "MOD-NOA-005",
+          "name": "AEB目标检测需求",
+          "description": "AEB场景下的行人、车辆、自行车检测算法",
+          "type": "FUNCTIONAL",
+          "status": "DONE"
+        }
+      },
+      {
+        "id": "MR-NOA-007",
+        "type": "ModuleRequirement",
+        "label": "AEB制动控制需求",
+        "data": {
+          "id": "MR-NOA-007",
+          "featureRequirementId": "FR-NOA-003",
+          "moduleId": "MOD-NOA-006",
+          "name": "AEB制动控制需求",
+          "description": "AEB制动决策和控制算法，满足Euro-NCAP要求",
+          "type": "FUNCTIONAL",
+          "status": "DONE"
+        }
+      },
+      {
+        "id": "MR-NOA-008",
+        "type": "ModuleRequirement",
+        "label": "感知性能需求",
+        "data": {
+          "id": "MR-NOA-008",
+          "featureRequirementId": "FR-NOA-001",
+          "moduleId": "MOD-NOA-001",
+          "name": "感知性能需求",
+          "description": "感知算法性能要求：检测准确率>95%，召回率>90%，延迟<100ms",
+          "type": "NON_FUNCTIONAL",
+          "status": "DONE"
+        }
+      },
+      {
+        "id": "MR-APA-001",
+        "type": "ModuleRequirement",
+        "label": "车位检测算法需求",
+        "data": {
+          "id": "MR-APA-001",
+          "featureRequirementId": "FR-APA-001",
+          "moduleId": "MOD-APA-001",
+          "name": "车位检测算法需求",
+          "description": "基于超声波和视觉的车位检测算法",
+          "type": "FUNCTIONAL",
+          "status": "DONE"
+        }
+      },
+      {
+        "id": "MR-APA-002",
+        "type": "ModuleRequirement",
+        "label": "垂直泊车路径规划需求",
+        "data": {
+          "id": "MR-APA-002",
+          "featureRequirementId": "FR-APA-001",
+          "moduleId": "MOD-APA-002",
+          "name": "垂直泊车路径规划需求",
+          "description": "垂直车位的泊车路径规划算法",
+          "type": "FUNCTIONAL",
+          "status": "DONE"
+        }
+      },
+      {
+        "id": "MR-APA-003",
+        "type": "ModuleRequirement",
+        "label": "平行泊车路径规划需求",
+        "data": {
+          "id": "MR-APA-003",
+          "featureRequirementId": "FR-APA-002",
+          "moduleId": "MOD-APA-002",
+          "name": "平行泊车路径规划需求",
+          "description": "平行车位的泊车路径规划算法",
+          "type": "FUNCTIONAL",
+          "status": "DONE"
+        }
+      },
+      {
+        "id": "MR-APA-004",
+        "type": "ModuleRequirement",
+        "label": "记忆泊车地图构建需求",
+        "data": {
+          "id": "MR-APA-004",
+          "featureRequirementId": "FR-APA-003",
+          "moduleId": "MOD-APA-004",
+          "name": "记忆泊车地图构建需求",
+          "description": "记忆泊车路径的地图构建和管理算法",
+          "type": "FUNCTIONAL",
+          "status": "DEVELOPING"
+        }
+      },
+      {
+        "id": "SSTS-NOA-001",
+        "type": "SSTS",
+        "label": "摄像头目标检测性能需求",
+        "data": {
+          "id": "SSTS-NOA-001",
+          "moduleRequirementId": "MR-NOA-001",
+          "name": "摄像头目标检测性能需求",
+          "description": "摄像头目标检测准确率>95%，召回率>90%",
+          "type": "PERFORMANCE"
+        }
+      },
+      {
+        "id": "SSTS-NOA-002",
+        "type": "SSTS",
+        "label": "AEB制动安全需求",
+        "data": {
+          "id": "SSTS-NOA-002",
+          "moduleRequirementId": "MR-NOA-007",
+          "name": "AEB制动安全需求",
+          "description": "AEB制动响应时间<200ms，满足ASIL-D安全等级",
+          "type": "SAFETY"
+        }
+      },
+      {
+        "id": "SSTS-APA-001",
+        "type": "SSTS",
+        "label": "车位检测准确率需求",
+        "data": {
+          "id": "SSTS-APA-001",
+          "moduleRequirementId": "MR-APA-001",
+          "name": "车位检测准确率需求",
+          "description": "车位检测准确率>98%，误检率<2%",
+          "type": "PERFORMANCE"
+        }
+      },
+      {
+        "id": "FRV-NOA-001-V1.0",
+        "type": "FeatureRequirementVersion",
+        "label": "FRV-NOA-001-V1.0",
+        "data": {
+          "id": "FRV-NOA-001-V1.0",
+          "featureRequirementId": "FR-NOA-001",
+          "version": "V1.0",
+          "content": "城市NOA感知需求V1.0：支持摄像头+激光雷达+毫米波雷达融合",
+          "createdAt": "2022-08-01"
+        }
+      },
+      {
+        "id": "FRV-NOA-001-V1.1",
+        "type": "FeatureRequirementVersion",
+        "label": "FRV-NOA-001-V1.1",
+        "data": {
+          "id": "FRV-NOA-001-V1.1",
+          "featureRequirementId": "FR-NOA-001",
+          "version": "V1.1",
+          "content": "城市NOA感知需求V1.1：增加4D毫米波雷达支持",
+          "createdAt": "2023-09-01"
+        }
+      },
+      {
+        "id": "MRV-NOA-001-V1.0",
+        "type": "ModuleRequirementVersion",
+        "label": "MRV-NOA-001-V1.0",
+        "data": {
+          "id": "MRV-NOA-001-V1.0",
+          "moduleRequirementId": "MR-NOA-001",
+          "version": "V1.0",
+          "content": "摄像头感知算法V1.0：基于YOLOv5的目标检测",
+          "createdAt": "2022-08-01"
+        }
+      },
+      {
+        "id": "MRV-NOA-001-V1.1",
+        "type": "ModuleRequirementVersion",
+        "label": "MRV-NOA-001-V1.1",
+        "data": {
+          "id": "MRV-NOA-001-V1.1",
+          "moduleRequirementId": "MR-NOA-001",
+          "version": "V1.1",
+          "content": "摄像头感知算法V1.1：升级到YOLOv8，提升准确率",
+          "createdAt": "2023-09-01"
+        }
+      },
+      {
+        "id": "ASSET-001",
+        "type": "Asset",
+        "label": "YOLOv8目标检测模型",
+        "data": {
+          "id": "ASSET-001",
+          "name": "YOLOv8目标检测模型",
+          "type": "MODEL",
+          "ownerTeamId": "TEAM-ADAS-PERCEPTION",
+          "description": "基于YOLOv8的目标检测深度学习模型",
+          "maturityLevel": "L4"
+        }
+      },
+      {
+        "id": "ASSET-002",
+        "type": "Asset",
+        "label": "PointPillars点云检测模型",
+        "data": {
+          "id": "ASSET-002",
+          "name": "PointPillars点云检测模型",
+          "type": "MODEL",
+          "ownerTeamId": "TEAM-ADAS-PERCEPTION",
+          "description": "基于PointPillars的激光雷达点云目标检测模型",
+          "maturityLevel": "L4"
+        }
+      },
+      {
+        "id": "ASSET-003",
+        "type": "Asset",
+        "label": "A*路径规划算法",
+        "data": {
+          "id": "ASSET-003",
+          "name": "A*路径规划算法",
+          "type": "ALGORITHM",
+          "ownerTeamId": "TEAM-ADAS-PLANNING",
+          "description": "A*全局路径规划算法库",
+          "maturityLevel": "L5"
+        }
+      },
+      {
+        "id": "ASSET-004",
+        "type": "Asset",
+        "label": "MPC控制算法",
+        "data": {
+          "id": "ASSET-004",
+          "name": "MPC控制算法",
+          "type": "ALGORITHM",
+          "ownerTeamId": "TEAM-ADAS-CONTROL",
+          "description": "模型预测控制算法库",
+          "maturityLevel": "L5"
+        }
+      },
+      {
+        "id": "ASSET-005",
+        "type": "Asset",
+        "label": "卡尔曼滤波组件",
+        "data": {
+          "id": "ASSET-005",
+          "name": "卡尔曼滤波组件",
+          "type": "COMPONENT",
+          "ownerTeamId": "TEAM-ADAS-PERCEPTION",
+          "description": "扩展卡尔曼滤波和无迹卡尔曼滤波组件",
+          "maturityLevel": "L5"
+        }
+      },
+      {
+        "id": "ASSET-006",
+        "type": "Asset",
+        "label": "SIL仿真测试工具",
+        "data": {
+          "id": "ASSET-006",
+          "name": "SIL仿真测试工具",
+          "type": "TOOL",
+          "ownerTeamId": "TEAM-ADAS-TEST",
+          "description": "软件在环仿真测试工具",
+          "maturityLevel": "L4"
+        }
+      },
+      {
+        "id": "AV-001-V1.0",
+        "type": "AssetVersion",
+        "label": "AV-001-V1.0",
+        "data": {
+          "id": "AV-001-V1.0",
+          "assetId": "ASSET-001",
+          "version": "V1.0",
+          "releaseDate": "2022-09-01",
+          "status": "RELEASED"
+        }
+      },
+      {
+        "id": "AV-001-V1.1",
+        "type": "AssetVersion",
+        "label": "AV-001-V1.1",
+        "data": {
+          "id": "AV-001-V1.1",
+          "assetId": "ASSET-001",
+          "version": "V1.1",
+          "releaseDate": "2023-09-01",
+          "status": "RELEASED"
+        }
+      },
+      {
+        "id": "AV-002-V1.0",
+        "type": "AssetVersion",
+        "label": "AV-002-V1.0",
+        "data": {
+          "id": "AV-002-V1.0",
+          "assetId": "ASSET-002",
+          "version": "V1.0",
+          "releaseDate": "2022-09-01",
+          "status": "RELEASED"
+        }
+      },
+      {
+        "id": "AV-003-V2.0",
+        "type": "AssetVersion",
+        "label": "AV-003-V2.0",
+        "data": {
+          "id": "AV-003-V2.0",
+          "assetId": "ASSET-003",
+          "version": "V2.0",
+          "releaseDate": "2022-06-01",
+          "status": "RELEASED"
+        }
+      },
+      {
+        "id": "AV-004-V1.5",
+        "type": "AssetVersion",
+        "label": "AV-004-V1.5",
+        "data": {
+          "id": "AV-004-V1.5",
+          "assetId": "ASSET-004",
+          "version": "V1.5",
+          "releaseDate": "2022-06-01",
+          "status": "RELEASED"
+        }
+      },
+      {
+        "id": "AU-001",
+        "type": "AssetUsage",
+        "label": "AU-001",
+        "data": {
+          "id": "AU-001",
+          "assetVersionId": "AV-001-V1.1",
+          "moduleRequirementId": "MR-NOA-001",
+          "usageType": "REUSE",
+          "customizationLevel": "MINOR"
+        }
+      },
+      {
+        "id": "AU-002",
+        "type": "AssetUsage",
+        "label": "AU-002",
+        "data": {
+          "id": "AU-002",
+          "assetVersionId": "AV-002-V1.0",
+          "moduleRequirementId": "MR-NOA-002",
+          "usageType": "REUSE",
+          "customizationLevel": "MINOR"
+        }
+      },
+      {
+        "id": "AU-003",
+        "type": "AssetUsage",
+        "label": "AU-003",
+        "data": {
+          "id": "AU-003",
+          "assetVersionId": "AV-003-V2.0",
+          "moduleRequirementId": "MR-NOA-004",
+          "usageType": "REUSE",
+          "customizationLevel": "NONE"
+        }
+      },
+      {
+        "id": "AU-004",
+        "type": "AssetUsage",
+        "label": "AU-004",
+        "data": {
+          "id": "AU-004",
+          "assetVersionId": "AV-004-V1.5",
+          "moduleRequirementId": "MR-NOA-005",
+          "usageType": "REUSE",
+          "customizationLevel": "NONE"
+        }
+      },
+      {
+        "id": "AU-005",
+        "type": "AssetUsage",
+        "label": "AU-005",
+        "data": {
+          "id": "AU-005",
+          "assetVersionId": "AV-001-V1.0",
+          "moduleRequirementId": "MR-APA-001",
+          "usageType": "REUSE",
+          "customizationLevel": "MAJOR"
+        }
+      },
+      {
+        "id": "AD-001",
+        "type": "AssetDependency",
+        "label": "AD-001",
+        "data": {
+          "id": "AD-001",
+          "assetId": "ASSET-001",
+          "dependsOnAssetId": "ASSET-005",
+          "dependencyType": "RUNTIME"
+        }
+      },
+      {
+        "id": "AD-002",
+        "type": "AssetDependency",
+        "label": "AD-002",
+        "data": {
+          "id": "AD-002",
+          "assetId": "ASSET-002",
+          "dependsOnAssetId": "ASSET-005",
+          "dependencyType": "RUNTIME"
+        }
+      },
+      {
+        "id": "AD-003",
+        "type": "AssetDependency",
+        "label": "AD-003",
+        "data": {
+          "id": "AD-003",
+          "assetId": "ASSET-003",
+          "dependsOnAssetId": "ASSET-004",
+          "dependencyType": "COMPILE"
+        }
+      },
+      {
+        "id": "PI-2022-Q3",
+        "type": "PI",
+        "label": "2022 Q3 PI",
+        "data": {
+          "id": "PI-2022-Q3",
+          "domainProjectId": "DP-ADAS-001",
+          "name": "2022 Q3 PI",
+          "startDate": "2022-07-01",
+          "endDate": "2022-09-30",
+          "status": "COMPLETED"
+        }
+      },
+      {
+        "id": "PI-2022-Q4",
+        "type": "PI",
+        "label": "2022 Q4 PI",
+        "data": {
+          "id": "PI-2022-Q4",
+          "domainProjectId": "DP-ADAS-001",
+          "name": "2022 Q4 PI",
+          "startDate": "2022-10-01",
+          "endDate": "2022-12-31",
+          "status": "COMPLETED"
+        }
+      },
+      {
+        "id": "PI-2023-Q1",
+        "type": "PI",
+        "label": "2023 Q1 PI",
+        "data": {
+          "id": "PI-2023-Q1",
+          "domainProjectId": "DP-ADAS-001",
+          "name": "2023 Q1 PI",
+          "startDate": "2023-01-01",
+          "endDate": "2023-03-31",
+          "status": "COMPLETED"
+        }
+      },
+      {
+        "id": "PI-2023-Q2",
+        "type": "PI",
+        "label": "2023 Q2 PI",
+        "data": {
+          "id": "PI-2023-Q2",
+          "domainProjectId": "DP-ADAS-001",
+          "name": "2023 Q2 PI",
+          "startDate": "2023-04-01",
+          "endDate": "2023-06-30",
+          "status": "COMPLETED"
+        }
+      },
+      {
+        "id": "SPRINT-2022-Q3-S1",
+        "type": "Sprint",
+        "label": "Sprint 1 - 感知算法开发",
+        "data": {
+          "id": "SPRINT-2022-Q3-S1",
+          "piId": "PI-2022-Q3",
+          "name": "Sprint 1 - 感知算法开发",
+          "startDate": "2022-07-01",
+          "endDate": "2022-07-14",
+          "status": "COMPLETED"
+        }
+      },
+      {
+        "id": "SPRINT-2022-Q3-S2",
+        "type": "Sprint",
+        "label": "Sprint 2 - 感知算法优化",
+        "data": {
+          "id": "SPRINT-2022-Q3-S2",
+          "piId": "PI-2022-Q3",
+          "name": "Sprint 2 - 感知算法优化",
+          "startDate": "2022-07-15",
+          "endDate": "2022-07-28",
+          "status": "COMPLETED"
+        }
+      },
+      {
+        "id": "SPRINT-2022-Q3-S3",
+        "type": "Sprint",
+        "label": "Sprint 3 - 规划算法开发",
+        "data": {
+          "id": "SPRINT-2022-Q3-S3",
+          "piId": "PI-2022-Q3",
+          "name": "Sprint 3 - 规划算法开发",
+          "startDate": "2022-07-29",
+          "endDate": "2022-08-11",
+          "status": "COMPLETED"
+        }
+      },
+      {
+        "id": "SPRINT-2022-Q3-S4",
+        "type": "Sprint",
+        "label": "Sprint 4 - 控制算法开发",
+        "data": {
+          "id": "SPRINT-2022-Q3-S4",
+          "piId": "PI-2022-Q3",
+          "name": "Sprint 4 - 控制算法开发",
+          "startDate": "2022-08-12",
+          "endDate": "2022-08-25",
+          "status": "COMPLETED"
+        }
+      },
+      {
+        "id": "SPRINT-2022-Q3-S5",
+        "type": "Sprint",
+        "label": "Sprint 5 - 集成测试",
+        "data": {
+          "id": "SPRINT-2022-Q3-S5",
+          "piId": "PI-2022-Q3",
+          "name": "Sprint 5 - 集成测试",
+          "startDate": "2022-08-26",
+          "endDate": "2022-09-08",
+          "status": "COMPLETED"
+        }
+      },
+      {
+        "id": "SPRINT-2022-Q3-S6",
+        "type": "Sprint",
+        "label": "Sprint 6 - 系统优化",
+        "data": {
+          "id": "SPRINT-2022-Q3-S6",
+          "piId": "PI-2022-Q3",
+          "name": "Sprint 6 - 系统优化",
+          "startDate": "2022-09-09",
+          "endDate": "2022-09-22",
+          "status": "COMPLETED"
+        }
+      },
+      {
+        "id": "SB-001",
+        "type": "SprintBacklog",
+        "label": "SB-001",
+        "data": {
+          "id": "SB-001",
+          "sprintId": "SPRINT-2022-Q3-S1",
+          "moduleRequirementId": "MR-NOA-001",
+          "estimatedEffort": 40,
+          "priority": "HIGH"
+        }
+      },
+      {
+        "id": "SB-002",
+        "type": "SprintBacklog",
+        "label": "SB-002",
+        "data": {
+          "id": "SB-002",
+          "sprintId": "SPRINT-2022-Q3-S1",
+          "moduleRequirementId": "MR-NOA-002",
+          "estimatedEffort": 40,
+          "priority": "HIGH"
+        }
+      },
+      {
+        "id": "SB-003",
+        "type": "SprintBacklog",
+        "label": "SB-003",
+        "data": {
+          "id": "SB-003",
+          "sprintId": "SPRINT-2022-Q3-S3",
+          "moduleRequirementId": "MR-NOA-004",
+          "estimatedEffort": 60,
+          "priority": "HIGH"
+        }
+      },
+      {
+        "id": "SB-004",
+        "type": "SprintBacklog",
+        "label": "SB-004",
+        "data": {
+          "id": "SB-004",
+          "sprintId": "SPRINT-2022-Q3-S3",
+          "moduleRequirementId": "MR-NOA-005",
+          "estimatedEffort": 60,
+          "priority": "HIGH"
+        }
+      },
+      {
+        "id": "SB-005",
+        "type": "SprintBacklog",
+        "label": "SB-005",
+        "data": {
+          "id": "SB-005",
+          "sprintId": "SPRINT-2022-Q3-S4",
+          "moduleRequirementId": "MR-NOA-006",
+          "estimatedEffort": 40,
+          "priority": "HIGH"
+        }
+      },
+      {
+        "id": "SB-006",
+        "type": "SprintBacklog",
+        "label": "SB-006",
+        "data": {
+          "id": "SB-006",
+          "sprintId": "SPRINT-2022-Q3-S4",
+          "moduleRequirementId": "MR-NOA-007",
+          "estimatedEffort": 40,
+          "priority": "HIGH"
+        }
+      },
+      {
+        "id": "TC-001",
+        "type": "TeamCapacity",
+        "label": "TC-001",
+        "data": {
+          "id": "TC-001",
+          "sprintId": "SPRINT-2022-Q3-S1",
+          "teamId": "TEAM-ADAS-PERCEPTION",
+          "capacity": 80,
+          "unit": "HOURS"
+        }
+      },
+      {
+        "id": "TC-002",
+        "type": "TeamCapacity",
+        "label": "TC-002",
+        "data": {
+          "id": "TC-002",
+          "sprintId": "SPRINT-2022-Q3-S3",
+          "teamId": "TEAM-ADAS-PLANNING",
+          "capacity": 120,
+          "unit": "HOURS"
+        }
+      },
+      {
+        "id": "TC-003",
+        "type": "TeamCapacity",
+        "label": "TC-003",
+        "data": {
+          "id": "TC-003",
+          "sprintId": "SPRINT-2022-Q3-S4",
+          "teamId": "TEAM-ADAS-CONTROL",
+          "capacity": 80,
+          "unit": "HOURS"
+        }
+      },
+      {
+        "id": "WI-REQ-001",
+        "type": "WorkItem",
+        "label": "实现摄像头目标检测算法",
+        "data": {
+          "id": "WI-REQ-001",
+          "sprintBacklogId": "SB-001",
+          "title": "实现摄像头目标检测算法",
+          "type": "REQUIREMENT_TASK",
+          "assigneeId": "USER-DEV-001",
+          "status": "DONE",
+          "estimatedHours": 40,
+          "actualHours": 45
+        }
+      },
+      {
+        "id": "WI-REQ-002",
+        "type": "WorkItem",
+        "label": "实现激光雷达点云检测算法",
+        "data": {
+          "id": "WI-REQ-002",
+          "sprintBacklogId": "SB-002",
+          "title": "实现激光雷达点云检测算法",
+          "type": "REQUIREMENT_TASK",
+          "assigneeId": "USER-DEV-002",
+          "status": "DONE",
+          "estimatedHours": 40,
+          "actualHours": 42
+        }
+      },
+      {
+        "id": "WI-REQ-003",
+        "type": "WorkItem",
+        "label": "实现路径规划算法",
+        "data": {
+          "id": "WI-REQ-003",
+          "sprintBacklogId": "SB-003",
+          "title": "实现路径规划算法",
+          "type": "REQUIREMENT_TASK",
+          "assigneeId": "USER-DEV-003",
+          "status": "DONE",
+          "estimatedHours": 60,
+          "actualHours": 65
+        }
+      },
+      {
+        "id": "WI-REQ-004",
+        "type": "WorkItem",
+        "label": "实现行为决策算法",
+        "data": {
+          "id": "WI-REQ-004",
+          "sprintBacklogId": "SB-004",
+          "title": "实现行为决策算法",
+          "type": "REQUIREMENT_TASK",
+          "assigneeId": "USER-DEV-004",
+          "status": "DONE",
+          "estimatedHours": 60,
+          "actualHours": 58
+        }
+      },
+      {
+        "id": "WI-TECH-001",
+        "type": "WorkItem",
+        "label": "搭建感知算法训练环境",
+        "data": {
+          "id": "WI-TECH-001",
+          "sprintBacklogId": null,
+          "title": "搭建感知算法训练环境",
+          "type": "TECHNICAL_TASK",
+          "assigneeId": "USER-DEV-001",
+          "status": "DONE",
+          "estimatedHours": 16,
+          "actualHours": 18
+        }
+      },
+      {
+        "id": "WI-TECH-002",
+        "type": "WorkItem",
+        "label": "优化点云处理性能",
+        "data": {
+          "id": "WI-TECH-002",
+          "sprintBacklogId": null,
+          "title": "优化点云处理性能",
+          "type": "TECHNICAL_TASK",
+          "assigneeId": "USER-DEV-002",
+          "status": "DONE",
+          "estimatedHours": 24,
+          "actualHours": 22
+        }
+      },
+      {
+        "id": "WI-DEBT-001",
+        "type": "WorkItem",
+        "label": "重构感知模块代码",
+        "data": {
+          "id": "WI-DEBT-001",
+          "sprintBacklogId": null,
+          "title": "重构感知模块代码",
+          "type": "TECHNICAL_DEBT",
+          "assigneeId": "USER-DEV-001",
+          "status": "TODO",
+          "estimatedHours": 40,
+          "actualHours": 0
+        }
+      },
+      {
+        "id": "WL-001",
+        "type": "WorkLog",
+        "label": "WL-001",
+        "data": {
+          "id": "WL-001",
+          "workItemId": "WI-REQ-001",
+          "userId": "USER-DEV-001",
+          "logDate": "2022-07-05",
+          "hoursSpent": 8,
+          "description": "完成YOLOv8模型训练环境搭建"
+        }
+      },
+      {
+        "id": "WL-002",
+        "type": "WorkLog",
+        "label": "WL-002",
+        "data": {
+          "id": "WL-002",
+          "workItemId": "WI-REQ-001",
+          "userId": "USER-DEV-001",
+          "logDate": "2022-07-06",
+          "hoursSpent": 8,
+          "description": "完成数据集标注和预处理"
+        }
+      },
+      {
+        "id": "WL-003",
+        "type": "WorkLog",
+        "label": "WL-003",
+        "data": {
+          "id": "WL-003",
+          "workItemId": "WI-REQ-001",
+          "userId": "USER-DEV-001",
+          "logDate": "2022-07-07",
+          "hoursSpent": 8,
+          "description": "完成模型训练和调优"
+        }
+      },
+      {
+        "id": "WL-004",
+        "type": "WorkLog",
+        "label": "WL-004",
+        "data": {
+          "id": "WL-004",
+          "workItemId": "WI-REQ-002",
+          "userId": "USER-DEV-002",
+          "logDate": "2022-07-05",
+          "hoursSpent": 8,
+          "description": "完成PointPillars模型实现"
+        }
+      },
+      {
+        "id": "CC-001",
+        "type": "CodeCommit",
+        "label": "CC-001",
+        "data": {
+          "id": "CC-001",
+          "workItemId": "WI-REQ-001",
+          "commitHash": "a1b2c3d4e5f6",
+          "repository": "adas-perception",
+          "branch": "feature/camera-detection",
+          "authorId": "USER-DEV-001",
+          "commitDate": "2022-07-10T10:30:00Z",
+          "message": "feat: implement YOLOv8 camera detection algorithm"
+        }
+      },
+      {
+        "id": "CC-002",
+        "type": "CodeCommit",
+        "label": "CC-002",
+        "data": {
+          "id": "CC-002",
+          "workItemId": "WI-REQ-002",
+          "commitHash": "b2c3d4e5f6a1",
+          "repository": "adas-perception",
+          "branch": "feature/lidar-detection",
+          "authorId": "USER-DEV-002",
+          "commitDate": "2022-07-10T14:20:00Z",
+          "message": "feat: implement PointPillars lidar detection algorithm"
+        }
+      },
+      {
+        "id": "CC-003",
+        "type": "CodeCommit",
+        "label": "CC-003",
+        "data": {
+          "id": "CC-003",
+          "workItemId": "WI-REQ-003",
+          "commitHash": "c3d4e5f6a1b2",
+          "repository": "adas-planning",
+          "branch": "feature/path-planning",
+          "authorId": "USER-DEV-003",
+          "commitDate": "2022-08-05T09:15:00Z",
+          "message": "feat: implement A* path planning algorithm"
+        }
+      },
+      {
+        "id": "CC-004",
+        "type": "CodeCommit",
+        "label": "CC-004",
+        "data": {
+          "id": "CC-004",
+          "workItemId": "WI-REQ-004",
+          "commitHash": "d4e5f6a1b2c3",
+          "repository": "adas-planning",
+          "branch": "feature/behavior-decision",
+          "authorId": "USER-DEV-004",
+          "commitDate": "2022-08-06T11:45:00Z",
+          "message": "feat: implement behavior decision algorithm"
+        }
+      },
+      {
+        "id": "BUILD-001",
+        "type": "Build",
+        "label": "BUILD-001",
+        "data": {
+          "id": "BUILD-001",
+          "codeCommitId": "CC-001",
+          "buildNumber": "20220710.1",
+          "status": "SUCCESS",
+          "startTime": "2022-07-10T10:35:00Z",
+          "endTime": "2022-07-10T10:50:00Z",
+          "duration": 900
+        }
+      },
+      {
+        "id": "BUILD-002",
+        "type": "Build",
+        "label": "BUILD-002",
+        "data": {
+          "id": "BUILD-002",
+          "codeCommitId": "CC-002",
+          "buildNumber": "20220710.2",
+          "status": "SUCCESS",
+          "startTime": "2022-07-10T14:25:00Z",
+          "endTime": "2022-07-10T14:42:00Z",
+          "duration": 1020
+        }
+      },
+      {
+        "id": "BUILD-003",
+        "type": "Build",
+        "label": "BUILD-003",
+        "data": {
+          "id": "BUILD-003",
+          "codeCommitId": "CC-003",
+          "buildNumber": "20220805.1",
+          "status": "SUCCESS",
+          "startTime": "2022-08-05T09:20:00Z",
+          "endTime": "2022-08-05T09:35:00Z",
+          "duration": 900
+        }
+      },
+      {
+        "id": "BUILD-004",
+        "type": "Build",
+        "label": "BUILD-004",
+        "data": {
+          "id": "BUILD-004",
+          "codeCommitId": "CC-004",
+          "buildNumber": "20220806.1",
+          "status": "SUCCESS",
+          "startTime": "2022-08-06T11:50:00Z",
+          "endTime": "2022-08-06T12:08:00Z",
+          "duration": 1080
+        }
+      },
+      {
+        "id": "WID-001",
+        "type": "WorkItemDependency",
+        "label": "WID-001",
+        "data": {
+          "id": "WID-001",
+          "workItemId": "WI-REQ-003",
+          "dependsOnWorkItemId": "WI-REQ-001",
+          "dependencyType": "FINISH_TO_START"
+        }
+      },
+      {
+        "id": "WID-002",
+        "type": "WorkItemDependency",
+        "label": "WID-002",
+        "data": {
+          "id": "WID-002",
+          "workItemId": "WI-REQ-003",
+          "dependsOnWorkItemId": "WI-REQ-002",
+          "dependencyType": "FINISH_TO_START"
+        }
+      },
+      {
+        "id": "WIA-001",
+        "type": "WorkItemAttachment",
+        "label": "WIA-001",
+        "data": {
+          "id": "WIA-001",
+          "workItemId": "WI-REQ-001",
+          "fileName": "camera_detection_design.pdf",
+          "fileUrl": "https://storage/adas/camera_detection_design.pdf",
+          "uploadedBy": "USER-DEV-001",
+          "uploadedAt": "2022-07-03T10:00:00Z"
+        }
+      },
+      {
+        "id": "WIA-002",
+        "type": "WorkItemAttachment",
+        "label": "WIA-002",
+        "data": {
+          "id": "WIA-002",
+          "workItemId": "WI-REQ-002",
+          "fileName": "lidar_detection_design.pdf",
+          "fileUrl": "https://storage/adas/lidar_detection_design.pdf",
+          "uploadedBy": "USER-DEV-002",
+          "uploadedAt": "2022-07-03T11:00:00Z"
+        }
+      },
+      {
+        "id": "TP-001",
+        "type": "TestPlan",
+        "label": "城市NOA感知模块测试计划",
+        "data": {
+          "id": "TP-001",
+          "name": "城市NOA感知模块测试计划",
+          "moduleId": "MOD-NOA-001",
+          "testType": "UNIT_TEST",
+          "ownerId": "USER-QA-001",
+          "status": "COMPLETED"
+        }
+      },
+      {
+        "id": "TP-002",
+        "type": "TestPlan",
+        "label": "城市NOA规划模块测试计划",
+        "data": {
+          "id": "TP-002",
+          "name": "城市NOA规划模块测试计划",
+          "moduleId": "MOD-NOA-003",
+          "testType": "UNIT_TEST",
+          "ownerId": "USER-QA-001",
+          "status": "COMPLETED"
+        }
+      },
+      {
+        "id": "TP-003",
+        "type": "TestPlan",
+        "label": "城市NOA系统集成测试计划",
+        "data": {
+          "id": "TP-003",
+          "name": "城市NOA系统集成测试计划",
+          "productId": "PROD-NOA-001",
+          "testType": "INTEGRATION_TEST",
+          "ownerId": "USER-QA-002",
+          "status": "COMPLETED"
+        }
+      },
+      {
+        "id": "TP-004",
+        "type": "TestPlan",
+        "label": "城市NOA场景测试计划",
+        "data": {
+          "id": "TP-004",
+          "name": "城市NOA场景测试计划",
+          "productId": "PROD-NOA-001",
+          "testType": "SCENARIO_TEST",
+          "ownerId": "USER-QA-002",
+          "status": "COMPLETED"
+        }
+      },
+      {
+        "id": "TP-005",
+        "type": "TestPlan",
+        "label": "自动泊车功能测试计划",
+        "data": {
+          "id": "TP-005",
+          "name": "自动泊车功能测试计划",
+          "productId": "PROD-APA-001",
+          "testType": "FUNCTIONAL_TEST",
+          "ownerId": "USER-QA-003",
+          "status": "COMPLETED"
+        }
+      },
+      {
+        "id": "TC-001",
+        "type": "TeamCapacity",
+        "label": "摄像头目标检测准确率测试",
+        "data": {
+          "id": "TC-001",
+          "testPlanId": "TP-001",
+          "name": "摄像头目标检测准确率测试",
+          "description": "测试摄像头目标检测算法的准确率是否达到95%以上",
+          "priority": "HIGH",
+          "status": "PASSED"
+        }
+      },
+      {
+        "id": "TC-002",
+        "type": "TeamCapacity",
+        "label": "激光雷达点云检测准确率测试",
+        "data": {
+          "id": "TC-002",
+          "testPlanId": "TP-001",
+          "name": "激光雷达点云检测准确率测试",
+          "description": "测试激光雷达点云检测算法的准确率是否达到95%以上",
+          "priority": "HIGH",
+          "status": "PASSED"
+        }
+      },
+      {
+        "id": "TC-003",
+        "type": "TeamCapacity",
+        "label": "路径规划算法性能测试",
+        "data": {
+          "id": "TC-003",
+          "testPlanId": "TP-002",
+          "name": "路径规划算法性能测试",
+          "description": "测试路径规划算法的计算时间是否小于100ms",
+          "priority": "HIGH",
+          "status": "PASSED"
+        }
+      },
+      {
+        "id": "TC-004",
+        "type": "TeamCapacity",
+        "label": "感知-规划-控制集成测试",
+        "data": {
+          "id": "TC-004",
+          "testPlanId": "TP-003",
+          "name": "感知-规划-控制集成测试",
+          "description": "测试感知、规划、控制模块的集成功能",
+          "priority": "HIGH",
+          "status": "PASSED"
+        }
+      },
+      {
+        "id": "TC-005",
+        "type": "TeamCapacity",
+        "label": "高速公路场景测试",
+        "data": {
+          "id": "TC-005",
+          "testPlanId": "TP-004",
+          "name": "高速公路场景测试",
+          "description": "测试高速公路场景下的NOA功能",
+          "priority": "HIGH",
+          "status": "PASSED"
+        }
+      },
+      {
+        "id": "TC-006",
+        "type": "TeamCapacity",
+        "label": "城市道路场景测试",
+        "data": {
+          "id": "TC-006",
+          "testPlanId": "TP-004",
+          "name": "城市道路场景测试",
+          "description": "测试城市道路场景下的NOA功能",
+          "priority": "HIGH",
+          "status": "PASSED"
+        }
+      },
+      {
+        "id": "TC-007",
+        "type": "TeamCapacity",
+        "label": "垂直泊车功能测试",
+        "data": {
+          "id": "TC-007",
+          "testPlanId": "TP-005",
+          "name": "垂直泊车功能测试",
+          "description": "测试垂直车位的自动泊车功能",
+          "priority": "HIGH",
+          "status": "PASSED"
+        }
+      },
+      {
+        "id": "TC-008",
+        "type": "TeamCapacity",
+        "label": "平行泊车功能测试",
+        "data": {
+          "id": "TC-008",
+          "testPlanId": "TP-005",
+          "name": "平行泊车功能测试",
+          "description": "测试平行车位的自动泊车功能",
+          "priority": "HIGH",
+          "status": "PASSED"
+        }
+      },
+      {
+        "id": "TE-001",
+        "type": "TestExecution",
+        "label": "TE-001",
+        "data": {
+          "id": "TE-001",
+          "testCaseId": "TC-001",
+          "buildId": "BUILD-001",
+          "executedBy": "USER-QA-001",
+          "executedAt": "2022-07-11T10:00:00Z",
+          "result": "PASSED",
+          "actualResult": "准确率: 96.5%"
+        }
+      },
+      {
+        "id": "TE-002",
+        "type": "TestExecution",
+        "label": "TE-002",
+        "data": {
+          "id": "TE-002",
+          "testCaseId": "TC-002",
+          "buildId": "BUILD-002",
+          "executedBy": "USER-QA-001",
+          "executedAt": "2022-07-11T11:00:00Z",
+          "result": "PASSED",
+          "actualResult": "准确率: 97.2%"
+        }
+      },
+      {
+        "id": "TE-003",
+        "type": "TestExecution",
+        "label": "TE-003",
+        "data": {
+          "id": "TE-003",
+          "testCaseId": "TC-003",
+          "buildId": "BUILD-003",
+          "executedBy": "USER-QA-001",
+          "executedAt": "2022-08-06T10:00:00Z",
+          "result": "PASSED",
+          "actualResult": "计算时间: 85ms"
+        }
+      },
+      {
+        "id": "TE-004",
+        "type": "TestExecution",
+        "label": "TE-004",
+        "data": {
+          "id": "TE-004",
+          "testCaseId": "TC-005",
+          "buildId": "BUILD-004",
+          "executedBy": "USER-QA-002",
+          "executedAt": "2022-09-10T14:00:00Z",
+          "result": "PASSED",
+          "actualResult": "高速场景功能正常"
+        }
+      },
+      {
+        "id": "TE-005",
+        "type": "TestExecution",
+        "label": "TE-005",
+        "data": {
+          "id": "TE-005",
+          "testCaseId": "TC-006",
+          "buildId": "BUILD-004",
+          "executedBy": "USER-QA-002",
+          "executedAt": "2022-09-11T14:00:00Z",
+          "result": "PASSED",
+          "actualResult": "城市场景功能正常"
+        }
+      },
+      {
+        "id": "DEFECT-001",
+        "type": "Defect",
+        "label": "摄像头检测在强光下准确率下降",
+        "data": {
+          "id": "DEFECT-001",
+          "testExecutionId": "TE-001",
+          "title": "摄像头检测在强光下准确率下降",
+          "severity": "MEDIUM",
+          "priority": "HIGH",
+          "status": "CLOSED",
+          "reporterId": "USER-QA-001",
+          "assigneeId": "USER-DEV-001",
+          "reportedAt": "2022-07-12T10:00:00Z",
+          "resolvedAt": "2022-07-15T16:00:00Z"
+        }
+      },
+      {
+        "id": "DEFECT-002",
+        "type": "Defect",
+        "label": "路径规划在复杂路口计算时间过长",
+        "data": {
+          "id": "DEFECT-002",
+          "testExecutionId": "TE-003",
+          "title": "路径规划在复杂路口计算时间过长",
+          "severity": "LOW",
+          "priority": "MEDIUM",
+          "status": "CLOSED",
+          "reporterId": "USER-QA-001",
+          "assigneeId": "USER-DEV-003",
+          "reportedAt": "2022-08-07T10:00:00Z",
+          "resolvedAt": "2022-08-10T16:00:00Z"
+        }
+      },
+      {
+        "id": "DEFECT-003",
+        "type": "Defect",
+        "label": "城市场景下偶现急刹车",
+        "data": {
+          "id": "DEFECT-003",
+          "testExecutionId": "TE-005",
+          "title": "城市场景下偶现急刹车",
+          "severity": "HIGH",
+          "priority": "HIGH",
+          "status": "CLOSED",
+          "reporterId": "USER-QA-002",
+          "assigneeId": "USER-DEV-004",
+          "reportedAt": "2022-09-12T10:00:00Z",
+          "resolvedAt": "2022-09-18T16:00:00Z"
+        }
+      },
+      {
+        "id": "ARTIFACT-001",
+        "type": "Artifact",
+        "label": "adas-perception-camera-v1.0.0",
+        "data": {
+          "id": "ARTIFACT-001",
+          "buildId": "BUILD-001",
+          "name": "adas-perception-camera-v1.0.0",
+          "type": "LIBRARY",
+          "version": "1.0.0",
+          "repository": "nexus-adas",
+          "path": "com/voyah/adas/perception/camera/1.0.0"
+        }
+      },
+      {
+        "id": "ARTIFACT-002",
+        "type": "Artifact",
+        "label": "adas-perception-lidar-v1.0.0",
+        "data": {
+          "id": "ARTIFACT-002",
+          "buildId": "BUILD-002",
+          "name": "adas-perception-lidar-v1.0.0",
+          "type": "LIBRARY",
+          "version": "1.0.0",
+          "repository": "nexus-adas",
+          "path": "com/voyah/adas/perception/lidar/1.0.0"
+        }
+      },
+      {
+        "id": "ARTIFACT-003",
+        "type": "Artifact",
+        "label": "adas-planning-v1.0.0",
+        "data": {
+          "id": "ARTIFACT-003",
+          "buildId": "BUILD-003",
+          "name": "adas-planning-v1.0.0",
+          "type": "LIBRARY",
+          "version": "1.0.0",
+          "repository": "nexus-adas",
+          "path": "com/voyah/adas/planning/1.0.0"
+        }
+      },
+      {
+        "id": "ARTIFACT-004",
+        "type": "Artifact",
+        "label": "adas-control-v1.0.0",
+        "data": {
+          "id": "ARTIFACT-004",
+          "buildId": "BUILD-004",
+          "name": "adas-control-v1.0.0",
+          "type": "LIBRARY",
+          "version": "1.0.0",
+          "repository": "nexus-adas",
+          "path": "com/voyah/adas/control/1.0.0"
+        }
+      },
+      {
+        "id": "ARTIFACT-005",
+        "type": "Artifact",
+        "label": "city-noa-v1.0.0",
+        "data": {
+          "id": "ARTIFACT-005",
+          "buildId": null,
+          "name": "city-noa-v1.0.0",
+          "type": "IMAGE",
+          "version": "1.0.0",
+          "repository": "docker-adas",
+          "path": "voyah/city-noa:1.0.0"
+        }
+      },
+      {
+        "id": "RELEASE-001",
+        "type": "Release",
+        "label": "城市NOA V1.0 SOP版本",
+        "data": {
+          "id": "RELEASE-001",
+          "productVersionId": "PV-NOA-V1.0",
+          "name": "城市NOA V1.0 SOP版本",
+          "version": "V1.0",
+          "releaseDate": "2023-06-01",
+          "status": "RELEASED",
+          "releaseNotes": "城市NOA V1.0正式发布，支持高速+城市快速路L2+级别自动驾驶"
+        }
+      },
+      {
+        "id": "RELEASE-002",
+        "type": "Release",
+        "label": "自动泊车 V1.0 SOP版本",
+        "data": {
+          "id": "RELEASE-002",
+          "productVersionId": "PV-APA-V1.0",
+          "name": "自动泊车 V1.0 SOP版本",
+          "version": "V1.0",
+          "releaseDate": "2023-06-01",
+          "status": "RELEASED",
+          "releaseNotes": "自动泊车V1.0正式发布，支持垂直、平行、斜列泊车"
+        }
+      },
+      {
+        "id": "DEPLOY-001",
+        "type": "Deployment",
+        "label": "DEPLOY-001",
+        "data": {
+          "id": "DEPLOY-001",
+          "releaseId": "RELEASE-001",
+          "environment": "PRODUCTION",
+          "deployedAt": "2023-06-01T08:00:00Z",
+          "deployedBy": "USER-OPS-001",
+          "status": "SUCCESS",
+          "targetVehicles": "岚图梦想家全系车型"
+        }
+      },
+      {
+        "id": "DEPLOY-002",
+        "type": "Deployment",
+        "label": "DEPLOY-002",
+        "data": {
+          "id": "DEPLOY-002",
+          "releaseId": "RELEASE-002",
+          "environment": "PRODUCTION",
+          "deployedAt": "2023-06-01T08:00:00Z",
+          "deployedBy": "USER-OPS-001",
+          "status": "SUCCESS",
+          "targetVehicles": "岚图梦想家全系车型"
+        }
+      },
+      {
+        "id": "MS-001",
+        "type": "ProjectMilestone",
+        "label": "智能驾驶研发效能度量集",
+        "data": {
+          "id": "MS-001",
+          "name": "智能驾驶研发效能度量集",
+          "description": "智能驾驶领域的研发效能度量指标集合",
+          "ownerId": "USER-PM-001"
+        }
+      },
+      {
+        "id": "METRIC-001",
+        "type": "Metric",
+        "label": "需求交付周期",
+        "data": {
+          "id": "METRIC-001",
+          "metricSetId": "MS-001",
+          "name": "需求交付周期",
+          "code": "LEAD_TIME",
+          "unit": "DAY",
+          "description": "从需求提出到交付上线的平均周期"
+        }
+      },
+      {
+        "id": "METRIC-002",
+        "type": "Metric",
+        "label": "代码质量",
+        "data": {
+          "id": "METRIC-002",
+          "metricSetId": "MS-001",
+          "name": "代码质量",
+          "code": "CODE_QUALITY",
+          "unit": "SCORE",
+          "description": "代码质量评分（0-100）"
+        }
+      },
+      {
+        "id": "METRIC-003",
+        "type": "Metric",
+        "label": "测试覆盖率",
+        "data": {
+          "id": "METRIC-003",
+          "metricSetId": "MS-001",
+          "name": "测试覆盖率",
+          "code": "TEST_COVERAGE",
+          "unit": "PERCENTAGE",
+          "description": "单元测试覆盖率"
+        }
+      },
+      {
+        "id": "METRIC-004",
+        "type": "Metric",
+        "label": "缺陷密度",
+        "data": {
+          "id": "METRIC-004",
+          "metricSetId": "MS-001",
+          "name": "缺陷密度",
+          "code": "DEFECT_DENSITY",
+          "unit": "COUNT_PER_KLOC",
+          "description": "每千行代码的缺陷数"
+        }
+      },
+      {
+        "id": "METRIC-005",
+        "type": "Metric",
+        "label": "算法准确率",
+        "data": {
+          "id": "METRIC-005",
+          "metricSetId": "MS-001",
+          "name": "算法准确率",
+          "code": "ALGORITHM_ACCURACY",
+          "unit": "PERCENTAGE",
+          "description": "感知算法的准确率"
+        }
+      },
+      {
+        "id": "MV-001",
+        "type": "MetricValue",
+        "label": "MV-001",
+        "data": {
+          "id": "MV-001",
+          "metricId": "METRIC-001",
+          "entityType": "PRODUCT",
+          "entityId": "PROD-NOA-001",
+          "value": 45.5,
+          "collectedAt": "2023-06-30T00:00:00Z"
+        }
+      },
+      {
+        "id": "MV-002",
+        "type": "MetricValue",
+        "label": "MV-002",
+        "data": {
+          "id": "MV-002",
+          "metricId": "METRIC-002",
+          "entityType": "MODULE",
+          "entityId": "MOD-NOA-001",
+          "value": 92,
+          "collectedAt": "2023-06-30T00:00:00Z"
+        }
+      },
+      {
+        "id": "MV-003",
+        "type": "MetricValue",
+        "label": "MV-003",
+        "data": {
+          "id": "MV-003",
+          "metricId": "METRIC-003",
+          "entityType": "MODULE",
+          "entityId": "MOD-NOA-001",
+          "value": 85.5,
+          "collectedAt": "2023-06-30T00:00:00Z"
+        }
+      },
+      {
+        "id": "MV-004",
+        "type": "MetricValue",
+        "label": "MV-004",
+        "data": {
+          "id": "MV-004",
+          "metricId": "METRIC-004",
+          "entityType": "MODULE",
+          "entityId": "MOD-NOA-001",
+          "value": 0.8,
+          "collectedAt": "2023-06-30T00:00:00Z"
+        }
+      },
+      {
+        "id": "MV-005",
+        "type": "MetricValue",
+        "label": "MV-005",
+        "data": {
+          "id": "MV-005",
+          "metricId": "METRIC-005",
+          "entityType": "MODULE",
+          "entityId": "MOD-NOA-001",
+          "value": 96.5,
+          "collectedAt": "2023-06-30T00:00:00Z"
+        }
+      },
+      {
+        "id": "USER-PM-001",
+        "type": "User",
+        "label": "张伟",
+        "data": {
+          "id": "USER-PM-001",
+          "name": "张伟",
+          "email": "zhang.wei@voyah.com",
+          "department": "智能驾驶",
+          "title": "项目经理"
+        }
+      },
+      {
+        "id": "USER-PO-001",
+        "type": "User",
+        "label": "李娜",
+        "data": {
+          "id": "USER-PO-001",
+          "name": "李娜",
+          "email": "li.na@voyah.com",
+          "department": "智能驾驶",
+          "title": "产品经理"
+        }
+      },
+      {
+        "id": "USER-PO-002",
+        "type": "User",
+        "label": "王强",
+        "data": {
+          "id": "USER-PO-002",
+          "name": "王强",
+          "email": "wang.qiang@voyah.com",
+          "department": "智能驾驶",
+          "title": "产品经理"
+        }
+      },
+      {
+        "id": "USER-DEV-001",
+        "type": "User",
+        "label": "刘洋",
+        "data": {
+          "id": "USER-DEV-001",
+          "name": "刘洋",
+          "email": "liu.yang@voyah.com",
+          "department": "智能驾驶",
+          "title": "算法工程师"
+        }
+      },
+      {
+        "id": "USER-DEV-002",
+        "type": "User",
+        "label": "陈明",
+        "data": {
+          "id": "USER-DEV-002",
+          "name": "陈明",
+          "email": "chen.ming@voyah.com",
+          "department": "智能驾驶",
+          "title": "算法工程师"
+        }
+      },
+      {
+        "id": "USER-DEV-003",
+        "type": "User",
+        "label": "赵磊",
+        "data": {
+          "id": "USER-DEV-003",
+          "name": "赵磊",
+          "email": "zhao.lei@voyah.com",
+          "department": "智能驾驶",
+          "title": "规划工程师"
+        }
+      },
+      {
+        "id": "USER-DEV-004",
+        "type": "User",
+        "label": "孙静",
+        "data": {
+          "id": "USER-DEV-004",
+          "name": "孙静",
+          "email": "sun.jing@voyah.com",
+          "department": "智能驾驶",
+          "title": "控制工程师"
+        }
+      },
+      {
+        "id": "USER-QA-001",
+        "type": "User",
+        "label": "周涛",
+        "data": {
+          "id": "USER-QA-001",
+          "name": "周涛",
+          "email": "zhou.tao@voyah.com",
+          "department": "智能驾驶",
+          "title": "测试工程师"
+        }
+      },
+      {
+        "id": "USER-QA-002",
+        "type": "User",
+        "label": "吴敏",
+        "data": {
+          "id": "USER-QA-002",
+          "name": "吴敏",
+          "email": "wu.min@voyah.com",
+          "department": "智能驾驶",
+          "title": "测试工程师"
+        }
+      },
+      {
+        "id": "USER-QA-003",
+        "type": "User",
+        "label": "郑杰",
+        "data": {
+          "id": "USER-QA-003",
+          "name": "郑杰",
+          "email": "zheng.jie@voyah.com",
+          "department": "智能驾驶",
+          "title": "测试工程师"
+        }
+      },
+      {
+        "id": "USER-OPS-001",
+        "type": "User",
+        "label": "冯超",
+        "data": {
+          "id": "USER-OPS-001",
+          "name": "冯超",
+          "email": "feng.chao@voyah.com",
+          "department": "智能驾驶",
+          "title": "运维工程师"
+        }
+      },
+      {
+        "id": "TEAM-ADAS-PERCEPTION",
+        "type": "Team",
+        "label": "感知团队",
+        "data": {
+          "id": "TEAM-ADAS-PERCEPTION",
+          "name": "感知团队",
+          "leaderId": "USER-DEV-001",
+          "description": "负责智能驾驶感知算法的研发"
+        }
+      },
+      {
+        "id": "TEAM-ADAS-LOCALIZATION",
+        "type": "Team",
+        "label": "定位团队",
+        "data": {
+          "id": "TEAM-ADAS-LOCALIZATION",
+          "name": "定位团队",
+          "leaderId": "USER-DEV-002",
+          "description": "负责智能驾驶定位算法的研发"
+        }
+      },
+      {
+        "id": "TEAM-ADAS-PLANNING",
+        "type": "Team",
+        "label": "规划团队",
+        "data": {
+          "id": "TEAM-ADAS-PLANNING",
+          "name": "规划团队",
+          "leaderId": "USER-DEV-003",
+          "description": "负责智能驾驶规划决策算法的研发"
+        }
+      },
+      {
+        "id": "TEAM-ADAS-CONTROL",
+        "type": "Team",
+        "label": "控制团队",
+        "data": {
+          "id": "TEAM-ADAS-CONTROL",
+          "name": "控制团队",
+          "leaderId": "USER-DEV-004",
+          "description": "负责智能驾驶控制算法的研发"
+        }
+      },
+      {
+        "id": "TEAM-ADAS-PARKING",
+        "type": "Team",
+        "label": "泊车团队",
+        "data": {
+          "id": "TEAM-ADAS-PARKING",
+          "name": "泊车团队",
+          "leaderId": "USER-DEV-002",
+          "description": "负责自动泊车功能的研发"
+        }
+      },
+      {
+        "id": "TEAM-ADAS-TEST",
+        "type": "Team",
+        "label": "测试团队",
+        "data": {
+          "id": "TEAM-ADAS-TEST",
+          "name": "测试团队",
+          "leaderId": "USER-QA-001",
+          "description": "负责智能驾驶功能的测试验证"
+        }
+      },
+      {
+        "id": "TM-001",
+        "type": "TeamMember",
+        "label": "TM-001",
+        "data": {
+          "id": "TM-001",
+          "teamId": "TEAM-ADAS-PERCEPTION",
+          "userId": "USER-DEV-001",
+          "role": "LEADER"
+        }
+      },
+      {
+        "id": "TM-002",
+        "type": "TeamMember",
+        "label": "TM-002",
+        "data": {
+          "id": "TM-002",
+          "teamId": "TEAM-ADAS-PERCEPTION",
+          "userId": "USER-DEV-002",
+          "role": "MEMBER"
+        }
+      },
+      {
+        "id": "TM-003",
+        "type": "TeamMember",
+        "label": "TM-003",
+        "data": {
+          "id": "TM-003",
+          "teamId": "TEAM-ADAS-PLANNING",
+          "userId": "USER-DEV-003",
+          "role": "LEADER"
+        }
+      },
+      {
+        "id": "TM-004",
+        "type": "TeamMember",
+        "label": "TM-004",
+        "data": {
+          "id": "TM-004",
+          "teamId": "TEAM-ADAS-CONTROL",
+          "userId": "USER-DEV-004",
+          "role": "LEADER"
+        }
+      },
+      {
+        "id": "TM-005",
+        "type": "TeamMember",
+        "label": "TM-005",
+        "data": {
+          "id": "TM-005",
+          "teamId": "TEAM-ADAS-TEST",
+          "userId": "USER-QA-001",
+          "role": "LEADER"
+        }
+      },
+      {
+        "id": "TM-006",
+        "type": "TeamMember",
+        "label": "TM-006",
+        "data": {
+          "id": "TM-006",
+          "teamId": "TEAM-ADAS-TEST",
+          "userId": "USER-QA-002",
+          "role": "MEMBER"
+        }
+      },
+      {
+        "id": "TM-007",
+        "type": "TeamMember",
+        "label": "TM-007",
+        "data": {
+          "id": "TM-007",
+          "teamId": "TEAM-ADAS-TEST",
+          "userId": "USER-QA-003",
+          "role": "MEMBER"
+        }
+      },
+      {
+        "id": "ROLE-001",
+        "type": "Role",
+        "label": "项目经理",
+        "data": {
+          "id": "ROLE-001",
+          "name": "项目经理",
+          "code": "PM",
+          "permissions": [
+            "PROJECT_MANAGE",
+            "MILESTONE_MANAGE",
+            "BASELINE_MANAGE"
+          ]
+        }
+      },
+      {
+        "id": "ROLE-002",
+        "type": "Role",
+        "label": "产品经理",
+        "data": {
+          "id": "ROLE-002",
+          "name": "产品经理",
+          "code": "PO",
+          "permissions": [
+            "PRODUCT_MANAGE",
+            "FEATURE_MANAGE",
+            "REQUIREMENT_MANAGE"
+          ]
+        }
+      },
+      {
+        "id": "ROLE-003",
+        "type": "Role",
+        "label": "开发工程师",
+        "data": {
+          "id": "ROLE-003",
+          "name": "开发工程师",
+          "code": "DEV",
+          "permissions": [
+            "CODE_COMMIT",
+            "WORKITEM_MANAGE",
+            "BUILD_TRIGGER"
+          ]
+        }
+      },
+      {
+        "id": "ROLE-004",
+        "type": "Role",
+        "label": "测试工程师",
+        "data": {
+          "id": "ROLE-004",
+          "name": "测试工程师",
+          "code": "QA",
+          "permissions": [
+            "TEST_PLAN_MANAGE",
+            "TEST_EXECUTE",
+            "DEFECT_MANAGE"
+          ]
+        }
+      },
+      {
+        "id": "ROLE-005",
+        "type": "Role",
+        "label": "运维工程师",
+        "data": {
+          "id": "ROLE-005",
+          "name": "运维工程师",
+          "code": "OPS",
+          "permissions": [
+            "RELEASE_MANAGE",
+            "DEPLOYMENT_MANAGE"
+          ]
+        }
+      }
+    ],
+    "edges": [
+      {
+        "id": "edge_402ba5e12a",
+        "source": "VEH-001",
+        "target": "DP-ADAS-001",
+        "type": "has_domain_project",
+        "data": {
+          "relationship": "车型包含多个领域项目",
+          "priority": "MEDIUM",
+          "createdAt": "2026-01-17"
+        }
+      },
+      {
+        "id": "edge_6c20d2e21a",
+        "source": "DP-ADAS-001",
+        "target": "MS-001",
+        "type": "has_milestone",
+        "data": {
+          "relationship": "领域项目包含多个里程碑",
+          "sequence": 1,
+          "dependency": null
+        }
+      },
+      {
+        "id": "edge_fd6ea75d14",
+        "source": "DP-ADAS-001",
+        "target": "MS-002",
+        "type": "has_milestone",
+        "data": {
+          "relationship": "领域项目包含多个里程碑",
+          "sequence": 1,
+          "dependency": null
+        }
+      },
+      {
+        "id": "edge_cc787d8659",
+        "source": "DP-ADAS-001",
+        "target": "MS-003",
+        "type": "has_milestone",
+        "data": {
+          "relationship": "领域项目包含多个里程碑",
+          "sequence": 1,
+          "dependency": null
+        }
+      },
+      {
+        "id": "edge_fcfd816a6a",
+        "source": "DP-ADAS-001",
+        "target": "MS-004",
+        "type": "has_milestone",
+        "data": {
+          "relationship": "领域项目包含多个里程碑",
+          "sequence": 1,
+          "dependency": null
+        }
+      },
+      {
+        "id": "edge_6749b8df9c",
+        "source": "MS-001",
+        "target": "BL-SOP-001",
+        "type": "has_baseline",
+        "data": {
+          "relationship": "里程碑包含基线",
+          "freezeDate": "2023-05-01",
+          "scope": "城市NOA L2+级别（高速+城市快速路）+ 自动泊车（垂直、平行、斜列）"
+        }
+      },
+      {
+        "id": "edge_addfd709a2",
+        "source": "MS-002",
+        "target": "BL-PVS-001",
+        "type": "has_baseline",
+        "data": {
+          "relationship": "里程碑包含基线",
+          "freezeDate": "2023-02-01",
+          "scope": "城市NOA基础功能 + 自动泊车基础功能"
+        }
+      },
+      {
+        "id": "edge_b92f70a1fd",
+        "source": "MS-003",
+        "target": "BL-DVS-001",
+        "type": "has_baseline",
+        "data": {
+          "relationship": "里程碑包含基线",
+          "freezeDate": "2022-11-01",
+          "scope": "核心算法验证 + 基础功能验证"
+        }
+      },
+      {
+        "id": "edge_f5d24c1322",
+        "source": "PL-ADAS-001",
+        "target": "PROD-NOA-001",
+        "type": "has_product",
+        "data": {
+          "relationship": "产品线或车型包含产品",
+          "priority": "MEDIUM"
+        }
+      },
+      {
+        "id": "edge_c82ab46874",
+        "source": "PL-ADAS-001",
+        "target": "PROD-APA-001",
+        "type": "has_product",
+        "data": {
+          "relationship": "产品线或车型包含产品",
+          "priority": "MEDIUM"
+        }
+      },
+      {
+        "id": "edge_9d574fcff8",
+        "source": "PROD-NOA-001",
+        "target": "PV-NOA-V1.0",
+        "type": "has_product_version",
+        "data": {
+          "relationship": "产品有多个版本",
+          "releaseDate": "2026-01-17",
+          "status": "RELEASED"
+        }
+      },
+      {
+        "id": "edge_d9fc73d7ca",
+        "source": "PV-NOA-V1.0",
+        "target": "BL-SOP-001",
+        "type": "version_relates_baseline",
+        "data": {
+          "relationship": "产品版本关联基线",
+          "relationType": "BASED_ON"
+        }
+      },
+      {
+        "id": "edge_76edcf99a9",
+        "source": "PROD-NOA-001",
+        "target": "PV-NOA-V1.1",
+        "type": "has_product_version",
+        "data": {
+          "relationship": "产品有多个版本",
+          "releaseDate": "2026-01-17",
+          "status": "DEVELOPING"
+        }
+      },
+      {
+        "id": "edge_b9a63ce3a6",
+        "source": "PROD-APA-001",
+        "target": "PV-APA-V1.0",
+        "type": "has_product_version",
+        "data": {
+          "relationship": "产品有多个版本",
+          "releaseDate": "2026-01-17",
+          "status": "RELEASED"
+        }
+      },
+      {
+        "id": "edge_9998169fd4",
+        "source": "PV-APA-V1.0",
+        "target": "BL-SOP-001",
+        "type": "version_relates_baseline",
+        "data": {
+          "relationship": "产品版本关联基线",
+          "relationType": "BASED_ON"
+        }
+      },
+      {
+        "id": "edge_46827c49b0",
+        "source": "PROD-NOA-001",
+        "target": "FEAT-NOA-001",
+        "type": "has_feature",
+        "data": {
+          "relationship": "产品包含多个特性",
+          "priority": "MEDIUM",
+          "businessValue": null
+        }
+      },
+      {
+        "id": "edge_1f001636d3",
+        "source": "PROD-NOA-001",
+        "target": "FEAT-NOA-002",
+        "type": "has_feature",
+        "data": {
+          "relationship": "产品包含多个特性",
+          "priority": "MEDIUM",
+          "businessValue": null
+        }
+      },
+      {
+        "id": "edge_9ac84a2f7c",
+        "source": "PROD-NOA-001",
+        "target": "FEAT-NOA-003",
+        "type": "has_feature",
+        "data": {
+          "relationship": "产品包含多个特性",
+          "priority": "MEDIUM",
+          "businessValue": null
+        }
+      },
+      {
+        "id": "edge_d669eafb0b",
+        "source": "PROD-NOA-001",
+        "target": "FEAT-NOA-004",
+        "type": "has_feature",
+        "data": {
+          "relationship": "产品包含多个特性",
+          "priority": "MEDIUM",
+          "businessValue": null
+        }
+      },
+      {
+        "id": "edge_567ccf5087",
+        "source": "PROD-APA-001",
+        "target": "FEAT-APA-001",
+        "type": "has_feature",
+        "data": {
+          "relationship": "产品包含多个特性",
+          "priority": "MEDIUM",
+          "businessValue": null
+        }
+      },
+      {
+        "id": "edge_78d74d434e",
+        "source": "PROD-APA-001",
+        "target": "FEAT-APA-002",
+        "type": "has_feature",
+        "data": {
+          "relationship": "产品包含多个特性",
+          "priority": "MEDIUM",
+          "businessValue": null
+        }
+      },
+      {
+        "id": "edge_fc6200efe2",
+        "source": "PROD-APA-001",
+        "target": "FEAT-APA-003",
+        "type": "has_feature",
+        "data": {
+          "relationship": "产品包含多个特性",
+          "priority": "MEDIUM",
+          "businessValue": null
+        }
+      },
+      {
+        "id": "edge_7e042b1e03",
+        "source": "PROD-APA-001",
+        "target": "FEAT-APA-004",
+        "type": "has_feature",
+        "data": {
+          "relationship": "产品包含多个特性",
+          "priority": "MEDIUM",
+          "businessValue": null
+        }
+      },
+      {
+        "id": "edge_7702c01565",
+        "source": "FEAT-NOA-002",
+        "target": "MOD-NOA-001",
+        "type": "has_module",
+        "data": {
+          "relationship": "特性包含多个模块",
+          "ownerTeamId": "TEAM-ADAS-PERCEPTION",
+          "complexity": "SIMPLE"
+        }
+      },
+      {
+        "id": "edge_938d948ff6",
+        "source": "FEAT-NOA-002",
+        "target": "MOD-NOA-002",
+        "type": "has_module",
+        "data": {
+          "relationship": "特性包含多个模块",
+          "ownerTeamId": "TEAM-ADAS-LOCALIZATION",
+          "complexity": "SIMPLE"
+        }
+      },
+      {
+        "id": "edge_f811039888",
+        "source": "FEAT-NOA-002",
+        "target": "MOD-NOA-003",
+        "type": "has_module",
+        "data": {
+          "relationship": "特性包含多个模块",
+          "ownerTeamId": "TEAM-ADAS-PLANNING",
+          "complexity": "SIMPLE"
+        }
+      },
+      {
+        "id": "edge_28fc33d395",
+        "source": "FEAT-NOA-002",
+        "target": "MOD-NOA-004",
+        "type": "has_module",
+        "data": {
+          "relationship": "特性包含多个模块",
+          "ownerTeamId": "TEAM-ADAS-CONTROL",
+          "complexity": "SIMPLE"
+        }
+      },
+      {
+        "id": "edge_45f7f99c32",
+        "source": "FEAT-NOA-003",
+        "target": "MOD-NOA-005",
+        "type": "has_module",
+        "data": {
+          "relationship": "特性包含多个模块",
+          "ownerTeamId": "TEAM-ADAS-PERCEPTION",
+          "complexity": "SIMPLE"
+        }
+      },
+      {
+        "id": "edge_f444d5b80e",
+        "source": "FEAT-NOA-003",
+        "target": "MOD-NOA-006",
+        "type": "has_module",
+        "data": {
+          "relationship": "特性包含多个模块",
+          "ownerTeamId": "TEAM-ADAS-CONTROL",
+          "complexity": "SIMPLE"
+        }
+      },
+      {
+        "id": "edge_047a8045a5",
+        "source": "FEAT-APA-001",
+        "target": "MOD-APA-001",
+        "type": "has_module",
+        "data": {
+          "relationship": "特性包含多个模块",
+          "ownerTeamId": "TEAM-ADAS-PARKING",
+          "complexity": "SIMPLE"
+        }
+      },
+      {
+        "id": "edge_4b0b1357e2",
+        "source": "FEAT-APA-001",
+        "target": "MOD-APA-002",
+        "type": "has_module",
+        "data": {
+          "relationship": "特性包含多个模块",
+          "ownerTeamId": "TEAM-ADAS-PARKING",
+          "complexity": "SIMPLE"
+        }
+      },
+      {
+        "id": "edge_162d68dd85",
+        "source": "FEAT-APA-001",
+        "target": "MOD-APA-003",
+        "type": "has_module",
+        "data": {
+          "relationship": "特性包含多个模块",
+          "ownerTeamId": "TEAM-ADAS-PARKING",
+          "complexity": "SIMPLE"
+        }
+      },
+      {
+        "id": "edge_c21631721e",
+        "source": "FEAT-APA-004",
+        "target": "MOD-APA-004",
+        "type": "has_module",
+        "data": {
+          "relationship": "特性包含多个模块",
+          "ownerTeamId": "TEAM-ADAS-PARKING",
+          "complexity": "SIMPLE"
+        }
+      },
+      {
+        "id": "edge_24faa279d7",
+        "source": "PROD-NOA-001",
+        "target": "FP-NOA-BASIC",
+        "type": "has_feature_package",
+        "data": {
+          "relationship": "产品打包特性",
+          "packageType": "STANDARD"
+        }
+      },
+      {
+        "id": "edge_cf918db446",
+        "source": "PROD-NOA-001",
+        "target": "FP-NOA-ADVANCED",
+        "type": "has_feature_package",
+        "data": {
+          "relationship": "产品打包特性",
+          "packageType": "STANDARD"
+        }
+      },
+      {
+        "id": "edge_f220a055a8",
+        "source": "PROD-APA-001",
+        "target": "FP-APA-FULL",
+        "type": "has_feature_package",
+        "data": {
+          "relationship": "产品打包特性",
+          "packageType": "STANDARD"
+        }
+      },
+      {
+        "id": "edge_3b9d1a2ab0",
+        "source": "FP-NOA-BASIC",
+        "target": "FPV-NOA-BASIC-V1.0",
+        "type": "package_has_version",
+        "data": {
+          "relationship": "特性包有版本",
+          "version": "V1.0",
+          "releaseDate": "2026-01-17"
+        }
+      },
+      {
+        "id": "edge_12ccfb03d4",
+        "source": "FP-NOA-ADVANCED",
+        "target": "FPV-NOA-ADVANCED-V1.0",
+        "type": "package_has_version",
+        "data": {
+          "relationship": "特性包有版本",
+          "version": "V1.0",
+          "releaseDate": "2026-01-17"
+        }
+      },
+      {
+        "id": "edge_9e017911f3",
+        "source": "FP-APA-FULL",
+        "target": "FPV-APA-FULL-V1.0",
+        "type": "package_has_version",
+        "data": {
+          "relationship": "特性包有版本",
+          "version": "V1.0",
+          "releaseDate": "2026-01-17"
+        }
+      },
+      {
+        "id": "edge_ce75dd4970",
+        "source": "PROD-NOA-001",
+        "target": "EPIC-NOA-001",
+        "type": "epic_in_product",
+        "data": {
+          "relationship": "产品包含Epic",
+          "priority": "HIGH",
+          "businessValue": null
+        }
+      },
+      {
+        "id": "edge_9adca72709",
+        "source": "PROD-NOA-001",
+        "target": "EPIC-NOA-002",
+        "type": "epic_in_product",
+        "data": {
+          "relationship": "产品包含Epic",
+          "priority": "HIGH",
+          "businessValue": null
+        }
+      },
+      {
+        "id": "edge_8c7ac382fd",
+        "source": "PROD-APA-001",
+        "target": "EPIC-APA-001",
+        "type": "epic_in_product",
+        "data": {
+          "relationship": "产品包含Epic",
+          "priority": "HIGH",
+          "businessValue": null
+        }
+      },
+      {
+        "id": "edge_0b264d6773",
+        "source": "PROD-APA-001",
+        "target": "EPIC-APA-002",
+        "type": "epic_in_product",
+        "data": {
+          "relationship": "产品包含Epic",
+          "priority": "MEDIUM",
+          "businessValue": null
+        }
+      },
+      {
+        "id": "edge_6c321c5b5b",
+        "source": "EPIC-NOA-001",
+        "target": "FR-NOA-001",
+        "type": "epic_to_fr",
+        "data": {
+          "relationship": "Epic拆分为特性需求",
+          "decompositionRule": null,
+          "priority": "HIGH"
+        }
+      },
+      {
+        "id": "edge_2c06d2fdb0",
+        "source": "FEAT-NOA-002",
+        "target": "FR-NOA-001",
+        "type": "feature_carries_fr",
+        "data": {
+          "relationship": "业务特性承载特性需求",
+          "alignment": "ALIGNED"
+        }
+      },
+      {
+        "id": "edge_d0fc2b5148",
+        "source": "EPIC-NOA-001",
+        "target": "FR-NOA-002",
+        "type": "epic_to_fr",
+        "data": {
+          "relationship": "Epic拆分为特性需求",
+          "decompositionRule": null,
+          "priority": "HIGH"
+        }
+      },
+      {
+        "id": "edge_88e244bbbe",
+        "source": "FEAT-NOA-002",
+        "target": "FR-NOA-002",
+        "type": "feature_carries_fr",
+        "data": {
+          "relationship": "业务特性承载特性需求",
+          "alignment": "ALIGNED"
+        }
+      },
+      {
+        "id": "edge_e8cfc76478",
+        "source": "EPIC-NOA-002",
+        "target": "FR-NOA-003",
+        "type": "epic_to_fr",
+        "data": {
+          "relationship": "Epic拆分为特性需求",
+          "decompositionRule": null,
+          "priority": "HIGH"
+        }
+      },
+      {
+        "id": "edge_07889da15b",
+        "source": "FEAT-NOA-003",
+        "target": "FR-NOA-003",
+        "type": "feature_carries_fr",
+        "data": {
+          "relationship": "业务特性承载特性需求",
+          "alignment": "ALIGNED"
+        }
+      },
+      {
+        "id": "edge_e008204e1a",
+        "source": "EPIC-APA-001",
+        "target": "FR-APA-001",
+        "type": "epic_to_fr",
+        "data": {
+          "relationship": "Epic拆分为特性需求",
+          "decompositionRule": null,
+          "priority": "HIGH"
+        }
+      },
+      {
+        "id": "edge_a90f86dc30",
+        "source": "FEAT-APA-001",
+        "target": "FR-APA-001",
+        "type": "feature_carries_fr",
+        "data": {
+          "relationship": "业务特性承载特性需求",
+          "alignment": "ALIGNED"
+        }
+      },
+      {
+        "id": "edge_6017ef077d",
+        "source": "EPIC-APA-001",
+        "target": "FR-APA-002",
+        "type": "epic_to_fr",
+        "data": {
+          "relationship": "Epic拆分为特性需求",
+          "decompositionRule": null,
+          "priority": "HIGH"
+        }
+      },
+      {
+        "id": "edge_7e4b28f928",
+        "source": "FEAT-APA-002",
+        "target": "FR-APA-002",
+        "type": "feature_carries_fr",
+        "data": {
+          "relationship": "业务特性承载特性需求",
+          "alignment": "ALIGNED"
+        }
+      },
+      {
+        "id": "edge_8751d972c9",
+        "source": "EPIC-APA-002",
+        "target": "FR-APA-003",
+        "type": "epic_to_fr",
+        "data": {
+          "relationship": "Epic拆分为特性需求",
+          "decompositionRule": null,
+          "priority": "MEDIUM"
+        }
+      },
+      {
+        "id": "edge_b3ac297786",
+        "source": "FEAT-APA-004",
+        "target": "FR-APA-003",
+        "type": "feature_carries_fr",
+        "data": {
+          "relationship": "业务特性承载特性需求",
+          "alignment": "ALIGNED"
+        }
+      },
+      {
+        "id": "edge_490ae4b264",
+        "source": "FR-NOA-001",
+        "target": "MR-NOA-001",
+        "type": "fr_to_mr",
+        "data": {
+          "relationship": "特性需求拆分为模块需求",
+          "traceability": null,
+          "coverage": 0
+        }
+      },
+      {
+        "id": "edge_089b5fe626",
+        "source": "MOD-NOA-001",
+        "target": "MR-NOA-001",
+        "type": "module_carries_mr",
+        "data": {
+          "relationship": "业务模块承载模块需求",
+          "implementationStatus": "NOT_STARTED"
+        }
+      },
+      {
+        "id": "edge_66c173c88d",
+        "source": "FR-NOA-001",
+        "target": "MR-NOA-002",
+        "type": "fr_to_mr",
+        "data": {
+          "relationship": "特性需求拆分为模块需求",
+          "traceability": null,
+          "coverage": 0
+        }
+      },
+      {
+        "id": "edge_9c3533a44b",
+        "source": "MOD-NOA-001",
+        "target": "MR-NOA-002",
+        "type": "module_carries_mr",
+        "data": {
+          "relationship": "业务模块承载模块需求",
+          "implementationStatus": "NOT_STARTED"
+        }
+      },
+      {
+        "id": "edge_cfbcaff97f",
+        "source": "FR-NOA-001",
+        "target": "MR-NOA-003",
+        "type": "fr_to_mr",
+        "data": {
+          "relationship": "特性需求拆分为模块需求",
+          "traceability": null,
+          "coverage": 0
+        }
+      },
+      {
+        "id": "edge_3ca543e9e2",
+        "source": "MOD-NOA-001",
+        "target": "MR-NOA-003",
+        "type": "module_carries_mr",
+        "data": {
+          "relationship": "业务模块承载模块需求",
+          "implementationStatus": "NOT_STARTED"
+        }
+      },
+      {
+        "id": "edge_7380efc10b",
+        "source": "FR-NOA-002",
+        "target": "MR-NOA-004",
+        "type": "fr_to_mr",
+        "data": {
+          "relationship": "特性需求拆分为模块需求",
+          "traceability": null,
+          "coverage": 0
+        }
+      },
+      {
+        "id": "edge_3389d3a11f",
+        "source": "MOD-NOA-003",
+        "target": "MR-NOA-004",
+        "type": "module_carries_mr",
+        "data": {
+          "relationship": "业务模块承载模块需求",
+          "implementationStatus": "NOT_STARTED"
+        }
+      },
+      {
+        "id": "edge_67d8cf9c77",
+        "source": "FR-NOA-002",
+        "target": "MR-NOA-005",
+        "type": "fr_to_mr",
+        "data": {
+          "relationship": "特性需求拆分为模块需求",
+          "traceability": null,
+          "coverage": 0
+        }
+      },
+      {
+        "id": "edge_171d63d26c",
+        "source": "MOD-NOA-003",
+        "target": "MR-NOA-005",
+        "type": "module_carries_mr",
+        "data": {
+          "relationship": "业务模块承载模块需求",
+          "implementationStatus": "NOT_STARTED"
+        }
+      },
+      {
+        "id": "edge_5f898d8042",
+        "source": "FR-NOA-003",
+        "target": "MR-NOA-006",
+        "type": "fr_to_mr",
+        "data": {
+          "relationship": "特性需求拆分为模块需求",
+          "traceability": null,
+          "coverage": 0
+        }
+      },
+      {
+        "id": "edge_699764223e",
+        "source": "MOD-NOA-005",
+        "target": "MR-NOA-006",
+        "type": "module_carries_mr",
+        "data": {
+          "relationship": "业务模块承载模块需求",
+          "implementationStatus": "NOT_STARTED"
+        }
+      },
+      {
+        "id": "edge_e704618d74",
+        "source": "FR-NOA-003",
+        "target": "MR-NOA-007",
+        "type": "fr_to_mr",
+        "data": {
+          "relationship": "特性需求拆分为模块需求",
+          "traceability": null,
+          "coverage": 0
+        }
+      },
+      {
+        "id": "edge_3f9543a575",
+        "source": "MOD-NOA-006",
+        "target": "MR-NOA-007",
+        "type": "module_carries_mr",
+        "data": {
+          "relationship": "业务模块承载模块需求",
+          "implementationStatus": "NOT_STARTED"
+        }
+      },
+      {
+        "id": "edge_101e00f905",
+        "source": "FR-NOA-001",
+        "target": "MR-NOA-008",
+        "type": "fr_to_mr",
+        "data": {
+          "relationship": "特性需求拆分为模块需求",
+          "traceability": null,
+          "coverage": 0
+        }
+      },
+      {
+        "id": "edge_5190da08e1",
+        "source": "MOD-NOA-001",
+        "target": "MR-NOA-008",
+        "type": "module_carries_mr",
+        "data": {
+          "relationship": "业务模块承载模块需求",
+          "implementationStatus": "NOT_STARTED"
+        }
+      },
+      {
+        "id": "edge_ba6ff611b1",
+        "source": "FR-APA-001",
+        "target": "MR-APA-001",
+        "type": "fr_to_mr",
+        "data": {
+          "relationship": "特性需求拆分为模块需求",
+          "traceability": null,
+          "coverage": 0
+        }
+      },
+      {
+        "id": "edge_ca541c8392",
+        "source": "MOD-APA-001",
+        "target": "MR-APA-001",
+        "type": "module_carries_mr",
+        "data": {
+          "relationship": "业务模块承载模块需求",
+          "implementationStatus": "NOT_STARTED"
+        }
+      },
+      {
+        "id": "edge_ed862b358d",
+        "source": "FR-APA-001",
+        "target": "MR-APA-002",
+        "type": "fr_to_mr",
+        "data": {
+          "relationship": "特性需求拆分为模块需求",
+          "traceability": null,
+          "coverage": 0
+        }
+      },
+      {
+        "id": "edge_6be81288d5",
+        "source": "MOD-APA-002",
+        "target": "MR-APA-002",
+        "type": "module_carries_mr",
+        "data": {
+          "relationship": "业务模块承载模块需求",
+          "implementationStatus": "NOT_STARTED"
+        }
+      },
+      {
+        "id": "edge_2efd2da9c4",
+        "source": "FR-APA-002",
+        "target": "MR-APA-003",
+        "type": "fr_to_mr",
+        "data": {
+          "relationship": "特性需求拆分为模块需求",
+          "traceability": null,
+          "coverage": 0
+        }
+      },
+      {
+        "id": "edge_f023bdd279",
+        "source": "MOD-APA-002",
+        "target": "MR-APA-003",
+        "type": "module_carries_mr",
+        "data": {
+          "relationship": "业务模块承载模块需求",
+          "implementationStatus": "NOT_STARTED"
+        }
+      },
+      {
+        "id": "edge_632a655d3a",
+        "source": "FR-APA-003",
+        "target": "MR-APA-004",
+        "type": "fr_to_mr",
+        "data": {
+          "relationship": "特性需求拆分为模块需求",
+          "traceability": null,
+          "coverage": 0
+        }
+      },
+      {
+        "id": "edge_46fda5b876",
+        "source": "MOD-APA-004",
+        "target": "MR-APA-004",
+        "type": "module_carries_mr",
+        "data": {
+          "relationship": "业务模块承载模块需求",
+          "implementationStatus": "NOT_STARTED"
+        }
+      },
+      {
+        "id": "edge_e377141788",
+        "source": "MR-NOA-001",
+        "target": "SSTS-NOA-001",
+        "type": "mr_to_ssts",
+        "data": {
+          "relationship": "模块需求细化为系统需求",
+          "refinementLevel": 1
+        }
+      },
+      {
+        "id": "edge_bbfe6992f5",
+        "source": "MR-NOA-007",
+        "target": "SSTS-NOA-002",
+        "type": "mr_to_ssts",
+        "data": {
+          "relationship": "模块需求细化为系统需求",
+          "refinementLevel": 1
+        }
+      },
+      {
+        "id": "edge_abaa3b318e",
+        "source": "MR-APA-001",
+        "target": "SSTS-APA-001",
+        "type": "mr_to_ssts",
+        "data": {
+          "relationship": "模块需求细化为系统需求",
+          "refinementLevel": 1
+        }
+      },
+      {
+        "id": "edge_dd16d30326",
+        "source": "FR-NOA-001",
+        "target": "FRV-NOA-001-V1.0",
+        "type": "fr_has_version",
+        "data": {
+          "relationship": "特性需求有版本",
+          "version": "V1.0",
+          "changeLog": ""
+        }
+      },
+      {
+        "id": "edge_b5a14c2131",
+        "source": "FR-NOA-001",
+        "target": "FRV-NOA-001-V1.1",
+        "type": "fr_has_version",
+        "data": {
+          "relationship": "特性需求有版本",
+          "version": "V1.1",
+          "changeLog": ""
+        }
+      },
+      {
+        "id": "edge_95bc421e02",
+        "source": "MR-NOA-001",
+        "target": "MRV-NOA-001-V1.0",
+        "type": "mr_has_version",
+        "data": {
+          "relationship": "模块需求有版本",
+          "version": "V1.0",
+          "changeLog": ""
+        }
+      },
+      {
+        "id": "edge_f4cccd0256",
+        "source": "MR-NOA-001",
+        "target": "MRV-NOA-001-V1.1",
+        "type": "mr_has_version",
+        "data": {
+          "relationship": "模块需求有版本",
+          "version": "V1.1",
+          "changeLog": ""
+        }
+      },
+      {
+        "id": "edge_82a67936b6",
+        "source": "ASSET-001",
+        "target": "AV-001-V1.0",
+        "type": "asset_has_version",
+        "data": {
+          "relationship": "资产有多个版本",
+          "version": "V1.0",
+          "releaseDate": "2026-01-17"
+        }
+      },
+      {
+        "id": "edge_facef885ad",
+        "source": "ASSET-001",
+        "target": "AV-001-V1.1",
+        "type": "asset_has_version",
+        "data": {
+          "relationship": "资产有多个版本",
+          "version": "V1.1",
+          "releaseDate": "2026-01-17"
+        }
+      },
+      {
+        "id": "edge_d245d0803d",
+        "source": "ASSET-002",
+        "target": "AV-002-V1.0",
+        "type": "asset_has_version",
+        "data": {
+          "relationship": "资产有多个版本",
+          "version": "V1.0",
+          "releaseDate": "2026-01-17"
+        }
+      },
+      {
+        "id": "edge_f9923b64cd",
+        "source": "ASSET-003",
+        "target": "AV-003-V2.0",
+        "type": "asset_has_version",
+        "data": {
+          "relationship": "资产有多个版本",
+          "version": "V2.0",
+          "releaseDate": "2026-01-17"
+        }
+      },
+      {
+        "id": "edge_7dbf0df9fa",
+        "source": "ASSET-004",
+        "target": "AV-004-V1.5",
+        "type": "asset_has_version",
+        "data": {
+          "relationship": "资产有多个版本",
+          "version": "V1.5",
+          "releaseDate": "2026-01-17"
+        }
+      },
+      {
+        "id": "edge_0449edd681",
+        "source": "MR-NOA-001",
+        "target": "AU-001",
+        "type": "mr_uses_asset",
+        "data": {
+          "relationship": "模块需求使用资产",
+          "usageType": "REUSE",
+          "versionConstraint": null
+        }
+      },
+      {
+        "id": "edge_525e0d8753",
+        "source": "AU-001",
+        "target": "AV-001-V1.1",
+        "type": "usage_refers_version",
+        "data": {
+          "relationship": "资产使用引用具体版本",
+          "version": "V1.1",
+          "compatibility": "COMPATIBLE"
+        }
+      },
+      {
+        "id": "edge_6fbfbea858",
+        "source": "MR-NOA-002",
+        "target": "AU-002",
+        "type": "mr_uses_asset",
+        "data": {
+          "relationship": "模块需求使用资产",
+          "usageType": "REUSE",
+          "versionConstraint": null
+        }
+      },
+      {
+        "id": "edge_c3895bd9f8",
+        "source": "AU-002",
+        "target": "AV-002-V1.0",
+        "type": "usage_refers_version",
+        "data": {
+          "relationship": "资产使用引用具体版本",
+          "version": "V1.0",
+          "compatibility": "COMPATIBLE"
+        }
+      },
+      {
+        "id": "edge_3701662b7c",
+        "source": "MR-NOA-004",
+        "target": "AU-003",
+        "type": "mr_uses_asset",
+        "data": {
+          "relationship": "模块需求使用资产",
+          "usageType": "REUSE",
+          "versionConstraint": null
+        }
+      },
+      {
+        "id": "edge_ce531207a6",
+        "source": "AU-003",
+        "target": "AV-003-V2.0",
+        "type": "usage_refers_version",
+        "data": {
+          "relationship": "资产使用引用具体版本",
+          "version": "V2.0",
+          "compatibility": "COMPATIBLE"
+        }
+      },
+      {
+        "id": "edge_bc2d578f00",
+        "source": "MR-NOA-005",
+        "target": "AU-004",
+        "type": "mr_uses_asset",
+        "data": {
+          "relationship": "模块需求使用资产",
+          "usageType": "REUSE",
+          "versionConstraint": null
+        }
+      },
+      {
+        "id": "edge_b3f577a2bf",
+        "source": "AU-004",
+        "target": "AV-004-V1.5",
+        "type": "usage_refers_version",
+        "data": {
+          "relationship": "资产使用引用具体版本",
+          "version": "V1.5",
+          "compatibility": "COMPATIBLE"
+        }
+      },
+      {
+        "id": "edge_a4a9faca80",
+        "source": "MR-APA-001",
+        "target": "AU-005",
+        "type": "mr_uses_asset",
+        "data": {
+          "relationship": "模块需求使用资产",
+          "usageType": "REUSE",
+          "versionConstraint": null
+        }
+      },
+      {
+        "id": "edge_74b7be73f3",
+        "source": "AU-005",
+        "target": "AV-001-V1.0",
+        "type": "usage_refers_version",
+        "data": {
+          "relationship": "资产使用引用具体版本",
+          "version": "V1.0",
+          "compatibility": "COMPATIBLE"
+        }
+      },
+      {
+        "id": "edge_b24e95ea35",
+        "source": "DP-ADAS-001",
+        "target": "PI-2022-Q3",
+        "type": "project_has_pi",
+        "data": {
+          "relationship": "领域项目规划PI",
+          "piNumber": 1,
+          "startDate": "2026-01-17",
+          "endDate": "2026-01-17"
+        }
+      },
+      {
+        "id": "edge_f538424ba8",
+        "source": "DP-ADAS-001",
+        "target": "PI-2022-Q4",
+        "type": "project_has_pi",
+        "data": {
+          "relationship": "领域项目规划PI",
+          "piNumber": 1,
+          "startDate": "2026-01-17",
+          "endDate": "2026-01-17"
+        }
+      },
+      {
+        "id": "edge_5726a7a30d",
+        "source": "DP-ADAS-001",
+        "target": "PI-2023-Q1",
+        "type": "project_has_pi",
+        "data": {
+          "relationship": "领域项目规划PI",
+          "piNumber": 1,
+          "startDate": "2026-01-17",
+          "endDate": "2026-01-17"
+        }
+      },
+      {
+        "id": "edge_479e23124e",
+        "source": "DP-ADAS-001",
+        "target": "PI-2023-Q2",
+        "type": "project_has_pi",
+        "data": {
+          "relationship": "领域项目规划PI",
+          "piNumber": 1,
+          "startDate": "2026-01-17",
+          "endDate": "2026-01-17"
+        }
+      },
+      {
+        "id": "edge_972169609e",
+        "source": "PI-2022-Q3",
+        "target": "SPRINT-2022-Q3-S1",
+        "type": "pi_has_sprint",
+        "data": {
+          "relationship": "PI包含多个Sprint",
+          "sprintNumber": 1,
+          "capacity": 0
+        }
+      },
+      {
+        "id": "edge_aaa2801bc4",
+        "source": "PI-2022-Q3",
+        "target": "SPRINT-2022-Q3-S2",
+        "type": "pi_has_sprint",
+        "data": {
+          "relationship": "PI包含多个Sprint",
+          "sprintNumber": 1,
+          "capacity": 0
+        }
+      },
+      {
+        "id": "edge_0afebb98f9",
+        "source": "PI-2022-Q3",
+        "target": "SPRINT-2022-Q3-S3",
+        "type": "pi_has_sprint",
+        "data": {
+          "relationship": "PI包含多个Sprint",
+          "sprintNumber": 1,
+          "capacity": 0
+        }
+      },
+      {
+        "id": "edge_7ae28086c3",
+        "source": "PI-2022-Q3",
+        "target": "SPRINT-2022-Q3-S4",
+        "type": "pi_has_sprint",
+        "data": {
+          "relationship": "PI包含多个Sprint",
+          "sprintNumber": 1,
+          "capacity": 0
+        }
+      },
+      {
+        "id": "edge_4334b23584",
+        "source": "PI-2022-Q3",
+        "target": "SPRINT-2022-Q3-S5",
+        "type": "pi_has_sprint",
+        "data": {
+          "relationship": "PI包含多个Sprint",
+          "sprintNumber": 1,
+          "capacity": 0
+        }
+      },
+      {
+        "id": "edge_535274587d",
+        "source": "PI-2022-Q3",
+        "target": "SPRINT-2022-Q3-S6",
+        "type": "pi_has_sprint",
+        "data": {
+          "relationship": "PI包含多个Sprint",
+          "sprintNumber": 1,
+          "capacity": 0
+        }
+      },
+      {
+        "id": "edge_378478166e",
+        "source": "SPRINT-2022-Q3-S1",
+        "target": "SB-001",
+        "type": "sprint_has_backlog",
+        "data": {
+          "relationship": "Sprint有待办列表",
+          "backlogSize": null
+        }
+      },
+      {
+        "id": "edge_376f04fe47",
+        "source": "SB-001",
+        "target": "MR-NOA-001",
+        "type": "backlog_refers_mr",
+        "data": {
+          "relationship": "待办关联模块需求",
+          "priority": "HIGH",
+          "estimatedStoryPoints": null
+        }
+      },
+      {
+        "id": "edge_10b4bd4d48",
+        "source": "SPRINT-2022-Q3-S1",
+        "target": "SB-002",
+        "type": "sprint_has_backlog",
+        "data": {
+          "relationship": "Sprint有待办列表",
+          "backlogSize": null
+        }
+      },
+      {
+        "id": "edge_6f97e1baea",
+        "source": "SB-002",
+        "target": "MR-NOA-002",
+        "type": "backlog_refers_mr",
+        "data": {
+          "relationship": "待办关联模块需求",
+          "priority": "HIGH",
+          "estimatedStoryPoints": null
+        }
+      },
+      {
+        "id": "edge_b81f098a82",
+        "source": "SPRINT-2022-Q3-S3",
+        "target": "SB-003",
+        "type": "sprint_has_backlog",
+        "data": {
+          "relationship": "Sprint有待办列表",
+          "backlogSize": null
+        }
+      },
+      {
+        "id": "edge_a333eb4ea7",
+        "source": "SB-003",
+        "target": "MR-NOA-004",
+        "type": "backlog_refers_mr",
+        "data": {
+          "relationship": "待办关联模块需求",
+          "priority": "HIGH",
+          "estimatedStoryPoints": null
+        }
+      },
+      {
+        "id": "edge_e23d417000",
+        "source": "SPRINT-2022-Q3-S3",
+        "target": "SB-004",
+        "type": "sprint_has_backlog",
+        "data": {
+          "relationship": "Sprint有待办列表",
+          "backlogSize": null
+        }
+      },
+      {
+        "id": "edge_903a29bcb5",
+        "source": "SB-004",
+        "target": "MR-NOA-005",
+        "type": "backlog_refers_mr",
+        "data": {
+          "relationship": "待办关联模块需求",
+          "priority": "HIGH",
+          "estimatedStoryPoints": null
+        }
+      },
+      {
+        "id": "edge_55e68cff23",
+        "source": "SPRINT-2022-Q3-S4",
+        "target": "SB-005",
+        "type": "sprint_has_backlog",
+        "data": {
+          "relationship": "Sprint有待办列表",
+          "backlogSize": null
+        }
+      },
+      {
+        "id": "edge_906993158a",
+        "source": "SB-005",
+        "target": "MR-NOA-006",
+        "type": "backlog_refers_mr",
+        "data": {
+          "relationship": "待办关联模块需求",
+          "priority": "HIGH",
+          "estimatedStoryPoints": null
+        }
+      },
+      {
+        "id": "edge_c7b1bb11aa",
+        "source": "SPRINT-2022-Q3-S4",
+        "target": "SB-006",
+        "type": "sprint_has_backlog",
+        "data": {
+          "relationship": "Sprint有待办列表",
+          "backlogSize": null
+        }
+      },
+      {
+        "id": "edge_27c4dd0557",
+        "source": "SB-006",
+        "target": "MR-NOA-007",
+        "type": "backlog_refers_mr",
+        "data": {
+          "relationship": "待办关联模块需求",
+          "priority": "HIGH",
+          "estimatedStoryPoints": null
+        }
+      },
+      {
+        "id": "edge_1d6a284193",
+        "source": "WI-REQ-001",
+        "target": "WL-001",
+        "type": "workitem_has_log",
+        "data": {
+          "relationship": "工作项有工时记录",
+          "logType": "TIME_TRACKING",
+          "loggedAt": "2026-01-17"
+        }
+      },
+      {
+        "id": "edge_fe5d55fcf9",
+        "source": "WI-REQ-001",
+        "target": "WL-002",
+        "type": "workitem_has_log",
+        "data": {
+          "relationship": "工作项有工时记录",
+          "logType": "TIME_TRACKING",
+          "loggedAt": "2026-01-17"
+        }
+      },
+      {
+        "id": "edge_0a0278cca8",
+        "source": "WI-REQ-001",
+        "target": "WL-003",
+        "type": "workitem_has_log",
+        "data": {
+          "relationship": "工作项有工时记录",
+          "logType": "TIME_TRACKING",
+          "loggedAt": "2026-01-17"
+        }
+      },
+      {
+        "id": "edge_e1afbc4e18",
+        "source": "WI-REQ-002",
+        "target": "WL-004",
+        "type": "workitem_has_log",
+        "data": {
+          "relationship": "工作项有工时记录",
+          "logType": "TIME_TRACKING",
+          "loggedAt": "2026-01-17"
+        }
+      },
+      {
+        "id": "edge_0b31d09273",
+        "source": "WI-REQ-001",
+        "target": "CC-001",
+        "type": "workitem_has_commit",
+        "data": {
+          "relationship": "工作项关联代码提交",
+          "commitCount": null,
+          "lastCommitDate": null
+        }
+      },
+      {
+        "id": "edge_431c14dab1",
+        "source": "WI-REQ-002",
+        "target": "CC-002",
+        "type": "workitem_has_commit",
+        "data": {
+          "relationship": "工作项关联代码提交",
+          "commitCount": null,
+          "lastCommitDate": null
+        }
+      },
+      {
+        "id": "edge_06ea344e7b",
+        "source": "WI-REQ-003",
+        "target": "CC-003",
+        "type": "workitem_has_commit",
+        "data": {
+          "relationship": "工作项关联代码提交",
+          "commitCount": null,
+          "lastCommitDate": null
+        }
+      },
+      {
+        "id": "edge_ebca013525",
+        "source": "WI-REQ-004",
+        "target": "CC-004",
+        "type": "workitem_has_commit",
+        "data": {
+          "relationship": "工作项关联代码提交",
+          "commitCount": null,
+          "lastCommitDate": null
+        }
+      },
+      {
+        "id": "edge_dd4937d12f",
+        "source": "CC-001",
+        "target": "BUILD-001",
+        "type": "commit_triggers_build",
+        "data": {
+          "relationship": "提交触发构建",
+          "buildStatus": "SUCCESS",
+          "buildDuration": 0
+        }
+      },
+      {
+        "id": "edge_fec0a6b0a4",
+        "source": "CC-002",
+        "target": "BUILD-002",
+        "type": "commit_triggers_build",
+        "data": {
+          "relationship": "提交触发构建",
+          "buildStatus": "SUCCESS",
+          "buildDuration": 0
+        }
+      },
+      {
+        "id": "edge_fa243fefac",
+        "source": "CC-003",
+        "target": "BUILD-003",
+        "type": "commit_triggers_build",
+        "data": {
+          "relationship": "提交触发构建",
+          "buildStatus": "SUCCESS",
+          "buildDuration": 0
+        }
+      },
+      {
+        "id": "edge_5bfb9dd53e",
+        "source": "CC-004",
+        "target": "BUILD-004",
+        "type": "commit_triggers_build",
+        "data": {
+          "relationship": "提交触发构建",
+          "buildStatus": "SUCCESS",
+          "buildDuration": 0
+        }
+      },
+      {
+        "id": "edge_7ea173d3e4",
+        "source": "MOD-NOA-001",
+        "target": "TP-001",
+        "type": "mr_has_testplan",
+        "data": {
+          "relationship": "模块需求有测试计划",
+          "testPlanType": "UNIT"
+        }
+      },
+      {
+        "id": "edge_9d262f276c",
+        "source": "MOD-NOA-003",
+        "target": "TP-002",
+        "type": "mr_has_testplan",
+        "data": {
+          "relationship": "模块需求有测试计划",
+          "testPlanType": "UNIT"
+        }
+      },
+      {
+        "id": "edge_7dfa4d4b77",
+        "source": "BUILD-001",
+        "target": "TE-001",
+        "type": "build_triggers_test",
+        "data": {
+          "relationship": "构建触发测试执行",
+          "testStatus": "SUCCESS",
+          "executionTime": 0
+        }
+      },
+      {
+        "id": "edge_3868c0c120",
+        "source": "TC-001",
+        "target": "TE-001",
+        "type": "case_executes",
+        "data": {
+          "relationship": "测试用例被执行",
+          "executionStatus": "IN_PROGRESS",
+          "executedAt": "2026-01-17"
+        }
+      },
+      {
+        "id": "edge_814be74681",
+        "source": "BUILD-002",
+        "target": "TE-002",
+        "type": "build_triggers_test",
+        "data": {
+          "relationship": "构建触发测试执行",
+          "testStatus": "SUCCESS",
+          "executionTime": 0
+        }
+      },
+      {
+        "id": "edge_2d6f84a223",
+        "source": "TC-002",
+        "target": "TE-002",
+        "type": "case_executes",
+        "data": {
+          "relationship": "测试用例被执行",
+          "executionStatus": "IN_PROGRESS",
+          "executedAt": "2026-01-17"
+        }
+      },
+      {
+        "id": "edge_22827b2a98",
+        "source": "BUILD-003",
+        "target": "TE-003",
+        "type": "build_triggers_test",
+        "data": {
+          "relationship": "构建触发测试执行",
+          "testStatus": "SUCCESS",
+          "executionTime": 0
+        }
+      },
+      {
+        "id": "edge_4646200479",
+        "source": "TC-003",
+        "target": "TE-003",
+        "type": "case_executes",
+        "data": {
+          "relationship": "测试用例被执行",
+          "executionStatus": "IN_PROGRESS",
+          "executedAt": "2026-01-17"
+        }
+      },
+      {
+        "id": "edge_13b181ec4e",
+        "source": "BUILD-004",
+        "target": "TE-004",
+        "type": "build_triggers_test",
+        "data": {
+          "relationship": "构建触发测试执行",
+          "testStatus": "SUCCESS",
+          "executionTime": 0
+        }
+      },
+      {
+        "id": "edge_bfab553d6d",
+        "source": "TC-005",
+        "target": "TE-004",
+        "type": "case_executes",
+        "data": {
+          "relationship": "测试用例被执行",
+          "executionStatus": "PASSED",
+          "executedAt": "2026-01-17"
+        }
+      },
+      {
+        "id": "edge_1e44c0be06",
+        "source": "BUILD-004",
+        "target": "TE-005",
+        "type": "build_triggers_test",
+        "data": {
+          "relationship": "构建触发测试执行",
+          "testStatus": "SUCCESS",
+          "executionTime": 0
+        }
+      },
+      {
+        "id": "edge_d849d5236c",
+        "source": "TC-006",
+        "target": "TE-005",
+        "type": "case_executes",
+        "data": {
+          "relationship": "测试用例被执行",
+          "executionStatus": "PASSED",
+          "executedAt": "2026-01-17"
+        }
+      },
+      {
+        "id": "edge_cc16127de9",
+        "source": "TE-001",
+        "target": "DEFECT-001",
+        "type": "execution_finds_defect",
+        "data": {
+          "relationship": "测试执行发现缺陷",
+          "severity": "MEDIUM",
+          "foundDate": "2026-01-17"
+        }
+      },
+      {
+        "id": "edge_80c0c0a211",
+        "source": "TE-003",
+        "target": "DEFECT-002",
+        "type": "execution_finds_defect",
+        "data": {
+          "relationship": "测试执行发现缺陷",
+          "severity": "LOW",
+          "foundDate": "2026-01-17"
+        }
+      },
+      {
+        "id": "edge_619a1c64da",
+        "source": "TE-005",
+        "target": "DEFECT-003",
+        "type": "execution_finds_defect",
+        "data": {
+          "relationship": "测试执行发现缺陷",
+          "severity": "HIGH",
+          "foundDate": "2026-01-17"
+        }
+      },
+      {
+        "id": "edge_8590be562b",
+        "source": "BUILD-001",
+        "target": "ARTIFACT-001",
+        "type": "build_produces_artifact",
+        "data": {
+          "relationship": "构建产出制品",
+          "artifactType": "LIBRARY",
+          "size": 0
+        }
+      },
+      {
+        "id": "edge_7c2aae2686",
+        "source": "BUILD-002",
+        "target": "ARTIFACT-002",
+        "type": "build_produces_artifact",
+        "data": {
+          "relationship": "构建产出制品",
+          "artifactType": "LIBRARY",
+          "size": 0
+        }
+      },
+      {
+        "id": "edge_0d5b7d41cb",
+        "source": "BUILD-003",
+        "target": "ARTIFACT-003",
+        "type": "build_produces_artifact",
+        "data": {
+          "relationship": "构建产出制品",
+          "artifactType": "LIBRARY",
+          "size": 0
+        }
+      },
+      {
+        "id": "edge_156a879f3e",
+        "source": "BUILD-004",
+        "target": "ARTIFACT-004",
+        "type": "build_produces_artifact",
+        "data": {
+          "relationship": "构建产出制品",
+          "artifactType": "LIBRARY",
+          "size": 0
+        }
+      },
+      {
+        "id": "edge_1a3b9dd653",
+        "source": "RELEASE-001",
+        "target": "DEPLOY-001",
+        "type": "release_deploys",
+        "data": {
+          "relationship": "发布进行部署",
+          "deploymentEnvironment": "DEV",
+          "deployedAt": "2026-01-17"
+        }
+      },
+      {
+        "id": "edge_3eead6a536",
+        "source": "RELEASE-002",
+        "target": "DEPLOY-002",
+        "type": "release_deploys",
+        "data": {
+          "relationship": "发布进行部署",
+          "deploymentEnvironment": "DEV",
+          "deployedAt": "2026-01-17"
+        }
+      },
+      {
+        "id": "edge_fc03a7595f",
+        "source": "MS-001",
+        "target": "METRIC-001",
+        "type": "metricset_has_metric",
+        "data": {
+          "relationship": "度量集包含指标",
+          "unit": "DAY",
+          "targetValue": 0
+        }
+      },
+      {
+        "id": "edge_f5500e7955",
+        "source": "MS-001",
+        "target": "METRIC-002",
+        "type": "metricset_has_metric",
+        "data": {
+          "relationship": "度量集包含指标",
+          "unit": "SCORE",
+          "targetValue": 0
+        }
+      },
+      {
+        "id": "edge_0f68c09147",
+        "source": "MS-001",
+        "target": "METRIC-003",
+        "type": "metricset_has_metric",
+        "data": {
+          "relationship": "度量集包含指标",
+          "unit": "PERCENTAGE",
+          "targetValue": 0
+        }
+      },
+      {
+        "id": "edge_f9ec844da9",
+        "source": "MS-001",
+        "target": "METRIC-004",
+        "type": "metricset_has_metric",
+        "data": {
+          "relationship": "度量集包含指标",
+          "unit": "COUNT_PER_KLOC",
+          "targetValue": 0
+        }
+      },
+      {
+        "id": "edge_35345ff525",
+        "source": "MS-001",
+        "target": "METRIC-005",
+        "type": "metricset_has_metric",
+        "data": {
+          "relationship": "度量集包含指标",
+          "unit": "PERCENTAGE",
+          "targetValue": 0
+        }
+      },
+      {
+        "id": "edge_835ac468a8",
+        "source": "METRIC-001",
+        "target": "MV-001",
+        "type": "metric_has_value",
+        "data": {
+          "relationship": "指标有度量数据",
+          "value": 45.5,
+          "recordedAt": "2026-01-17"
+        }
+      },
+      {
+        "id": "edge_c8315f6c6d",
+        "source": "METRIC-002",
+        "target": "MV-002",
+        "type": "metric_has_value",
+        "data": {
+          "relationship": "指标有度量数据",
+          "value": 92,
+          "recordedAt": "2026-01-17"
+        }
+      },
+      {
+        "id": "edge_a4d1716de8",
+        "source": "METRIC-003",
+        "target": "MV-003",
+        "type": "metric_has_value",
+        "data": {
+          "relationship": "指标有度量数据",
+          "value": 85.5,
+          "recordedAt": "2026-01-17"
+        }
+      },
+      {
+        "id": "edge_d0af93e487",
+        "source": "METRIC-004",
+        "target": "MV-004",
+        "type": "metric_has_value",
+        "data": {
+          "relationship": "指标有度量数据",
+          "value": 0.8,
+          "recordedAt": "2026-01-17"
+        }
+      },
+      {
+        "id": "edge_43987d17e7",
+        "source": "METRIC-005",
+        "target": "MV-005",
+        "type": "metric_has_value",
+        "data": {
+          "relationship": "指标有度量数据",
+          "value": 96.5,
+          "recordedAt": "2026-01-17"
+        }
+      },
+      {
+        "id": "edge_565613e0aa",
+        "source": "USER-DEV-001",
+        "target": "TM-001",
+        "type": "user_in_team",
+        "data": {
+          "relationship": "用户加入团队",
+          "role": "LEADER",
+          "joinedDate": "2026-01-17"
+        }
+      },
+      {
+        "id": "edge_93e500d183",
+        "source": "TEAM-ADAS-PERCEPTION",
+        "target": "TM-001",
+        "type": "team_has_member",
+        "data": {
+          "relationship": "团队有成员",
+          "memberRole": "LEADER"
+        }
+      },
+      {
+        "id": "edge_ab746d5562",
+        "source": "USER-DEV-002",
+        "target": "TM-002",
+        "type": "user_in_team",
+        "data": {
+          "relationship": "用户加入团队",
+          "role": "MEMBER",
+          "joinedDate": "2026-01-17"
+        }
+      },
+      {
+        "id": "edge_4393ea6d6e",
+        "source": "TEAM-ADAS-PERCEPTION",
+        "target": "TM-002",
+        "type": "team_has_member",
+        "data": {
+          "relationship": "团队有成员",
+          "memberRole": "LEADER"
+        }
+      },
+      {
+        "id": "edge_050e76998b",
+        "source": "USER-DEV-003",
+        "target": "TM-003",
+        "type": "user_in_team",
+        "data": {
+          "relationship": "用户加入团队",
+          "role": "LEADER",
+          "joinedDate": "2026-01-17"
+        }
+      },
+      {
+        "id": "edge_490c819af4",
+        "source": "TEAM-ADAS-PLANNING",
+        "target": "TM-003",
+        "type": "team_has_member",
+        "data": {
+          "relationship": "团队有成员",
+          "memberRole": "LEADER"
+        }
+      },
+      {
+        "id": "edge_bc3166d5ff",
+        "source": "USER-DEV-004",
+        "target": "TM-004",
+        "type": "user_in_team",
+        "data": {
+          "relationship": "用户加入团队",
+          "role": "LEADER",
+          "joinedDate": "2026-01-17"
+        }
+      },
+      {
+        "id": "edge_e95e03b607",
+        "source": "TEAM-ADAS-CONTROL",
+        "target": "TM-004",
+        "type": "team_has_member",
+        "data": {
+          "relationship": "团队有成员",
+          "memberRole": "LEADER"
+        }
+      },
+      {
+        "id": "edge_f11be644ee",
+        "source": "USER-QA-001",
+        "target": "TM-005",
+        "type": "user_in_team",
+        "data": {
+          "relationship": "用户加入团队",
+          "role": "LEADER",
+          "joinedDate": "2026-01-17"
+        }
+      },
+      {
+        "id": "edge_cfd3a2a71c",
+        "source": "TEAM-ADAS-TEST",
+        "target": "TM-005",
+        "type": "team_has_member",
+        "data": {
+          "relationship": "团队有成员",
+          "memberRole": "LEADER"
+        }
+      },
+      {
+        "id": "edge_062c8ca1f2",
+        "source": "USER-QA-002",
+        "target": "TM-006",
+        "type": "user_in_team",
+        "data": {
+          "relationship": "用户加入团队",
+          "role": "MEMBER",
+          "joinedDate": "2026-01-17"
+        }
+      },
+      {
+        "id": "edge_fa2b29b8b5",
+        "source": "TEAM-ADAS-TEST",
+        "target": "TM-006",
+        "type": "team_has_member",
+        "data": {
+          "relationship": "团队有成员",
+          "memberRole": "LEADER"
+        }
+      },
+      {
+        "id": "edge_b84635a053",
+        "source": "USER-QA-003",
+        "target": "TM-007",
+        "type": "user_in_team",
+        "data": {
+          "relationship": "用户加入团队",
+          "role": "MEMBER",
+          "joinedDate": "2026-01-17"
+        }
+      },
+      {
+        "id": "edge_e1aa544a00",
+        "source": "TEAM-ADAS-TEST",
+        "target": "TM-007",
+        "type": "team_has_member",
+        "data": {
+          "relationship": "团队有成员",
+          "memberRole": "LEADER"
+        }
+      }
+    ]
+  }
+}

@@ -9,18 +9,78 @@ import './Sidebar.css';
 
 const { Search } = Input;
 
-const Sidebar = ({ schema, statistics, onSearch }) => {
+const Sidebar = ({ schema, statistics, onSearch, onEntityTypeClick, highlightedEntityType }) => {
   const renderEntityTypes = () => {
-    if (!schema || !schema.entityTypes) return null;
+    if (!schema || !schema.entityTypes || !statistics?.entity_counts) return null;
 
-    return Object.entries(schema.entityTypes).map(([key, entity]) => (
-      <div key={key} className="entity-type-item">
+    // 只显示实际使用的类型（数量>0），并按数量排序
+    const entityTypesList = Object.entries(schema.entityTypes)
+      .map(([key, entity]) => ({
+        key,
+        entity,
+        count: statistics.entity_counts[key] || 0
+      }))
+      .filter(item => item.count > 0) // 只显示有数据的类型
+      .sort((a, b) => b.count - a.count); // 按数量降序排列
+
+    if (entityTypesList.length === 0) {
+      return <div style={{ color: '#999', fontSize: 12, padding: '8px 0' }}>暂无数据</div>;
+    }
+
+    return entityTypesList.map(({ key, entity, count }) => (
+      <div 
+        key={key} 
+        className={`entity-type-item ${highlightedEntityType === key ? 'entity-type-selected' : ''}`}
+        onClick={() => onEntityTypeClick && onEntityTypeClick(key)}
+        style={{ 
+          cursor: 'pointer',
+          padding: '4px 8px',
+          borderRadius: '4px',
+          transition: 'background-color 0.2s',
+          backgroundColor: highlightedEntityType === key ? '#f0f0ff' : 'transparent'
+        }}
+        onMouseEnter={(e) => {
+          if (highlightedEntityType !== key) {
+            e.currentTarget.style.backgroundColor = '#f5f5f5';
+          }
+        }}
+        onMouseLeave={(e) => {
+          if (highlightedEntityType !== key) {
+            e.currentTarget.style.backgroundColor = 'transparent';
+          }
+        }}
+      >
         <Tag color={entity.color || '#1890ff'}>
           {entity.label || key}
         </Tag>
         <span className="entity-count">
-          {statistics?.entity_counts?.[key] || 0}
+          {count}
         </span>
+      </div>
+    ));
+  };
+
+  const renderLegend = () => {
+    if (!schema || !schema.entityTypes) {
+      return <div style={{ color: '#999', fontSize: 12 }}>暂无Schema定义</div>;
+    }
+
+    return Object.entries(schema.entityTypes).map(([key, entity]) => (
+      <div key={key} className="legend-item">
+        <div 
+          className="legend-color" 
+          style={{ background: entity.color || '#1890ff' }}
+        ></div>
+        <span>{entity.label || key}</span>
+        {entity.description && (
+          <span 
+            className="legend-desc" 
+            style={{ fontSize: 11, color: '#999', marginLeft: 4 }}
+            title={entity.description}
+          >
+            ({entity.description.length > 10 ? entity.description.substring(0, 10) + '...' : entity.description})
+          </span>
+        )}
       </div>
     ));
   };
@@ -65,26 +125,7 @@ const Sidebar = ({ schema, statistics, onSearch }) => {
         </Card>
 
         <Card size="small" title="图例说明">
-          <div className="legend-item">
-            <div className="legend-color" style={{ background: '#1890ff' }}></div>
-            <span>车型项目</span>
-          </div>
-          <div className="legend-item">
-            <div className="legend-color" style={{ background: '#52c41a' }}></div>
-            <span>系统需求</span>
-          </div>
-          <div className="legend-item">
-            <div className="legend-color" style={{ background: '#eb2f96' }}></div>
-            <span>软件需求</span>
-          </div>
-          <div className="legend-item">
-            <div className="legend-color" style={{ background: '#722ed1' }}></div>
-            <span>开发模块</span>
-          </div>
-          <div className="legend-item">
-            <div className="legend-color" style={{ background: '#13c2c2' }}></div>
-            <span>模型版本</span>
-          </div>
+          {renderLegend()}
         </Card>
       </div>
     </div>
