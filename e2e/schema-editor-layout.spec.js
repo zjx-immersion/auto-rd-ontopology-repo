@@ -94,7 +94,7 @@ test.describe('Schema 编辑器布局测试', () => {
     await expect(forceBtn).toHaveClass(/ant-btn-primary/);
   });
 
-  test('LAYOUT-03: 测试层次布局', async ({ page }) => {
+  test('LAYOUT-03: 测试层次布局 - 按分类多行排列', async ({ page }) => {
     // 点击层次布局按钮
     const hierarchyBtn = page.locator('button:has-text("层次")');
     await hierarchyBtn.click();
@@ -102,13 +102,45 @@ test.describe('Schema 编辑器布局测试', () => {
     // 等待布局动画完成
     await page.waitForTimeout(2000);
     
+    // 获取所有节点位置
+    const nodes = await page.locator('.entity-type-node').all();
+    const nodePositions = [];
+    
+    for (const node of nodes) {
+      const box = await node.boundingBox();
+      if (box) {
+        nodePositions.push({
+          y: box.y,
+          centerY: box.y + box.height / 2
+        });
+      }
+    }
+    
+    // 按 Y 坐标分组，统计有多少行
+    const yGroups = new Map();
+    nodePositions.forEach(pos => {
+      // 将 Y 坐标分组（容差 50px）
+      const yKey = Math.round(pos.centerY / 50) * 50;
+      if (!yGroups.has(yKey)) {
+        yGroups.set(yKey, 0);
+      }
+      yGroups.set(yKey, yGroups.get(yKey) + 1);
+    });
+    
+    const rowCount = yGroups.size;
+    console.log(`✅ 层次布局：检测到 ${rowCount} 行`);
+    console.log(`   每行节点数: ${Array.from(yGroups.values()).join(', ')}`);
+    
+    // 验证至少有多个行（分类）
+    expect(rowCount).toBeGreaterThan(1);
+    
     // 截图
     await page.screenshot({ 
       path: 'playwright-report/layout-03-hierarchical.png',
       fullPage: false
     });
     
-    console.log('✅ 层次布局切换完成');
+    console.log('✅ 层次布局切换完成 - 按领域分类多行排列');
     
     // 验证按钮状态
     await expect(hierarchyBtn).toHaveClass(/ant-btn-primary/);

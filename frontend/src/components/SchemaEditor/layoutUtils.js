@@ -100,95 +100,188 @@ export function calculateSmartLayout(nodes, edges, options = {}) {
 }
 
 /**
- * 层次布局 - 适合有继承关系的 Schema
+ * 层次布局 - 按领域/分类分组，每类一行，多行排列
  * @param {Array} nodes - React Flow 节点
  * @param {Array} edges - React Flow 边
  * @param {Object} options - 布局选项
  */
 export function calculateHierarchicalLayout(nodes, edges, options = {}) {
   const {
-    width = 1200,
-    height = 800,
-    levelHeight = 150,
-    nodeWidth = 180
+    width = 1400,
+    height = 900,
+    rowHeight = 140,        // 每行高度
+    nodeWidth = 180,        // 节点宽度
+    nodeHeight = 80,        // 节点高度
+    horizontalSpacing = 40, // 水平间距
+    verticalSpacing = 60,   // 垂直间距（行内节点之间）
+    marginX = 100,          // 左右边距
+    marginY = 80            // 上下边距
   } = options;
 
   if (nodes.length === 0) return nodes;
 
-  // 构建层次结构
-  const levels = []; // 二维数组，每个元素是一层的节点
-  const visited = new Set();
+  // 按领域/分类分组
+  const groups = new Map();
+  
+  nodes.forEach(node => {
+    const entityType = node.data?.entityType;
+    // 使用 domain 字段作为分类，如果没有则使用 '其他'
+    const category = entityType?.domain || entityType?.category || '其他';
+    
+    if (!groups.has(category)) {
+      groups.set(category, []);
+    }
+    groups.get(category).push(node);
+  });
 
-  // 找出根节点（没有父类型的）
+  // 按领域名称排序，保持稳定的布局
+  const sortedGroups = Array.from(groups.entries()).sort((a, b) => a[0].localeCompare(b[0]));
+
+  // 计算每行的位置
+  const positionedNodes = [];
+  let currentY = marginY;
+
+  sortedGroups.forEach(([category, groupNodes]) => {
+    const nodeCount = groupNodes.length;
+    
+    // 计算每行可以容纳的节点数
+    const availableWidth = width - 2 * marginX;
+    const nodeTotalWidth = nodeWidth + horizontalSpacing;
+    const nodesPerRow = Math.max(1, Math.floor(availableWidth / nodeTotalWidth));
+    
+    // 计算需要多少行来容纳这个分类的所有节点
+    const rowsNeeded = Math.ceil(nodeCount / nodesPerRow);
+    
+    // 布局这个分类的节点
+    groupNodes.forEach((node, index) => {
+      const row = Math.floor(index / nodesPerRow);
+      const col = index % nodesPerRow;
+      
+      // 计算位置：每类一行（或多行如果节点太多）
+      const actualRow = currentY / rowHeight + row;
+      const x = marginX + col * nodeTotalWidth + nodeWidth / 2;
+      const y = currentY + row * rowHeight;
+
+      positionedNodes.push({
+        ...node,
+        position: { x, y },
+        // 添加分类信息用于显示
+        data: {
+          ...node.data,
+          _layoutCategory: category,
+          _layoutRow: row
+        }
+      });
+    });
+
+    // 更新 Y 位置到下一分类
+    currentY += rowsNeeded * rowHeight + verticalSpacing;
+  });
+
+  return positionedNodes;
+}
+
+/**
+ * 基于继承关系的树形层次布局
+ * @param {Array} nodes - React Flow 节点
+ * @param {Array} edges - React Flow 边
+ * @param {Object} options - 布局选项
+ */
+export function calculateTreeLayout(nodes, edges, options = {}) {
+  const {
+    width = 1400,
+    height = 900,
+    levelHeight = 150,      // 每层高度
+    nodeWidth = 180,
+    nodeHeight = 80,
+    siblingSpacing = 40,    // 兄弟节点间距
+    subtreeSpacing = 60     // 子树间距
+  } = options;
+
+  if (nodes.length === 0) return nodes;
+
+  // 构建父子关系图
+  const childrenMap = new Map(); // parentId -> [childNodes]
+  const parentMap = new Map();   // nodeId -> parentId
+  
+  nodes.forEach(node => {
+    const entityType = node.data?.entityType;
+    const parentType = entityType?.parentType;
+    
+    if (parentType) {
+      parentMap.set(node.id, parentType);
+      if (!childrenMap.has(parentType)) {
+        childrenMap.set(parentType, []);
+      }
+      childrenMap.get(parentType).push(node);
+    }
+  });
+
+  // 找到根节点（没有父类型的）
   const rootNodes = nodes.filter(node => {
     const entityType = node.data?.entityType;
     return !entityType?.parentType;
   });
 
-  if (rootNodes.length === 0) {
-    // 如果没有根节点，所有节点放一层
-    levels.push(nodes);
-  } else {
-    // BFS 分层
-    let currentNodes = rootNodes;
-    let maxIterations = 10; // 防止无限循环
+  // 如果没有根节点，使用第一个节点作为根
+  const roots = rootNodes.length > 0 ? rootNodes : [nodes[0]];
 
-    while (currentNodes.length > 0 && maxIterations > 0) {
-      levels.push([...currentNodes]);
-      currentNodes.forEach(n => visited.add(n.id));
-
-      // 找到下一层的节点（当前层的子类型）
-      const nextLevelNodes = [];
-      currentNodes.forEach(node => {
-        const nodeId = node.data?.entityType?.id;
-        if (!nodeId) return;
-        
-        const children = nodes.filter(n => {
-          const parentType = n.data?.entityType?.parentType;
-          return parentType === nodeId && !visited.has(n.id);
-        });
-        nextLevelNodes.push(...children);
+  // 计算每个节点的布局位置（后序遍历）
+  const positionedMap = new Map();
+  
+  function layoutNode(node, level, offsetX) {
+    const children = childrenMap.get(node.data?.entityType?.id) || [];
+    let currentX = offsetX;
+    
+    if (children.length === 0) {
+      // 叶子节点
+      currentX += nodeWidth / 2;
+      positionedMap.set(node.id, {
+        ...node,
+        position: {
+          x: currentX,
+          y: 80 + level * levelHeight
+        }
       });
-
-      currentNodes = nextLevelNodes;
-      maxIterations--;
+      currentX += nodeWidth / 2 + siblingSpacing;
+    } else {
+      // 非叶子节点：先布局子节点
+      let childrenWidth = 0;
+      children.forEach((child, i) => {
+        const childResult = layoutNode(child, level + 1, offsetX + childrenWidth);
+        childrenWidth = childResult.offsetX - offsetX;
+      });
+      
+      // 父节点位于子节点的中心
+      const firstChild = positionedMap.get(children[0].id);
+      const lastChild = positionedMap.get(children[children.length - 1].id);
+      const parentX = (firstChild.position.x + lastChild.position.x) / 2;
+      
+      positionedMap.set(node.id, {
+        ...node,
+        position: {
+          x: parentX,
+          y: 80 + level * levelHeight
+        }
+      });
+      
+      currentX = offsetX + childrenWidth;
     }
-
-    // 为未分层的节点分配层级（孤立节点放最后一层）
-    const unvisitedNodes = nodes.filter(n => !visited.has(n.id));
-    if (unvisitedNodes.length > 0) {
-      levels.push(unvisitedNodes);
-    }
+    
+    return { offsetX: currentX };
   }
 
-  // 计算位置
-  return nodes.map(node => {
-    // 找到节点所在层级和索引
-    let nodeLevel = 0;
-    let indexInLevel = 0;
-    
-    for (let i = 0; i < levels.length; i++) {
-      const idx = levels[i].findIndex(n => n.id === node.id);
-      if (idx !== -1) {
-        nodeLevel = i;
-        indexInLevel = idx;
-        break;
-      }
-    }
+  // 布局所有根节点
+  let globalOffsetX = width / 2 - (roots.length * nodeWidth) / 2;
+  roots.forEach(root => {
+    const result = layoutNode(root, 0, globalOffsetX);
+    globalOffsetX = result.offsetX + subtreeSpacing;
+  });
 
-    const levelNodeCount = levels[nodeLevel]?.length || 1;
-    const availableWidth = width - 200; // 边距
-    const actualNodeWidth = Math.min(nodeWidth, availableWidth / Math.max(levelNodeCount, 1));
-    const levelTotalWidth = levelNodeCount * actualNodeWidth;
-    const startX = (width - levelTotalWidth) / 2 + actualNodeWidth / 2;
-
-    return {
-      ...node,
-      position: {
-        x: startX + indexInLevel * actualNodeWidth,
-        y: 80 + nodeLevel * levelHeight
-      }
-    };
+  // 返回所有已定位的节点
+  return nodes.map(node => positionedMap.get(node.id) || {
+    ...node,
+    position: { x: width / 2, y: height / 2 }
   });
 }
 
