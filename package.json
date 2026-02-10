@@ -25,6 +25,7 @@
   "author": "岚图汽车智能驾驶团队",
   "license": "UNLICENSED",
   "devDependencies": {
+    "@playwright/test": "^1.58.2",
     "concurrently": "^8.2.2"
   }
 }

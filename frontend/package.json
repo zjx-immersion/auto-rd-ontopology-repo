@@ -12,6 +12,7 @@
     "cytoscape-dagre": "^2.5.0",
     "dayjs": "^1.11.10",
     "echarts": "^5.4.3",
+    "http-proxy-middleware": "^3.0.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.30.3",
@@ -41,5 +42,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:8090"
+  "proxy": "http://localhost:3001"
 }
