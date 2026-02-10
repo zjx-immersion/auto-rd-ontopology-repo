@@ -8,6 +8,10 @@ import {
   ExportOutlined,
   ImportOutlined,
   CheckCircleOutlined,
+  LayoutOutlined,
+  ApartmentOutlined,
+  ShareAltOutlined,
+  DragOutlined,
 } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
 
@@ -25,6 +29,8 @@ const SchemaToolbar = ({
   canUndo,
   canRedo,
   hasChanges,
+  layoutType,
+  onLayoutChange,
 }) => {
   const navigate = useNavigate();
 
@@ -70,6 +76,48 @@ const SchemaToolbar = ({
               onClick={onRedo}
               disabled={!canRedo}
             />
+          </Tooltip>
+          
+          <Divider type="vertical" />
+          
+          <Tooltip title="自动布局">
+            <Button
+              type={layoutType === 'auto' ? 'primary' : 'default'}
+              icon={<LayoutOutlined />}
+              onClick={() => onLayoutChange('auto')}
+            >
+              自动
+            </Button>
+          </Tooltip>
+          
+          <Tooltip title="力导向布局">
+            <Button
+              type={layoutType === 'force' ? 'primary' : 'default'}
+              icon={<DragOutlined />}
+              onClick={() => onLayoutChange('force')}
+            >
+              力导向
+            </Button>
+          </Tooltip>
+          
+          <Tooltip title="层次布局">
+            <Button
+              type={layoutType === 'hierarchical' ? 'primary' : 'default'}
+              icon={<ApartmentOutlined />}
+              onClick={() => onLayoutChange('hierarchical')}
+            >
+              层次
+            </Button>
+          </Tooltip>
+          
+          <Tooltip title="聚类布局">
+            <Button
+              type={layoutType === 'cluster' ? 'primary' : 'default'}
+              icon={<ShareAltOutlined />}
+              onClick={() => onLayoutChange('cluster')}
+            >
+              聚类
+            </Button>
           </Tooltip>
         </Space>
       </div>

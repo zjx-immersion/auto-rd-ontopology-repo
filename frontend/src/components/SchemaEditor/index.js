@@ -26,6 +26,7 @@ import RelationTypeEdge from './RelationTypeEdge';
 import PropertyPanel from './PropertyPanel';
 import SchemaToolbar from './SchemaToolbar';
 import { fetchSchema, saveSchema } from '../../services/api';
+import { autoLayout, calculateSmartLayout, calculateHierarchicalLayout, calculateClusterLayout } from './layoutUtils';
 import './SchemaEditor.css';
 
 const { Sider, Content } = Layout;
@@ -81,6 +82,9 @@ const SchemaEditor = ({ graphId }) => {
     }
   };
 
+  // 当前布局类型
+  const [layoutType, setLayoutType] = useState('auto');
+
   // 将 Schema 转换为 React Flow 节点和边
   const convertSchemaToFlow = (schemaData) => {
     const flowNodes = [];
@@ -88,14 +92,11 @@ const SchemaEditor = ({ graphId }) => {
     
     // 转换实体类型为节点
     if (schemaData.entityTypes) {
-      Object.entries(schemaData.entityTypes).forEach(([id, entity], index) => {
+      Object.entries(schemaData.entityTypes).forEach(([id, entity]) => {
         flowNodes.push({
           id: `entity-${id}`,
           type: 'entityType',
-          position: entity.position || { 
-            x: 100 + (index % 5) * 200, 
-            y: 100 + Math.floor(index / 5) * 150 
-          },
+          position: { x: 0, y: 0 }, // 初始位置，后续由布局算法计算
           data: {
             entityType: entity,
             onEdit: () => handleSelectEntity(id),
@@ -109,24 +110,50 @@ const SchemaEditor = ({ graphId }) => {
     if (schemaData.relationTypes) {
       Object.entries(schemaData.relationTypes).forEach(([id, relation]) => {
         if (relation.from && relation.to && relation.from[0] && relation.to[0]) {
-          flowEdges.push({
-            id: `relation-${id}`,
-            source: `entity-${relation.from[0]}`,
-            target: `entity-${relation.to[0]}`,
-            type: 'relationType',
-            data: {
-              relationType: relation,
-              onEdit: () => handleSelectRelation(id),
-              onDelete: () => handleDeleteRelation(id),
-            },
-            label: relation.label,
+          // 为每个源-目标对创建边
+          relation.from.forEach(fromType => {
+            relation.to.forEach(toType => {
+              flowEdges.push({
+                id: `relation-${id}-${fromType}-${toType}`,
+                source: `entity-${fromType}`,
+                target: `entity-${toType}`,
+                type: 'relationType',
+                data: {
+                  relationType: relation,
+                  onEdit: () => handleSelectRelation(id),
+                  onDelete: () => handleDeleteRelation(id),
+                },
+                label: relation.label,
+              });
+            });
           });
         }
       });
     }
     
-    setNodes(flowNodes);
+    // 使用智能布局算法计算位置
+    const layoutedNodes = autoLayout(flowNodes, flowEdges, layoutType);
+    
+    setNodes(layoutedNodes);
     setEdges(flowEdges);
+  };
+
+  // 重新布局
+  const handleRelayout = (type) => {
+    setLayoutType(type);
+    const layoutedNodes = autoLayout(nodes, edges, type);
+    setNodes(layoutedNodes);
+    message.success(`已切换为${getLayoutName(type)}布局`);
+  };
+
+  // 获取布局名称
+  const getLayoutName = (type) => {
+    switch (type) {
+      case 'force': return '力导向';
+      case 'hierarchical': return '层次';
+      case 'cluster': return '聚类';
+      default: return '自动';
+    }
   };
 
   // 保存历史记录
@@ -362,6 +389,8 @@ const SchemaEditor = ({ graphId }) => {
         canUndo={historyIndex > 0}
         canRedo={historyIndex < history.length - 1}
         hasChanges={hasChanges}
+        layoutType={layoutType}
+        onLayoutChange={handleRelayout}
       />
 
       <Layout className="schema-editor-content">

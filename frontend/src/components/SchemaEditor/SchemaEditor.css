@@ -35,6 +35,15 @@
   color: #262626;
 }
 
+/* 工具栏布局按钮 */
+.toolbar-center .ant-btn {
+  padding: 0 12px;
+}
+
+.toolbar-center .ant-btn > span {
+  margin-left: 4px;
+}
+
 /* 侧边栏样式 */
 .schema-editor-sider {
   background: #fff;
