@@ -18,7 +18,7 @@ import {
   RedoOutlined,
   PlusOutlined,
   ArrowRightOutlined,
-  MousePointerOutlined,
+  DragOutlined,
   DeleteOutlined,
 } from '@ant-design/icons';
 import EntityTypeNode from './EntityTypeNode';
@@ -372,7 +372,7 @@ const SchemaEditor = ({ graphId }) => {
               <Tooltip title="选择模式 (V)" placement="right">
                 <Button
                   type={editorMode === 'select' ? 'primary' : 'default'}
-                  icon={<MousePointerOutlined />}
+                  icon={<DragOutlined />}
                   onClick={() => setEditorMode('select')}
                   block
                 />

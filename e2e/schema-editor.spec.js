@@ -57,8 +57,9 @@ test.describe('Schema 可视化编辑器', () => {
     // 验证页面标题
     await expect(page.locator('.toolbar-title')).toContainText('Schema 可视化编辑器');
     
-    // 验证工具栏按钮
-    await expect(page.locator('.schema-toolbar button')).toHaveCount({ min: 5 });
+    // 验证工具栏按钮存在
+    const toolbarButtons = page.locator('.schema-toolbar button');
+    await expect(toolbarButtons).toHaveCount(5);
     
     // 验证左侧工具面板
     await expect(page.locator('.schema-editor-sider')).toBeVisible();
