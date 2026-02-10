@@ -28,8 +28,10 @@ import {
   WarningOutlined,
   FileTextOutlined,
   CodeOutlined,
-  ApartmentOutlined
+  ApartmentOutlined,
+  EditOutlined
 } from '@ant-design/icons';
+import { useNavigate } from 'react-router-dom';
 import SchemaVisualization from './SchemaVisualization';
 import './SchemaViewer.css';
 
@@ -37,7 +39,8 @@ const { TabPane } = Tabs;
 const { Panel } = Collapse;
 const { Search } = Input;
 
-const SchemaViewer = ({ schema, data }) => {
+const SchemaViewer = ({ schema, data, graphId }) => {
+  const navigate = useNavigate();
   const [searchText, setSearchText] = useState('');
   const [activeTab, setActiveTab] = useState('overview');
   const [exportModalVisible, setExportModalVisible] = useState(false);
@@ -313,6 +316,12 @@ const SchemaViewer = ({ schema, data }) => {
               onChange={(e) => setSearchText(e.target.value)}
               prefix={<SearchOutlined />}
             />
+            <Button
+              icon={<EditOutlined />}
+              onClick={() => navigate(graphId ? `/schema-editor/${graphId}` : '/schema-editor')}
+            >
+              编辑Schema
+            </Button>
             <Button
               type="primary"
               icon={<DownloadOutlined />}

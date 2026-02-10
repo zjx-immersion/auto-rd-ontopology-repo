@@ -27,7 +27,8 @@ import {
   MoreOutlined,
   FolderOpenOutlined,
   CalendarOutlined,
-  DatabaseOutlined
+  DatabaseOutlined,
+  ApartmentOutlined
 } from '@ant-design/icons';
 import { useGraphs } from '../contexts/GraphsContext';
 import CreateGraphModal from '../components/CreateGraphModal';
@@ -250,14 +251,23 @@ const GraphListPage = () => {
             <p className="header-desc">管理和查看所有知识图谱</p>
           </div>
           <div className="header-right">
-            <Button
-              type="primary"
-              size="large"
-              icon={<PlusOutlined />}
-              onClick={() => setCreateModalVisible(true)}
-            >
-              创建图谱
-            </Button>
+            <Space>
+              <Button
+                size="large"
+                icon={<ApartmentOutlined />}
+                onClick={() => navigate('/schema-editor')}
+              >
+                Schema编辑器
+              </Button>
+              <Button
+                type="primary"
+                size="large"
+                icon={<PlusOutlined />}
+                onClick={() => setCreateModalVisible(true)}
+              >
+                创建图谱
+              </Button>
+            </Space>
           </div>
         </div>
       </div>

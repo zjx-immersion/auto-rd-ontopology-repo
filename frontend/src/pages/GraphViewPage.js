@@ -238,6 +238,7 @@ const GraphViewPage = () => {
             <SchemaViewer
               schema={schema}
               data={currentGraph?.data}
+              graphId={id}
             />
           )}
 
