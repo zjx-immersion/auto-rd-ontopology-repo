@@ -386,4 +386,248 @@ router.get('/nodes/:id/object-properties', (req, res) => {
   }
 });
 
+// ==================== Schema Entity Type CRUD ====================
+
+/**
+ * 获取所有实体类型
+ */
+router.get('/schema/entity-types', (req, res) => {
+  try {
+    const entityTypes = graphService.getEntityTypes();
+    res.json({
+      success: true,
+      data: entityTypes,
+      count: Object.keys(entityTypes).length
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      error: {
+        code: 'QUERY_ERROR',
+        message: error.message
+      }
+    });
+  }
+});
+
+/**
+ * 获取单个实体类型
+ */
+router.get('/schema/entity-types/:code', (req, res) => {
+  try {
+    const entityType = graphService.getEntityTypeByCode(req.params.code);
+    if (!entityType) {
+      return res.status(404).json({
+        success: false,
+        error: {
+          code: 'ENTITY_TYPE_NOT_FOUND',
+          message: `实体类型不存在: ${req.params.code}`
+        }
+      });
+    }
+    res.json({
+      success: true,
+      data: entityType
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      error: {
+        code: 'QUERY_ERROR',
+        message: error.message
+      }
+    });
+  }
+});
+
+/**
+ * 创建实体类型
+ */
+router.post('/schema/entity-types', (req, res) => {
+  try {
+    const entityType = graphService.createEntityType(req.body);
+    res.status(201).json({
+      success: true,
+      data: entityType,
+      message: '实体类型创建成功'
+    });
+  } catch (error) {
+    res.status(400).json({
+      success: false,
+      error: {
+        code: 'CREATE_ERROR',
+        message: error.message
+      }
+    });
+  }
+});
+
+/**
+ * 更新实体类型
+ */
+router.put('/schema/entity-types/:code', (req, res) => {
+  try {
+    const entityType = graphService.updateEntityType(req.params.code, req.body);
+    res.json({
+      success: true,
+      data: entityType,
+      message: '实体类型更新成功'
+    });
+  } catch (error) {
+    const statusCode = error.message.includes('不存在') ? 404 : 400;
+    res.status(statusCode).json({
+      success: false,
+      error: {
+        code: 'UPDATE_ERROR',
+        message: error.message
+      }
+    });
+  }
+});
+
+/**
+ * 删除实体类型
+ */
+router.delete('/schema/entity-types/:code', (req, res) => {
+  try {
+    const result = graphService.deleteEntityType(req.params.code);
+    res.json({
+      success: true,
+      data: result,
+      message: '实体类型删除成功'
+    });
+  } catch (error) {
+    const statusCode = error.message.includes('不存在') ? 404 : 400;
+    res.status(statusCode).json({
+      success: false,
+      error: {
+        code: 'DELETE_ERROR',
+        message: error.message
+      }
+    });
+  }
+});
+
+// ==================== Schema Relation Type CRUD ====================
+
+/**
+ * 获取所有关系类型
+ */
+router.get('/schema/relation-types', (req, res) => {
+  try {
+    const relationTypes = graphService.getRelationTypes();
+    res.json({
+      success: true,
+      data: relationTypes,
+      count: Object.keys(relationTypes).length
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      error: {
+        code: 'QUERY_ERROR',
+        message: error.message
+      }
+    });
+  }
+});
+
+/**
+ * 获取单个关系类型
+ */
+router.get('/schema/relation-types/:code', (req, res) => {
+  try {
+    const relationType = graphService.getRelationTypeByCode(req.params.code);
+    if (!relationType) {
+      return res.status(404).json({
+        success: false,
+        error: {
+          code: 'RELATION_TYPE_NOT_FOUND',
+          message: `关系类型不存在: ${req.params.code}`
+        }
+      });
+    }
+    res.json({
+      success: true,
+      data: relationType
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      error: {
+        code: 'QUERY_ERROR',
+        message: error.message
+      }
+    });
+  }
+});
+
+/**
+ * 创建关系类型
+ */
+router.post('/schema/relation-types', (req, res) => {
+  try {
+    const relationType = graphService.createRelationType(req.body);
+    res.status(201).json({
+      success: true,
+      data: relationType,
+      message: '关系类型创建成功'
+    });
+  } catch (error) {
+    res.status(400).json({
+      success: false,
+      error: {
+        code: 'CREATE_ERROR',
+        message: error.message
+      }
+    });
+  }
+});
+
+/**
+ * 更新关系类型
+ */
+router.put('/schema/relation-types/:code', (req, res) => {
+  try {
+    const relationType = graphService.updateRelationType(req.params.code, req.body);
+    res.json({
+      success: true,
+      data: relationType,
+      message: '关系类型更新成功'
+    });
+  } catch (error) {
+    const statusCode = error.message.includes('不存在') ? 404 : 400;
+    res.status(statusCode).json({
+      success: false,
+      error: {
+        code: 'UPDATE_ERROR',
+        message: error.message
+      }
+    });
+  }
+});
+
+/**
+ * 删除关系类型
+ */
+router.delete('/schema/relation-types/:code', (req, res) => {
+  try {
+    const result = graphService.deleteRelationType(req.params.code);
+    res.json({
+      success: true,
+      data: result,
+      message: '关系类型删除成功'
+    });
+  } catch (error) {
+    const statusCode = error.message.includes('不存在') ? 404 : 400;
+    res.status(statusCode).json({
+      success: false,
+      error: {
+        code: 'DELETE_ERROR',
+        message: error.message
+      }
+    });
+  }
+});
+
 module.exports = router;

@@ -266,4 +266,98 @@ export const validateSchema = async (schema) => {
   return response;
 };
 
+// ==================== Schema Entity Type CRUD ====================
+
+/**
+ * 获取所有实体类型
+ */
+export const fetchEntityTypes = async () => {
+  const response = await api.get('/graph/schema/entity-types');
+  return response.data;
+};
+
+/**
+ * 获取单个实体类型
+ * @param {string} code - 实体类型编码
+ */
+export const fetchEntityTypeByCode = async (code) => {
+  const response = await api.get(`/graph/schema/entity-types/${code}`);
+  return response.data;
+};
+
+/**
+ * 创建实体类型
+ * @param {Object} entityType - 实体类型定义
+ */
+export const createEntityType = async (entityType) => {
+  const response = await api.post('/graph/schema/entity-types', entityType);
+  return response.data;
+};
+
+/**
+ * 更新实体类型
+ * @param {string} code - 实体类型编码
+ * @param {Object} updates - 更新内容
+ */
+export const updateEntityType = async (code, updates) => {
+  const response = await api.put(`/graph/schema/entity-types/${code}`, updates);
+  return response.data;
+};
+
+/**
+ * 删除实体类型
+ * @param {string} code - 实体类型编码
+ */
+export const deleteEntityType = async (code) => {
+  const response = await api.delete(`/graph/schema/entity-types/${code}`);
+  return response.data;
+};
+
+// ==================== Schema Relation Type CRUD ====================
+
+/**
+ * 获取所有关系类型
+ */
+export const fetchRelationTypes = async () => {
+  const response = await api.get('/graph/schema/relation-types');
+  return response.data;
+};
+
+/**
+ * 获取单个关系类型
+ * @param {string} code - 关系类型编码
+ */
+export const fetchRelationTypeByCode = async (code) => {
+  const response = await api.get(`/graph/schema/relation-types/${code}`);
+  return response.data;
+};
+
+/**
+ * 创建关系类型
+ * @param {Object} relationType - 关系类型定义
+ */
+export const createRelationType = async (relationType) => {
+  const response = await api.post('/graph/schema/relation-types', relationType);
+  return response.data;
+};
+
+/**
+ * 更新关系类型
+ * @param {string} code - 关系类型编码
+ * @param {Object} updates - 更新内容
+ */
+export const updateRelationType = async (code, updates) => {
+  const response = await api.put(`/graph/schema/relation-types/${code}`, updates);
+  return response.data;
+};
+
+/**
+ * 删除关系类型
+ * @param {string} code - 关系类型编码
+ */
+export const deleteRelationType = async (code) => {
+  const response = await api.delete(`/graph/schema/relation-types/${code}`);
+  return response.data;
+};
+
 export default api;

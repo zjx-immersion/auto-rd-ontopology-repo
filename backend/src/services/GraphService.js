@@ -399,6 +399,277 @@ class GraphService {
       total_edges: this.edges.length
     };
   }
+
+  // ==================== Schema Entity Type CRUD ====================
+
+  /**
+   * 获取所有实体类型
+   */
+  getEntityTypes() {
+    return this.schema?.entityTypes || {};
+  }
+
+  /**
+   * 根据code获取实体类型
+   */
+  getEntityTypeByCode(code) {
+    return this.schema?.entityTypes?.[code];
+  }
+
+  /**
+   * 创建实体类型
+   */
+  createEntityType(entityType) {
+    if (!this.schema) {
+      throw new Error('Schema 未加载');
+    }
+
+    const { code } = entityType;
+    if (!code) {
+      throw new Error('实体类型 code 不能为空');
+    }
+
+    // 检查是否已存在
+    if (this.schema.entityTypes[code]) {
+      throw new Error(`实体类型已存在: ${code}`);
+    }
+
+    // 验证必填字段
+    if (!entityType.label) {
+      throw new Error('实体类型 label 不能为空');
+    }
+
+    // 设置默认值
+    const newEntityType = {
+      code,
+      label: entityType.label,
+      description: entityType.description || '',
+      domain: entityType.domain || '其他',
+      properties: entityType.properties || {},
+      color: entityType.color || '#1890ff',
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString()
+    };
+
+    this.schema.entityTypes[code] = newEntityType;
+    this.saveSchema();
+
+    return newEntityType;
+  }
+
+  /**
+   * 更新实体类型
+   */
+  updateEntityType(code, updates) {
+    if (!this.schema) {
+      throw new Error('Schema 未加载');
+    }
+
+    const entityType = this.schema.entityTypes[code];
+    if (!entityType) {
+      throw new Error(`实体类型不存在: ${code}`);
+    }
+
+    // 不允许修改 code
+    delete updates.code;
+
+    // 更新字段
+    Object.assign(entityType, updates, {
+      updatedAt: new Date().toISOString()
+    });
+
+    this.saveSchema();
+
+    return entityType;
+  }
+
+  /**
+   * 删除实体类型
+   */
+  deleteEntityType(code) {
+    if (!this.schema) {
+      throw new Error('Schema 未加载');
+    }
+
+    if (!this.schema.entityTypes[code]) {
+      throw new Error(`实体类型不存在: ${code}`);
+    }
+
+    // 检查是否有节点使用此类型
+    const nodesUsingType = this.nodes.filter(n => n.type === code);
+    if (nodesUsingType.length > 0) {
+      throw new Error(`无法删除: 有 ${nodesUsingType.length} 个节点正在使用此实体类型`);
+    }
+
+    // 检查是否有关系类型引用此实体类型
+    const relationsReferencing = Object.values(this.schema.relationTypes || {}).filter(
+      r => r.sourceType === code || r.targetType === code
+    );
+    if (relationsReferencing.length > 0) {
+      throw new Error(`无法删除: 有 ${relationsReferencing.length} 个关系类型引用此实体类型`);
+    }
+
+    delete this.schema.entityTypes[code];
+    this.saveSchema();
+
+    return { code, deleted: true };
+  }
+
+  // ==================== Schema Relation Type CRUD ====================
+
+  /**
+   * 获取所有关系类型
+   */
+  getRelationTypes() {
+    return this.schema?.relationTypes || {};
+  }
+
+  /**
+   * 根据code获取关系类型
+   */
+  getRelationTypeByCode(code) {
+    return this.schema?.relationTypes?.[code];
+  }
+
+  /**
+   * 创建关系类型
+   */
+  createRelationType(relationType) {
+    if (!this.schema) {
+      throw new Error('Schema 未加载');
+    }
+
+    const { code } = relationType;
+    if (!code) {
+      throw new Error('关系类型 code 不能为空');
+    }
+
+    // 检查是否已存在
+    if (this.schema.relationTypes[code]) {
+      throw new Error(`关系类型已存在: ${code}`);
+    }
+
+    // 验证必填字段
+    if (!relationType.label) {
+      throw new Error('关系类型 label 不能为空');
+    }
+    if (!relationType.sourceType) {
+      throw new Error('关系类型 sourceType 不能为空');
+    }
+    if (!relationType.targetType) {
+      throw new Error('关系类型 targetType 不能为空');
+    }
+
+    // 验证 sourceType 和 targetType 是否存在
+    if (!this.schema.entityTypes[relationType.sourceType]) {
+      throw new Error(`源实体类型不存在: ${relationType.sourceType}`);
+    }
+    if (!this.schema.entityTypes[relationType.targetType]) {
+      throw new Error(`目标实体类型不存在: ${relationType.targetType}`);
+    }
+
+    // 设置默认值
+    const newRelationType = {
+      code,
+      label: relationType.label,
+      description: relationType.description || '',
+      sourceType: relationType.sourceType,
+      targetType: relationType.targetType,
+      properties: relationType.properties || {},
+      directed: relationType.directed !== false, // 默认有向
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString()
+    };
+
+    this.schema.relationTypes[code] = newRelationType;
+    this.saveSchema();
+
+    return newRelationType;
+  }
+
+  /**
+   * 更新关系类型
+   */
+  updateRelationType(code, updates) {
+    if (!this.schema) {
+      throw new Error('Schema 未加载');
+    }
+
+    const relationType = this.schema.relationTypes[code];
+    if (!relationType) {
+      throw new Error(`关系类型不存在: ${code}`);
+    }
+
+    // 不允许修改 code
+    delete updates.code;
+
+    // 如果修改了 sourceType 或 targetType，需要验证
+    if (updates.sourceType && !this.schema.entityTypes[updates.sourceType]) {
+      throw new Error(`源实体类型不存在: ${updates.sourceType}`);
+    }
+    if (updates.targetType && !this.schema.entityTypes[updates.targetType]) {
+      throw new Error(`目标实体类型不存在: ${updates.targetType}`);
+    }
+
+    // 更新字段
+    Object.assign(relationType, updates, {
+      updatedAt: new Date().toISOString()
+    });
+
+    this.saveSchema();
+
+    return relationType;
+  }
+
+  /**
+   * 删除关系类型
+   */
+  deleteRelationType(code) {
+    if (!this.schema) {
+      throw new Error('Schema 未加载');
+    }
+
+    if (!this.schema.relationTypes[code]) {
+      throw new Error(`关系类型不存在: ${code}`);
+    }
+
+    // 检查是否有边使用此关系类型
+    const edgesUsingType = this.edges.filter(e => e.type === code);
+    if (edgesUsingType.length > 0) {
+      throw new Error(`无法删除: 有 ${edgesUsingType.length} 条边正在使用此关系类型`);
+    }
+
+    delete this.schema.relationTypes[code];
+    this.saveSchema();
+
+    return { code, deleted: true };
+  }
+
+  /**
+   * 保存 Schema 到文件
+   */
+  saveSchema() {
+    try {
+      // 优先保存到 V2 路径
+      const schemaV2Path = path.join(this.dataPath, 'schemaVersions', 'core-domain-schema-v2.json');
+      const schemaPath = path.join(this.dataPath, 'schemaVersions', 'schema.json');
+      
+      const targetPath = fs.existsSync(schemaV2Path) ? schemaV2Path : schemaPath;
+      
+      // 更新 schema 元数据
+      this.schema.lastUpdate = new Date().toISOString().split('T')[0];
+      if (!this.schema.changelog) {
+        this.schema.changelog = {};
+      }
+      
+      fs.writeFileSync(targetPath, JSON.stringify(this.schema, null, 2), 'utf8');
+      console.log('✅ Schema 保存成功');
+      return true;
+    } catch (error) {
+      console.error('❌ Schema 保存失败:', error);
+      throw error;
+    }
+  }
 }
 
 // 单例模式

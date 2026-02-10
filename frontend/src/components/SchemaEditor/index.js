@@ -20,12 +20,20 @@ import {
   ArrowRightOutlined,
   DragOutlined,
   DeleteOutlined,
+  EditOutlined,
 } from '@ant-design/icons';
 import EntityTypeNode from './EntityTypeNode';
 import RelationTypeEdge from './RelationTypeEdge';
 import PropertyPanel from './PropertyPanel';
 import SchemaToolbar from './SchemaToolbar';
-import { fetchSchema, saveSchema } from '../../services/api';
+import EntityTypeEditor from './EntityTypeEditor';
+import { 
+  fetchSchema, 
+  saveSchema, 
+  createEntityType, 
+  updateEntityType, 
+  deleteEntityType 
+} from '../../services/api';
 import { autoLayout, calculateSmartLayout, calculateHierarchicalLayout, calculateClusterLayout } from './layoutUtils';
 import './SchemaEditor.css';
 
@@ -84,6 +92,10 @@ const SchemaEditor = ({ graphId }) => {
 
   // 当前布局类型
   const [layoutType, setLayoutType] = useState('auto');
+  
+  // Entity Type Editor 状态
+  const [entityEditorVisible, setEntityEditorVisible] = useState(false);
+  const [editingEntityType, setEditingEntityType] = useState(null);
 
   // 将 Schema 转换为 React Flow 节点和边
   const convertSchemaToFlow = (schemaData) => {
@@ -276,6 +288,55 @@ const SchemaEditor = ({ graphId }) => {
     }
   };
 
+  // 打开 Entity Type Editor
+  const handleOpenEntityEditor = (entityType = null) => {
+    setEditingEntityType(entityType);
+    setEntityEditorVisible(true);
+  };
+
+  // 关闭 Entity Type Editor
+  const handleCloseEntityEditor = () => {
+    setEntityEditorVisible(false);
+    setEditingEntityType(null);
+  };
+
+  // 保存 Entity Type（创建或更新）
+  const handleSaveEntityType = async (entityData) => {
+    try {
+      if (editingEntityType) {
+        // 更新
+        await updateEntityType(editingEntityType.code, entityData);
+        message.success('实体类型更新成功');
+      } else {
+        // 创建
+        await createEntityType(entityData);
+        message.success('实体类型创建成功');
+      }
+      
+      // 重新加载 Schema
+      await loadSchema();
+      handleCloseEntityEditor();
+    } catch (error) {
+      message.error('保存失败: ' + error.message);
+      throw error;
+    }
+  };
+
+  // 删除 Entity Type
+  const handleDeleteEntityType = async (code) => {
+    try {
+      await deleteEntityType(code);
+      message.success('实体类型删除成功');
+      
+      // 重新加载 Schema
+      await loadSchema();
+      handleCloseEntityEditor();
+      setSelectedItem(null);
+    } catch (error) {
+      message.error('删除失败: ' + error.message);
+    }
+  };
+
   // 选中关系类型
   const handleSelectRelation = (id) => {
     const relation = schema.relationTypes[id];
@@ -371,6 +432,15 @@ const SchemaEditor = ({ graphId }) => {
     handleSelectEntity(entityId);
   };
 
+  // 节点双击事件 - 打开编辑器
+  const onNodeDoubleClick = (_, node) => {
+    const entityId = node.id.replace('entity-', '');
+    const entity = schema.entityTypes[entityId];
+    if (entity) {
+      handleOpenEntityEditor(entity);
+    }
+  };
+
   // 边选中事件
   const onEdgeClick = (_, edge) => {
     const relationId = edge.id.replace('relation-', '');
@@ -411,7 +481,7 @@ const SchemaEditor = ({ graphId }) => {
                 <Button
                   type={editorMode === 'addEntity' ? 'primary' : 'default'}
                   icon={<PlusOutlined />}
-                  onClick={() => setEditorMode('addEntity')}
+                  onClick={() => handleOpenEntityEditor()}
                   block
                 />
               </Tooltip>
@@ -458,6 +528,7 @@ const SchemaEditor = ({ graphId }) => {
             onConnect={onConnect}
             onPaneClick={onPaneClick}
             onNodeClick={onNodeClick}
+            onNodeDoubleClick={onNodeDoubleClick}
             onEdgeClick={onEdgeClick}
             nodeTypes={nodeTypes}
             edgeTypes={edgeTypes}
@@ -501,8 +572,32 @@ const SchemaEditor = ({ graphId }) => {
             onDeleteEntity={handleDeleteEntity}
             onDeleteRelation={handleDeleteRelation}
           />
+          
+          {/* 编辑按钮 */}
+          {selectedItem?.type === 'entity' && (
+            <Card size="small" style={{ marginTop: 16 }}>
+              <Button
+                type="primary"
+                icon={<EditOutlined />}
+                block
+                onClick={() => handleOpenEntityEditor(selectedItem.data)}
+              >
+                编辑实体类型
+              </Button>
+            </Card>
+          )}
         </Sider>
       </Layout>
+      
+      {/* Entity Type Editor 对话框 */}
+      <EntityTypeEditor
+        visible={entityEditorVisible}
+        entityType={editingEntityType}
+        onCancel={handleCloseEntityEditor}
+        onSave={handleSaveEntityType}
+        onDelete={editingEntityType ? handleDeleteEntityType : null}
+        existingDomains={Object.values(schema.entityTypes).map(e => e.domain).filter(Boolean)}
+      />
     </Layout>
   );
 };

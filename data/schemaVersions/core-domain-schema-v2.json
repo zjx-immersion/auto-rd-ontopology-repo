@@ -2,7 +2,7 @@
   "version": "2.0.0",
   "name": "完整领域模型本体 V2.0",
   "description": "基于整车软件研发端到端协同平台的完整领域模型，包含10个领域、47个核心实体",
-  "lastUpdate": "2026-01-17",
+  "lastUpdate": "2026-02-10",
   "baseSchema": "core-domain-schema.json",
   "changelog": {
     "2.0.0": {
@@ -1640,6 +1640,246 @@
         }
       },
       "color": "#f6ffed"
+    },
+    "TestEntity_1770741266341": {
+      "code": "TestEntity_1770741266341",
+      "label": "测试实体(已更新)",
+      "description": "更新后的描述",
+      "domain": "测试域",
+      "properties": {
+        "name": {
+          "type": "String",
+          "required": true,
+          "description": "名称"
+        },
+        "status": {
+          "type": "Enum",
+          "values": [
+            "ACTIVE",
+            "INACTIVE"
+          ],
+          "default": "ACTIVE"
+        }
+      },
+      "color": "#52c41a",
+      "createdAt": "2026-02-10T16:34:26.375Z",
+      "updatedAt": "2026-02-10T16:34:26.406Z"
+    },
+    "TestEntity_1770741266342": {
+      "code": "TestEntity_1770741266342",
+      "label": "测试实体",
+      "description": "用于 API 测试的实体类型",
+      "domain": "测试域",
+      "properties": {
+        "name": {
+          "type": "String",
+          "required": true,
+          "description": "名称"
+        },
+        "status": {
+          "type": "Enum",
+          "values": [
+            "ACTIVE",
+            "INACTIVE"
+          ],
+          "default": "ACTIVE"
+        }
+      },
+      "color": "#ff4d4f",
+      "createdAt": "2026-02-10T16:34:26.397Z",
+      "updatedAt": "2026-02-10T16:34:26.397Z"
+    },
+    "ConsistencyTest_1770741267048": {
+      "code": "ConsistencyTest_1770741267048",
+      "label": "测试实体",
+      "description": "用于 API 测试的实体类型",
+      "domain": "测试域",
+      "properties": {
+        "name": {
+          "type": "String",
+          "required": true,
+          "description": "名称"
+        },
+        "status": {
+          "type": "Enum",
+          "values": [
+            "ACTIVE",
+            "INACTIVE"
+          ],
+          "default": "ACTIVE"
+        }
+      },
+      "color": "#ff4d4f",
+      "createdAt": "2026-02-10T16:34:27.165Z",
+      "updatedAt": "2026-02-10T16:34:27.165Z"
+    },
+    "TestEntity_1770741288372": {
+      "code": "TestEntity_1770741288372",
+      "label": "测试实体",
+      "description": "用于 API 测试的实体类型",
+      "domain": "测试域",
+      "properties": {
+        "name": {
+          "type": "String",
+          "required": true,
+          "description": "名称"
+        },
+        "status": {
+          "type": "Enum",
+          "values": [
+            "ACTIVE",
+            "INACTIVE"
+          ],
+          "default": "ACTIVE"
+        }
+      },
+      "color": "#ff4d4f",
+      "createdAt": "2026-02-10T16:34:48.424Z",
+      "updatedAt": "2026-02-10T16:34:48.424Z"
+    },
+    "TestEntity_1770741288370": {
+      "code": "TestEntity_1770741288370",
+      "label": "测试实体",
+      "description": "用于 API 测试的实体类型",
+      "domain": "测试域",
+      "properties": {
+        "name": {
+          "type": "String",
+          "required": true,
+          "description": "名称"
+        },
+        "status": {
+          "type": "Enum",
+          "values": [
+            "ACTIVE",
+            "INACTIVE"
+          ],
+          "default": "ACTIVE"
+        }
+      },
+      "color": "#ff4d4f",
+      "createdAt": "2026-02-10T16:34:48.440Z",
+      "updatedAt": "2026-02-10T16:34:48.440Z"
+    },
+    "TestEntity_1770741288382": {
+      "code": "TestEntity_1770741288382",
+      "label": "测试实体(已更新)",
+      "description": "更新后的描述",
+      "domain": "测试域",
+      "properties": {
+        "name": {
+          "type": "String",
+          "required": true,
+          "description": "名称"
+        },
+        "status": {
+          "type": "Enum",
+          "values": [
+            "ACTIVE",
+            "INACTIVE"
+          ],
+          "default": "ACTIVE"
+        }
+      },
+      "color": "#52c41a",
+      "createdAt": "2026-02-10T16:34:48.451Z",
+      "updatedAt": "2026-02-10T16:34:48.457Z"
+    },
+    "TestEntity_1770741466475": {
+      "code": "TestEntity_1770741466475",
+      "label": "测试实体",
+      "description": "用于 API 测试的实体类型",
+      "domain": "测试域",
+      "properties": {
+        "name": {
+          "type": "String",
+          "required": true,
+          "description": "名称"
+        },
+        "status": {
+          "type": "Enum",
+          "values": [
+            "ACTIVE",
+            "INACTIVE"
+          ],
+          "default": "ACTIVE"
+        }
+      },
+      "color": "#ff4d4f",
+      "createdAt": "2026-02-10T16:37:46.547Z",
+      "updatedAt": "2026-02-10T16:37:46.547Z"
+    },
+    "TestEntity_1770741466490": {
+      "code": "TestEntity_1770741466490",
+      "label": "测试实体(已更新)",
+      "description": "更新后的描述",
+      "domain": "测试域",
+      "properties": {
+        "name": {
+          "type": "String",
+          "required": true,
+          "description": "名称"
+        },
+        "status": {
+          "type": "Enum",
+          "values": [
+            "ACTIVE",
+            "INACTIVE"
+          ],
+          "default": "ACTIVE"
+        }
+      },
+      "color": "#52c41a",
+      "createdAt": "2026-02-10T16:37:46.551Z",
+      "updatedAt": "2026-02-10T16:37:46.560Z"
+    },
+    "TestEntity_1770741583302": {
+      "code": "TestEntity_1770741583302",
+      "label": "测试实体",
+      "description": "用于 API 测试的实体类型",
+      "domain": "测试域",
+      "properties": {
+        "name": {
+          "type": "String",
+          "required": true,
+          "description": "名称"
+        },
+        "status": {
+          "type": "Enum",
+          "values": [
+            "ACTIVE",
+            "INACTIVE"
+          ],
+          "default": "ACTIVE"
+        }
+      },
+      "color": "#ff4d4f",
+      "createdAt": "2026-02-10T16:39:43.332Z",
+      "updatedAt": "2026-02-10T16:39:43.332Z"
+    },
+    "TestEntity_1770741583299": {
+      "code": "TestEntity_1770741583299",
+      "label": "测试实体(已更新)",
+      "description": "更新后的描述",
+      "domain": "测试域",
+      "properties": {
+        "name": {
+          "type": "String",
+          "required": true,
+          "description": "名称"
+        },
+        "status": {
+          "type": "Enum",
+          "values": [
+            "ACTIVE",
+            "INACTIVE"
+          ],
+          "default": "ACTIVE"
+        }
+      },
+      "color": "#52c41a",
+      "createdAt": "2026-02-10T16:39:43.358Z",
+      "updatedAt": "2026-02-10T16:39:43.363Z"
     }
   },
   "relationTypes": {
@@ -3359,6 +3599,134 @@
           "description": "创建时间"
         }
       }
+    },
+    "TestRelation_1770741266349": {
+      "code": "TestRelation_1770741266349",
+      "label": "测试关系",
+      "description": "用于 API 测试的关系类型",
+      "sourceType": "Vehicle",
+      "targetType": "DomainProject",
+      "properties": {
+        "weight": {
+          "type": "Number",
+          "default": 1
+        }
+      },
+      "directed": true,
+      "createdAt": "2026-02-10T16:34:26.425Z",
+      "updatedAt": "2026-02-10T16:34:26.425Z"
+    },
+    "UpdateTest_1770741266430": {
+      "code": "UpdateTest_1770741266430",
+      "label": "测试关系(已更新)",
+      "description": "更新后的关系描述",
+      "sourceType": "Vehicle",
+      "targetType": "DomainProject",
+      "properties": {
+        "weight": {
+          "type": "Number",
+          "default": 1
+        }
+      },
+      "directed": true,
+      "createdAt": "2026-02-10T16:34:26.431Z",
+      "updatedAt": "2026-02-10T16:34:26.434Z"
+    },
+    "TestRelation_1770741288370": {
+      "code": "TestRelation_1770741288370",
+      "label": "测试关系",
+      "description": "用于 API 测试的关系类型",
+      "sourceType": "Vehicle",
+      "targetType": "DomainProject",
+      "properties": {
+        "weight": {
+          "type": "Number",
+          "default": 1
+        }
+      },
+      "directed": true,
+      "createdAt": "2026-02-10T16:34:48.478Z",
+      "updatedAt": "2026-02-10T16:34:48.478Z"
+    },
+    "UpdateTest_1770741288483": {
+      "code": "UpdateTest_1770741288483",
+      "label": "测试关系(已更新)",
+      "description": "更新后的关系描述",
+      "sourceType": "Vehicle",
+      "targetType": "DomainProject",
+      "properties": {
+        "weight": {
+          "type": "Number",
+          "default": 1
+        }
+      },
+      "directed": true,
+      "createdAt": "2026-02-10T16:34:48.485Z",
+      "updatedAt": "2026-02-10T16:34:48.488Z"
+    },
+    "TestRelation_1770741466490": {
+      "code": "TestRelation_1770741466490",
+      "label": "测试关系",
+      "description": "用于 API 测试的关系类型",
+      "sourceType": "Vehicle",
+      "targetType": "DomainProject",
+      "properties": {
+        "weight": {
+          "type": "Number",
+          "default": 1
+        }
+      },
+      "directed": true,
+      "createdAt": "2026-02-10T16:37:46.602Z",
+      "updatedAt": "2026-02-10T16:37:46.602Z"
+    },
+    "UpdateTest_1770741466610": {
+      "code": "UpdateTest_1770741466610",
+      "label": "测试关系(已更新)",
+      "description": "更新后的关系描述",
+      "sourceType": "Vehicle",
+      "targetType": "DomainProject",
+      "properties": {
+        "weight": {
+          "type": "Number",
+          "default": 1
+        }
+      },
+      "directed": true,
+      "createdAt": "2026-02-10T16:37:46.612Z",
+      "updatedAt": "2026-02-10T16:37:46.617Z"
+    },
+    "TestRelation_1770741583307": {
+      "code": "TestRelation_1770741583307",
+      "label": "测试关系",
+      "description": "用于 API 测试的关系类型",
+      "sourceType": "Vehicle",
+      "targetType": "DomainProject",
+      "properties": {
+        "weight": {
+          "type": "Number",
+          "default": 1
+        }
+      },
+      "directed": true,
+      "createdAt": "2026-02-10T16:39:43.380Z",
+      "updatedAt": "2026-02-10T16:39:43.380Z"
+    },
+    "UpdateTest_1770741583387": {
+      "code": "UpdateTest_1770741583387",
+      "label": "测试关系(已更新)",
+      "description": "更新后的关系描述",
+      "sourceType": "Vehicle",
+      "targetType": "DomainProject",
+      "properties": {
+        "weight": {
+          "type": "Number",
+          "default": 1
+        }
+      },
+      "directed": true,
+      "createdAt": "2026-02-10T16:39:43.388Z",
+      "updatedAt": "2026-02-10T16:39:43.392Z"
     }
   }
 }
