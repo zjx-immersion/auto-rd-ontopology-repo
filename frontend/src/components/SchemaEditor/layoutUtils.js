@@ -109,14 +109,14 @@ export function calculateHierarchicalLayout(nodes, edges, options = {}) {
   const {
     width = 1200,
     height = 800,
-    levelHeight = 180,
-    nodeWidth = 200
+    levelHeight = 150,
+    nodeWidth = 180
   } = options;
 
   if (nodes.length === 0) return nodes;
 
   // 构建层次结构
-  const levels = new Map(); // level -> nodes
+  const levels = []; // 二维数组，每个元素是一层的节点
   const visited = new Set();
 
   // 找出根节点（没有父类型的）
@@ -125,63 +125,71 @@ export function calculateHierarchicalLayout(nodes, edges, options = {}) {
     return !entityType?.parentType;
   });
 
-  // BFS 分层
-  let currentLevel = 0;
-  let currentNodes = rootNodes;
+  if (rootNodes.length === 0) {
+    // 如果没有根节点，所有节点放一层
+    levels.push(nodes);
+  } else {
+    // BFS 分层
+    let currentNodes = rootNodes;
+    let maxIterations = 10; // 防止无限循环
 
-  while (currentNodes.length > 0) {
-    levels.set(currentLevel, currentNodes);
-    currentNodes.forEach(n => visited.add(n.id));
+    while (currentNodes.length > 0 && maxIterations > 0) {
+      levels.push([...currentNodes]);
+      currentNodes.forEach(n => visited.add(n.id));
 
-    // 找到下一层的节点（当前层的子类型）
-    const nextLevelNodes = [];
-    currentNodes.forEach(node => {
-      const children = nodes.filter(n => {
-        const parentType = n.data?.entityType?.parentType;
-        return parentType === node.data?.entityType?.id;
+      // 找到下一层的节点（当前层的子类型）
+      const nextLevelNodes = [];
+      currentNodes.forEach(node => {
+        const nodeId = node.data?.entityType?.id;
+        if (!nodeId) return;
+        
+        const children = nodes.filter(n => {
+          const parentType = n.data?.entityType?.parentType;
+          return parentType === nodeId && !visited.has(n.id);
+        });
+        nextLevelNodes.push(...children);
       });
-      nextLevelNodes.push(...children);
-    });
 
-    currentNodes = nextLevelNodes;
-    currentLevel++;
-  }
+      currentNodes = nextLevelNodes;
+      maxIterations--;
+    }
 
-  // 为未分层的节点分配层级（孤立节点放最下层）
-  const unvisitedNodes = nodes.filter(n => !visited.has(n.id));
-  if (unvisitedNodes.length > 0) {
-    levels.set(currentLevel, unvisitedNodes);
+    // 为未分层的节点分配层级（孤立节点放最后一层）
+    const unvisitedNodes = nodes.filter(n => !visited.has(n.id));
+    if (unvisitedNodes.length > 0) {
+      levels.push(unvisitedNodes);
+    }
   }
 
   // 计算位置
-  const positionedNodes = nodes.map(node => {
-    // 找到节点所在层级
+  return nodes.map(node => {
+    // 找到节点所在层级和索引
     let nodeLevel = 0;
     let indexInLevel = 0;
     
-    for (const [level, levelNodes] of levels) {
-      const idx = levelNodes.findIndex(n => n.id === node.id);
+    for (let i = 0; i < levels.length; i++) {
+      const idx = levels[i].findIndex(n => n.id === node.id);
       if (idx !== -1) {
-        nodeLevel = level;
+        nodeLevel = i;
         indexInLevel = idx;
         break;
       }
     }
 
-    const levelNodeCount = levels.get(nodeLevel)?.length || 1;
-    const levelWidth = levelNodeCount * nodeWidth;
-    const startX = (width - levelWidth) / 2 + nodeWidth / 2;
+    const levelNodeCount = levels[nodeLevel]?.length || 1;
+    const availableWidth = width - 200; // 边距
+    const actualNodeWidth = Math.min(nodeWidth, availableWidth / Math.max(levelNodeCount, 1));
+    const levelTotalWidth = levelNodeCount * actualNodeWidth;
+    const startX = (width - levelTotalWidth) / 2 + actualNodeWidth / 2;
 
     return {
       ...node,
       position: {
-        x: startX + indexInLevel * nodeWidth,
-        y: 100 + nodeLevel * levelHeight
+        x: startX + indexInLevel * actualNodeWidth,
+        y: 80 + nodeLevel * levelHeight
       }
     };
   });
-
-  return positionedNodes;
 }
 
 /**
