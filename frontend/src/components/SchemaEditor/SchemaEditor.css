@@ -1,0 +1,273 @@
+/* Schema 编辑器样式 */
+
+.schema-editor-layout {
+  height: 100vh;
+  background: #f5f5f5;
+}
+
+.schema-editor-content {
+  display: flex;
+  height: calc(100vh - 64px);
+}
+
+/* 工具栏样式 */
+.schema-toolbar {
+  background: #fff;
+  border-bottom: 1px solid #e8e8e8;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  height: 64px;
+  line-height: 64px;
+}
+
+.toolbar-left,
+.toolbar-center,
+.toolbar-right {
+  display: flex;
+  align-items: center;
+}
+
+.toolbar-title {
+  font-size: 18px;
+  font-weight: 500;
+  color: #262626;
+}
+
+/* 侧边栏样式 */
+.schema-editor-sider {
+  background: #fff;
+  border-right: 1px solid #e8e8e8;
+  padding: 16px 8px;
+}
+
+.tool-panel {
+  border: none;
+  box-shadow: none;
+}
+
+.tool-panel .ant-card-body {
+  padding: 8px;
+}
+
+.tool-panel .ant-btn {
+  height: 40px;
+  width: 40px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tool-panel .divider {
+  height: 1px;
+  background: #e8e8e8;
+  margin: 12px 0;
+}
+
+/* 画布样式 */
+.schema-editor-canvas {
+  flex: 1;
+  position: relative;
+  background: #fafafa;
+}
+
+.schema-editor-canvas .react-flow {
+  border-radius: 4px;
+}
+
+/* 模式提示 */
+.mode-hint {
+  z-index: 1000;
+}
+
+.hint-card {
+  background: #1890ff;
+  color: #fff;
+  border: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.hint-card .ant-card-body {
+  padding: 8px 16px;
+}
+
+/* 实体类型节点样式 */
+.entity-type-node {
+  position: relative;
+}
+
+.entity-type-node.selected .entity-card {
+  box-shadow: 0 0 0 3px #ff4d4f, 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.entity-card {
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.entity-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+}
+
+.entity-card:hover .more-btn {
+  opacity: 1;
+}
+
+.entity-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.entity-label {
+  font-weight: 500;
+  font-size: 14px;
+  max-width: 100px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.entity-description {
+  font-size: 12px;
+  color: #8c8c8c;
+  margin-bottom: 8px;
+  max-width: 180px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.entity-footer {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.more-btn {
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+/* 连接点样式 */
+.node-handle {
+  width: 8px !important;
+  height: 8px !important;
+  background: #fff;
+  border: 2px solid #1890ff;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.entity-type-node:hover .node-handle {
+  opacity: 1;
+}
+
+/* 关系边样式 */
+.relation-edge {
+  transition: all 0.2s;
+}
+
+.relation-edge.selected {
+  filter: drop-shadow(0 0 3px #ff4d4f);
+}
+
+/* 关系标签样式 */
+.relation-label {
+  background: #fff;
+  padding: 2px 6px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s;
+}
+
+.relation-label.selected {
+  box-shadow: 0 0 0 2px #ff4d4f, 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.relation-tag {
+  cursor: pointer;
+  user-select: none;
+}
+
+.edge-more-btn {
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.relation-label:hover .edge-more-btn {
+  opacity: 1;
+}
+
+/* 属性面板样式 */
+.property-panel-sider {
+  background: #fff;
+  border-left: 1px solid #e8e8e8;
+  overflow-y: auto;
+}
+
+.property-panel {
+  height: 100%;
+  border: none;
+  box-shadow: none;
+}
+
+.property-panel .ant-card-head {
+  border-bottom: 1px solid #f0f0f0;
+  padding: 12px 16px;
+}
+
+.property-panel .ant-card-body {
+  padding: 16px;
+  max-height: calc(100vh - 140px);
+  overflow-y: auto;
+}
+
+.panel-section {
+  margin-bottom: 16px;
+}
+
+.section-title {
+  font-size: 14px;
+  font-weight: 500;
+  color: #262626;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.property-detail {
+  padding: 8px;
+  background: #f5f5f5;
+  border-radius: 4px;
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.property-detail div {
+  color: #595959;
+}
+
+/* Minimap 样式 */
+.schema-minimap {
+  background: #fff;
+  border: 1px solid #e8e8e8;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+  .schema-editor-sider,
+  .property-panel-sider {
+    display: none;
+  }
+  
+  .toolbar-title {
+    font-size: 14px;
+  }
+}

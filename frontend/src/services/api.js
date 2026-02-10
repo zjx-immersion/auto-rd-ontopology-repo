@@ -234,4 +234,36 @@ export const getGraphStatistics = async (id) => {
   return response;
 };
 
+/**
+ * 保存 Schema 定义
+ * @param {string} graphId - 图谱ID（可选）
+ * @param {Object} schema - Schema 定义
+ */
+export const saveSchema = async (graphId, schema) => {
+  const response = await api.post('/schema/save', {
+    graphId,
+    schema,
+  });
+  return response;
+};
+
+/**
+ * 加载 Schema 定义
+ * @param {string} graphId - 图谱ID（可选）
+ */
+export const loadSchema = async (graphId) => {
+  const params = graphId ? { graphId } : {};
+  const response = await api.get('/schema/load', { params });
+  return response.data;
+};
+
+/**
+ * 验证 Schema 定义
+ * @param {Object} schema - Schema 定义
+ */
+export const validateSchema = async (schema) => {
+  const response = await api.post('/schema/validate', { schema });
+  return response;
+};
+
 export default api;
