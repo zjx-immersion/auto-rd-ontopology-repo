@@ -1,0 +1,150 @@
+{
+  "id": "automotive-ad",
+  "name": "智能驾驶研发体系模板",
+  "description": "适用于智能驾驶系统研发的 OAG 模板，包含需求、开发、测试、交付全链路",
+  "domain": "智能驾驶",
+  "schemaId": "core-domain-schema-v2",
+  "schemaVersion": "2.0.0",
+  "tags": ["汽车", "智能驾驶", "研发"],
+  "nodes": [
+    {
+      "id": "vehicle_001",
+      "type": "Vehicle",
+      "label": "{{vehicleName}}",
+      "data": {
+        "name": "{{vehicleName}}",
+        "model": "{{vehicleModel}}",
+        "description": "目标车型"
+      }
+    },
+    {
+      "id": "domain_ad",
+      "type": "DomainProject",
+      "label": "智能驾驶域",
+      "data": {
+        "name": "智能驾驶域",
+        "domain": "ADAS",
+        "description": "智能驾驶系统开发"
+      }
+    },
+    {
+      "id": "epic_perception",
+      "type": "Epic",
+      "label": "感知系统开发",
+      "data": {
+        "title": "感知系统开发",
+        "description": "实现多传感器融合感知能力",
+        "priority": "P0"
+      }
+    },
+    {
+      "id": "feature_camera",
+      "type": "FeatureRequirement",
+      "label": "摄像头感知功能",
+      "data": {
+        "name": "摄像头感知功能",
+        "description": "基于视觉的目标检测与跟踪"
+      }
+    },
+    {
+      "id": "ssts_detection",
+      "type": "SSTS",
+      "label": "目标检测 SSTS",
+      "data": {
+        "id": "SSTS-001",
+        "description": "目标检测系统技术规范"
+      }
+    },
+    {
+      "id": "module_perception",
+      "type": "ModuleAsset",
+      "label": "感知算法模块",
+      "data": {
+        "name": "感知算法模块",
+        "type": "Algorithm",
+        "version": "1.0.0"
+      }
+    },
+    {
+      "id": "task_impl",
+      "type": "Task",
+      "label": "算法实现任务",
+      "data": {
+        "title": "算法实现",
+        "status": "进行中"
+      }
+    },
+    {
+      "id": "test_case_001",
+      "type": "TestCase",
+      "label": "感知功能测试",
+      "data": {
+        "name": "感知功能测试",
+        "type": "功能测试"
+      }
+    },
+    {
+      "id": "artifact_release",
+      "type": "Artifact",
+      "label": "感知算法发布包",
+      "data": {
+        "name": "感知算法发布包",
+        "version": "v1.0.0"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "e1",
+      "source": "vehicle_001",
+      "target": "domain_ad",
+      "type": "contains"
+    },
+    {
+      "id": "e2",
+      "source": "domain_ad",
+      "target": "epic_perception",
+      "type": "implements"
+    },
+    {
+      "id": "e3",
+      "source": "epic_perception",
+      "target": "feature_camera",
+      "type": "decomposesTo"
+    },
+    {
+      "id": "e4",
+      "source": "feature_camera",
+      "target": "ssts_detection",
+      "type": "specifies"
+    },
+    {
+      "id": "e5",
+      "source": "ssts_detection",
+      "target": "module_perception",
+      "type": "implements"
+    },
+    {
+      "id": "e6",
+      "source": "module_perception",
+      "target": "task_impl",
+      "type": "assignedTo"
+    },
+    {
+      "id": "e7",
+      "source": "task_impl",
+      "target": "test_case_001",
+      "type": "validatedBy"
+    },
+    {
+      "id": "e8",
+      "source": "test_case_001",
+      "target": "artifact_release",
+      "type": "produces"
+    }
+  ],
+  "schemaSnapshot": {
+    "entityTypes": {},
+    "relationTypes": {}
+  }
+}

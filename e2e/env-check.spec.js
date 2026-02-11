@@ -25,13 +25,13 @@ test.describe('环境检查', () => {
   });
   
   test('前端服务可访问', async ({ page }) => {
-    await page.goto('http://localhost:8080');
+    await page.goto('http://localhost:6060');
     await expect(page).toHaveTitle(/本体图谱|知识图谱|Ontology/i);
     console.log('✅ 前端服务正常');
   });
   
   test('前端页面加载完成', async ({ page }) => {
-    await page.goto('http://localhost:8080');
+    await page.goto('http://localhost:6060');
     await page.waitForLoadState('networkidle');
     
     // 截图查看页面状态

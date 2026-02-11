@@ -11,7 +11,7 @@ test.describe('冒烟测试 - 核心流程 (适配版)', () => {
    */
   test('TC-01: 图谱列表页基础显示验证', async ({ page }) => {
     // 访问图谱列表页
-    await page.goto('http://localhost:8080/graphs');
+    await page.goto('http://localhost:6060/graphs');
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(3000);
     
@@ -43,7 +43,7 @@ test.describe('冒烟测试 - 核心流程 (适配版)', () => {
     const testGraphName = `Test-Graph-${Date.now()}`;
     
     // 访问列表页
-    await page.goto('http://localhost:8080/graphs');
+    await page.goto('http://localhost:6060/graphs');
     await page.waitForTimeout(3000);
     
     // 截图记录初始状态
@@ -161,7 +161,7 @@ test.describe('冒烟测试 - 核心流程 (适配版)', () => {
       const graphId = apiData.data.graphs[0].id;
       
       // 直接访问图谱详情页
-      await page.goto(`http://localhost:8080/graphs/${graphId}`);
+      await page.goto(`http://localhost:6060/graphs/${graphId}`);
       await page.waitForTimeout(3000);
       
       // 截图记录
@@ -193,7 +193,7 @@ test.describe('冒烟测试 - 核心流程 (适配版)', () => {
     const graphId = apiData.data.graphs[0].id;
     
     // 进入图谱详情页
-    await page.goto(`http://localhost:8080/graphs/${graphId}`);
+    await page.goto(`http://localhost:6060/graphs/${graphId}`);
     await page.waitForTimeout(3000);
     
     // 截图记录初始视图

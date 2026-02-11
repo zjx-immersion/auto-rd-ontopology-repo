@@ -43,7 +43,7 @@ test.describe('Schema 可视化编辑器', () => {
   
   test.beforeEach(async ({ page }) => {
     // 访问 Schema 编辑器
-    await page.goto('http://localhost:8080/schema-editor');
+    await page.goto('http://localhost:6060/schema-editor');
     await page.waitForLoadState('networkidle');
     
     // 等待编辑器加载完成
@@ -362,7 +362,7 @@ test.describe('Schema 可视化编辑器', () => {
     const graphId = apiData.data.graphs[0].id;
     
     // 访问关联图谱的 Schema 编辑器
-    await page.goto(`http://localhost:8080/schema-editor/${graphId}`);
+    await page.goto(`http://localhost:6060/schema-editor/${graphId}`);
     await page.waitForLoadState('networkidle');
     
     // 验证页面加载

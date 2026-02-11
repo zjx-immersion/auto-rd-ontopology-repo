@@ -91,7 +91,7 @@ npx playwright show-report
 
 | 配置项 | 默认值 | 说明 |
 |--------|--------|------|
-| baseURL | http://localhost:8080 | 前端地址 |
+| baseURL | http://localhost:6060 | 前端地址 |
 | backendURL | http://localhost:8090 | 后端地址 |
 | viewport | 1920x1080 | 视口大小 |
 | retries | 2 (CI) / 0 (本地) | 失败重试次数 |
@@ -194,7 +194,7 @@ jobs:
 确保前后端服务已启动:
 ```bash
 curl http://localhost:8090/health  # 检查后端
-curl http://localhost:8080         # 检查前端
+curl http://localhost:6060         # 检查前端
 ```
 
 ### Q2: 浏览器无法启动

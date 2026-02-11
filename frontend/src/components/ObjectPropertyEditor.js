@@ -191,7 +191,7 @@ const ObjectPropertyEditor = ({ visible, edge, schema, onClose, onSuccess }) => 
       onCancel={handleCancel}
       confirmLoading={loading}
       width={600}
-      destroyOnClose
+      destroyOnHidden
     >
       <div style={{ marginBottom: 16, color: '#8c8c8c', fontSize: '12px' }}>
         <div>源节点: {edge.source}</div>

@@ -522,7 +522,7 @@ const EntityTypeEditor = ({
           {isEdit ? '保存' : '创建'}
         </Button>,
       ]}
-      destroyOnClose
+      destroyOnHidden
     >
       <Form form={form} layout="vertical">
         <Tabs

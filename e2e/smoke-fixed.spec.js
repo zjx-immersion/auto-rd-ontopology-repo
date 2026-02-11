@@ -138,7 +138,7 @@ test.describe('冒烟测试 - 核心流程 (修复版)', () => {
       const graphId = apiData.data.graphs[0].id;
       
       // 进入图谱详情页
-      await page.goto(`http://localhost:8080/graphs/${graphId}`);
+      await page.goto(`http://localhost:6060/graphs/${graphId}`);
       await page.waitForTimeout(3000);
       
       // 截图记录
@@ -168,7 +168,7 @@ test.describe('冒烟测试 - 核心流程 (修复版)', () => {
     const graphId = apiData.data.graphs[0].id;
     
     // 进入详情页
-    await page.goto(`http://localhost:8080/graphs/${graphId}`);
+    await page.goto(`http://localhost:6060/graphs/${graphId}`);
     await page.waitForTimeout(3000);
     
     // 视图列表

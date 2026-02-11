@@ -120,7 +120,7 @@ const GraphViewPage = () => {
   if (loading) {
     return (
       <div className="graph-view-page loading-container">
-        <Spin size="large" tip="加载图谱中..." />
+        <Spin size="large" tip="加载图谱中..." fullscreen />
       </div>
     );
   }
@@ -159,14 +159,20 @@ const GraphViewPage = () => {
 
       {/* 面包屑 */}
       <div className="breadcrumb-wrapper">
-        <Breadcrumb>
-          <Breadcrumb.Item>
-            <Link to="/graphs">
-              <HomeOutlined /> 图谱列表
-            </Link>
-          </Breadcrumb.Item>
-          <Breadcrumb.Item>{currentGraph.name}</Breadcrumb.Item>
-        </Breadcrumb>
+        <Breadcrumb
+          items={[
+            {
+              title: (
+                <Link to="/graphs">
+                  <HomeOutlined /> 图谱列表
+                </Link>
+              )
+            },
+            {
+              title: currentGraph?.name
+            }
+          ]}
+        />
       </div>
 
       {/* 主内容区 */}

@@ -1,0 +1,105 @@
+{
+  "id": "general-project",
+  "name": "通用项目管理模板",
+  "description": "适用于一般软件项目的 OAG 模板，包含项目、需求、任务、交付等基本要素",
+  "domain": "通用",
+  "schemaId": "core-domain-schema-v2",
+  "schemaVersion": "2.0.0",
+  "tags": ["通用", "项目管理"],
+  "nodes": [
+    {
+      "id": "project_main",
+      "type": "DomainProject",
+      "label": "{{projectName}}",
+      "data": {
+        "name": "{{projectName}}",
+        "description": "{{projectDescription}}",
+        "manager": "{{projectManager}}"
+      }
+    },
+    {
+      "id": "epic_001",
+      "type": "Epic",
+      "label": "核心功能开发",
+      "data": {
+        "title": "核心功能开发",
+        "description": "项目核心功能实现",
+        "priority": "P0"
+      }
+    },
+    {
+      "id": "feature_001",
+      "type": "FeatureRequirement",
+      "label": "功能需求 1",
+      "data": {
+        "name": "功能需求 1",
+        "description": "详细功能描述"
+      }
+    },
+    {
+      "id": "work_item_001",
+      "type": "WorkItem",
+      "label": "开发工作项",
+      "data": {
+        "title": "开发工作项",
+        "type": "开发",
+        "status": "待开始"
+      }
+    },
+    {
+      "id": "task_001",
+      "type": "Task",
+      "label": "具体任务",
+      "data": {
+        "title": "具体任务",
+        "assignee": "开发人员",
+        "status": "待开始"
+      }
+    },
+    {
+      "id": "milestone_001",
+      "type": "ProjectMilestone",
+      "label": "第一阶段里程碑",
+      "data": {
+        "name": "第一阶段里程碑",
+        "date": "{{milestoneDate}}"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "e1",
+      "source": "project_main",
+      "target": "epic_001",
+      "type": "contains"
+    },
+    {
+      "id": "e2",
+      "source": "epic_001",
+      "target": "feature_001",
+      "type": "decomposesTo"
+    },
+    {
+      "id": "e3",
+      "source": "feature_001",
+      "target": "work_item_001",
+      "type": "implements"
+    },
+    {
+      "id": "e4",
+      "source": "work_item_001",
+      "target": "task_001",
+      "type": "breaksDownTo"
+    },
+    {
+      "id": "e5",
+      "source": "milestone_001",
+      "target": "epic_001",
+      "type": "delivers"
+    }
+  ],
+  "schemaSnapshot": {
+    "entityTypes": {},
+    "relationTypes": {}
+  }
+}

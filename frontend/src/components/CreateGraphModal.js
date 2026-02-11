@@ -459,7 +459,7 @@ const CreateGraphModal = ({ visible, onCancel, onSuccess }) => {
       width={800}
       footer={null}
       onCancel={handleCancel}
-      destroyOnClose
+      destroyOnHidden
       className="create-graph-modal"
     >
       <Steps current={currentStep} style={{ marginBottom: 32 }}>

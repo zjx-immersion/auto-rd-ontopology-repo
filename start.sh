@@ -2,7 +2,7 @@
 
 # 知识图谱系统一键启动脚本
 # 后端端口: 8090
-# 前端端口: 8080 (开发服务器)
+# 前端端口: 6060 (开发服务器)
 
 set -e
 
@@ -41,9 +41,9 @@ if lsof -Pi :8090 -sTCP:LISTEN -t >/dev/null 2>&1 ; then
     sleep 2
 fi
 
-if lsof -Pi :8080 -sTCP:LISTEN -t >/dev/null 2>&1 ; then
-    echo -e "${YELLOW}⚠️  端口 8080 已被占用，尝试停止...${NC}"
-    lsof -ti:8080 | xargs kill -9 2>/dev/null || true
+if lsof -Pi :6060 -sTCP:LISTEN -t >/dev/null 2>&1 ; then
+    echo -e "${YELLOW}⚠️  端口 6060 已被占用，尝试停止...${NC}"
+    lsof -ti:6060 | xargs kill -9 2>/dev/null || true
     sleep 2
 fi
 echo -e "${GREEN}✅ 端口检查完成${NC}"
@@ -91,9 +91,9 @@ if ! ps -p $BACKEND_PID > /dev/null 2>&1; then
 fi
 
 # 启动前端服务
-echo -e "\n${YELLOW}[6/6] 启动前端服务 (端口: 8080)...${NC}"
+echo -e "\n${YELLOW}[6/6] 启动前端服务 (端口: 6060)...${NC}"
 cd "$PROJECT_ROOT/frontend"
-PORT=8080 nohup npm start > "$LOG_DIR/frontend.log" 2>&1 &
+PORT=6060 nohup npm start > "$LOG_DIR/frontend.log" 2>&1 &
 FRONTEND_PID=$!
 echo $FRONTEND_PID > "$LOG_DIR/frontend.pid"
 echo -e "${GREEN}✅ 前端服务已启动 (PID: $FRONTEND_PID)${NC}"
@@ -111,7 +111,7 @@ echo -e "${NC}"
 
 echo -e "${BLUE}📊 服务信息:${NC}"
 echo "  后端服务: http://localhost:8090"
-echo "  前端应用: http://localhost:8080"
+echo "  前端应用: http://localhost:6060"
 echo "  API文档:  http://localhost:8090/api/v1"
 echo "  健康检查: http://localhost:8090/health"
 echo ""
@@ -138,11 +138,11 @@ sleep 5
 
 # 打开浏览器
 if command -v open &> /dev/null; then
-    open http://localhost:8080
+    open http://localhost:6060
 elif command -v xdg-open &> /dev/null; then
-    xdg-open http://localhost:8080
+    xdg-open http://localhost:6060
 else
-    echo "请手动打开浏览器访问: http://localhost:8080"
+    echo "请手动打开浏览器访问: http://localhost:6060"
 fi
 
 echo -e "${GREEN}🚀 系统启动完成！${NC}"

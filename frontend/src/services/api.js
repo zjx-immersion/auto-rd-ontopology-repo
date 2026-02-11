@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // 临时使用完整后端URL，解决代理问题
-const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:3001/api/v1';
+const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:8090/api/v1';
 
 const api = axios.create({
   baseURL: API_BASE_URL,
@@ -358,6 +358,169 @@ export const updateRelationType = async (code, updates) => {
 export const deleteRelationType = async (code) => {
   const response = await api.delete(`/graph/schema/relation-types/${code}`);
   return response.data;
+};
+
+// ==================== OAG (Ontology Asset Graph) API ====================
+
+/**
+ * 获取 OAG 列表
+ */
+export const getOAGList = async () => {
+  const response = await api.get('/oag');
+  return response;
+};
+
+/**
+ * 获取 OAG 详情
+ * @param {string} oagId - OAG ID
+ */
+export const getOAGById = async (oagId) => {
+  const response = await api.get(`/oag/${oagId}`);
+  return response;
+};
+
+/**
+ * 创建 OAG 实例
+ * @param {Object} data - OAG 数据
+ */
+export const createOAG = async (data) => {
+  const response = await api.post('/oag', data);
+  return response;
+};
+
+/**
+ * 更新 OAG
+ * @param {string} oagId - OAG ID
+ * @param {Object} data - 更新内容
+ */
+export const updateOAG = async (oagId, data) => {
+  const response = await api.put(`/oag/${oagId}`, data);
+  return response;
+};
+
+/**
+ * 删除 OAG
+ * @param {string} oagId - OAG ID
+ */
+export const deleteOAG = async (oagId) => {
+  const response = await api.delete(`/oag/${oagId}`);
+  return response;
+};
+
+/**
+ * 基于 Schema 生成 OAG
+ * @param {string} schemaId - Schema ID
+ * @param {Object} config - 配置
+ */
+export const generateOAGFromSchema = async (schemaId, config = {}) => {
+  const response = await api.post('/oag/generate', {
+    schemaId,
+    ...config
+  });
+  return response;
+};
+
+/**
+ * 基于模板生成 OAG
+ * @param {string} templateId - 模板 ID
+ * @param {Object} params - 模板参数
+ */
+export const generateOAGFromTemplate = async (templateId, params = {}) => {
+  const response = await api.post('/oag/generate-from-template', {
+    templateId,
+    params
+  });
+  return response;
+};
+
+/**
+ * 批量实例化 OAG
+ * @param {string} schemaId - Schema ID
+ * @param {Object} dataSource - 数据源
+ * @param {Object} mappingConfig - 映射配置
+ */
+export const batchInstantiateOAG = async (schemaId, dataSource, mappingConfig = {}) => {
+  const response = await api.post('/oag/instantiate', {
+    schemaId,
+    dataSource,
+    mappingConfig
+  });
+  return response;
+};
+
+/**
+ * 验证 OAG
+ * @param {string} oagId - OAG ID
+ * @param {string} schemaId - Schema ID（可选）
+ */
+export const validateOAG = async (oagId, schemaId) => {
+  const response = await api.post(`/oag/${oagId}/validate`, {
+    schemaId
+  });
+  return response;
+};
+
+/**
+ * 获取 OAG 模板列表
+ */
+export const getOAGTemplates = async () => {
+  const response = await api.get('/oag/templates');
+  return response;
+};
+
+/**
+ * 导出 OAG
+ * @param {string} oagId - OAG ID
+ * @param {string} format - 导出格式
+ */
+export const exportOAG = async (oagId, format = 'json') => {
+  const response = await api.post(`/oag/${oagId}/export`, {
+    format
+  }, {
+    responseType: 'blob'
+  });
+  return response;
+};
+
+/**
+ * 获取 OAG 节点列表
+ * @param {string} oagId - OAG ID
+ * @param {string} type - 节点类型过滤
+ */
+export const getOAGNodes = async (oagId, type) => {
+  const params = type ? { type } : {};
+  const response = await api.get(`/oag/${oagId}/nodes`, { params });
+  return response;
+};
+
+/**
+ * 获取 OAG 边列表
+ * @param {string} oagId - OAG ID
+ * @param {Object} filters - 过滤条件
+ */
+export const getOAGEdges = async (oagId, filters = {}) => {
+  const response = await api.get(`/oag/${oagId}/edges`, { params: filters });
+  return response;
+};
+
+/**
+ * 向 OAG 添加节点
+ * @param {string} oagId - OAG ID
+ * @param {Object} node - 节点数据
+ */
+export const addOAGNode = async (oagId, node) => {
+  const response = await api.post(`/oag/${oagId}/nodes`, node);
+  return response;
+};
+
+/**
+ * 向 OAG 添加边
+ * @param {string} oagId - OAG ID
+ * @param {Object} edge - 边数据
+ */
+export const addOAGEdge = async (oagId, edge) => {
+  const response = await api.post(`/oag/${oagId}/edges`, edge);
+  return response;
 };
 
 export default api;

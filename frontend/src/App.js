@@ -5,6 +5,8 @@ import { GraphsProvider } from './contexts/GraphsContext';
 import GraphListPage from './pages/GraphListPage';
 import GraphViewPage from './pages/GraphViewPage';
 import SchemaEditorPage from './pages/SchemaEditorPage';
+import OAGListPage from './pages/OAGListPage';
+import OAGDetailPage from './pages/OAGDetailPage';
 import './App.css';
 
 /**
@@ -14,7 +16,10 @@ import './App.css';
  */
 function App() {
   return (
-    <Router>
+    <Router future={{
+      v7_startTransition: true,
+      v7_relativeSplatPath: true
+    }}>
       <GraphsProvider>
         <ReactFlowProvider>
           <Routes>
@@ -30,6 +35,10 @@ function App() {
             {/* Schema 编辑器 */}
             <Route path="/schema-editor" element={<SchemaEditorPage />} />
             <Route path="/schema-editor/:graphId" element={<SchemaEditorPage />} />
+            
+            {/* OAG 实例管理 */}
+            <Route path="/oag" element={<OAGListPage />} />
+            <Route path="/oag/:oagId" element={<OAGDetailPage />} />
             
             {/* 404页面 */}
             <Route path="*" element={<Navigate to="/graphs" replace />} />
