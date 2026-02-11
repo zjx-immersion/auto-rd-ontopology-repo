@@ -37,8 +37,20 @@ import {
 import CytoscapeComponent from 'react-cytoscapejs';
 import cytoscape from 'cytoscape';
 import dagre from 'cytoscape-dagre';
-import { getOAGById, validateOAG, getOAGNodes, getOAGEdges, addOAGNode, addOAGEdge } from '../services/oagApi';
+import { 
+  getOAGById, 
+  validateOAG, 
+  getOAGNodes, 
+  getOAGEdges, 
+  addOAGNode, 
+  addOAGEdge,
+  importOAGData,
+  previewImportData,
+  exportOAGData,
+  downloadImportTemplate
+} from '../services/oagApi';
 import './OAGDetailPage.css';
+import ImportExportPanel from '../components/ImportExportPanel';
 
 const { TabPane } = Tabs;
 const { Option } = Select;
@@ -437,6 +449,12 @@ const OAGDetailPage = () => {
       {/* 标签页 */}
       <Tabs activeKey={activeTab} onChange={setActiveTab}>
         <TabPane tab="概览" key="overview">
+          {/* 导入导出面板 */}
+          <ImportExportPanel 
+            oagId={oagId} 
+            onImportSuccess={loadOAG}
+          />
+          
           <Card>
             <Descriptions bordered column={2}>
               <Descriptions.Item label="ID">{oag.id}</Descriptions.Item>

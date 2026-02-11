@@ -111,6 +111,47 @@ export const addOAGEdge = async (oagId, edge) => {
   return response.data;
 };
 
+// 导入数据到OAG
+export const importOAGData = async (oagId, file, mode = 'append') => {
+  const formData = new FormData();
+  formData.append('file', file);
+  formData.append('mode', mode);
+
+  const response = await api.post(`/oag/${oagId}/import`, formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data'
+    }
+  });
+  return response.data;
+};
+
+// 预览导入数据
+export const previewImportData = async (oagId, file) => {
+  const formData = new FormData();
+  formData.append('file', file);
+
+  const response = await api.post(`/oag/${oagId}/import/preview`, formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data'
+    }
+  });
+  return response.data;
+};
+
+// 导出OAG数据为Excel/CSV
+export const exportOAGData = (oagId, format = 'xlsx') => {
+  const baseURL = process.env.REACT_APP_API_URL || 'http://localhost:8090';
+  const url = `${baseURL}/api/v1/oag/${oagId}/export?format=${format}`;
+  window.open(url, '_blank');
+};
+
+// 下载导入模板
+export const downloadImportTemplate = (oagId, format = 'xlsx') => {
+  const baseURL = process.env.REACT_APP_API_URL || 'http://localhost:8090';
+  const url = `${baseURL}/api/v1/oag/${oagId}/export/template?format=${format}`;
+  window.open(url, '_blank');
+};
+
 export default {
   getOAGList,
   getOAGById,
@@ -123,6 +164,10 @@ export default {
   validateOAG,
   getOAGTemplates,
   exportOAG,
+  importOAGData,
+  previewImportData,
+  exportOAGData,
+  downloadImportTemplate,
   getOAGNodes,
   getOAGEdges,
   addOAGNode,

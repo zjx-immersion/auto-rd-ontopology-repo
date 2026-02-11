@@ -3,7 +3,7 @@
  */
 
 // 固定的测试OAG ID（用于详情页测试）
-const TEST_OAG_ID = '85e9e00e-ce84-44ab-b7ec-e017a53e59fe';
+const TEST_OAG_ID = '0b96e712-6017-4122-a24b-77f8cb3b0165';
 
 /**
  * 等待图谱加载完成
