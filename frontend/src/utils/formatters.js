@@ -47,7 +47,12 @@ export const formatFileSize = (bytes) => {
   const k = 1024;
   const sizes = ['B', 'KB', 'MB', 'GB'];
   const i = Math.floor(Math.log(bytes) / Math.log(k));
-  return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+  const value = bytes / Math.pow(k, i);
+  // 整数不显示小数，非整数保留两位小数并移除末尾零
+  const formattedValue = Number.isInteger(value) 
+    ? value.toString() 
+    : parseFloat(value.toFixed(2)).toString();
+  return formattedValue + ' ' + sizes[i];
 };
 
 /**

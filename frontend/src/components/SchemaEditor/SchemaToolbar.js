@@ -31,6 +31,9 @@ const SchemaToolbar = ({
   hasChanges,
   layoutType,
   onLayoutChange,
+  onImport,
+  onExport,
+  onValidate,
 }) => {
   const navigate = useNavigate();
 
@@ -125,13 +128,13 @@ const SchemaToolbar = ({
       <div className="toolbar-right">
         <Space>
           <Tooltip title="导入 Schema">
-            <Button icon={<ImportOutlined />}>
+            <Button icon={<ImportOutlined />} onClick={onImport}>
               导入
             </Button>
           </Tooltip>
           
           <Tooltip title="导出 Schema">
-            <Button icon={<ExportOutlined />}>
+            <Button icon={<ExportOutlined />} onClick={onExport}>
               导出
             </Button>
           </Tooltip>
@@ -139,7 +142,7 @@ const SchemaToolbar = ({
           <Divider type="vertical" />
           
           <Tooltip title="验证 Schema">
-            <Button icon={<CheckCircleOutlined />}>
+            <Button icon={<CheckCircleOutlined />} onClick={onValidate}>
               验证
             </Button>
           </Tooltip>

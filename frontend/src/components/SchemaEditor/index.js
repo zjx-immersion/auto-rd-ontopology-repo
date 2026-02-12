@@ -27,6 +27,8 @@ import RelationTypeEdge from './RelationTypeEdge';
 import PropertyPanel from './PropertyPanel';
 import SchemaToolbar from './SchemaToolbar';
 import EntityTypeEditor from './EntityTypeEditor';
+import ImportExportModal from './ImportExportModal';
+import SchemaValidator from './SchemaValidator';
 import { 
   fetchSchema, 
   saveSchema, 
@@ -426,6 +428,44 @@ const SchemaEditor = ({ graphId }) => {
     }
   };
 
+  // 导入导出模态框状态
+  const [importExportVisible, setImportExportVisible] = useState(false);
+  const [importExportMode, setImportExportMode] = useState('import');
+  
+  // 验证模态框状态
+  const [validatorVisible, setValidatorVisible] = useState(false);
+  
+  // 导入 Schema
+  const handleImport = () => {
+    setImportExportMode('import');
+    setImportExportVisible(true);
+  };
+
+  // 导出 Schema
+  const handleExport = () => {
+    setImportExportMode('export');
+    setImportExportVisible(true);
+  };
+
+  // 验证 Schema
+  const handleValidate = () => {
+    setValidatorVisible(true);
+  };
+  
+  // 处理导入完成
+  const handleImportComplete = (newSchema) => {
+    setSchema(newSchema);
+    convertSchemaToFlow(newSchema);
+    setHasChanges(true);
+    setImportExportVisible(false);
+    message.success('Schema导入成功');
+  };
+  
+  // 处理导出完成
+  const handleExportComplete = () => {
+    setImportExportVisible(false);
+  };
+
   // 节点选中事件
   const onNodeClick = (_, node) => {
     const entityId = node.id.replace('entity-', '');
@@ -461,6 +501,9 @@ const SchemaEditor = ({ graphId }) => {
         hasChanges={hasChanges}
         layoutType={layoutType}
         onLayoutChange={handleRelayout}
+        onImport={handleImport}
+        onExport={handleExport}
+        onValidate={handleValidate}
       />
 
       <Layout className="schema-editor-content">
@@ -597,6 +640,24 @@ const SchemaEditor = ({ graphId }) => {
         onSave={handleSaveEntityType}
         onDelete={editingEntityType ? handleDeleteEntityType : null}
         existingDomains={Object.values(schema.entityTypes).map(e => e.domain).filter(Boolean)}
+      />
+      
+      {/* 导入导出模态框 */}
+      <ImportExportModal
+        visible={importExportVisible}
+        mode={importExportMode}
+        schema={schema}
+        onClose={() => setImportExportVisible(false)}
+        onImport={handleImportComplete}
+        onExport={handleExportComplete}
+      />
+      
+      {/* 验证模态框 */}
+      <SchemaValidator
+        visible={validatorVisible}
+        schema={schema}
+        onClose={() => setValidatorVisible(false)}
+        onFix={(item) => console.log('Fix:', item)}
       />
     </Layout>
   );
