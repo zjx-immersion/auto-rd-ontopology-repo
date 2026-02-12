@@ -48,7 +48,7 @@ const EntityTypeNode = ({ data, selected }) => {
           minWidth: 140,
           maxWidth: 200,
         }}
-        bodyStyle={{ padding: '12px' }}
+        styles={{ body: { padding: '12px' } }}
       >
         <div className="entity-header">
           <Space>

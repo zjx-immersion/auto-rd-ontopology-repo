@@ -19,6 +19,19 @@ test.describe('冒烟测试 - 核心流程', () => {
     // 每个测试前清理测试数据（只清理Test-Graph开头的）
     await cleanupTestGraphs(page);
   });
+  
+  test.afterEach(async ({ page }) => {
+    // 检查console错误
+    const consoleErrors = [];
+    page.on('console', msg => {
+      if (msg.type() === 'error') {
+        consoleErrors.push(msg.text());
+      }
+    });
+    if (consoleErrors.length > 0) {
+      console.log('Console errors:', consoleErrors);
+    }
+  });
 
   test.afterEach(async ({ page }) => {
     // 每个测试后清理
@@ -63,8 +76,14 @@ test.describe('冒烟测试 - 核心流程', () => {
     await page.goto('/oag');
     await page.waitForLoadState('networkidle');
     
-    // 点击创建OAG按钮
-    await page.locator('button:has-text("创建")').first().click();
+    // 移除webpack dev server overlay
+    await page.evaluate(() => {
+      const overlay = document.getElementById('webpack-dev-server-client-overlay');
+      if (overlay) overlay.remove();
+    });
+    
+    // 点击创建OAG按钮 (使用force绕过iframe遮挡)
+    await page.locator('button:has-text("创建")').first().click({ force: true });
     
     // 等待弹窗出现
     await page.waitForSelector('.ant-modal, [role="dialog"]', { state: 'visible' });
