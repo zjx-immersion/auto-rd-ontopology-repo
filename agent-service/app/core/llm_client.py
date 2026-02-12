@@ -41,7 +41,9 @@ class LLMResponse:
 
 
 class KimiClient:
-    """Kimi API 客户端"""
+    """Kimi API 客户端 - 使用连接池复用HTTP连接"""
+    
+    _client: Optional[httpx.AsyncClient] = None
     
     def __init__(self):
         self.api_key = settings.KIMI_API_KEY
@@ -55,6 +57,29 @@ class KimiClient:
             "Authorization": f"Bearer {self.api_key}",
             "Content-Type": "application/json"
         }
+    
+    @classmethod
+    def get_client(cls) -> httpx.AsyncClient:
+        """获取共享的HTTP客户端（连接池）"""
+        if cls._client is None:
+            # 创建带连接池的客户端
+            limits = httpx.Limits(
+                max_keepalive_connections=20,  # 最大保持连接数
+                max_connections=100,            # 最大连接数
+                keepalive_expiry=30.0          # 连接保持时间（秒）
+            )
+            cls._client = httpx.AsyncClient(
+                limits=limits,
+                timeout=httpx.Timeout(60.0, connect=10.0)
+            )
+        return cls._client
+    
+    @classmethod
+    async def close_client(cls):
+        """关闭HTTP客户端"""
+        if cls._client is not None:
+            await cls._client.aclose()
+            cls._client = None
     
     async def chat(
         self,
@@ -90,33 +115,34 @@ class KimiClient:
         if tools:
             payload["tools"] = tools
         
-        async with httpx.AsyncClient(timeout=self.timeout) as client:
-            try:
-                response = await client.post(
-                    url,
-                    headers=self.headers,
-                    json=payload
-                )
-                response.raise_for_status()
-                data = response.json()
-                
-                choice = data["choices"][0]
-                message = choice["message"]
-                
-                return LLMResponse(
-                    content=message.get("content", ""),
-                    usage=data.get("usage", {}),
-                    model=data.get("model", self.model),
-                    finish_reason=choice.get("finish_reason", ""),
-                    tool_calls=message.get("tool_calls", [])
-                )
-                
-            except httpx.HTTPError as e:
-                logger.error("Kimi API request failed", error=str(e))
-                raise
-            except Exception as e:
-                logger.error("Unexpected error in Kimi chat", error=str(e))
-                raise
+        client = self.get_client()
+        try:
+            response = await client.post(
+                url,
+                headers=self.headers,
+                json=payload,
+                timeout=self.timeout
+            )
+            response.raise_for_status()
+            data = response.json()
+            
+            choice = data["choices"][0]
+            message = choice["message"]
+            
+            return LLMResponse(
+                content=message.get("content", ""),
+                usage=data.get("usage", {}),
+                model=data.get("model", self.model),
+                finish_reason=choice.get("finish_reason", ""),
+                tool_calls=message.get("tool_calls", [])
+            )
+            
+        except httpx.HTTPError as e:
+            logger.error("Kimi API request failed", error=str(e))
+            raise
+        except Exception as e:
+            logger.error("Unexpected error in Kimi chat", error=str(e))
+            raise
     
     async def chat_stream(
         self,
@@ -150,27 +176,28 @@ class KimiClient:
         if tools:
             payload["tools"] = tools
         
-        async with httpx.AsyncClient(timeout=self.timeout) as client:
-            async with client.stream(
-                "POST",
-                url,
-                headers=self.headers,
-                json=payload
-            ) as response:
-                response.raise_for_status()
-                
-                async for line in response.aiter_lines():
-                    if line.startswith("data: "):
-                        data_str = line[6:]
-                        if data_str == "[DONE]":
-                            break
-                        
-                        try:
-                            data = json.loads(data_str)
-                            delta = data["choices"][0].get("delta", {})
-                            content = delta.get("content", "")
-                            if content:
-                                yield content
+        client = self.get_client()
+        async with client.stream(
+            "POST",
+            url,
+            headers=self.headers,
+            json=payload,
+            timeout=self.timeout
+        ) as response:
+            response.raise_for_status()
+            
+            async for line in response.aiter_lines():
+                if line.startswith("data: "):
+                    data_str = line[6:]
+                    if data_str == "[DONE]":
+                        break
+                    
+                    try:
+                        data = json.loads(data_str)
+                        delta = data["choices"][0].get("delta", {})
+                        content = delta.get("content", "")
+                        if content:
+                            yield content
                         except json.JSONDecodeError:
                             continue
                         except Exception as e:
