@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect, useRef } from 'react';
 import {
   Modal,
   Button,
@@ -43,13 +43,23 @@ const SchemaValidator = ({
   const [validating, setValidating] = useState(false);
   const [validationResult, setValidationResult] = useState(null);
   const [activeTab, setActiveTab] = useState('validation');
+  const timeoutRef = useRef(null);
+
+  // 清理timeout
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+    };
+  }, []);
 
   // 执行验证
   const handleValidate = useCallback(() => {
     setValidating(true);
     
     // 模拟异步验证
-    setTimeout(() => {
+    timeoutRef.current = setTimeout(() => {
       const result = validateSchema(schema);
       
       // 额外检查

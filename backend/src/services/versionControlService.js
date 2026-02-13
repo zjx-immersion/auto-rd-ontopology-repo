@@ -10,7 +10,41 @@ const crypto = require('crypto');
 class VersionControlService {
   constructor() {
     this.versionsDir = path.join(__dirname, '../../data/versions');
+    this.locks = new Map(); // 用于防止竞态条件
     this.init();
+  }
+
+  /**
+   * 获取锁
+   * @param {string} key - 锁的键
+   * @returns {Promise<Function>} 释放锁的函数
+   */
+  async acquireLock(key) {
+    while (this.locks.has(key)) {
+      await new Promise(resolve => setTimeout(resolve, 10));
+    }
+    this.locks.set(key, true);
+    return () => this.locks.delete(key);
+  }
+
+  /**
+   * 验证资源ID（防止路径遍历）
+   * @param {string} resourceId - 资源ID
+   * @returns {boolean} 是否有效
+   */
+  isValidResourceId(resourceId) {
+    // 只允许字母、数字、下划线、连字符
+    return /^[a-zA-Z0-9_-]+$/.test(resourceId);
+  }
+
+  /**
+   * 验证版本ID（防止路径遍历）
+   * @param {string} versionId - 版本ID
+   * @returns {boolean} 是否有效
+   */
+  isValidVersionId(versionId) {
+    // 只允许字母、数字、下划线、连字符
+    return /^[a-zA-Z0-9_-]+$/.test(versionId);
   }
 
   async init() {
@@ -30,34 +64,50 @@ class VersionControlService {
    * @returns {Promise<Object>} 版本信息
    */
   async createSnapshot(resourceId, resourceType, data, options = {}) {
+    // 验证资源ID
+    if (!this.isValidResourceId(resourceId)) {
+      throw new Error('Invalid resourceId: only alphanumeric, underscore, and hyphen allowed');
+    }
+    if (!this.isValidResourceId(resourceType)) {
+      throw new Error('Invalid resourceType: only alphanumeric, underscore, and hyphen allowed');
+    }
+
     const { comment = '', createdBy = 'system', parentVersionId = null } = options;
     
-    const timestamp = new Date();
-    const versionId = this.generateVersionId();
-    const hash = this.calculateHash(data);
+    // 获取锁防止竞态条件
+    const lockKey = `${resourceType}:${resourceId}`;
+    const releaseLock = await this.acquireLock(lockKey);
     
-    const version = {
-      id: versionId,
-      resourceId,
-      resourceType,
-      version: await this.getNextVersionNumber(resourceId, resourceType),
-      data,
-      hash,
-      comment,
-      createdBy,
-      createdAt: timestamp.toISOString(),
-      parentVersionId
-    };
+    try {
+      const timestamp = new Date();
+      const versionId = this.generateVersionId();
+      const hash = this.calculateHash(data);
+      
+      const version = {
+        id: versionId,
+        resourceId,
+        resourceType,
+        version: await this.getNextVersionNumber(resourceId, resourceType),
+        data,
+        hash,
+        comment,
+        createdBy,
+        createdAt: timestamp.toISOString(),
+        parentVersionId
+      };
 
-    // 保存版本文件
-    const versionPath = this.getVersionPath(resourceId, resourceType, versionId);
-    await fs.mkdir(path.dirname(versionPath), { recursive: true });
-    await fs.writeFile(versionPath, JSON.stringify(version, null, 2));
+      // 保存版本文件
+      const versionPath = this.getVersionPath(resourceId, resourceType, versionId);
+      await fs.mkdir(path.dirname(versionPath), { recursive: true });
+      await fs.writeFile(versionPath, JSON.stringify(version, null, 2));
 
-    // 更新版本索引
-    await this.updateVersionIndex(resourceId, resourceType, version);
+      // 更新版本索引
+      await this.updateVersionIndex(resourceId, resourceType, version);
 
-    return version;
+      return version;
+    } finally {
+      releaseLock();
+    }
   }
 
   /**
@@ -68,6 +118,14 @@ class VersionControlService {
    * @returns {Promise<Array>} 版本列表
    */
   async getVersionHistory(resourceId, resourceType, options = {}) {
+    // 验证资源ID
+    if (!this.isValidResourceId(resourceId)) {
+      throw new Error('Invalid resourceId: only alphanumeric, underscore, and hyphen allowed');
+    }
+    if (!this.isValidResourceId(resourceType)) {
+      throw new Error('Invalid resourceType: only alphanumeric, underscore, and hyphen allowed');
+    }
+
     const { limit = 50, offset = 0 } = options;
     
     try {
@@ -95,6 +153,17 @@ class VersionControlService {
    * @returns {Promise<Object>} 版本信息
    */
   async getVersion(resourceId, resourceType, versionId) {
+    // 验证ID
+    if (!this.isValidResourceId(resourceId)) {
+      throw new Error('Invalid resourceId: only alphanumeric, underscore, and hyphen allowed');
+    }
+    if (!this.isValidResourceId(resourceType)) {
+      throw new Error('Invalid resourceType: only alphanumeric, underscore, and hyphen allowed');
+    }
+    if (!this.isValidVersionId(versionId)) {
+      throw new Error('Invalid versionId: only alphanumeric, underscore, and hyphen allowed');
+    }
+
     const versionPath = this.getVersionPath(resourceId, resourceType, versionId);
     const data = await fs.readFile(versionPath, 'utf8');
     return JSON.parse(data);
@@ -109,6 +178,17 @@ class VersionControlService {
    * @returns {Promise<Object>} 新版本信息
    */
   async rollback(resourceId, resourceType, versionId, options = {}) {
+    // 验证ID
+    if (!this.isValidResourceId(resourceId)) {
+      throw new Error('Invalid resourceId: only alphanumeric, underscore, and hyphen allowed');
+    }
+    if (!this.isValidResourceId(resourceType)) {
+      throw new Error('Invalid resourceType: only alphanumeric, underscore, and hyphen allowed');
+    }
+    if (!this.isValidVersionId(versionId)) {
+      throw new Error('Invalid versionId: only alphanumeric, underscore, and hyphen allowed');
+    }
+
     const targetVersion = await this.getVersion(resourceId, resourceType, versionId);
     
     const rollbackOptions = {
@@ -134,6 +214,17 @@ class VersionControlService {
    * @returns {Promise<Object>} 对比结果
    */
   async diff(resourceId, resourceType, versionId1, versionId2) {
+    // 验证ID
+    if (!this.isValidResourceId(resourceId)) {
+      throw new Error('Invalid resourceId: only alphanumeric, underscore, and hyphen allowed');
+    }
+    if (!this.isValidResourceId(resourceType)) {
+      throw new Error('Invalid resourceType: only alphanumeric, underscore, and hyphen allowed');
+    }
+    if (!this.isValidVersionId(versionId1) || !this.isValidVersionId(versionId2)) {
+      throw new Error('Invalid versionId: only alphanumeric, underscore, and hyphen allowed');
+    }
+
     const [v1, v2] = await Promise.all([
       this.getVersion(resourceId, resourceType, versionId1),
       this.getVersion(resourceId, resourceType, versionId2)
@@ -177,6 +268,17 @@ class VersionControlService {
    * @param {string} versionId - 版本ID
    */
   async deleteVersion(resourceId, resourceType, versionId) {
+    // 验证ID
+    if (!this.isValidResourceId(resourceId)) {
+      throw new Error('Invalid resourceId: only alphanumeric, underscore, and hyphen allowed');
+    }
+    if (!this.isValidResourceId(resourceType)) {
+      throw new Error('Invalid resourceType: only alphanumeric, underscore, and hyphen allowed');
+    }
+    if (!this.isValidVersionId(versionId)) {
+      throw new Error('Invalid versionId: only alphanumeric, underscore, and hyphen allowed');
+    }
+
     const versionPath = this.getVersionPath(resourceId, resourceType, versionId);
     await fs.unlink(versionPath);
     
@@ -235,21 +337,37 @@ class VersionControlService {
   }
 
   getVersionPath(resourceId, resourceType, versionId) {
-    return path.join(
+    // 构建路径并确保在 versionsDir 内
+    const fullPath = path.join(
       this.versionsDir,
       resourceType,
       resourceId,
       `${versionId}.json`
     );
+    // 验证路径在允许目录内
+    const resolvedPath = path.resolve(fullPath);
+    const resolvedBase = path.resolve(this.versionsDir);
+    if (!resolvedPath.startsWith(resolvedBase)) {
+      throw new Error('Invalid path: path traversal detected');
+    }
+    return fullPath;
   }
 
   getIndexPath(resourceId, resourceType) {
-    return path.join(
+    // 构建路径并确保在 versionsDir 内
+    const fullPath = path.join(
       this.versionsDir,
       resourceType,
       resourceId,
       'index.json'
     );
+    // 验证路径在允许目录内
+    const resolvedPath = path.resolve(fullPath);
+    const resolvedBase = path.resolve(this.versionsDir);
+    if (!resolvedPath.startsWith(resolvedBase)) {
+      throw new Error('Invalid path: path traversal detected');
+    }
+    return fullPath;
   }
 
   async updateVersionIndex(resourceId, resourceType, version) {

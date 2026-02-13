@@ -5,8 +5,6 @@ node_modules/
 
 # Testing
 coverage/
-test-results/
-playwright-report/
 
 # Production
 build/
@@ -35,10 +33,17 @@ yarn-error.log*
 *.tmp
 *.temp
 
-# Playwright
+# Playwright (moved to browser-test/)
 /test-results/
 /playwright-report/
 /playwright/.cache/
+e2e/
+playwright.config.js
+
+# Browser Test
+browser-test/node_modules/
+browser-test/playwright-report/
+browser-test/test-results/
 
 # Data files (large)
 *.xlsx

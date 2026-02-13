@@ -145,6 +145,30 @@ const SchemaEditor = ({ graphId }) => {
       });
     }
     
+    // 转换继承关系为边（虚线表示）
+    if (schemaData.entityTypes) {
+      Object.entries(schemaData.entityTypes).forEach(([id, entity]) => {
+        if (entity.parent) {
+          flowEdges.push({
+            id: `inheritance-${id}-${entity.parent}`,
+            source: `entity-${entity.parent}`,
+            target: `entity-${id}`,
+            type: 'inheritance',
+            data: { isInheritance: true },
+            style: { 
+              stroke: '#faad14', 
+              strokeDasharray: '5 5',
+              strokeWidth: 2 
+            },
+            markerEnd: {
+              type: 'arrowclosed',
+              color: '#faad14',
+            },
+          });
+        }
+      });
+    }
+    
     // 使用智能布局算法计算位置
     const layoutedNodes = autoLayout(flowNodes, flowEdges, layoutType);
     
